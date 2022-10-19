@@ -13,4 +13,6 @@ class Dose < ApplicationRecord
 
   has_many :user_doses, dependent: :destroy
   has_many :users, through: :user_doses
+
+  validates :tipo, presence: true
 end

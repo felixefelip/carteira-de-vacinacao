@@ -9,4 +9,6 @@
 #
 class Vacina < ApplicationRecord
   has_many :doses, dependent: :destroy
+
+  validates :descricao, presence: true
 end
