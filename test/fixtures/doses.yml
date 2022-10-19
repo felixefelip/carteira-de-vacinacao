@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: doses
+#
+#  id         :integer          not null, primary key
+#  tipo       :string
+#  vacina_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  tipo: MyString
+  vacina: one
+
+two:
+  tipo: MyString
+  vacina: two
