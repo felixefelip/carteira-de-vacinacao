@@ -15,7 +15,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :user_doses, dependent: :destroy
-  has_many :doses, through: :user_doses
+  has_many :doses, dependent: :destroy
   has_many :vacinas, through: :doses
 end
