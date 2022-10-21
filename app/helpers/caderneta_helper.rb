@@ -1,0 +1,2 @@
+module CadernetaHelper
+end
