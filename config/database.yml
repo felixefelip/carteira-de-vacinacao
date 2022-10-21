@@ -24,3 +24,6 @@ test:
 production:
   <<: *default
   database: carteira_de_vacinacao_production
+  username: carteira_de_vacinacao
+  password: <%= ENV["CARTEIRA_DE_VACINACAO_DATABASE_PASSWORD"] %>
+
