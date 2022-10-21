@@ -11,33 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :fabricante_vacina %>
-    <%= form.collection_select :fabricante_vacina_id, FabricanteVacina.all, :id, :descricao %>
+    <%= form.collection_select :fabricante_vacina_id, @vacina.fabricante_vacinas.all, :id, :descricao, {}, class: "form-control" %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :data_vacinacao %>
-    <%= form.date_field :data_vacinacao %>
+    <%= form.date_field :data_vacinacao, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :lote_numero %>
-    <%= form.text_field :lote_numero %>
+    <%= form.text_field :lote_numero, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :vacinador_codigo %>
-    <%= form.text_field :vacinador_codigo %>
+    <%= form.text_field :vacinador_codigo, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :local_codigo %>
-    <%= form.text_field :local_codigo %>
+    <%= form.text_field :local_codigo, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :local_codigo %>
-    <%= form.text_field :local_codigo %>
+    <%= form.text_field :local_codigo, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", class:"btn btn-primary" %>
   </div>
 <% end %>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
     <%= link_to 'Carteira de Vacinação', root_path, class: "navbar-brand" %>
 
@@ -10,10 +10,10 @@
 
             <% if user_signed_in?  %>
                 <li class="nav-item">
-                    <%= link_to "Editar Perfil", edit_user_registration_path, class:"nav-link" %>
+                    <%= link_to "Caderneta", caderneta_path, class:"nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Meus Posts", "/posts/user", class:"nav-link" %>
+                    <%= link_to "Editar Perfil", edit_user_registration_path, class:"nav-link" %>
                 </li>
                 <li class="nav-item">
                     <%= link_to "Sair", destroy_user_session_path, method: :delete, class:"nav-link" %>
@@ -30,7 +30,7 @@
 
         </ul>
     <form class="form-inline my-2 my-lg-0">
-        <%= link_to 'Novo Post', "new_post_path", class:"btn btn-outline-light" %>
+
     </form>
   </div>
 </nav>

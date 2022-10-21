@@ -1,6 +1,6 @@
 class DosesController < ApplicationController
   before_action :set_dose, only: %i[show edit update]
-  # before_action :set_vacina, only: %i[index]
+  before_action :set_vacina, only: %i[new create edit update]
 
   def index
     @doses = current_user.doses.all
@@ -16,10 +16,9 @@ class DosesController < ApplicationController
 
   def create
     @dose = current_user.doses.new(dose_params)
-    binding.pry
 
     if @dose.save
-      redirect_to vacinas_url, notice: 'Dose was successfully created.'
+      redirect_to caderneta_url, notice: 'Dose was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +31,7 @@ class DosesController < ApplicationController
   end
 
   def set_vacina
-    @vacina = FabricanteVacina.find(params[:vacina_id])
+    @vacina = Vacina.find(params[:vacina_id])
   end
 
   def dose_params
