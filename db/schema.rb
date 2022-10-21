@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_10_21_023146) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "doses", force: :cascade do |t|
     t.string "tipo"
     t.date "data_vacinacao"
