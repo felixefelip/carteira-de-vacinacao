@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_032648) do
+ActiveRecord::Schema.define(version: 2022_10_21_023146) do
 
   create_table "doses", force: :cascade do |t|
     t.string "tipo"
@@ -18,12 +18,22 @@ ActiveRecord::Schema.define(version: 2022_10_19_032648) do
     t.string "lote_numero"
     t.string "vacinador_codigo"
     t.string "local_codigo"
-    t.integer "vacina_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "fabricante_vacina_id", null: false
+    t.index ["fabricante_vacina_id"], name: "index_doses_on_fabricante_vacina_id"
     t.index ["user_id"], name: "index_doses_on_user_id"
-    t.index ["vacina_id"], name: "index_doses_on_vacina_id"
+  end
+
+  create_table "fabricante_vacinas", force: :cascade do |t|
+    t.string "descricao"
+    t.integer "user_id"
+    t.integer "vacina_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_fabricante_vacinas_on_user_id"
+    t.index ["vacina_id"], name: "index_fabricante_vacinas_on_vacina_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,6 +54,8 @@ ActiveRecord::Schema.define(version: 2022_10_19_032648) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "doses", "fabricante_vacinas"
   add_foreign_key "doses", "users"
-  add_foreign_key "doses", "vacinas"
+  add_foreign_key "fabricante_vacinas", "users"
+  add_foreign_key "fabricante_vacinas", "vacinas"
 end

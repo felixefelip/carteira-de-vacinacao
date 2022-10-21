@@ -16,7 +16,7 @@
         <td><%= vacina.descricao %></td>
         <td><%= link_to 'Show', vacina %></td>
         <td><%= link_to 'Edit', edit_vacina_path(vacina) %></td>
-        <td><%= link_to 'Cadastrar dose', new_vacina_dose_path(vacina) %></td>
+        <%# <td><%= link_to 'Cadastrar dose', vacina_doses_path(vacina) %></td> %>
         <td><%= link_to 'Destroy', vacina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

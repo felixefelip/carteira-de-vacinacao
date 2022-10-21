@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: fabricante_vacinas
+#
+#  id         :integer          not null, primary key
+#  descricao  :string
+#  user_id    :integer
+#  vacina_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  descricao: MyString
+  user: one
+  vacina: one
+
+two:
+  descricao: MyString
+  user: two
+  vacina: two

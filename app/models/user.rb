@@ -16,5 +16,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :doses, dependent: :destroy
-  has_many :vacinas, through: :doses
+  has_many :fabricante_vacinas, through: :doses
+  has_many :vacinas, through: :fabricante_vacinas
+
+  def qtde_doses_por_vacina(vacina)
+    fabricante_vacinas.where(vacina: vacina).count
+  end
+
+  def qtde_doses_por_fabricante_vacina(fabricante_vacina)
+    fabricante_vacinas.where(id: fabricante_vacina.id).count
+  end
 end
