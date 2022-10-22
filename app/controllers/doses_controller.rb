@@ -18,7 +18,7 @@ class DosesController < ApplicationController
     @dose = current_user.doses.new(dose_params)
 
     if @dose.save
-      redirect_to caderneta_url, notice: 'Dose was successfully created.'
+      redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end

@@ -15,9 +15,10 @@ class VacinasController < ApplicationController
 
   def create
     @vacina = Vacina.new(vacina_params)
+    @vacina.fabricante_vacinas.new(descricao: @vacina.descricao)
 
     if @vacina.save
-      redirect_to vacina_url(@vacina), notice: 'Vacina was successfully created.'
+      redirect_to vacinas_path, notice: 'Vacina was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

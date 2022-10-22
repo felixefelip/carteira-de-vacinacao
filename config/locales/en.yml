@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      dose:
+        fabricante_vacina: Variação / Fornecedor

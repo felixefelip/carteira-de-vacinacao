@@ -1,31 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @vacina.descricao %>
-</p>
+<h3>
+  Doses tomadas da vacina
+  <strong><%= @vacina.descricao %></strong>
+</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>Descricao</th>
-      <th>Qtde</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fabricante_vacinas.each do |fabricante_vacina| %>
+<div class="table-responsive-md">
+  <table class="table table-striped table-bordered table-hover mt-4 shadow-sm">
+    <thead class="thead-light">
       <tr>
-        <td><%= fabricante_vacina.descricao %></td>
-        <td><%= "#{current_user.qtde_doses_por_fabricante_vacina(fabricante_vacina)} doses" %></td>
-        <td><%= link_to 'Show', cadernetum_path(fabricante_vacina.id) %></td>
-        <td><%= link_to 'Edit', edit_vacina_path(fabricante_vacina) %></td>
-        <td><%= link_to 'Destroy', fabricante_vacina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Descricao</th>
+        <th>Qtde de doses</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'Edit', edit_vacina_path(@vacina) %> |
-<%= link_to 'Back', vacinas_path %>
+    <tbody>
+      <% @fabricante_vacinas.each do |fabricante_vacina| %>
+        <tr>
+          <td><%= fabricante_vacina.descricao %></td>
+          <td><%= "#{current_user.qtde_doses_por_fabricante_vacina(fabricante_vacina)} doses" %></td>
+          <td><%= link_to 'Destroy', fabricante_vacina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'Voltar', :back %>

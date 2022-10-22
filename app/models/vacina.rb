@@ -11,5 +11,7 @@ class Vacina < ApplicationRecord
   has_many :fabricante_vacinas, dependent: :destroy
   has_many :doses, through: :fabricante_vacinas
 
+  accepts_nested_attributes_for :fabricante_vacinas
+
   validates :descricao, presence: true
 end
