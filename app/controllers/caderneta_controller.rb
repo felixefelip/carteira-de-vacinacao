@@ -6,7 +6,7 @@ class CadernetaController < ApplicationController
   end
 
   def show
-    @fabricante_vacinas = @vacina.fabricante_vacinas.joins(:doses).where("doses.user_id = ? ", current_user.id).uniq
+    @fabricante_vacinas = @vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).uniq
   end
 
   def set_vacina

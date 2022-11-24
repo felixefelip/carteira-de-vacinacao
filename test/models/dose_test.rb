@@ -2,16 +2,26 @@
 #
 # Table name: doses
 #
-#  id                   :integer          not null, primary key
-#  tipo                 :string
+#  id                   :bigint           not null, primary key
 #  data_vacinacao       :date
-#  lote_numero          :string
-#  vacinador_codigo     :string
 #  local_codigo         :string
-#  user_id              :integer          not null
+#  lote_numero          :string
+#  tipo                 :string
+#  vacinador_codigo     :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  fabricante_vacina_id :integer          not null
+#  user_id              :integer          not null
+#
+# Indexes
+#
+#  index_doses_on_fabricante_vacina_id  (fabricante_vacina_id)
+#  index_doses_on_user_id               (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (fabricante_vacina_id => fabricante_vacinas.id)
+#  fk_rails_...  (user_id => users.id)
 #
 require "test_helper"
 
