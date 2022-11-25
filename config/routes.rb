@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'caderneta#index'
 
-  devise_for :users
+  # devise_for :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   resources :fabricante_vacinas
 
