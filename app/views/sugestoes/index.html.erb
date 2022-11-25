@@ -14,12 +14,12 @@ Criança: 4 anos.
     </thead>
 
     <tbody>
-      <% @vacinas.each do |vacina| %>
+      <% @recomendacao_vacinas.each do |recomendacao_vacina| %>
         <tr>
-          <td><%= vacina.descricao %></td>
-          <td><%= [0, 0, 1, 1, 2, 3].sample %></td>
-          <td><%= ["Dose atrasada", "Dose disponível", "Em dia", "Não disponível"].sample %></td>
-          <td><%= link_to 'Cadastrar dose', new_vacina_dose_path(vacina) %></td>
+          <td><%= recomendacao_vacina.vacina.descricao %></td>
+          <td><%= current_user.qtde_doses_por_vacina(recomendacao_vacina.vacina) %></td>
+          <td><%= recomendacao_vacina.calcular_status_vacinal %></td>
+          <td><%= link_to 'Cadastrar dose', new_vacina_dose_path(recomendacao_vacina.vacina) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -16,10 +16,18 @@ ActiveRecord::Base.transaction do
   # hepatite_b.dose_do_calendarios.create!(idade_recomendada: 0)
 
   # Poliomielite
-  poliomielite = Vacina.create!(descricao: "Poliomielite 1,2,3 (VIP - inativada)",
-                                ordem_no_calendario: 2, dias_de_intervalo: 30)
+  # poliomielite = Vacina.create!(descricao: "Poliomielite 1,2,3 (VIP - inativada)",
+  #                               ordem_no_calendario: 2, dias_de_intervalo: 30)
 
-  poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.2)
-  poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.4)
-  poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.6)
+  # poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.2)
+  # poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.4)
+  # poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.6)
+
+  vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
+
+  recomendacao = Recomendacao.create!(user: User.first)
+
+  vacinas_do_calendario.each do |vacina|
+    recomendacao.recomendacao_vacinas.create!(vacina: vacina)
+  end
 end

@@ -27,7 +27,11 @@ class User < ApplicationRecord
   has_many :fabricante_vacinas, through: :doses
   has_many :vacinas, through: :fabricante_vacinas
 
+  after_create :criar_calendario_de_vacinacao!
+  after_save -> { recomendacao.recomendacao_vacinas.select(&:calcular_status_vacinal) }
+
   def idade
+    (Date.current.strftime('%Y%m%d').to_i - data_nascimento.strftime('%Y%m%d').to_i) * 0.001
   end
 
   def qtde_doses_por_vacina(vacina)
@@ -38,8 +42,18 @@ class User < ApplicationRecord
     fabricante_vacinas.where(id: fabricante_vacina.id).count
   end
 
-  def situacao_na_vacina(vacina)
+  def criar_calendario_de_vacinacao!
+    vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
 
-    fabricante_vacinas.where(vacina: vacina).count
+    recomendacao = Recomendacao.create!(user_id: id)
+
+    vacinas_do_calendario.each do |vacina|
+      recomendacao.recomendacao_vacinas.create!(vacina: vacina)
+    end
+  end
+
+  def atualizar_calendario
+    recomendacao.recomendacao_vacinas.select(&:calcular_status_vacinal)
+    recomendacao.save
   end
 end

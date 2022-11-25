@@ -18,4 +18,6 @@
 class Recomendacao < ApplicationRecord
   belongs_to :user
   has_many :recomendacao_vacinas, dependent: :destroy
+
+  has_many :vacinas, through: :recomendacao_vacinas
 end

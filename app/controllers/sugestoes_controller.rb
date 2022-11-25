@@ -2,7 +2,7 @@ class SugestoesController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 
   def index
-    @vacinas = Vacina.all.order(updated_at: :desc)
+    @recomendacao_vacinas = current_user.recomendacao.recomendacao_vacinas
   end
 
   private
