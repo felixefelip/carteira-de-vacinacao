@@ -33,12 +33,12 @@ class RecomendacaoVacina < ApplicationRecord
 
   def calcular_status_vacinal
     self.status_vacinal = if tomou_todas_as_doses?
-                            :completo
-                          elsif pode_tomar_nova_dose?
-                            :disponivel
-                          else
-                            :aguardando
-                          end
+        :completo
+      elsif pode_tomar_nova_dose?
+        :disponivel
+      else
+        :aguardando
+      end
   end
 
   def dose_recomendada_atual
@@ -68,7 +68,12 @@ class RecomendacaoVacina < ApplicationRecord
   def intervalo_para_proxima_dose_termina_em
     return if recomendacao.user.doses.none?
 
-    recomendacao.user.doses.last.data_vacinacao&.+ vacina.dias_de_intervalo.to_i.days
+    ultima_dose = recomendacao.user.doses.joins(:fabricante_vacina)
+                              .where(fabricante_vacina: { vacina: vacina }).last
+
+    return if ultima_dose.nil?
+
+    ultima_dose.data_vacinacao&.+ vacina.dias_de_intervalo.to_i.days
   end
 
   def tomou_todas_as_doses?

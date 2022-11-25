@@ -28,7 +28,7 @@ class User < ApplicationRecord
   has_many :vacinas, through: :fabricante_vacinas
 
   after_create :criar_calendario_de_vacinacao!
-  after_save -> { recomendacao.recomendacao_vacinas.select(&:calcular_status_vacinal) }
+  after_save :atualizar_calendario
 
   def idade
     (Date.current.strftime('%Y%m%d').to_i - data_nascimento.strftime('%Y%m%d').to_i) * 0.001
@@ -54,6 +54,6 @@ class User < ApplicationRecord
 
   def atualizar_calendario
     recomendacao.recomendacao_vacinas.select(&:calcular_status_vacinal)
-    recomendacao.save
+    recomendacao.save!
   end
 end
