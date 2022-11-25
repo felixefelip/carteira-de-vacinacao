@@ -53,7 +53,9 @@ class User < ApplicationRecord
   end
 
   def atualizar_calendario
-    recomendacao.recomendacao_vacinas.select(&:calcular_status_vacinal)
-    recomendacao.save!
+    recomendacao.recomendacao_vacinas.each do |recomendacao_vacina|
+      recomendacao_vacina.calcular_status_vacinal
+      recomendacao_vacina.save!
+    end
   end
 end

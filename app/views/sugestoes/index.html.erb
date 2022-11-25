@@ -17,8 +17,8 @@ Criança: 4 anos.
       <% @recomendacao_vacinas.each do |recomendacao_vacina| %>
         <tr>
           <td><%= recomendacao_vacina.vacina.descricao %></td>
-          <td><%= current_user.qtde_doses_por_vacina(recomendacao_vacina.vacina) %></td>
-          <td><%= recomendacao_vacina.calcular_status_vacinal %></td>
+          <td><%= "#{current_user.qtde_doses_por_vacina(recomendacao_vacina.vacina)} #{exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)}" %></td>
+          <td><%= recomendacao_vacina.status_vacinal %></td>
           <td><%= link_to 'Cadastrar dose', new_vacina_dose_path(recomendacao_vacina.vacina) %></td>
         </tr>
       <% end %>

@@ -33,12 +33,12 @@ class RecomendacaoVacina < ApplicationRecord
 
   def calcular_status_vacinal
     self.status_vacinal = if tomou_todas_as_doses?
-        :completo
-      elsif pode_tomar_nova_dose?
-        :disponivel
-      else
-        :aguardando
-      end
+                            :completo
+                          elsif pode_tomar_nova_dose?
+                            :disponivel
+                          else
+                            :aguardando
+                          end
   end
 
   def dose_recomendada_atual
@@ -83,7 +83,8 @@ class RecomendacaoVacina < ApplicationRecord
   def quando_pode_tomar_proxima_dose
     return intervalo_para_proxima_dose_termina_em if tem_idade_para_tomar_a_dose?
 
-    # Precisa ajustar isso para a data de aniversário
-    dose_recomendada_atual.idade_recomendada
+    meses_para_dose = ((dose_recomendada_atual.idade_recomendada - recomendacao.user.idade) / 0.1).to_i.months
+
+    Date.current + meses_para_dose
   end
 end
