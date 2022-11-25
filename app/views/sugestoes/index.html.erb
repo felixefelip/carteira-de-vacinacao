@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Calendário de Vacinação</h1>
-Criança: 4 anos.
+Idade: <%= current_user.idade_formatada %>.
 <div class="table-responsive-md">
   <table class="table table-striped table-bordered table-hover mt-4 shadow-sm">
     <thead class="thead-light">
@@ -17,8 +17,8 @@ Criança: 4 anos.
       <% @recomendacao_vacinas.each do |recomendacao_vacina| %>
         <tr>
           <td><%= recomendacao_vacina.vacina.descricao %></td>
-          <td><%= "#{current_user.qtde_doses_por_vacina(recomendacao_vacina.vacina)} #{exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)}" %></td>
-          <td><%= recomendacao_vacina.status_vacinal %></td>
+          <td><%= current_user.qtde_doses_por_vacina(recomendacao_vacina.vacina) %></td>
+          <td><%= "#{recomendacao_vacina.status_vacinal} #{exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)}" %></td>
           <td><%= link_to 'Cadastrar dose', new_vacina_dose_path(recomendacao_vacina.vacina) %></td>
         </tr>
       <% end %>

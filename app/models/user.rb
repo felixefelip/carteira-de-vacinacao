@@ -34,6 +34,10 @@ class User < ApplicationRecord
     (Date.current.strftime('%Y%m%d').to_i - data_nascimento.strftime('%Y%m%d').to_i) * 0.001
   end
 
+  def idade_formatada
+    "#{idade.to_s.gsub('.', ',')} anos"
+  end
+
   def qtde_doses_por_vacina(vacina)
     fabricante_vacinas.where(vacina: vacina).count
   end
