@@ -2,11 +2,12 @@
 #
 # Table name: vacinas
 #
-#  id                :bigint           not null, primary key
-#  descricao         :string
-#  dias_de_intervalo :integer
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id                  :bigint           not null, primary key
+#  descricao           :string
+#  dias_de_intervalo   :integer
+#  ordem_no_calendario :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 one:

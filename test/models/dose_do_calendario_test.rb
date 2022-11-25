@@ -3,7 +3,7 @@
 # Table name: dose_do_calendarios
 #
 #  id                :bigint           not null, primary key
-#  idade_recomendada :integer
+#  idade_recomendada :float
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  vacina_id         :bigint
