@@ -23,5 +23,5 @@ class FabricanteVacina < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :vacina
 
-  has_many :doses, dependent: :destroy
+  has_many :doses, dependent: :nullify
 end

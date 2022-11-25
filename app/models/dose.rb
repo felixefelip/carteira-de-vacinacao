@@ -27,5 +27,7 @@ class Dose < ApplicationRecord
   belongs_to :user
   belongs_to :fabricante_vacina
 
+  after_save -> { user.atualizar_calendario }
+
   delegate :vacina, to: :fabricante_vacina
 end

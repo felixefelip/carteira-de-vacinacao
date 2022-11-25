@@ -8,8 +8,8 @@
 
 ActiveRecord::Base.transaction do
   # BCG
-  # bcg = Vacina.create!(descricao: "BCG", ordem_no_calendario: 0)
-  # bcg.dose_do_calendarios.create!(idade_recomendada: 0)
+  bcg = Vacina.create!(descricao: "BCG", ordem_no_calendario: 0)
+  bcg.dose_do_calendarios.create!(idade_recomendada: 0)
 
   # # Hepatite B
   # hepatite_b = Vacina.create!(descricao: "Hepatite B recombinante", ordem_no_calendario: 1)
@@ -23,11 +23,11 @@ ActiveRecord::Base.transaction do
   # poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.4)
   # poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.6)
 
-  vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
+  # vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
 
-  recomendacao = Recomendacao.create!(user: User.first)
+  # recomendacao = Recomendacao.create!(user: User.first)
 
-  vacinas_do_calendario.each do |vacina|
-    recomendacao.recomendacao_vacinas.create!(vacina: vacina)
-  end
+  # vacinas_do_calendario.each do |vacina|
+  #   recomendacao.recomendacao_vacinas.create!(vacina: vacina)
+  # end
 end
