@@ -87,4 +87,10 @@ class RecomendacaoVacina < ApplicationRecord
 
     Date.current + meses_para_dose
   end
+
+  def self.pode_tomar_hoje
+    RecomendacaoVacina.where(status_vacinal: :aguardando).select do |rv|
+      rv.quando_pode_tomar_proxima_dose == Date.current
+    end
+  end
 end
