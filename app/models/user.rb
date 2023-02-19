@@ -18,6 +18,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Idade
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -27,16 +29,8 @@ class User < ApplicationRecord
   has_many :fabricante_vacinas, through: :doses
   has_many :vacinas, through: :fabricante_vacinas
 
-  after_create :criar_calendario_de_vacinacao!
-  after_save :atualizar_calendario
-
-  def idade
-    (Date.current.strftime('%Y%m%d').to_i - data_nascimento.strftime('%Y%m%d').to_i) * 0.001
-  end
-
-  def idade_formatada
-    "#{idade.to_s.gsub('.', ',')} anos"
-  end
+  after_create -> { Caderneta::CreateService.call!(self) }
+  after_save -> { Caderneta::UpdateService.call!(self) }
 
   def qtde_doses_por_vacina(vacina)
     fabricante_vacinas.where(vacina: vacina).count
@@ -44,22 +38,5 @@ class User < ApplicationRecord
 
   def qtde_doses_por_fabricante_vacina(fabricante_vacina)
     fabricante_vacinas.where(id: fabricante_vacina.id).count
-  end
-
-  def criar_calendario_de_vacinacao!
-    vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
-
-    recomendacao = Recomendacao.create!(user_id: id)
-
-    vacinas_do_calendario.each do |vacina|
-      recomendacao.recomendacao_vacinas.create!(vacina: vacina)
-    end
-  end
-
-  def atualizar_calendario
-    recomendacao.recomendacao_vacinas.each do |recomendacao_vacina|
-      recomendacao_vacina.calcular_status_vacinal
-      recomendacao_vacina.save!
-    end
   end
 end
