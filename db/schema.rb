@@ -29,29 +29,22 @@ ActiveRecord::Schema.define(version: 2022_11_25_060708) do
     t.string "lote_numero"
     t.string "vacinador_codigo"
     t.string "local_codigo"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "fabricante_vacina_id", null: false
+    t.bigint "fabricante_vacina_id", null: false
     t.index ["fabricante_vacina_id"], name: "index_doses_on_fabricante_vacina_id"
     t.index ["user_id"], name: "index_doses_on_user_id"
   end
 
   create_table "fabricante_vacinas", force: :cascade do |t|
     t.string "descricao"
-    t.integer "user_id"
-    t.integer "vacina_id", null: false
+    t.bigint "user_id"
+    t.bigint "vacina_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_fabricante_vacinas_on_user_id"
     t.index ["vacina_id"], name: "index_fabricante_vacinas_on_vacina_id"
-  end
-
-  create_table "recomendacao_vacinals", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_recomendacao_vacinals_on_user_id"
   end
 
   create_table "recomendacao_vacinas", force: :cascade do |t|
@@ -97,7 +90,6 @@ ActiveRecord::Schema.define(version: 2022_11_25_060708) do
   add_foreign_key "doses", "users"
   add_foreign_key "fabricante_vacinas", "users"
   add_foreign_key "fabricante_vacinas", "vacinas"
-  add_foreign_key "recomendacao_vacinals", "users"
   add_foreign_key "recomendacao_vacinas", "recomendacaos"
   add_foreign_key "recomendacao_vacinas", "vacinas"
   add_foreign_key "recomendacaos", "users"

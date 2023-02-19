@@ -10,8 +10,8 @@
 #  vacinador_codigo     :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  fabricante_vacina_id :integer          not null
-#  user_id              :integer          not null
+#  fabricante_vacina_id :bigint           not null
+#  user_id              :bigint           not null
 #
 # Indexes
 #
