@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should have_one(:recomendacao) }
+    it { should have_many(:doses) }
+    it { should have_many(:vacinas).through(:fabricante_vacinas) }
+  end
 end
