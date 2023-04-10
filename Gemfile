@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'
+
 gem 'rbs'
 gem 'rbs_rails'
 
