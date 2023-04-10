@@ -21,7 +21,7 @@ class User
         recomendacao = Recomendacao.create!(user_id: user.id)
 
         vacinas_do_calendario.each do |vacina|
-          recomendacao.recomendacao_vacinas.create!(vacina: user.vacina)
+          recomendacao.recomendacao_vacinas.create!(vacina: vacina)
         end
       end
     end

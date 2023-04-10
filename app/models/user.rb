@@ -20,9 +20,10 @@ class User < ApplicationRecord
 
   has_one :recomendacao, dependent: :destroy
   has_many :doses, dependent: :destroy
-
   has_many :fabricante_vacinas, through: :doses
   has_many :vacinas, through: :fabricante_vacinas
+
+  validates :email, :data_nascimento, presence: true
 
   after_create -> { Caderneta::CreateService.call!(self) }
   after_save -> { Caderneta::UpdateService.call!(self) }
