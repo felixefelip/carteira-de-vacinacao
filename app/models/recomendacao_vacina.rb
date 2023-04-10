@@ -9,16 +9,6 @@
 #  recomendacao_id :bigint
 #  vacina_id       :bigint
 #
-# Indexes
-#
-#  index_recomendacao_vacinas_on_recomendacao_id  (recomendacao_id)
-#  index_recomendacao_vacinas_on_vacina_id        (vacina_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (recomendacao_id => recomendacaos.id)
-#  fk_rails_...  (vacina_id => vacinas.id)
-#
 class RecomendacaoVacina < ApplicationRecord
   belongs_to :recomendacao
   belongs_to :vacina

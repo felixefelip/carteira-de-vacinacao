@@ -13,16 +13,6 @@
 #  fabricante_vacina_id :bigint           not null
 #  user_id              :bigint           not null
 #
-# Indexes
-#
-#  index_doses_on_fabricante_vacina_id  (fabricante_vacina_id)
-#  index_doses_on_user_id               (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (fabricante_vacina_id => fabricante_vacinas.id)
-#  fk_rails_...  (user_id => users.id)
-#
 class Dose < ApplicationRecord
   belongs_to :user
   belongs_to :fabricante_vacina
