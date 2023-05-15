@@ -13,9 +13,9 @@ module FabricanteVacina
   class Record < ApplicationRecord
     self.table_name = "fabricante_vacinas"
 
-    belongs_to :user, optional: true
-    belongs_to :vacina, dependent: :destroy, class_name: "Vacina::Record"
+    belongs_to :user, optional: true, class_name: "::User::Record"
+    belongs_to :vacina, dependent: :destroy, class_name: "::Vacina::Record"
 
-    has_many :doses, dependent: :nullify
+    has_many :doses, dependent: :nullify, class_name: "::Dose::Record"
   end
 end

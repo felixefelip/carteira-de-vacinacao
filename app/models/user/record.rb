@@ -49,13 +49,5 @@ module User
 
     after_create -> { Caderneta::Vacinacao::Create.call!(self) }
     after_update -> { Caderneta::Vacinacao::Update.call!(self) }
-
-    def qtde_doses_por_vacina(vacina)
-      fabricante_vacinas.where(vacina: vacina).count
-    end
-
-    def qtde_doses_por_fabricante_vacina(fabricante_vacina)
-      fabricante_vacinas.where(id: fabricante_vacina.id).count
-    end
   end
 end

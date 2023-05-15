@@ -15,9 +15,9 @@ module User::Caderneta::Vacinacao
     end
 
     def criar_calendario_de_vacinacao!
-      vacinas_do_calendario = Vacina.where.not(ordem_no_calendario: nil)
+      vacinas_do_calendario = ::Vacina::Record.where.not(ordem_no_calendario: nil)
 
-      recomendacao = Recomendacao.create!(user_id: user.id)
+      recomendacao = ::Recomendacao::Record.create!(user_id: user.id)
 
       vacinas_do_calendario.each do |vacina|
         recomendacao.recomendacao_vacinas.create!(vacina: vacina)

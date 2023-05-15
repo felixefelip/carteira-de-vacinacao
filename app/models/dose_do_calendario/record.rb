@@ -12,6 +12,6 @@ module DoseDoCalendario
   class Record < ApplicationRecord
     self.table_name = "dose_do_calendarios"
 
-    belongs_to :vacina
+    belongs_to :vacina, class_name: "::Vacina::Record"
   end
 end

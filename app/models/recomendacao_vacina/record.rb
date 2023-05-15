@@ -13,15 +13,15 @@ module RecomendacaoVacina
   class Record < ApplicationRecord
     self.table_name = "recomendacao_vacinas"
 
-    belongs_to :recomendacao
-    belongs_to :vacina
+    belongs_to :recomendacao, class_name: "::Recomendacao::Record"
+    belongs_to :vacina, class_name: "::Vacina::Record"
 
     enum status_vacinal: { aguardando: 0, disponivel: 1, completo: 2 } # , default: :aguardando
 
     before_validation :calcular_status_vacinal
 
     def qtde_doses_tomadas
-      recomendacao.user.qtde_doses_por_vacina(vacina)
+      User::Doses::QtdePorVacina.call(recomendacao.user, vacina)
     end
 
     def calcular_status_vacinal

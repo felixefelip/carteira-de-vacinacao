@@ -17,8 +17,13 @@ module Dose
   class Record < ApplicationRecord
     self.table_name = "doses"
 
-    belongs_to :user
-    belongs_to :fabricante_vacina
+    belongs_to :user, **{
+      class_name: "::User::Record",
+    }
+
+    belongs_to :fabricante_vacina, **{
+      class_name: "::FabricanteVacina::Record",
+    }
 
     after_save -> { user.atualizar_calendario }
 
