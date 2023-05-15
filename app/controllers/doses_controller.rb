@@ -1,6 +1,6 @@
 class DosesController < ApplicationController
-  before_action :set_dose, only: %i[show edit update]
-  before_action :set_vacina, only: %i[new create edit update]
+  before_action :set_dose, only: %i[show edit]
+  before_action :set_vacina, only: %i[new create edit]
 
   def index
     @doses = current_user.doses.all
@@ -9,7 +9,7 @@ class DosesController < ApplicationController
   def show; end
 
   def new
-    @dose = Dose.new
+    @dose = Dose::Record.new
   end
 
   def edit; end
@@ -27,11 +27,11 @@ class DosesController < ApplicationController
   private
 
   def set_dose
-    @dose = Dose.find(params[:id])
+    @dose = Dose::Record.find(params[:id])
   end
 
   def set_vacina
-    @vacina = Vacina.find(params[:vacina_id])
+    @vacina = Vacina::Record.find(params[:vacina_id])
   end
 
   def dose_params

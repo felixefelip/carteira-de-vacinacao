@@ -2,23 +2,23 @@ class VacinasController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 
   def index
-    @vacinas = Vacina.all
+    @vacinas = Vacina::Record.all
   end
 
   def show; end
 
   def new
-    @vacina = Vacina.new
+    @vacina = Vacina::Record.new
   end
 
   def edit; end
 
   def create
-    @vacina = Vacina.new(vacina_params)
+    @vacina = Vacina::Record.new(vacina_params)
     @vacina.fabricante_vacinas.new(descricao: @vacina.descricao)
 
     if @vacina.save
-      redirect_to vacinas_path, notice: 'Vacina was successfully created.'
+      redirect_to vacinas_path, notice: "Vacina foi criada com sucesso"
     else
       render :new, status: :unprocessable_entity
     end

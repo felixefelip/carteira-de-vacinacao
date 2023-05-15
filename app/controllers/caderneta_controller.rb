@@ -10,6 +10,6 @@ class CadernetaController < ApplicationController
   end
 
   def set_vacina
-    @vacina = Vacina.find(params[:id])
+    @vacina = Vacina::Record.find(params[:id])
   end
 end
