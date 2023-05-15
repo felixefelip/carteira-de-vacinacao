@@ -16,6 +16,10 @@ module FabricanteVacina
     belongs_to :user, optional: true, class_name: "::User::Record"
     belongs_to :vacina, dependent: :destroy, class_name: "::Vacina::Record"
 
-    has_many :doses, dependent: :nullify, class_name: "::Dose::Record"
+    has_many :doses, **{
+      dependent: :nullify,
+      foreign_key: :fabricante_vacina_id,
+      class_name: "::Dose::Record",
+    }
   end
 end
