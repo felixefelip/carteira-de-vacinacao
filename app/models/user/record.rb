@@ -21,21 +21,29 @@ module User
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable
 
-    has_one :recomendacao, **{ dependent: :destroy,
-                               foreign_key: :user_id,
-                               class_name: "::Recomendacao::Record" }
+    has_one :recomendacao, **{
+      dependent: :destroy,
+      foreign_key: :user_id,
+      class_name: "::Recomendacao::Record",
+    }
 
-    has_many :doses, **{ dependent: :destroy,
-                         foreign_key: :user_id,
-                         class_name: "::Dose::Record" }
+    has_many :doses, **{
+      dependent: :destroy,
+      foreign_key: :user_id,
+      class_name: "::Dose::Record",
+    }
 
-    has_many :fabricante_vacinas, **{ through: :doses,
-                                      foreign_key: :user_id,
-                                      class_name: "::FabricanteVacina::Record" }
+    has_many :fabricante_vacinas, **{
+      through: :doses,
+      foreign_key: :user_id,
+      class_name: "::FabricanteVacina::Record",
+    }
 
-    has_many :vacinas, **{ through: :fabricante_vacinas,
-                           foreign_key: :user_id,
-                           class_name: "::Vacina::Record" }
+    has_many :vacinas, **{
+      through: :fabricante_vacinas,
+      foreign_key: :user_id,
+      class_name: "::Vacina::Record",
+    }
 
     validates :email, :data_nascimento, presence: true
 
