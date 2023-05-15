@@ -1,4 +1,4 @@
-class User
+module User
   module Idade
     extend ActiveSupport::Concern
 

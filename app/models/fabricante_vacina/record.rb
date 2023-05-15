@@ -9,9 +9,13 @@
 #  user_id    :bigint
 #  vacina_id  :bigint           not null
 #
-class FabricanteVacina < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :vacina
+module FabricanteVacina
+  class Record < ApplicationRecord
+    self.table_name = "fabricante_vacinas"
 
-  has_many :doses, dependent: :nullify
+    belongs_to :user, optional: true
+    belongs_to :vacina, dependent: :destroy, class_name: "Vacina::Record"
+
+    has_many :doses, dependent: :nullify
+  end
 end

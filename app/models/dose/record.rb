@@ -13,11 +13,15 @@
 #  fabricante_vacina_id :bigint           not null
 #  user_id              :bigint           not null
 #
-class Dose < ApplicationRecord
-  belongs_to :user
-  belongs_to :fabricante_vacina
+module Dose
+  class Record < ApplicationRecord
+    self.table_name = "doses"
 
-  after_save -> { user.atualizar_calendario }
+    belongs_to :user
+    belongs_to :fabricante_vacina
 
-  delegate :vacina, to: :fabricante_vacina
+    after_save -> { user.atualizar_calendario }
+
+    delegate :vacina, to: :fabricante_vacina
+  end
 end

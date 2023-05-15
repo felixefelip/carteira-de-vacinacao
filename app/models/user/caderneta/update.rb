@@ -1,6 +1,6 @@
-class User
+module User
   module Caderneta
-    class UpdateService
+    class Update
       attr_accessor :user
 
       def initialize(user)

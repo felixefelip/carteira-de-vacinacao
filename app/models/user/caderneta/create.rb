@@ -1,6 +1,6 @@
 class User
   module Caderneta
-    class CreateService
+    class Create
       attr_accessor :user
 
       def initialize(user)

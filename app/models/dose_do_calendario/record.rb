@@ -8,6 +8,10 @@
 #  updated_at        :datetime         not null
 #  vacina_id         :bigint
 #
-class DoseDoCalendario < ApplicationRecord
-  belongs_to :vacina
+module DoseDoCalendario
+  class Record < ApplicationRecord
+    self.table_name = "dose_do_calendarios"
+
+    belongs_to :vacina
+  end
 end

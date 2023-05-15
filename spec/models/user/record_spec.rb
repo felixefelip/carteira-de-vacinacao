@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User::Record, type: :model do
   describe 'associations' do
     it { should have_one(:recomendacao) }
     it { should have_many(:doses) }
