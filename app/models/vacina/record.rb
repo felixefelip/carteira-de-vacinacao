@@ -14,9 +14,8 @@ module Vacina
     self.table_name = "vacinas"
 
     has_many :fabricante_vacinas, **{ dependent: :destroy,
-                                    foreign_key: :fabricante_vacina_id,
-                                    class_name: "FabricanteVacina::Record"
-                                   }
+                                      foreign_key: :fabricante_vacina_id,
+                                      class_name: "FabricanteVacina::Record" }
 
     has_many :doses, through: :fabricante_vacinas
 
