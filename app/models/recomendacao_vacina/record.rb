@@ -21,7 +21,7 @@ module RecomendacaoVacina
     before_validation :calcular_status_vacinal
 
     def qtde_doses_tomadas
-      User::Doses::QtdePorVacina.call(recomendacao.user, vacina)
+      ::User::Doses.new(recomendacao.user).qtde_por_vacina(vacina)
     end
 
     def calcular_status_vacinal

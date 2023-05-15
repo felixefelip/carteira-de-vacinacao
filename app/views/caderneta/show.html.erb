@@ -19,7 +19,7 @@
       <% @fabricante_vacinas.each do |fabricante_vacina| %>
         <tr>
           <td><%= fabricante_vacina.descricao %></td>
-          <td><%= "#{User::Doses::QtdePorFabricanteVacina.call(user, fabricante_vacina)} doses" %></td>
+          <td><%= "#{::User::Doses::new(current_user).qtde_por_fabricante_vacina(fabricante_vacina)} doses" %></td>
           <td><%= link_to 'Destroy', fabricante_vacina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
