@@ -1,4 +1,4 @@
-module User::Caderneta
+module User::Caderneta::Vacinacao
   class Update
     attr_accessor :user
 

@@ -1,4 +1,4 @@
-module User::Caderneta
+module User::Caderneta::Vacinacao
   class Create
     attr_accessor :user
 
