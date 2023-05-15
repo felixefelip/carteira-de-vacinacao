@@ -48,7 +48,7 @@ module User
     validates :email, :data_nascimento, presence: true
 
     after_create -> { Caderneta::Vacinacao::Create.call!(self) }
-    after_save -> { Caderneta::Vacinacao::Update.call!(self) }
+    after_update -> { Caderneta::Vacinacao::Update.call!(self) }
 
     def qtde_doses_por_vacina(vacina)
       fabricante_vacinas.where(vacina: vacina).count
