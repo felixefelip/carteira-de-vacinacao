@@ -41,6 +41,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'packs-rails'
 end
 
 group :development do
@@ -66,6 +67,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'shoulda-matchers', '~> 5.0'
+  gem "simplecov"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
