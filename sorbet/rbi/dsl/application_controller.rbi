@@ -8,6 +8,9 @@ class ApplicationController
   include GeneratedUrlHelpersModule
   include GeneratedPathHelpersModule
 
+  sig { returns(User::Record) }
+  def current_user; end
+
   sig { returns(HelperProxy) }
   def helpers; end
 

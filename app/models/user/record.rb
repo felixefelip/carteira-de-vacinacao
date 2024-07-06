@@ -51,32 +51,17 @@ module User
 
     validates :email, :data_nascimento, presence: true
 
-    after_create -> { Caderneta::Vacinacao::Create.call!(self) }
-    after_update -> { Caderneta::Vacinacao::Update.call!(self) }
+    after_create :criar_cardeneta_de_vacinacao
+    after_update :atualizar_cardeneta_de_vacinacao
 
-    sig { returns(String) }
-    def id_and_email
-      return "" if created_at.nil?
-
-      a = created_at_not_nil <= Date.current
-
-      "a"
-    end
-
-    sig { returns(ActiveSupport::TimeWithZone) }
-    def created_at_not_nil
-      if self.created_at.nil?
-        Date.current
-      else
-        created_at
-      end
+    sig { void }
+    def criar_cardeneta_de_vacinacao
+      Caderneta::Vacinacao::Create.call!(self)
     end
 
     sig { void }
-    def fazer_besteira
-      10 / email.to_f
-
-      id_and_email.to_f
+    def atualizar_cardeneta_de_vacinacao
+      Caderneta::Vacinacao::Update.call!(self)
     end
   end
 end

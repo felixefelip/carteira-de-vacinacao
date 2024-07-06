@@ -4,13 +4,16 @@
 #
 #  id                  :bigint           not null, primary key
 #  descricao           :string
-#  dias_de_intervalo   :integer          default(0)
+#  dias_de_intervalo   :integer          default(0), not null
 #  ordem_no_calendario :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
 module Vacina
+  # typed: true
   class Record < ApplicationRecord
+    extend T::Sig
+
     self.table_name = "vacinas"
 
     has_many :fabricante_vacinas, **{
@@ -43,6 +46,7 @@ module Vacina
     validates :descricao, presence: true
     validates :ordem_no_calendario, uniqueness: true
 
+    sig { void }
     def cadastrar_fornecedor_vacina_padrao
       return if fabricante_vacinas.any?
 

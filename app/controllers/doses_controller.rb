@@ -1,3 +1,5 @@
+# typed: true
+
 class DosesController < ApplicationController
   before_action :set_dose, only: %i[show edit]
   before_action :set_vacina, only: %i[new create edit]

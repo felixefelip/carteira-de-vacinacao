@@ -1,3 +1,4 @@
+# typed: true
 class VacinasController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 
@@ -41,7 +42,7 @@ class VacinasController < ApplicationController
   private
 
   def set_vacina
-    @vacina = Vacina.find(params[:id])
+    @vacina = Vacina::Record.find(params[:id])
   end
 
   def vacina_params

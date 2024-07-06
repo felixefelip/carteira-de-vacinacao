@@ -621,10 +621,10 @@ class Vacina::Record
     sig { void }
     def descricao_will_change!; end
 
-    sig { returns(T.nilable(::Integer)) }
+    sig { returns(::Integer) }
     def dias_de_intervalo; end
 
-    sig { params(value: T.nilable(::Integer)).returns(T.nilable(::Integer)) }
+    sig { params(value: ::Integer).returns(::Integer) }
     def dias_de_intervalo=(value); end
 
     sig { returns(T::Boolean) }
@@ -639,22 +639,22 @@ class Vacina::Record
     sig { returns(T::Boolean) }
     def dias_de_intervalo_came_from_user?; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::Integer, ::Integer])) }
     def dias_de_intervalo_change; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::Integer, ::Integer])) }
     def dias_de_intervalo_change_to_be_saved; end
 
-    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
     def dias_de_intervalo_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
     sig { returns(T.nilable(::Integer)) }
     def dias_de_intervalo_in_database; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::Integer, ::Integer])) }
     def dias_de_intervalo_previous_change; end
 
-    sig { params(from: T.nilable(::Integer), to: T.nilable(::Integer)).returns(T::Boolean) }
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
     def dias_de_intervalo_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
     sig { returns(T.nilable(::Integer)) }
@@ -786,7 +786,7 @@ class Vacina::Record
     sig { returns(T::Boolean) }
     def saved_change_to_descricao?; end
 
-    sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
+    sig { returns(T.nilable([::Integer, ::Integer])) }
     def saved_change_to_dias_de_intervalo; end
 
     sig { returns(T::Boolean) }

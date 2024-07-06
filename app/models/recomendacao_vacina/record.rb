@@ -28,6 +28,7 @@ module RecomendacaoVacina
       ::User::Doses.new(recomendacao.user).qtde_por_vacina(vacina)
     end
 
+    sig { void }
     def calcular_status_vacinal
       self.status_vacinal = if tomou_todas_as_doses?
                               :completo
@@ -49,11 +50,11 @@ module RecomendacaoVacina
     def pode_tomar_nova_dose?
       return false if tomou_todas_as_doses?
 
-      tem_idade_para_tomar_a_dose? && !dose_atual_dentro_do_intervalo?
+      tem_idade_para_tomar_a_nova_dose? && !dose_atual_dentro_do_intervalo?
     end
 
     sig { returns(T::Boolean) }
-    def tem_idade_para_tomar_a_dose?
+    def tem_idade_para_tomar_a_nova_dose?
       idade_recomendada_para_proxima_dose = dose_recomendada_atual&.idade_recomendada
       return true if idade_recomendada_para_proxima_dose.nil?
 
@@ -62,20 +63,17 @@ module RecomendacaoVacina
 
     sig { returns(T::Boolean) }
     def dose_atual_dentro_do_intervalo?
-      return false unless intervalo_para_proxima_dose_termina_em
+      return true unless (intervalo_para_proxima_dose_termina_em = self.intervalo_para_proxima_dose_termina_em)
 
       intervalo_para_proxima_dose_termina_em.past?
     end
 
+    sig { returns(T.nilable(::Date)) }
     def intervalo_para_proxima_dose_termina_em
-      return if recomendacao.user.doses.none?
+      return unless (ultima_dose_tomada = self.ultima_dose_tomada)
+      return unless (data_vacinacao_ultima_dose = ultima_dose_tomada.data_vacinacao)
 
-      ultima_dose = recomendacao.user.doses.joins(:fabricante_vacina)
-                                .where(fabricante_vacina: { vacina: vacina }).last
-
-      return if ultima_dose.nil?
-
-      ultima_dose.data_vacinacao&.+ vacina.dias_de_intervalo&.to_i&.days
+      data_vacinacao_ultima_dose + vacina.dias_de_intervalo.to_i.days
     end
 
     sig { returns(T::Boolean) }
@@ -83,19 +81,30 @@ module RecomendacaoVacina
       qtde_doses_tomadas >= vacina.dose_do_calendarios.count
     end
 
+    sig { returns(T.nilable(::Date)) }
     def quando_pode_tomar_proxima_dose
-      return intervalo_para_proxima_dose_termina_em if tem_idade_para_tomar_a_dose?
+      return intervalo_para_proxima_dose_termina_em if tem_idade_para_tomar_a_nova_dose?
+      return nil unless (idade_dose_recomendada_atual = dose_recomendada_atual&.idade_recomendada)
 
-      meses_para_dose = ((dose_recomendada_atual.idade_recomendada - recomendacao.user.idade) / 0.1).to_i.months
+      meses_para_dose = ((idade_dose_recomendada_atual - recomendacao.user.idade) / 0.1).to_i.months
 
       Date.current + meses_para_dose
     end
 
     sig { returns(RecomendacaoVacina::Record::PrivateRelation) }
-    def self.pode_tomar_hoje
+    def self.pode_tomar_nova_dose_hoje
       RecomendacaoVacina::Record.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
         recomendacao_vacina.quando_pode_tomar_proxima_dose == Date.current
       end
+    end
+
+    private
+
+    sig { returns(T.nilable(::Dose::Record)) }
+    def ultima_dose_tomada
+      recomendacao
+        .user.doses.joins(:fabricante_vacina)
+        .where(fabricante_vacina: { vacina: vacina }).last
     end
   end
 end
