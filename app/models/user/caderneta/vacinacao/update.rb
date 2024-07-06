@@ -1,11 +1,15 @@
 module User::Caderneta::Vacinacao
+  # typed: true
   class Update
+    extend T::Sig
+
     attr_accessor :user
 
     def initialize(user)
       @user = user
     end
 
+    sig { params(user: User::Record).void }
     def self.call!(user)
       new(user).call!
     end

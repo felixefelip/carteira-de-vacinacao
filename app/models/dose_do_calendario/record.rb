@@ -9,6 +9,7 @@
 #  vacina_id         :bigint
 #
 module DoseDoCalendario
+  # typed: true
   class Record < ApplicationRecord
     self.table_name = "dose_do_calendarios"
 

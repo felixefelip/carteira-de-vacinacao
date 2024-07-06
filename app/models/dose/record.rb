@@ -14,6 +14,7 @@
 #  user_id              :bigint           not null
 #
 module Dose
+  # typed: true
   class Record < ApplicationRecord
     self.table_name = "doses"
 
@@ -25,8 +26,12 @@ module Dose
       class_name: "::FabricanteVacina::Record",
     }
 
-    after_save -> { user.atualizar_calendario }
+    after_save :atualizar_calendario
 
     delegate :vacina, to: :fabricante_vacina
+
+    def atualizar_calendario
+      user&.atualizar_cardeneta_de_vacinacao
+    end
   end
 end
