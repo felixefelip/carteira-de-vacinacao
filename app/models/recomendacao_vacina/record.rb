@@ -10,7 +10,10 @@
 #  vacina_id       :bigint
 #
 module RecomendacaoVacina
+  # typed: true
   class Record < ApplicationRecord
+    extend T::Sig
+
     self.table_name = "recomendacao_vacinas"
 
     belongs_to :recomendacao, class_name: "::Recomendacao::Record"
@@ -20,6 +23,7 @@ module RecomendacaoVacina
 
     before_validation :calcular_status_vacinal
 
+    sig { returns(Integer) }
     def qtde_doses_tomadas
       ::User::Doses.new(recomendacao.user).qtde_por_vacina(vacina)
     end
@@ -34,24 +38,29 @@ module RecomendacaoVacina
                             end
     end
 
+    sig { returns(T.nilable(::DoseDoCalendario::Record)) }
     def dose_recomendada_atual
       return if tomou_todas_as_doses?
 
       vacina.dose_do_calendarios[qtde_doses_tomadas]
     end
 
+    sig { returns(T::Boolean) }
     def pode_tomar_nova_dose?
-      return if tomou_todas_as_doses?
+      return false if tomou_todas_as_doses?
 
       tem_idade_para_tomar_a_dose? && !dose_atual_dentro_do_intervalo?
     end
 
+    sig { returns(T::Boolean) }
     def tem_idade_para_tomar_a_dose?
-      return true unless dose_recomendada_atual&.idade_recomendada
+      idade_recomendada_para_proxima_dose = dose_recomendada_atual&.idade_recomendada
+      return true if idade_recomendada_para_proxima_dose.nil?
 
-      recomendacao.user.idade >= dose_recomendada_atual.idade_recomendada
+      recomendacao.user.idade >= idade_recomendada_para_proxima_dose
     end
 
+    sig { returns(T::Boolean) }
     def dose_atual_dentro_do_intervalo?
       return false unless intervalo_para_proxima_dose_termina_em
 
@@ -66,9 +75,10 @@ module RecomendacaoVacina
 
       return if ultima_dose.nil?
 
-      ultima_dose.data_vacinacao&.+ vacina.dias_de_intervalo.to_i.days
+      ultima_dose.data_vacinacao&.+ vacina.dias_de_intervalo&.to_i&.days
     end
 
+    sig { returns(T::Boolean) }
     def tomou_todas_as_doses?
       qtde_doses_tomadas >= vacina.dose_do_calendarios.count
     end
@@ -81,9 +91,10 @@ module RecomendacaoVacina
       Date.current + meses_para_dose
     end
 
+    sig { returns(RecomendacaoVacina::Record::PrivateRelation) }
     def self.pode_tomar_hoje
-      RecomendacaoVacina.where(status_vacinal: :aguardando).select do |rv|
-        rv.quando_pode_tomar_proxima_dose == Date.current
+      RecomendacaoVacina::Record.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
+        recomendacao_vacina.quando_pode_tomar_proxima_dose == Date.current
       end
     end
   end

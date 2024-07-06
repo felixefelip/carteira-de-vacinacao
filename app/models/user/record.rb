@@ -1,3 +1,4 @@
+# typed: true
 # == Schema Information
 #
 # Table name: users
@@ -13,7 +14,10 @@
 #  updated_at             :datetime         not null
 #
 module User
+  # typed: true
   class Record < ApplicationRecord
+    extend T::Sig
+
     self.table_name = "users"
 
     include Idade
@@ -49,5 +53,30 @@ module User
 
     after_create -> { Caderneta::Vacinacao::Create.call!(self) }
     after_update -> { Caderneta::Vacinacao::Update.call!(self) }
+
+    sig { returns(String) }
+    def id_and_email
+      return "" if created_at.nil?
+
+      a = created_at_not_nil <= Date.current
+
+      "a"
+    end
+
+    sig { returns(ActiveSupport::TimeWithZone) }
+    def created_at_not_nil
+      if self.created_at.nil?
+        Date.current
+      else
+        created_at
+      end
+    end
+
+    sig { void }
+    def fazer_besteira
+      10 / email.to_f
+
+      id_and_email.to_f
+    end
   end
 end

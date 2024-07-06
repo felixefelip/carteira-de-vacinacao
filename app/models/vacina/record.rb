@@ -4,7 +4,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  descricao           :string
-#  dias_de_intervalo   :integer
+#  dias_de_intervalo   :integer          default(0)
 #  ordem_no_calendario :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
