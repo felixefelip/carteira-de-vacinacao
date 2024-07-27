@@ -41,16 +41,19 @@ module Vacina
 
     accepts_nested_attributes_for :fabricante_vacinas
 
-    after_save :cadastrar_fornecedor_vacina_padrao
+    after_create :cadastrar_fornecedor_vacina_padrao, if: :sem_fabricante_vacina?
 
     validates :descricao, presence: true
     validates :ordem_no_calendario, uniqueness: true
 
     sig { void }
     def cadastrar_fornecedor_vacina_padrao
-      return if fabricante_vacinas.any?
-
       fabricante_vacinas.create!(descricao: descricao)
+    end
+
+    sig { returns(T::Boolean) }
+    def sem_fabricante_vacina?
+      fabricante_vacinas.none?
     end
   end
 end
