@@ -1,4 +1,5 @@
 # typed: true
+
 module User
   class Doses
     extend T::Sig

@@ -21,7 +21,7 @@ module RecomendacaoVacina
 
     enum status_vacinal: { aguardando: 0, disponivel: 1, completo: 2 } # , default: :aguardando
 
-    before_validation :calcular_status_vacinal
+    before_save :calcular_status_vacinal
 
     sig { returns(Integer) }
     def qtde_doses_tomadas
@@ -101,7 +101,7 @@ module RecomendacaoVacina
     end
 
     sig { returns(RecomendacaoVacina::Record::PrivateRelation) }
-    def self.pode_tomar_nova_dose_hoje
+    def self.recomendacoes_vacina_para_tomar_nova_dose_hoje
       RecomendacaoVacina::Record.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
         recomendacao_vacina.quando_pode_tomar_proxima_dose == Date.current
       end
