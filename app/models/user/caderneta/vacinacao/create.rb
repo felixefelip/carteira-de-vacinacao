@@ -5,7 +5,7 @@ module User::Caderneta::Vacinacao
 
     attr_accessor :user
 
-    sig { params(user: User::Record).void}
+    sig { params(user: User::Record).void }
     def initialize(user)
       @user = user
     end
