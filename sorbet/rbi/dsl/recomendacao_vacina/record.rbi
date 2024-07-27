@@ -263,13 +263,13 @@ class RecomendacaoVacina::Record
     sig { params(column_name: T.any(String, Symbol)).returns(T.untyped) }
     def minimum(column_name); end
 
-    sig do
-      params(
-        attributes: T.untyped,
-        block: T.nilable(T.proc.params(object: ::RecomendacaoVacina::Record).void)
-      ).returns(::RecomendacaoVacina::Record)
-    end
-    def new(attributes = nil, &block); end
+    # sig do
+    #   params(
+    #     attributes: T.untyped,
+    #     block: T.nilable(T.proc.params(object: ::RecomendacaoVacina::Record).void)
+    #   ).returns(::RecomendacaoVacina::Record)
+    # end
+    # def new(attributes = nil, &block); end
 
     sig do
       params(
@@ -370,7 +370,7 @@ class RecomendacaoVacina::Record
     sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
     def create_vacina!(*args, &blk); end
 
-    sig { returns(::Recomendacao::Record) }
+    sig { returns(T.nilable(::Recomendacao::Record)) }
     def recomendacao; end
 
     sig { params(value: T.nilable(::Recomendacao::Record)).void }
@@ -382,7 +382,7 @@ class RecomendacaoVacina::Record
     sig { returns(T.nilable(::Vacina::Record)) }
     def reload_vacina; end
 
-    sig { returns(::Vacina::Record) }
+    sig { returns(T.nilable(::Vacina::Record)) }
     def vacina; end
 
     sig { params(value: T.nilable(::Vacina::Record)).void }
