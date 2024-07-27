@@ -16,14 +16,14 @@
 module Dose
   # typed: true
   class Record < ApplicationRecord
-    self.table_name = "doses"
+    self.table_name = 'doses'
 
     belongs_to :user, **{
-      class_name: "::User::Record",
+      class_name: '::User::Record',
     }
 
     belongs_to :fabricante_vacina, **{
-      class_name: "::FabricanteVacina::Record",
+      class_name: '::FabricanteVacina::Record',
     }
 
     after_save :atualizar_calendario

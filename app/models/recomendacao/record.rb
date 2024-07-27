@@ -10,10 +10,10 @@
 module Recomendacao
   # typed: true
   class Record < ApplicationRecord
-    self.table_name = "recomendacaos"
+    self.table_name = 'recomendacaos'
 
-    belongs_to :user, optional: true, class_name: "::User::Record"
-    has_many :recomendacao_vacinas, dependent: :destroy, class_name: "::RecomendacaoVacina::Record"
+    belongs_to :user, optional: true, class_name: '::User::Record'
+    has_many :recomendacao_vacinas, dependent: :destroy, class_name: '::RecomendacaoVacina::Record'
 
     has_many :vacinas, through: :recomendacao_vacinas
   end

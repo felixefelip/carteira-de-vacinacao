@@ -14,29 +14,29 @@ module Vacina
   class Record < ApplicationRecord
     extend T::Sig
 
-    self.table_name = "vacinas"
+    self.table_name = 'vacinas'
 
     has_many :fabricante_vacinas, **{
       dependent: :destroy,
       foreign_key: :vacina_id,
-      class_name: "FabricanteVacina::Record",
+      class_name: 'FabricanteVacina::Record',
     }
 
     has_many :doses, ** {
       through: :fabricante_vacinas,
-      class_name: "::FabricanteVacina::Record",
+      class_name: '::FabricanteVacina::Record',
     }
 
     has_many :recomendacao_vacinas, **{
       dependent: :destroy,
       foreign_key: :vacina_id,
-      class_name: "::RecomendacaoVacina::Record",
+      class_name: '::RecomendacaoVacina::Record',
     }
 
     has_many :dose_do_calendarios, **{
       dependent: :destroy,
       foreign_key: :vacina_id,
-      class_name: "::DoseDoCalendario::Record",
+      class_name: '::DoseDoCalendario::Record',
     }
 
     accepts_nested_attributes_for :fabricante_vacinas
