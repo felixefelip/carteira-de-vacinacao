@@ -263,13 +263,13 @@ class RecomendacaoVacina::Record
     sig { params(column_name: T.any(String, Symbol)).returns(T.untyped) }
     def minimum(column_name); end
 
-    # sig do
-    #   params(
-    #     attributes: T.untyped,
-    #     block: T.nilable(T.proc.params(object: ::RecomendacaoVacina::Record).void)
-    #   ).returns(::RecomendacaoVacina::Record)
-    # end
-    # def new(attributes = nil, &block); end
+    sig do
+      params(
+        attributes: T.untyped,
+        block: T.nilable(T.proc.params(object: ::RecomendacaoVacina::Record).void)
+      ).returns(::RecomendacaoVacina::Record)
+    end
+    def new(attributes = nil, &block); end
 
     sig do
       params(

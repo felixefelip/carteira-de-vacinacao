@@ -347,7 +347,7 @@ class Recomendacao::Record
     sig { returns(T.nilable(::User::Record)) }
     def reload_user; end
 
-    sig { returns(::User::Record) }
+    sig { returns(T.nilable(::User::Record)) }
     def user; end
 
     sig { params(value: T.nilable(::User::Record)).void }
