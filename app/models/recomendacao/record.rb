@@ -12,6 +12,8 @@ module Recomendacao
   class Record < ApplicationRecord
     self.table_name = 'recomendacaos'
 
+    extend T::Sig
+
     belongs_to :user, optional: true, class_name: '::User::Record'
     has_many :recomendacao_vacinas, dependent: :destroy, class_name: '::RecomendacaoVacina::Record'
 

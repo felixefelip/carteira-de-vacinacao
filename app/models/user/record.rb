@@ -1,4 +1,5 @@
 # typed: true
+
 # == Schema Information
 #
 # Table name: users
@@ -18,36 +19,34 @@ module User
   class Record < ApplicationRecord
     extend T::Sig
 
-    self.table_name = "users"
+    self.table_name = 'users'
 
     include Idade
 
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable
 
-    has_one :recomendacao, **{
-      dependent: :destroy,
-      foreign_key: :user_id,
-      class_name: "::Recomendacao::Record",
-    }
+    has_one :recomendacao,
+            dependent: :destroy,
+            foreign_key: :user_id,
+            class_name: '::Recomendacao::Record',
+            inverse_of: :user
 
-    has_many :doses, **{
-      dependent: :destroy,
-      foreign_key: :user_id,
-      class_name: "::Dose::Record",
-    }
+    has_many :doses,
+             dependent: :destroy,
+             foreign_key: :user_id,
+             class_name: '::Dose::Record',
+             inverse_of: :user
 
-    has_many :fabricante_vacinas, **{
-      through: :doses,
-      foreign_key: :user_id,
-      class_name: "::FabricanteVacina::Record",
-    }
+    has_many :fabricante_vacinas,
+             through: :doses,
+             foreign_key: :user_id,
+             class_name: '::FabricanteVacina::Record'
 
-    has_many :vacinas, **{
-      through: :fabricante_vacinas,
-      foreign_key: :user_id,
-      class_name: "::Vacina::Record",
-    }
+    has_many :vacinas,
+             through: :fabricante_vacinas,
+             foreign_key: :user_id,
+             class_name: '::Vacina::Record'
 
     validates :email, :data_nascimento, presence: true
 

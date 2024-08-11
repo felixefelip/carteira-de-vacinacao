@@ -7,7 +7,7 @@ module User::Caderneta::Vacinacao
 
     sig { params(user: User::Record).void }
     def initialize(user)
-      @user = user
+      self.user = user
     end
 
     sig { params(user: User::Record).void }
