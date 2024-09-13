@@ -3,6 +3,7 @@ module User::Caderneta::Vacinacao
   class Create
     extend T::Sig
 
+    sig { returns(User::Record) }
     attr_accessor :user
 
     sig { params(user: User::Record).void }

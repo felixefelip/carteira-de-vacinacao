@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'caderneta#index'
 
-  devise_for "user/record", controllers: { registrations: 'users/registrations' }
+  devise_for :users, class_name: "User::Record", controllers: { registrations: 'users/registrations'  }
 
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+    get "/users/sign_out" => "devise/sessions#destroy"
   end
 
   resources :fabricante_vacinas

@@ -50,8 +50,8 @@ module User
 
     validates :email, :data_nascimento, presence: true
 
-    # after_create :criar_cardeneta_de_vacinacao
-    # after_update :atualizar_cardeneta_de_vacinacao
+    after_create :criar_cardeneta_de_vacinacao
+    after_update :atualizar_cardeneta_de_vacinacao
 
     sig { void }
     def criar_cardeneta_de_vacinacao
