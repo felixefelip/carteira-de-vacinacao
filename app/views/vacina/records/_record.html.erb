@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to record.descricao, cadernetum_path(record.id) %></td>
+  <td><%= "#{::User::Doses.new(current_user).qtde_por_vacina(record)} doses" %></td>
+  <td><%= link_to 'Editar', edit_vacina_path(record) %></td>
+  <td><%= link_to 'Remover', vacina_doses_path(record), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

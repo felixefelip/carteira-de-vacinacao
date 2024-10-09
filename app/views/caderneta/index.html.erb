@@ -12,14 +12,7 @@
       </thead>
 
       <tbody>
-        <% @vacinas.each do |vacina| %>
-          <tr>
-            <td><%= link_to vacina.descricao, cadernetum_path(vacina.id) %></td>
-            <td><%= "#{::User::Doses::QtdePorVacina.new(current_user).qtde_por_vacina(vacina)} doses" %></td>
-            <td><%= link_to 'Editar', edit_vacina_path(vacina) %></td>
-            <td><%= link_to 'Remover', vacina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+        <% render @vacinas %>
       </tbody>
     </table>
 

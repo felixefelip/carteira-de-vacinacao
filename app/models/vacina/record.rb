@@ -9,51 +9,53 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-module Vacina
-  # typed: true
-  class Record < ApplicationRecord
-    extend T::Sig
+# typed: true
+class Vacina::Record < ApplicationRecord
+  extend T::Sig
 
-    self.table_name = 'vacinas'
+  self.table_name = 'vacinas'
 
-    has_many :fabricante_vacinas, **{
-      dependent: :destroy,
-      foreign_key: :vacina_id,
-      class_name: 'FabricanteVacina::Record',
-    }
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'Record')
+  end
 
-    has_many :doses, ** {
-      through: :fabricante_vacinas,
-      class_name: '::FabricanteVacina::Record',
-    }
+  has_many :fabricante_vacinas, **{
+    dependent: :destroy,
+    foreign_key: :vacina_id,
+    class_name: 'FabricanteVacina::Record',
+  }
 
-    has_many :recomendacao_vacinas, **{
-      dependent: :destroy,
-      foreign_key: :vacina_id,
-      class_name: '::RecomendacaoVacina::Record',
-    }
+  has_many :doses, ** {
+    through: :fabricante_vacinas,
+    class_name: '::FabricanteVacina::Record',
+  }
 
-    has_many :dose_do_calendarios, **{
-      dependent: :destroy,
-      foreign_key: :vacina_id,
-      class_name: '::DoseDoCalendario::Record',
-    }
+  has_many :recomendacao_vacinas, **{
+    dependent: :destroy,
+    foreign_key: :vacina_id,
+    class_name: '::RecomendacaoVacina::Record',
+  }
 
-    accepts_nested_attributes_for :fabricante_vacinas
+  has_many :dose_do_calendarios, **{
+    dependent: :destroy,
+    foreign_key: :vacina_id,
+    class_name: '::DoseDoCalendario::Record',
+  }
 
-    after_create :cadastrar_fornecedor_vacina_padrao, if: :sem_fabricante_vacina?
+  accepts_nested_attributes_for :fabricante_vacinas
 
-    validates :descricao, presence: true
-    validates :ordem_no_calendario, uniqueness: true
+  after_create :cadastrar_fornecedor_vacina_padrao, if: :sem_fabricante_vacina?
 
-    sig { void }
-    def cadastrar_fornecedor_vacina_padrao
-      fabricante_vacinas.create!(descricao: descricao)
-    end
+  validates :descricao, presence: true
+  validates :ordem_no_calendario, uniqueness: true
 
-    sig { returns(T::Boolean) }
-    def sem_fabricante_vacina?
-      fabricante_vacinas.none?
-    end
+  sig { void }
+  def cadastrar_fornecedor_vacina_padrao
+    fabricante_vacinas.create!(descricao: descricao)
+  end
+
+  sig { returns(T::Boolean) }
+  def sem_fabricante_vacina?
+    fabricante_vacinas.none?
   end
 end
