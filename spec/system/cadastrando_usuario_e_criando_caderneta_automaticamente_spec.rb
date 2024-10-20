@@ -20,13 +20,14 @@ describe 'Cadastrando usuário e criando caderneta automaticamente', type: :feat
     click_link 'Calendário'
 
     expect(page).to have_content 'Hepatite B recombinante'
-    expect(page).to have_content 'aguardando - disponível em:'
+    expect(page).to have_content 'disponivel'
 
     recomendacoes_de_vacinas = User::Record.last.recomendacao.recomendacao_vacinas
     recomendacao_vacina = recomendacoes_de_vacinas.first
 
+    # save_and_open_page
     expect(recomendacoes_de_vacinas.count).to eq(3)
-    expect(recomendacao_vacina.status_vacinal).to eq('aguardando')
+    expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
     expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to be_nil #eq(Date.current)
   end

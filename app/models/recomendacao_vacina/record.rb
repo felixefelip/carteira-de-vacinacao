@@ -54,7 +54,7 @@ module RecomendacaoVacina
     def pode_tomar_nova_dose?
       return false if tomou_todas_as_doses?
 
-      tem_idade_para_tomar_a_nova_dose? && !dose_atual_dentro_do_intervalo?
+      tem_idade_para_tomar_a_nova_dose? && !dose_atual_dentro_do_intervalo_de_espera?
     end
 
     sig { returns(T::Boolean) }
@@ -67,10 +67,10 @@ module RecomendacaoVacina
     end
 
     sig { returns(T::Boolean) }
-    def dose_atual_dentro_do_intervalo?
-      return true unless (intervalo_para_proxima_dose_termina_em = self.intervalo_para_proxima_dose_termina_em)
+    def dose_atual_dentro_do_intervalo_de_espera?
+      return false unless (intervalo_para_proxima_dose_termina_em = self.intervalo_para_proxima_dose_termina_em)
 
-      intervalo_para_proxima_dose_termina_em.past?
+      intervalo_para_proxima_dose_termina_em > Date.current
     end
 
     sig { returns(T.nilable(::Date)) }
