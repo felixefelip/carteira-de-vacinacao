@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User::Record do
   describe 'associations' do
-    it { should have_one(:recomendacao) }
-    it { should have_many(:doses) }
+    it { should have_one(:recomendacao).dependent(:destroy) }
+    it { should have_many(:doses).dependent(:destroy) }
+    it { should have_many(:fabricante_vacinas).through(:doses) }
     it { should have_many(:vacinas).through(:fabricante_vacinas) }
   end
 
