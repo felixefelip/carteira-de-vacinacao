@@ -15,10 +15,6 @@ class Vacina::Record < ApplicationRecord
 
   self.table_name = 'vacinas'
 
-  def self.model_name
-    ActiveModel::Name.new(self, nil, 'Record')
-  end
-
   has_many :fabricante_vacinas, **{
     dependent: :destroy,
     foreign_key: :vacina_id,

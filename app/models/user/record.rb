@@ -48,6 +48,11 @@ module User
              foreign_key: :user_id,
              class_name: '::Vacina::Record'
 
+    has_many :recomendacao_vacinas,
+             through: :recomendacao,
+             foreign_key: :user_id,
+             class_name: '::Recomendacao::Record'
+
     validates :email, :data_nascimento, presence: true
 
     after_create :criar_cardeneta_de_vacinacao

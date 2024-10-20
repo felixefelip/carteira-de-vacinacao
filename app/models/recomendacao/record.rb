@@ -14,8 +14,12 @@ module Recomendacao
 
     extend T::Sig
 
-    belongs_to :user, optional: true, class_name: '::User::Record'
-    has_many :recomendacao_vacinas, dependent: :destroy, class_name: '::RecomendacaoVacina::Record', foreign_key: :recomendacao_id
+    belongs_to :user, class_name: '::User::Record'
+    has_many :recomendacao_vacinas,
+             dependent: :destroy,
+             class_name: '::RecomendacaoVacina::Record',
+             foreign_key: :recomendacao_id,
+             inverse_of: :recomendacao
 
     has_many :vacinas, through: :recomendacao_vacinas
   end

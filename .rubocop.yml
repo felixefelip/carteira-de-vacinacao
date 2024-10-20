@@ -201,6 +201,9 @@ RSpec/ContextWording:
     - unless
     - quando
 
+RSpec/ExampleLength:
+  Max: 40
+
 Style/RedundantDoubleSplatHashBraces:
   Enabled: false
 
