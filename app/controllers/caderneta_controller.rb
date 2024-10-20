@@ -11,6 +11,8 @@ class CadernetaController < ApplicationController
     @fabricante_vacinas = vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).uniq
   end
 
+  private
+
   sig { returns(Vacina::Record) }
   def vacina
     @vacina ||= Vacina::Record.find(params[:id])
