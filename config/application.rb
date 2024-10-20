@@ -23,5 +23,6 @@ module CarteiraDeVacinacao
     config.i18n.default_locale = :'pt-BR'
 
     config.time_zone = 'Brasilia'
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end

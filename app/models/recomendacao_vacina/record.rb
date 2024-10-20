@@ -19,7 +19,7 @@ module RecomendacaoVacina
     belongs_to :recomendacao, class_name: '::Recomendacao::Record'
     belongs_to :vacina, class_name: '::Vacina::Record'
 
-    enum status_vacinal: { aguardando: 0, disponivel: 1, completo: 2 } # , default: :aguardando
+    enum :status_vacinal, [:aguardando, :disponivel, :completo] # , default: :aguardando
 
     before_save :calcular_status_vacinal
 

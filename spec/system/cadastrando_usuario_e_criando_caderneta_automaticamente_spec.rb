@@ -15,7 +15,7 @@ describe 'Cadastrando usuário e criando caderneta automaticamente', type: :feat
       click_button 'Sign up'
     end
 
-    expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
+    expect(page).to have_content 'Login efetuado com sucesso. Se não foi autorizado, a confirmação será enviada por e-mail.'
 
     click_link 'Calendário'
 
