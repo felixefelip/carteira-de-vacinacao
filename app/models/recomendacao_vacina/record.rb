@@ -100,11 +100,11 @@ module RecomendacaoVacina
       Date.current + meses_para_dose
     end
 
-    sig { returns(RecomendacaoVacina::Record::PrivateRelation) }
+    sig { returns(T::Array[RecomendacaoVacina::Record]) }
     def self.recomendacoes_vacina_para_tomar_nova_dose_hoje
       RecomendacaoVacina::Record.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
         recomendacao_vacina.quando_pode_tomar_proxima_dose == Date.current
-      end
+      end.to_a
     end
 
     private
