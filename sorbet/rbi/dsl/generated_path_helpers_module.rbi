@@ -15,22 +15,19 @@ module GeneratedPathHelpersModule
   def cadernetum_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def cancel_user_record_registration_path(*args); end
+  def cancel_user_registration_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def destroy_user_record_session_path(*args); end
+  def destroy_user_session_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def edit_fabricante_vacina_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_rails_conductor_inbound_email_path(*args); end
+  def edit_user_password_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_user_record_password_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def edit_user_record_registration_path(*args); end
+  def edit_user_registration_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def edit_vacina_dose_path(*args); end
@@ -54,13 +51,13 @@ module GeneratedPathHelpersModule
   def new_rails_conductor_inbound_email_source_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_password_path(*args); end
+  def new_user_password_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_registration_path(*args); end
+  def new_user_registration_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_session_path(*args); end
+  def new_user_session_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_vacina_dose_path(*args); end
@@ -76,6 +73,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def rails_blob_representation_proxy_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_incinerate_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_conductor_inbound_email_path(*args); end
@@ -150,13 +150,13 @@ module GeneratedPathHelpersModule
   def update_rails_disk_service_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_password_path(*args); end
+  def user_password_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_registration_path(*args); end
+  def user_registration_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_session_path(*args); end
+  def user_session_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def users_sign_out_path(*args); end

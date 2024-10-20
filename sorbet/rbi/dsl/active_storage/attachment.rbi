@@ -185,6 +185,9 @@ class ActiveStorage::Attachment
     sig { params(signed_id: T.untyped, purpose: T.untyped).returns(::ActiveStorage::Attachment) }
     def find_signed!(signed_id, purpose: nil); end
 
+    sig { params(arg: T.untyped, args: T.untyped).returns(::ActiveStorage::Attachment) }
+    def find_sole_by(arg, *args); end
+
     sig { params(limit: NilClass).returns(T.nilable(::ActiveStorage::Attachment)) }
     sig { params(limit: Integer).returns(T::Array[::ActiveStorage::Attachment]) }
     def first(limit = nil); end
@@ -215,6 +218,7 @@ class ActiveStorage::Attachment
         load: T.untyped,
         error_on_ignore: T.untyped,
         order: Symbol,
+        use_ranges: T.untyped,
         block: T.proc.params(object: PrivateRelation).void
       ).void
     end
@@ -225,10 +229,11 @@ class ActiveStorage::Attachment
         finish: T.untyped,
         load: T.untyped,
         error_on_ignore: T.untyped,
-        order: Symbol
+        order: Symbol,
+        use_ranges: T.untyped
       ).returns(::ActiveRecord::Batches::BatchEnumerator)
     end
-    def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, order: :asc, &block); end
+    def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, order: :asc, use_ranges: nil, &block); end
 
     sig { params(record: T.untyped).returns(T::Boolean) }
     def include?(record); end
@@ -295,6 +300,9 @@ class ActiveStorage::Attachment
 
     sig { returns(::ActiveStorage::Attachment) }
     def second_to_last!; end
+
+    sig { returns(::ActiveStorage::Attachment) }
+    def sole; end
 
     sig do
       params(
@@ -376,6 +384,9 @@ class ActiveStorage::Attachment
     def except(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def excluding(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def extending(*args, &blk); end
 
     sig { params(association: Symbol).returns(T::Array[T.untyped]) }
@@ -389,6 +400,9 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def having(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def in_order_of(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def includes(*args, &blk); end
@@ -428,6 +442,9 @@ class ActiveStorage::Attachment
     def insert_all!(attributes, returning: nil); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def invert_where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def joins(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -447,6 +464,9 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def none(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def null_relation?(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def offset(*args, &blk); end
@@ -473,6 +493,9 @@ class ActiveStorage::Attachment
     def references(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def regroup(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def reorder(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
@@ -489,6 +512,9 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def strict_loading(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def structurally_compatible?(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def uniq!(*args, &blk); end
@@ -516,6 +542,15 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def with_all_variant_records(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def without(*args, &blk); end
   end
 
   module GeneratedRelationMethods
@@ -541,6 +576,9 @@ class ActiveStorage::Attachment
     def except(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def excluding(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def extending(*args, &blk); end
 
     sig { params(association: Symbol).returns(T::Array[T.untyped]) }
@@ -556,7 +594,13 @@ class ActiveStorage::Attachment
     def having(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def in_order_of(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def includes(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def invert_where(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def joins(*args, &blk); end
@@ -578,6 +622,9 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def none(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def null_relation?(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def offset(*args, &blk); end
@@ -604,6 +651,9 @@ class ActiveStorage::Attachment
     def references(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def regroup(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def reorder(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
@@ -622,6 +672,9 @@ class ActiveStorage::Attachment
     def strict_loading(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def structurally_compatible?(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def uniq!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
@@ -629,6 +682,15 @@ class ActiveStorage::Attachment
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelationWhereChain) }
     def where(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def with_all_variant_records(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def without(*args, &blk); end
   end
 
   class PrivateAssociationRelation < ::ActiveRecord::AssociationRelation
@@ -676,6 +738,9 @@ class ActiveStorage::Attachment
 
   class PrivateAssociationRelationWhereChain < PrivateAssociationRelation
     Elem = type_member { { fixed: ::ActiveStorage::Attachment } }
+
+    sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
+    def associated(*args); end
 
     sig { params(args: T.untyped).returns(PrivateAssociationRelation) }
     def missing(*args); end
@@ -810,6 +875,9 @@ class ActiveStorage::Attachment
 
   class PrivateRelationWhereChain < PrivateRelation
     Elem = type_member { { fixed: ::ActiveStorage::Attachment } }
+
+    sig { params(args: T.untyped).returns(PrivateRelation) }
+    def associated(*args); end
 
     sig { params(args: T.untyped).returns(PrivateRelation) }
     def missing(*args); end

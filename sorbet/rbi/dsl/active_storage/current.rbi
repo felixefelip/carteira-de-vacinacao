@@ -9,17 +9,17 @@ class ActiveStorage::Current
 
   class << self
     sig { returns(T.untyped) }
-    def host; end
+    def url_options; end
 
-    sig { params(attribute: T.untyped).returns(T.untyped) }
-    def host=(attribute); end
+    sig { params(value: T.untyped).returns(T.untyped) }
+    def url_options=(value); end
   end
 
   module GeneratedAttributeMethods
     sig { returns(T.untyped) }
-    def host; end
+    def url_options; end
 
-    sig { params(attribute: T.untyped).returns(T.untyped) }
-    def host=(attribute); end
+    sig { params(value: T.untyped).returns(T.untyped) }
+    def url_options=(value); end
   end
 end

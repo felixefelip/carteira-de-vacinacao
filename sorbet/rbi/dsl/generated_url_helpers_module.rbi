@@ -15,22 +15,19 @@ module GeneratedUrlHelpersModule
   def cadernetum_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def cancel_user_record_registration_url(*args); end
+  def cancel_user_registration_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def destroy_user_record_session_url(*args); end
+  def destroy_user_session_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def edit_fabricante_vacina_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_rails_conductor_inbound_email_url(*args); end
+  def edit_user_password_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_user_record_password_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def edit_user_record_registration_url(*args); end
+  def edit_user_registration_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def edit_vacina_dose_url(*args); end
@@ -54,13 +51,13 @@ module GeneratedUrlHelpersModule
   def new_rails_conductor_inbound_email_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_password_url(*args); end
+  def new_user_password_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_registration_url(*args); end
+  def new_user_registration_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_user_record_session_url(*args); end
+  def new_user_session_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_vacina_dose_url(*args); end
@@ -76,6 +73,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def rails_blob_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def rails_conductor_inbound_email_incinerate_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_conductor_inbound_email_reroute_url(*args); end
@@ -150,13 +150,13 @@ module GeneratedUrlHelpersModule
   def update_rails_disk_service_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_password_url(*args); end
+  def user_password_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_registration_url(*args); end
+  def user_registration_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def user_record_session_url(*args); end
+  def user_session_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def users_sign_out_url(*args); end

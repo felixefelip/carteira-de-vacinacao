@@ -54,6 +54,7 @@ module User
              class_name: '::Recomendacao::Record'
 
     validates :email, :data_nascimento, presence: true
+    validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
 
     after_create :criar_cardeneta_de_vacinacao
     after_update :atualizar_cardeneta_de_vacinacao

@@ -8,12 +8,20 @@ module User
 
     sig { overridable.returns(Float) }
     def idade
-      (Date.current.strftime('%Y%m%d').to_i - data_nascimento.strftime('%Y%m%d').to_i) * 0.001
+      ((Date.current - data_nascimento) / 365).to_f.truncate(2)
     end
 
     sig { overridable.returns(String) }
     def idade_formatada
-      "#{idade.to_s.tr('.', ',')} anos"
+      if idade >= 1.2
+        "#{idade.to_i} anos"
+      elsif idade >= 1
+        "#{idade.to_s.last(2)} meses"
+      elsif idade >= 0.2
+        "#{idade.to_s[2]} meses"
+      else
+        "#{idade.to_s[2]} mês"
+      end
     end
 
     sig { abstract.returns(Date) }
