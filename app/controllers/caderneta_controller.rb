@@ -4,7 +4,7 @@ class CadernetaController < ApplicationController
   extend T::Sig
 
   def index
-    @vacinas = current_user.vacinas.uniq
+    @vacinas = current_user!.vacinas.uniq
   end
 
   def show

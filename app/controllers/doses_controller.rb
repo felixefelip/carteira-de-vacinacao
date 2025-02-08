@@ -5,7 +5,7 @@ class DosesController < ApplicationController
   before_action :set_vacina, only: %i[new create edit]
 
   def index
-    @doses = current_user.doses.all
+    @doses = current_user!.doses.all
   end
 
   def show; end
@@ -17,7 +17,7 @@ class DosesController < ApplicationController
   def edit; end
 
   def create
-    @dose = current_user.doses.new(dose_params)
+    @dose = current_user!.doses.new(dose_params)
 
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
@@ -30,6 +30,7 @@ class DosesController < ApplicationController
 
   def set_dose
     @dose = Dose::Record.find(params[:id])
+    @dose.vacina
   end
 
   def set_vacina

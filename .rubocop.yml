@@ -210,3 +210,5 @@ RSpec/ImplicitExpect:
 Style/RedundantDoubleSplatHashBraces:
   Enabled: false
 
+Lint/UselessMethodDefinition:
+  Enabled: false

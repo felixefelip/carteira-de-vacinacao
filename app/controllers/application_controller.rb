@@ -1,9 +1,12 @@
 # typed: true
 
 class ApplicationController < ActionController::Base
+  extend T::Sig
+
   before_action :authenticate_user!
 
-  # def current_user
-  #   User::Record.find(session['warden.user.user.key']['id'])
-  # end
+  sig { returns(User::Record) }
+  def current_user!
+    current_user || raise('Usuário não autenticado')
+  end
 end
