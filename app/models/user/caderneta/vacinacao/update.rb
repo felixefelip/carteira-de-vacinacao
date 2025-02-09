@@ -3,8 +3,7 @@ module User::Caderneta::Vacinacao
   class Update
     extend T::Sig
 
-    attr_accessor :user
-
+    sig { params(user: User::Record).void }
     def initialize(user)
       @user = user
     end
@@ -18,8 +17,13 @@ module User::Caderneta::Vacinacao
       atualizar_calendario!
     end
 
+    private
+
+    sig { returns(User::Record) }
+    attr_reader :user
+
     def atualizar_calendario!
-      user.recomendacao.recomendacao_vacinas.each do |recomendacao_vacina|
+      user.recomendacao&.recomendacao_vacinas&.each do |recomendacao_vacina|
         recomendacao_vacina.calcular_status_vacinal
         recomendacao_vacina.save!
       end

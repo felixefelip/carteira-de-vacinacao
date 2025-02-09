@@ -3,9 +3,6 @@ module User::Caderneta::Vacinacao
   class Create
     extend T::Sig
 
-    sig { returns(User::Record) }
-    attr_accessor :user
-
     sig { params(user: User::Record).void }
     def initialize(user)
       self.user = user
@@ -20,6 +17,11 @@ module User::Caderneta::Vacinacao
     def call!
       criar_calendario_de_vacinacao!
     end
+
+    private
+
+    sig { returns(User::Record) }
+    attr_accessor :user
 
     sig { void }
     def criar_calendario_de_vacinacao!
