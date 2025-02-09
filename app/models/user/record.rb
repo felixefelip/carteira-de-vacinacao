@@ -55,16 +55,16 @@ module User
     validates :email, :data_nascimento, presence: true
     validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
 
-    after_create :criar_cardeneta_de_vacinacao
-    after_update :atualizar_cardeneta_de_vacinacao
+    after_create :criar_caderneta_de_vacinacao
+    after_update :atualizar_caderneta_de_vacinacao
 
     sig { void }
-    def criar_cardeneta_de_vacinacao
+    def criar_caderneta_de_vacinacao
       Caderneta::Vacinacao::Create.call(self)
     end
 
     sig { void }
-    def atualizar_cardeneta_de_vacinacao
+    def atualizar_caderneta_de_vacinacao
       Caderneta::Vacinacao::Update.call(self)
     end
   end

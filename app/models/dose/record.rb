@@ -31,7 +31,7 @@ module Dose
     delegate :vacina, to: :fabricante_vacina
 
     def atualizar_calendario
-      user&.atualizar_cardeneta_de_vacinacao
+      user&.atualizar_caderneta_de_vacinacao
     end
   end
 end
