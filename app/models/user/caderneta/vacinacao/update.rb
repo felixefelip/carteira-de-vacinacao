@@ -1,5 +1,6 @@
+# typed: true
+
 module User::Caderneta::Vacinacao
-  # typed: true
   class Update
     extend T::Sig
 
@@ -9,11 +10,11 @@ module User::Caderneta::Vacinacao
     end
 
     sig { params(user: User::Record).void }
-    def self.call!(user)
-      new(user).call!
+    def self.call(user)
+      new(user).call
     end
 
-    def call!
+    def call
       atualizar_calendario!
     end
 

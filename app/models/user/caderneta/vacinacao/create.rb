@@ -1,5 +1,6 @@
+# typed: true
+
 module User::Caderneta::Vacinacao
-  # typed: true
   class Create
     extend T::Sig
 
@@ -9,12 +10,12 @@ module User::Caderneta::Vacinacao
     end
 
     sig { params(user: User::Record).void }
-    def self.call!(user)
-      new(user).call!
+    def self.call(user)
+      new(user).call
     end
 
     sig { void }
-    def call!
+    def call
       criar_calendario_de_vacinacao!
     end
 
@@ -30,7 +31,7 @@ module User::Caderneta::Vacinacao
       recomendacao = ::Recomendacao::Record.create!(user_id: user.id)
 
       vacinas_do_calendario.each do |vacina|
-        recomendacao.recomendacao_vacinas.create!(vacina: vacina)
+        recomendacao.recomendacao_vacinas.create!(vacina:)
       end
     end
   end

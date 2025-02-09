@@ -15,7 +15,6 @@
 #  updated_at             :datetime         not null
 #
 module User
-  # typed: true
   class Record < ApplicationRecord
     extend T::Sig
 
@@ -61,12 +60,12 @@ module User
 
     sig { void }
     def criar_cardeneta_de_vacinacao
-      Caderneta::Vacinacao::Create.call!(self)
+      Caderneta::Vacinacao::Create.call(self)
     end
 
     sig { void }
     def atualizar_cardeneta_de_vacinacao
-      Caderneta::Vacinacao::Update.call!(self)
+      Caderneta::Vacinacao::Update.call(self)
     end
   end
 end
