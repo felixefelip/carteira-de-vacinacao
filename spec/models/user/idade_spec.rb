@@ -22,7 +22,7 @@ describe User::Idade do
       end
     end
 
-		context 'quando tem menos de 10 meses e mais de 2 meses' do
+    context 'quando tem menos de 10 meses e mais de 2 meses' do
       it 'retorna 4' do
         travel_to Date.new(2022, 1, 1) do
           user = User::Record.new(data_nascimento: Date.new(2021, 7, 11))
@@ -32,7 +32,7 @@ describe User::Idade do
       end
     end
 
-		context 'quando tem menos de 11 meses' do
+    context 'quando tem menos de 11 meses' do
       it 'retorna 4' do
         travel_to Date.new(2022, 11, 1) do
           user = User::Record.new(data_nascimento: Date.new(2021, 1, 1))
