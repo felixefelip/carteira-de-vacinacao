@@ -4,11 +4,11 @@ class CadernetaController < ApplicationController
   extend T::Sig
 
   def index
-    @vacinas = current_user!.vacinas.uniq
+    @vacinas = vacinas
   end
 
   def show
-    @fabricante_vacinas = vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).uniq
+    @fabricante_vacinas = fabricante_vacinas
   end
 
   private
@@ -16,5 +16,15 @@ class CadernetaController < ApplicationController
   sig { returns(Vacina::Record) }
   def vacina
     @vacina ||= Vacina::Record.find(params[:id])
+  end
+
+  sig { returns(ActiveRecord::Relation) }
+  def vacinas
+    current_user!.vacinas.distinct
+  end
+
+  sig { returns(ActiveRecord::Relation) }
+  def fabricante_vacinas
+    vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).distinct
   end
 end

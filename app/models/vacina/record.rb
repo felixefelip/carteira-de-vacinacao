@@ -46,6 +46,10 @@ class Vacina::Record < ApplicationRecord
   validates :descricao, presence: true
   validates :ordem_no_calendario, uniqueness: true
 
+  def self.teste
+    where(descricao: nil)
+  end
+
   sig { void }
   def cadastrar_fornecedor_vacina_padrao
     fabricante_vacinas.create!(descricao: descricao)
