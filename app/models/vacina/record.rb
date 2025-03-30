@@ -10,6 +10,7 @@
 #  updated_at          :datetime         not null
 #
 # typed: true
+#
 class Vacina::Record < ApplicationRecord
   extend T::Sig
 

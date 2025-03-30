@@ -24,6 +24,7 @@ module User
       end
     end
 
+    # No user o tipo é nilable, mas não apontou problema, será um bug?
     sig { abstract.returns(Date) }
     def data_nascimento; end
   end

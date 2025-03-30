@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
 
   sig { returns(User::Record) }
   def current_user!
-    current_user || raise('Usuário não autenticado')
+    current_user
   end
 end
