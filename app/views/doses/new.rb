@@ -1,6 +1,6 @@
 # typed: true
 
-module Doses
+module Views::Doses
   class New < Phlex::HTML
     extend T::Sig
     # include Phlex::Rails::Helpers::FormWith
@@ -12,7 +12,6 @@ module Doses
     end
 
     def view_template
-      byebug
       div class: 'row mt-4' do
         div class: 'col-10 col-lg-10 mx-auto' do
           h1 { 'Nova Dose' }

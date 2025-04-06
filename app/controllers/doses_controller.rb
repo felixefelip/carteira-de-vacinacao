@@ -12,7 +12,7 @@ class DosesController < ApplicationController
 
   def new
     @dose = Dose::Record.new
-    render Doses::New.new(dose: @dose)
+    render Views::Doses::New.new(dose: @dose)
   end
 
   def edit; end
