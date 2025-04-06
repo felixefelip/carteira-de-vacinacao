@@ -1,9 +1,12 @@
 # typed: true
+
 class VacinasController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 
   def index
     @vacinas = Vacina::Record.all
+
+    render Views::Vacinas::Index.new(vacinas: @vacinas)
   end
 
   def show; end
