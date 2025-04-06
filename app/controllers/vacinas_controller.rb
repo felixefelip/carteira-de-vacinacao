@@ -46,6 +46,6 @@ class VacinasController < ApplicationController
   end
 
   def vacina_params
-    params.require(:vacina).permit(:descricao)
+    params.require(:vacina_record).permit(:descricao)
   end
 end

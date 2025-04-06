@@ -1,6 +1,6 @@
-<%= form_with(model: vacina, url: vacina_path) do |form| %>
+<%= form_with(model: vacina, url: vacinas_path) do |form| %>
   <% if vacina.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation"vacina>
       <h2><%= pluralize(vacina.errors.count, "error") %> prohibited this vacina from being saved:</h2>
 
       <ul>
