@@ -6,7 +6,7 @@ class DosesController < ApplicationController
 
   def index
     @doses = current_user!.doses.all
-    render Views::Doses::Index.new(doses: @doses)
+    render Views::Doses::Index.new(doses: vacina_path)
   end
 
   def show; end

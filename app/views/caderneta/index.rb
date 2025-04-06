@@ -31,7 +31,7 @@ module Views::Caderneta
 
 			br
 
-			a href: helpers.vacinas_path do
+			a href: vacinas_path do
 				"Adicionar Vacinação"
 			end
     end

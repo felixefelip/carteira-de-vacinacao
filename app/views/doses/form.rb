@@ -13,7 +13,7 @@ module Views::Doses
     end
 
     def view_template
-      form_with model: @dose, url: helpers.vacina_doses_path do |form|
+      form_with model: @dose, url: vacina_doses_path do |form|
         if @dose.errors.any?
           div id: "error_explanation" do
             h2 { "#{helpers.pluralize(@dose.errors.count, 'error')} prohibited this dose from being saved:" }

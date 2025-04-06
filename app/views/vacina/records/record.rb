@@ -13,16 +13,16 @@ module Views::Vacina::Records
     def view_template
 			tr do
 				td do
-					link_to vacina.descricao, helpers.cadernetum_path(vacina.id)
+					link_to vacina.descricao, cadernetum_path(vacina.id)
 				end
 				td do
-					"#{::User::Doses.new(@current_user).qtde_por_vacina(vacina)} doses"
+					"#{::User::Doses.new(helpers.current_user!).qtde_por_vacina(vacina)} doses"
 				end
 				td do
-					link_to 'Editar', helpers.edit_vacina_path(vacina)
+					link_to 'Editar', edit_vacina_path(vacina)
 				end
 				td do
-					link_to 'Remover', helpers.vacina_doses_path(vacina), method: :delete, data: { confirm: 'Are you sure?' }
+					link_to 'Remover', vacina_doses_path(vacina), method: :delete, data: { confirm: 'Are you sure?' }
 				end
 			end
     end
