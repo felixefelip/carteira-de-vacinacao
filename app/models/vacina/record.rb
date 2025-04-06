@@ -30,7 +30,7 @@ class Vacina::Record < ApplicationRecord
   has_many :recomendacao_vacinas, **{
     dependent: :destroy,
     foreign_key: :vacina_id,
-    class_name: '::RecomendacaoVacina::Record',
+    class_name: '::RecomendacaoVacina',
   }
 
   has_many :dose_do_calendarios, **{

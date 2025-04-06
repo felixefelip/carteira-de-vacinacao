@@ -52,7 +52,7 @@ module Views::Sugestoes
 		sig { returns(ActiveRecord::Relation) }
 		attr_accessor :recomendacao_vacinas
 
-		sig { params(recomendacao_vacina: RecomendacaoVacina::Record).void }
+		sig { params(recomendacao_vacina: RecomendacaoVacina).void }
     def table_row_recomendacao_vacina(recomendacao_vacina)
 			tr do
 				td { recomendacao_vacina.vacina&.descricao }
@@ -62,7 +62,7 @@ module Views::Sugestoes
 			end
     end
 
-		sig { params(recomendacao_vacina: RecomendacaoVacina::Record).returns(String) }
+		sig { params(recomendacao_vacina: RecomendacaoVacina).returns(String) }
 		def exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)
 			return '' if recomendacao_vacina.status_vacinal != 'aguardando'
 

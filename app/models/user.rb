@@ -42,7 +42,7 @@ class User < ApplicationRecord
   has_many :recomendacao_vacinas,
             dependent: :destroy,
             foreign_key: :user_id,
-            class_name: '::RecomendacaoVacina::Record'
+            class_name: '::RecomendacaoVacina'
 
   validates :email, :data_nascimento, presence: true
   validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
