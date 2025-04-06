@@ -351,10 +351,10 @@ class Vacina
 
     # This method is created by ActiveRecord on the `Vacina` class because it declared `has_many :doses, through: :fabricante_vacinas`.
     # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-    sig { returns(::FabricanteVacina::Record::PrivateCollectionProxy) }
+    sig { returns(::Dose::PrivateCollectionProxy) }
     def doses; end
 
-    sig { params(value: T::Enumerable[::FabricanteVacina::Record]).void }
+    sig { params(value: T::Enumerable[::Dose]).void }
     def doses=(value); end
 
     sig { returns(T::Array[T.untyped]) }
@@ -365,10 +365,10 @@ class Vacina
 
     # This method is created by ActiveRecord on the `Vacina` class because it declared `has_many :fabricante_vacinas`.
     # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::FabricanteVacina::Record::PrivateCollectionProxy) }
+    sig { returns(::FabricanteVacina::PrivateCollectionProxy) }
     def fabricante_vacinas; end
 
-    sig { params(value: T::Enumerable[::FabricanteVacina::Record]).void }
+    sig { params(value: T::Enumerable[::FabricanteVacina]).void }
     def fabricante_vacinas=(value); end
 
     sig { params(attributes: T.untyped).returns(T.untyped) }

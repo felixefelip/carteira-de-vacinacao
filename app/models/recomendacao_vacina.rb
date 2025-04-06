@@ -15,7 +15,7 @@ class RecomendacaoVacina < ApplicationRecord
   extend T::Sig
 
   belongs_to :user
-  belongs_to :vacina, class_name: '::Vacina'
+  belongs_to :vacina
 
   enum :status_vacinal, [:aguardando, :disponivel, :completo]
 

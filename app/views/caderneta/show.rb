@@ -48,7 +48,7 @@ module Views::Caderneta
 		sig { returns(ActiveRecord::Relation) }
 		attr_accessor :fabricante_vacinas
 
-		sig { params(fabricante_vacina: FabricanteVacina::Record).void }
+		sig { params(fabricante_vacina: FabricanteVacina).void }
 		def table_row_fabricante_vacina(fabricante_vacina)
 			tr do
 				td { fabricante_vacina.descricao }

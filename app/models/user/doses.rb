@@ -11,7 +11,7 @@ class User
       self.user = user
     end
 
-    sig { params(fabricante_vacina: FabricanteVacina::Record).returns(Integer) }
+    sig { params(fabricante_vacina: FabricanteVacina).returns(Integer) }
     def qtde_por_fabricante_vacina(fabricante_vacina)
       user.fabricante_vacinas.where(id: fabricante_vacina.id).count
     end

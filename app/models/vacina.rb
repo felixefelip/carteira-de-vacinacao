@@ -17,18 +17,16 @@ class Vacina < ApplicationRecord
   has_many :fabricante_vacinas, **{
     dependent: :destroy,
     foreign_key: :vacina_id,
-    class_name: 'FabricanteVacina::Record',
+    class_name: 'FabricanteVacina',
   }
 
   has_many :doses, ** {
     through: :fabricante_vacinas,
-    class_name: '::FabricanteVacina::Record',
   }
 
   has_many :recomendacao_vacinas, **{
     dependent: :destroy,
     foreign_key: :vacina_id,
-    class_name: '::RecomendacaoVacina',
   }
 
   has_many :dose_do_calendarios, **{

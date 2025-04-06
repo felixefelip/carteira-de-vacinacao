@@ -20,28 +20,12 @@ class User < ApplicationRecord
   include Idade
 
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
-  has_many :doses,
-            dependent: :destroy,
-            foreign_key: :user_id,
-            class_name: '::Dose',
-            inverse_of: :user
-
-  has_many :fabricante_vacinas,
-            through: :doses,
-            foreign_key: :user_id,
-            class_name: '::FabricanteVacina::Record'
-
-  has_many :vacinas,
-            through: :fabricante_vacinas,
-            foreign_key: :user_id,
-            class_name: '::Vacina'
-
-  has_many :recomendacao_vacinas,
-            dependent: :destroy,
-            foreign_key: :user_id,
-            class_name: '::RecomendacaoVacina'
+  has_many :doses, dependent: :destroy
+  has_many :fabricante_vacinas, through: :doses
+  has_many :vacinas, through: :fabricante_vacinas
+  has_many :recomendacao_vacinas, dependent: :destroy
 
   validates :email, :data_nascimento, presence: true
   validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }

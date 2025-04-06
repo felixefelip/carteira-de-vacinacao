@@ -20,9 +20,7 @@ class Dose < ApplicationRecord
 
   belongs_to :user
 
-  belongs_to :fabricante_vacina, **{
-    class_name: '::FabricanteVacina::Record',
-  }
+  belongs_to :fabricante_vacina
 
   after_save :atualizar_calendario
 
