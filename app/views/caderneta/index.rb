@@ -24,7 +24,7 @@ module Views::Caderneta
 					end
 
 					tbody do
-						vacinas.each { |vacina| render Views::Vacina::Records::Record.new(vacina) }
+						vacinas.each { |vacina| render Views::Vacinas::Vacina.new(vacina) }
 					end
 				end
 			end

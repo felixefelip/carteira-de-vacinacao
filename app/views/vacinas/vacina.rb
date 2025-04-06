@@ -1,10 +1,10 @@
 # typed: true
 
-module Views::Vacina::Records
-  class Record < Views::Base
+module Views::Vacinas
+  class Vacina < Views::Base
     extend T::Sig
 
-    sig { params(vacina: Vacina).void }
+    sig { params(vacina: ::Vacina).void }
     def initialize(vacina)
       super()
       self.vacina = vacina
@@ -30,7 +30,7 @@ module Views::Vacina::Records
 
 		private
 
-		sig { returns(Vacina) }
+		sig { returns(::Vacina) }
 		attr_accessor :vacina
   end
 end
