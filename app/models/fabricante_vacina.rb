@@ -13,7 +13,7 @@ class FabricanteVacina < ApplicationRecord
   self.table_name = 'fabricante_vacinas'
 
   belongs_to :user, optional: true
-  belongs_to :vacina, dependent: :destroy
+  belongs_to :vacina
 
   has_many :doses, dependent: :nullify
 end

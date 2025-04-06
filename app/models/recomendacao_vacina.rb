@@ -45,7 +45,7 @@ class RecomendacaoVacina < ApplicationRecord
                           end
   end
 
-  sig { returns(T.nilable(::DoseDoCalendario::Record)) }
+  sig { returns(T.nilable(::DoseDoCalendario)) }
   def dose_recomendada_atual
     return if tomou_todas_as_doses?
     return unless (vacina_dose_do_calendarios = vacina&.dose_do_calendarios)

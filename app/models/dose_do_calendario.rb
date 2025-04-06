@@ -1,3 +1,5 @@
+# typed: true
+
 # == Schema Information
 #
 # Table name: dose_do_calendarios
@@ -8,11 +10,8 @@
 #  updated_at        :datetime         not null
 #  vacina_id         :bigint
 #
-module DoseDoCalendario
-  # typed: true
-  class Record < ApplicationRecord
-    self.table_name = 'dose_do_calendarios'
+class DoseDoCalendario < ApplicationRecord
+  self.table_name = 'dose_do_calendarios'
 
-    belongs_to :vacina, class_name: '::Vacina'
-  end
+  belongs_to :vacina
 end

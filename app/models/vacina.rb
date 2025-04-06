@@ -14,26 +14,10 @@
 class Vacina < ApplicationRecord
   extend T::Sig
 
-  has_many :fabricante_vacinas, **{
-    dependent: :destroy,
-    foreign_key: :vacina_id,
-    class_name: 'FabricanteVacina',
-  }
-
-  has_many :doses, ** {
-    through: :fabricante_vacinas,
-  }
-
-  has_many :recomendacao_vacinas, **{
-    dependent: :destroy,
-    foreign_key: :vacina_id,
-  }
-
-  has_many :dose_do_calendarios, **{
-    dependent: :destroy,
-    foreign_key: :vacina_id,
-    class_name: '::DoseDoCalendario::Record',
-  }
+  has_many :fabricante_vacinas, dependent: :destroy
+  has_many :doses, through: :fabricante_vacinas
+  has_many :recomendacao_vacinas, dependent: :destroy
+  has_many :dose_do_calendarios, dependent: :destroy
 
   accepts_nested_attributes_for :fabricante_vacinas
 

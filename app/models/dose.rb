@@ -19,7 +19,6 @@ class Dose < ApplicationRecord
   extend T::Sig
 
   belongs_to :user
-
   belongs_to :fabricante_vacina
 
   after_save :atualizar_calendario

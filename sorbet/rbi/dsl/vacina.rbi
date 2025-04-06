@@ -337,10 +337,10 @@ class Vacina
 
     # This method is created by ActiveRecord on the `Vacina` class because it declared `has_many :dose_do_calendarios`.
     # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::DoseDoCalendario::Record::PrivateCollectionProxy) }
+    sig { returns(::DoseDoCalendario::PrivateCollectionProxy) }
     def dose_do_calendarios; end
 
-    sig { params(value: T::Enumerable[::DoseDoCalendario::Record]).void }
+    sig { params(value: T::Enumerable[::DoseDoCalendario]).void }
     def dose_do_calendarios=(value); end
 
     sig { returns(T::Array[T.untyped]) }
