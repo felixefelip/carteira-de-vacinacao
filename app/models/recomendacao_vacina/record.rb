@@ -11,7 +11,6 @@
 #  user_id        :bigint
 #  vacina_id      :bigint
 #
-
 module RecomendacaoVacina
   class Record < ApplicationRecord
     extend T::Sig
