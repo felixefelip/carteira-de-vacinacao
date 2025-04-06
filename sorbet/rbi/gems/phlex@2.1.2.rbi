@@ -861,7 +861,7 @@ class Phlex::SGML
     # @note The block will not be delegated {#initialize}. Instead, it will be sent to {#template} when rendering.
     #
     # source://phlex//lib/phlex/sgml.rb#34
-    def new(*a, **k, &block); end
+    # def new(*a, **k, &block); end
 
     private
 
