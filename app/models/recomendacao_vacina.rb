@@ -115,7 +115,7 @@ class RecomendacaoVacina < ApplicationRecord
 
   private
 
-  sig { returns(T.nilable(::Dose::Record)) }
+  sig { returns(T.nilable(::Dose)) }
   def ultima_dose_tomada
     return unless (user = self.user)
 

@@ -5,7 +5,7 @@ module Views::Doses
   class Form < Views::Base
     extend T::Sig
 
-    sig { params(dose: Dose::Record, vacina: Vacina).void }
+    sig { params(dose: Dose, vacina: Vacina).void }
     def initialize(dose:, vacina:)
       super()
       self.dose = dose
@@ -62,7 +62,7 @@ module Views::Doses
     sig { returns(Vacina) }
     attr_accessor :vacina
 
-    sig { returns(Dose::Record) }
+    sig { returns(Dose) }
     attr_accessor :dose
   end
 end

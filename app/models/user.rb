@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_many :doses,
             dependent: :destroy,
             foreign_key: :user_id,
-            class_name: '::Dose::Record',
+            class_name: '::Dose',
             inverse_of: :user
 
   has_many :fabricante_vacinas,

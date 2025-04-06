@@ -19,7 +19,7 @@ module FabricanteVacina
     has_many :doses, **{
       dependent: :nullify,
       foreign_key: :fabricante_vacina_id,
-      class_name: '::Dose::Record',
+      class_name: '::Dose',
     }
   end
 end

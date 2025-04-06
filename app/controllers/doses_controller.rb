@@ -12,14 +12,14 @@ class DosesController < ApplicationController
   def show; end
 
   def new
-    @dose = Dose::Record.new
+    @dose = Dose.new
     render Views::Doses::New.new(dose: @dose, vacina: @vacina)
   end
 
   def edit; end
 
   def create
-    @dose = Dose::Record.new(dose_params)
+    @dose = Dose.new(dose_params)
     @dose.user = Current.user!
 
     if @dose.save
@@ -32,7 +32,7 @@ class DosesController < ApplicationController
   private
 
   def set_dose
-    @dose = Dose::Record.find(params[:id])
+    @dose = Dose.find(params[:id])
     @dose.vacina
   end
 

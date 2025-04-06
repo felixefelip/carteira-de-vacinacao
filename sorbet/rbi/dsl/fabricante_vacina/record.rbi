@@ -447,10 +447,10 @@ class FabricanteVacina::Record
 
     # This method is created by ActiveRecord on the `FabricanteVacina::Record` class because it declared `has_many :doses`.
     # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::Dose::Record::PrivateCollectionProxy) }
+    sig { returns(::Dose::PrivateCollectionProxy) }
     def doses; end
 
-    sig { params(value: T::Enumerable[::Dose::Record]).void }
+    sig { params(value: T::Enumerable[::Dose]).void }
     def doses=(value); end
 
     sig { returns(T.nilable(::User)) }
