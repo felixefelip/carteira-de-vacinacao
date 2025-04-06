@@ -9,7 +9,7 @@ class CadernetaController < ApplicationController
   end
 
   def show
-    @fabricante_vacinas = fabricante_vacinas
+    render Views::Caderneta::Show.new(vacina:, fabricante_vacinas:)
   end
 
   private
