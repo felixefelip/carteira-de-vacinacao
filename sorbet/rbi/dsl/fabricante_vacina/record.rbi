@@ -424,7 +424,7 @@ class FabricanteVacina::Record
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def build_user(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def build_vacina(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
@@ -433,10 +433,10 @@ class FabricanteVacina::Record
     sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def create_user!(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def create_vacina(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def create_vacina!(*args, &blk); end
 
     sig { returns(T::Array[T.untyped]) }
@@ -456,7 +456,7 @@ class FabricanteVacina::Record
     sig { returns(T.nilable(::User)) }
     def reload_user; end
 
-    sig { returns(T.nilable(::Vacina::Record)) }
+    sig { returns(T.nilable(::Vacina)) }
     def reload_vacina; end
 
     sig { void }
@@ -477,10 +477,10 @@ class FabricanteVacina::Record
     sig { returns(T::Boolean) }
     def user_previously_changed?; end
 
-    sig { returns(T.nilable(::Vacina::Record)) }
+    sig { returns(T.nilable(::Vacina)) }
     def vacina; end
 
-    sig { params(value: T.nilable(::Vacina::Record)).void }
+    sig { params(value: T.nilable(::Vacina)).void }
     def vacina=(value); end
 
     sig { returns(T::Boolean) }

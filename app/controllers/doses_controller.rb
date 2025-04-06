@@ -37,7 +37,7 @@ class DosesController < ApplicationController
   end
 
   def set_vacina
-    @vacina = Vacina::Record.find(params[:vacina_id])
+    @vacina = Vacina.find(params[:vacina_id])
   end
 
   sig { returns(ActiveRecord::Relation) }

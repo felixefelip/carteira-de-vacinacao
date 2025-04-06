@@ -4,7 +4,7 @@ class VacinasController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 
   def index
-    @vacinas = Vacina::Record.all
+    @vacinas = Vacina.all
 
     render Views::Vacinas::Index.new(vacinas: @vacinas)
   end
@@ -12,13 +12,13 @@ class VacinasController < ApplicationController
   def show; end
 
   def new
-    @vacina = Vacina::Record.new
+    @vacina = Vacina.new
   end
 
   def edit; end
 
   def create
-    @vacina = Vacina::Record.new(vacina_params)
+    @vacina = Vacina.new(vacina_params)
     @vacina.fabricante_vacinas.new(descricao: @vacina.descricao)
 
     if @vacina.save
@@ -45,7 +45,7 @@ class VacinasController < ApplicationController
   private
 
   def set_vacina
-    @vacina = Vacina::Record.find(params[:id])
+    @vacina = Vacina.find(params[:id])
   end
 
   def vacina_params

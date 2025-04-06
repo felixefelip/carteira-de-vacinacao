@@ -40,7 +40,7 @@ module Views::Doses
 		attr_accessor :vacinas
 
 
-		sig { params(vacina: Vacina::Record).void }
+		sig { params(vacina: Vacina).void }
 		def table_row_vacina(vacina)
 			td { link_to 'Cadastrar dose', new_vacina_dose_path(vacina) }
 			# td { link_to 'Destroy', vacina, method: :delete, data: { confirm: 'Are you sure?' } }

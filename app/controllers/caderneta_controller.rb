@@ -14,9 +14,9 @@ class CadernetaController < ApplicationController
 
   private
 
-  sig { returns(Vacina::Record) }
+  sig { returns(Vacina) }
   def vacina
-    @vacina ||= Vacina::Record.find(params[:id])
+    @vacina ||= Vacina.find(params[:id])
   end
 
   sig { returns(ActiveRecord::Relation) }

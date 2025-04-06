@@ -385,10 +385,10 @@ class User
 
     # This method is created by ActiveRecord on the `User` class because it declared `has_many :vacinas, through: :fabricante_vacinas`.
     # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-    sig { returns(::Vacina::Record::PrivateCollectionProxy) }
+    sig { returns(::Vacina::PrivateCollectionProxy) }
     def vacinas; end
 
-    sig { params(value: T::Enumerable[::Vacina::Record]).void }
+    sig { params(value: T::Enumerable[::Vacina]).void }
     def vacinas=(value); end
   end
 

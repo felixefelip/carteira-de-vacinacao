@@ -50,7 +50,7 @@ module Views::Vacinas
 		sig { returns(ActiveRecord::Relation) }
 		attr_accessor :vacinas
 
-		sig { params(vacina: Vacina::Record).void }
+		sig { params(vacina: Vacina).void }
     def table_row_vacina(vacina)
       tr do
 				td { vacina.descricao }

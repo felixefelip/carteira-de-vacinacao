@@ -11,10 +11,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-class Vacina::Record < ApplicationRecord
+class Vacina < ApplicationRecord
   extend T::Sig
-
-  self.table_name = 'vacinas'
 
   has_many :fabricante_vacinas, **{
     dependent: :destroy,

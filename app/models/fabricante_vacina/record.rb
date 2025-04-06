@@ -14,7 +14,7 @@ module FabricanteVacina
     self.table_name = 'fabricante_vacinas'
 
     belongs_to :user, optional: true, class_name: '::User'
-    belongs_to :vacina, dependent: :destroy, class_name: '::Vacina::Record'
+    belongs_to :vacina, dependent: :destroy, class_name: '::Vacina'
 
     has_many :doses, **{
       dependent: :nullify,

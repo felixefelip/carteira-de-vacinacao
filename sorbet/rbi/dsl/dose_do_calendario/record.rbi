@@ -421,25 +421,25 @@ class DoseDoCalendario::Record
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def build_vacina(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def create_vacina(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def create_vacina!(*args, &blk); end
 
-    sig { returns(T.nilable(::Vacina::Record)) }
+    sig { returns(T.nilable(::Vacina)) }
     def reload_vacina; end
 
     sig { void }
     def reset_vacina; end
 
-    sig { returns(T.nilable(::Vacina::Record)) }
+    sig { returns(T.nilable(::Vacina)) }
     def vacina; end
 
-    sig { params(value: T.nilable(::Vacina::Record)).void }
+    sig { params(value: T.nilable(::Vacina)).void }
     def vacina=(value); end
 
     sig { returns(T::Boolean) }

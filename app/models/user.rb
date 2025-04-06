@@ -14,7 +14,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
-
 class User < ApplicationRecord
   extend T::Sig
 
@@ -37,7 +36,7 @@ class User < ApplicationRecord
   has_many :vacinas,
             through: :fabricante_vacinas,
             foreign_key: :user_id,
-            class_name: '::Vacina::Record'
+            class_name: '::Vacina'
 
   has_many :recomendacao_vacinas,
             dependent: :destroy,

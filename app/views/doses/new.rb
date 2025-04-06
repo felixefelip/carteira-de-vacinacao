@@ -5,7 +5,7 @@ module Views::Doses
     extend T::Sig
     # include Phlex::Rails::Helpers::FormWith
 
-    sig { params(dose: Dose::Record, vacina: Vacina::Record).void }
+    sig { params(dose: Dose::Record, vacina: Vacina).void }
     def initialize(dose:, vacina:)
       super()
       self.dose = dose
@@ -26,7 +26,7 @@ module Views::Doses
     sig { returns(Dose::Record) }
     attr_accessor :dose
 
-    sig { returns(Vacina::Record) }
+    sig { returns(Vacina) }
     attr_accessor :vacina
   end
 end

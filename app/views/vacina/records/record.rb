@@ -4,7 +4,7 @@ module Views::Vacina::Records
   class Record < Views::Base
     extend T::Sig
 
-    sig { params(vacina: Vacina::Record).void }
+    sig { params(vacina: Vacina).void }
     def initialize(vacina)
       super()
       self.vacina = vacina
@@ -30,7 +30,7 @@ module Views::Vacina::Records
 
 		private
 
-		sig { returns(Vacina::Record) }
+		sig { returns(Vacina) }
 		attr_accessor :vacina
   end
 end

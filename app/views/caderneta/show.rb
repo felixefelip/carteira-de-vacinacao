@@ -4,7 +4,7 @@ module Views::Caderneta
   class Show < Views::Base
     extend T::Sig
 
-    sig { params(vacina: Vacina::Record, fabricante_vacinas: ActiveRecord::Relation).void }
+    sig { params(vacina: Vacina, fabricante_vacinas: ActiveRecord::Relation).void }
     def initialize(vacina:, fabricante_vacinas:)
       super()
 			self.vacina = vacina
@@ -42,7 +42,7 @@ module Views::Caderneta
 
 		private
 
-		sig { returns(Vacina::Record) }
+		sig { returns(Vacina) }
 		attr_accessor :vacina
 
 		sig { returns(ActiveRecord::Relation) }
