@@ -21,7 +21,7 @@ class CadernetaController < ApplicationController
 
   sig { returns(ActiveRecord::Relation) }
   def vacinas
-    current_user!.vacinas.distinct
+    Current.user!.vacinas.distinct
   end
 
   sig { returns(ActiveRecord::Relation) }

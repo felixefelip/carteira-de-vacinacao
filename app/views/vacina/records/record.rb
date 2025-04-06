@@ -16,12 +16,13 @@ module Views::Vacina::Records
 					link_to vacina.descricao, cadernetum_path(vacina.id)
 				end
 				td do
-					"#{::User::Doses.new(helpers.current_user!).qtde_por_vacina(vacina)} doses"
+					"#{::User::Doses.new(Current.user!).qtde_por_vacina(vacina)} doses"
 				end
 				td do
 					link_to 'Editar', edit_vacina_path(vacina)
 				end
 				td do
+					# não tá indo para o delete
 					link_to 'Remover', vacina_doses_path(vacina), method: :delete, data: { confirm: 'Are you sure?' }
 				end
 			end

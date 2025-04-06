@@ -4,9 +4,12 @@ class ApplicationController < ActionController::Base
   extend T::Sig
 
   before_action :authenticate_user!
+  before_action :set_authenticated_user
 
-  sig { returns(User::Record) }
-  def current_user!
-    current_user
+  private
+
+  sig { void }
+  def set_authenticated_user
+    Current.user = current_user
   end
 end

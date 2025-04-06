@@ -12,7 +12,6 @@ module Views::Doses
     end
 
     def view_template
-      byebug
       p(id: "notice") { notice }
 
       h1 { "Vacinas tomadas" }
@@ -44,7 +43,7 @@ module Views::Doses
 		sig { params(vacina: Vacina::Record).void }
 		def table_row_vacina(vacina)
 			td { link_to 'Cadastrar dose', new_vacina_dose_path(vacina) }
-			td { link_to 'Destroy', vacina, method: :delete, data: { confirm: 'Are you sure?' } }
+			# td { link_to 'Destroy', vacina, method: :delete, data: { confirm: 'Are you sure?' } }
 		end
   end
 end
