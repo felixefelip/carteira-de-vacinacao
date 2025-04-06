@@ -19,7 +19,8 @@ class DosesController < ApplicationController
   def edit; end
 
   def create
-    @dose = Current.user!.doses.new(dose_params)
+    @dose = Dose::Record.new(dose_params)
+    @dose.user = Current.user!
 
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'

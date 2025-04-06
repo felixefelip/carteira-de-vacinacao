@@ -22,7 +22,7 @@ describe 'Cadastrando usuário e criando caderneta automaticamente', type: :feat
     expect(page).to have_content 'Hepatite B recombinante'
     expect(page).to have_content 'disponivel'
 
-    recomendacoes_de_vacinas = User::Record.last.recomendacao.recomendacao_vacinas
+    recomendacoes_de_vacinas = User::Record.last.recomendacao_vacinas
     recomendacao_vacina = recomendacoes_de_vacinas.first
 
     # save_and_open_page

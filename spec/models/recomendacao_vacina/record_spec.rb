@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecomendacaoVacina::Record do
   describe 'associations' do
-    it { should belong_to(:recomendacao) }
+    it { should belong_to(:user) }
     it { should belong_to(:vacina) }
   end
 

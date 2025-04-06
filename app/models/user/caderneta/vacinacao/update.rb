@@ -24,7 +24,7 @@ module User::Caderneta::Vacinacao
     attr_reader :user
 
     def atualizar_calendario!
-      user.recomendacao&.recomendacao_vacinas&.each do |recomendacao_vacina|
+      user.recomendacao_vacinas.each do |recomendacao_vacina|
         recomendacao_vacina.calcular_status_vacinal
         recomendacao_vacina.save!
       end
