@@ -27,7 +27,6 @@ module Views::Sugestoes
 					end
 
 					tbody do
-						byebug
 						recomendacao_vacinas.each do |recomendacao_vacina|
 							table_row_recomendacao_vacina(recomendacao_vacina)
 						end
