@@ -7,7 +7,7 @@ module Views::Caderneta
     sig { params(vacinas: ActiveRecord::Relation).void }
     def initialize(vacinas:)
       super()
-      @vacinas = vacinas
+      self.vacinas = vacinas
     end
 
     def view_template
@@ -39,6 +39,6 @@ module Views::Caderneta
 		private
 
 		sig { returns(ActiveRecord::Relation) }
-		attr_reader :vacinas
+		attr_accessor :vacinas
   end
 end

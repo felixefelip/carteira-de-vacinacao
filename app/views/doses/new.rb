@@ -8,8 +8,8 @@ module Views::Doses
     sig { params(dose: Dose::Record, vacina: Vacina::Record).void }
     def initialize(dose:, vacina:)
       super()
-      @dose = dose
-      @vacina = vacina
+      self.dose = dose
+      self.vacina = vacina
     end
 
     def view_template
@@ -24,9 +24,9 @@ module Views::Doses
     private
 
     sig { returns(Dose::Record) }
-    attr_reader :dose
+    attr_accessor :dose
 
     sig { returns(Vacina::Record) }
-    attr_reader :vacina
+    attr_accessor :vacina
   end
 end

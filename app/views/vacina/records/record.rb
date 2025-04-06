@@ -7,7 +7,7 @@ module Views::Vacina::Records
     sig { params(vacina: Vacina::Record).void }
     def initialize(vacina)
       super()
-      @vacina = vacina
+      self.vacina = vacina
     end
 
     def view_template
@@ -31,6 +31,6 @@ module Views::Vacina::Records
 		private
 
 		sig { returns(Vacina::Record) }
-		attr_reader :vacina
+		attr_accessor :vacina
   end
 end

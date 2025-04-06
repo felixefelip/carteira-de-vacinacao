@@ -7,7 +7,7 @@ module Views::Vacinas
     sig { params(vacinas: ActiveRecord::Relation).void }
     def initialize(vacinas:)
       super()
-      @vacinas = vacinas
+      self.vacinas = vacinas
     end
 
 		def view_template
@@ -25,7 +25,7 @@ module Views::Vacinas
 					end
 
 					tbody do
-						@vacinas.each do |vacina|
+						vacinas.each do |vacina|
               table_row_vacina(vacina)
 						end
 					end
@@ -48,7 +48,7 @@ module Views::Vacinas
 		private
 
 		sig { returns(ActiveRecord::Relation) }
-		attr_reader :vacinas
+		attr_accessor :vacinas
 
 		sig { params(vacina: Vacina::Record).void }
     def table_row_vacina(vacina)
