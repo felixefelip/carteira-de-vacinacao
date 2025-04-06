@@ -26,10 +26,7 @@ module Views::Vacinas
 
 					tbody do
 						@vacinas.each do |vacina|
-							tr do
-								td { vacina.descricao }
-								td { link_to 'Cadastrar dose', new_vacina_dose_path(vacina) }
-							end
+              table_row_vacina(vacina)
 						end
 					end
 				end
@@ -52,5 +49,13 @@ module Views::Vacinas
 
 		sig { returns(ActiveRecord::Relation) }
 		attr_reader :vacinas
+
+		sig { params(vacina: Vacina::Record).void }
+    def table_row_vacina(vacina)
+      tr do
+				td { vacina.descricao }
+				td { link_to 'Cadastrar dose', new_vacina_dose_path(vacina) }
+			end
+    end
   end
 end
