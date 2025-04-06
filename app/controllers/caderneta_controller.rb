@@ -5,6 +5,7 @@ class CadernetaController < ApplicationController
 
   def index
     @vacinas = vacinas
+    render Views::Caderneta::Index.new(vacinas: @vacinas)
   end
 
   def show

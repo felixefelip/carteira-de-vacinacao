@@ -25,8 +25,6 @@ module User::Caderneta::Vacinacao
 
     def atualizar_calendario!
       user.recomendacao&.recomendacao_vacinas&.each do |recomendacao_vacina|
-        recomendacao_vacina = T.let(recomendacao_vacina, RecomendacaoVacina::Record)
-
         recomendacao_vacina.calcular_status_vacinal
         recomendacao_vacina.save!
       end
