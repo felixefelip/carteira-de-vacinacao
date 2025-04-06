@@ -4,12 +4,12 @@ module User::Caderneta::Vacinacao
   class Create
     extend T::Sig
 
-    sig { params(user: User::Record).void }
+    sig { params(user: User).void }
     def initialize(user)
       self.user = user
     end
 
-    sig { params(user: User::Record).void }
+    sig { params(user: User).void }
     def self.call(user)
       new(user).call
     end
@@ -21,7 +21,7 @@ module User::Caderneta::Vacinacao
 
     private
 
-    sig { returns(User::Record) }
+    sig { returns(User) }
     attr_accessor :user
 
     sig { void }

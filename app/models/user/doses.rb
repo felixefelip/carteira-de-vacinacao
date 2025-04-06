@@ -1,12 +1,12 @@
 # typed: true
 
-module User
+class User
   class Doses
     extend T::Sig
 
     attr_accessor :user, :fabricante_vacina
 
-    sig { params(user: User::Record).void }
+    sig { params(user: User).void }
     def initialize(user)
       self.user = user
     end

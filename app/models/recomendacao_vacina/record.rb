@@ -17,7 +17,7 @@ module RecomendacaoVacina
 
     self.table_name = 'recomendacao_vacinas'
 
-    belongs_to :user, class_name: '::User::Record'
+    belongs_to :user, class_name: '::User'
     belongs_to :vacina, class_name: '::Vacina::Record'
 
     enum :status_vacinal, [:aguardando, :disponivel, :completo]

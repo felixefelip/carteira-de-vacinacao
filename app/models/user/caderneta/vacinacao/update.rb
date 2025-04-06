@@ -4,12 +4,12 @@ module User::Caderneta::Vacinacao
   class Update
     extend T::Sig
 
-    sig { params(user: User::Record).void }
+    sig { params(user: User).void }
     def initialize(user)
       @user = user
     end
 
-    sig { params(user: User::Record).void }
+    sig { params(user: User).void }
     def self.call(user)
       new(user).call
     end
@@ -20,7 +20,7 @@ module User::Caderneta::Vacinacao
 
     private
 
-    sig { returns(User::Record) }
+    sig { returns(User) }
     attr_reader :user
 
     def atualizar_calendario!

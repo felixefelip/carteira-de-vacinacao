@@ -35,7 +35,7 @@ module Dose
     self.table_name = 'doses'
 
     belongs_to :user, **{
-      class_name: '::User::Record',
+      class_name: '::User',
     }
 
     belongs_to :fabricante_vacina, **{

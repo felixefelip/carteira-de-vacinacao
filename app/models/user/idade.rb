@@ -1,4 +1,4 @@
-module User
+class User
   # typed: true
   module Idade
     extend T::Sig

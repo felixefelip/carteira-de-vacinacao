@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Record do
+RSpec.describe User do
   describe 'associations' do
     it { should have_many(:recomendacao_vacinas).dependent(:destroy) }
     it { should have_many(:doses).dependent(:destroy) }

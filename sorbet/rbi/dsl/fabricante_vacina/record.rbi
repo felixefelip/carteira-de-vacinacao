@@ -421,16 +421,16 @@ class FabricanteVacina::Record
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def build_user(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
     def build_vacina(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def create_user(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Record) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User) }
     def create_user!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina::Record) }
@@ -453,7 +453,7 @@ class FabricanteVacina::Record
     sig { params(value: T::Enumerable[::Dose::Record]).void }
     def doses=(value); end
 
-    sig { returns(T.nilable(::User::Record)) }
+    sig { returns(T.nilable(::User)) }
     def reload_user; end
 
     sig { returns(T.nilable(::Vacina::Record)) }
@@ -465,10 +465,10 @@ class FabricanteVacina::Record
     sig { void }
     def reset_vacina; end
 
-    sig { returns(T.nilable(::User::Record)) }
+    sig { returns(T.nilable(::User)) }
     def user; end
 
-    sig { params(value: T.nilable(::User::Record)).void }
+    sig { params(value: T.nilable(::User)).void }
     def user=(value); end
 
     sig { returns(T::Boolean) }

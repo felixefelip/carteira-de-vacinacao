@@ -24,11 +24,6 @@ class DeviseController
     include ::Webpacker::Helper
     include ::DeviseI18n::ViewHelpers
     include ::ActionController::Base::HelperMethods
-    include ::ApplicationHelper
-    include ::CadernetaHelper
-    include ::DosesHelper
-    include ::SugestoesHelper
-    include ::VacinasHelper
     include ::DeviseHelper
     include ::ApplicationController::HelperMethods
 
