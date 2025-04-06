@@ -1,20 +1,20 @@
 # typed: true
 
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint           not null, primary key
-#  data_nascimento        :date
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  remember_created_at    :datetime
-#  reset_password_sent_at :datetime
-#  reset_password_token   :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
 module User
+  # == Schema Information
+  #
+  # Table name: users
+  #
+  #  id                     :bigint           not null, primary key
+  #  data_nascimento        :date
+  #  email                  :string           default(""), not null
+  #  encrypted_password     :string           default(""), not null
+  #  remember_created_at    :datetime
+  #  reset_password_sent_at :datetime
+  #  reset_password_token   :string
+  #  created_at             :datetime         not null
+  #  updated_at             :datetime         not null
+  #
   class Record < ApplicationRecord
     extend T::Sig
 

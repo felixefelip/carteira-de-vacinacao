@@ -1,17 +1,17 @@
 # typed: true
 
-# == Schema Information
-#
-# Table name: recomendacao_vacinas
-#
-#  id              :bigint           not null, primary key
-#  status_vacinal  :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  recomendacao_id :bigint
-#  vacina_id       :bigint
-#
 module RecomendacaoVacina
+  # == Schema Information
+  #
+  # Table name: recomendacao_vacinas
+  #
+  #  id              :bigint           not null, primary key
+  #  status_vacinal  :integer
+  #  created_at      :datetime         not null
+  #  updated_at      :datetime         not null
+  #  recomendacao_id :bigint
+  #  vacina_id       :bigint
+  #
   class Record < ApplicationRecord
     extend T::Sig
 

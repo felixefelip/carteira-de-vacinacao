@@ -1,3 +1,5 @@
+# typed: true
+
 # == Schema Information
 #
 # Table name: vacinas
@@ -8,8 +10,6 @@
 #  ordem_no_calendario :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#
-# typed: true
 #
 class Vacina::Record < ApplicationRecord
   extend T::Sig
