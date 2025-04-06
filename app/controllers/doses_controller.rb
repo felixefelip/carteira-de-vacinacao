@@ -6,13 +6,14 @@ class DosesController < ApplicationController
 
   def index
     @doses = current_user!.doses.all
+    render Views::Doses::Index.new(doses: @doses)
   end
 
   def show; end
 
   def new
     @dose = Dose::Record.new
-    render Views::Doses::New.new(dose: @dose)
+    render Views::Doses::New.new(dose: @dose, vacina: @vacina)
   end
 
   def edit; end

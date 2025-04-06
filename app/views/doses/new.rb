@@ -5,17 +5,18 @@ module Views::Doses
     extend T::Sig
     # include Phlex::Rails::Helpers::FormWith
 
-    sig { params(dose: Dose::Record).void }
-    def initialize(dose:)
+    sig { params(dose: Dose::Record, vacina: Vacina::Record).void }
+    def initialize(dose:, vacina:)
       super()
       @dose = dose
+      @vacina = vacina
     end
 
     def view_template
       div class: 'row mt-4' do
         div class: 'col-10 col-lg-10 mx-auto' do
           h1 { 'Nova Dose' }
-          render partial('form', dose:)
+          render Form.new(dose: dose, vacina: vacina)
         end
       end
     end
@@ -24,5 +25,8 @@ module Views::Doses
 
     sig { returns(Dose::Record) }
     attr_reader :dose
+
+    sig { returns(Vacina::Record) }
+    attr_reader :vacina
   end
 end
