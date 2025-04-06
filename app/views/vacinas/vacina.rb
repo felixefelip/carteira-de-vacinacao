@@ -22,7 +22,6 @@ module Views::Vacinas
 					link_to 'Editar', edit_vacina_path(vacina)
 				end
 				td do
-					# não tá indo para o delete
 					link_to 'Remover', vacina_doses_path(vacina), data: { turbo: true, turbo_method: :delete, turbo_confirm: 'Are you sure?' }
 				end
 			end

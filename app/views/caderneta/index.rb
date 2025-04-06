@@ -31,9 +31,7 @@ module Views::Caderneta
 
 			br
 
-			a href: vacinas_path do
-				"Adicionar Vacinação"
-			end
+			link_to "Adicionar Vacinação", vacinas_path
     end
 
 		private
