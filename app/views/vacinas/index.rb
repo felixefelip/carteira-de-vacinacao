@@ -4,7 +4,7 @@ module Views::Vacinas
   class Index < Views::Base
     extend T::Sig
 
-    T::Sig::WithoutRuntime.sig { params(vacinas: ::Vacina::PrivateAssociationRelation).void }
+    T::Sig::WithoutRuntime.sig { params(vacinas: ::Vacina::PrivateRelation).void }
     def initialize(vacinas:)
       super()
       self.vacinas = vacinas
@@ -47,7 +47,7 @@ module Views::Vacinas
 
 		private
 
-		T::Sig::WithoutRuntime.sig { returns(::Vacina::PrivateAssociationRelation) }
+		T::Sig::WithoutRuntime.sig { returns(::Vacina::PrivateRelation) }
 		attr_accessor :vacinas
 
 		sig { params(vacina: ::Vacina).void }
