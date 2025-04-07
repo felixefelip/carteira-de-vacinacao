@@ -4,7 +4,7 @@ module Views::Sugestoes
   class Index < Views::Base
     extend T::Sig
 
-    sig { params(recomendacao_vacinas: ActiveRecord::Relation).void }
+    T::Sig::WithoutRuntime.sig { params(recomendacao_vacinas: RecomendacaoVacina::PrivateAssociationRelation).void }
     def initialize(recomendacao_vacinas)
       super()
       self.recomendacao_vacinas = recomendacao_vacinas
@@ -49,7 +49,7 @@ module Views::Sugestoes
 
 		private
 
-		sig { returns(ActiveRecord::Relation) }
+		T::Sig::WithoutRuntime.sig { returns(RecomendacaoVacina::PrivateAssociationRelation) }
 		attr_accessor :recomendacao_vacinas
 
 		sig { params(recomendacao_vacina: RecomendacaoVacina).void }

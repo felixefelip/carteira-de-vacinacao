@@ -19,12 +19,12 @@ class CadernetaController < ApplicationController
     @vacina ||= Vacina.find(params[:id])
   end
 
-  sig { returns(ActiveRecord::Relation) }
+  T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
   def vacinas
     Current.user!.vacinas.distinct
   end
 
-  sig { returns(ActiveRecord::Relation) }
+  T::Sig::WithoutRuntime.sig { returns(FabricanteVacina::PrivateAssociationRelation) }
   def fabricante_vacinas
     vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).distinct
   end

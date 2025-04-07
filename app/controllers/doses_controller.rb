@@ -40,7 +40,7 @@ class DosesController < ApplicationController
     @vacina = Vacina.find(params[:vacina_id])
   end
 
-  sig { returns(ActiveRecord::Relation) }
+  T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
   def vacinas
     Current.user!.vacinas.distinct
   end

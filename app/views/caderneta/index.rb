@@ -4,7 +4,7 @@ module Views::Caderneta
   class Index < Views::Base
     extend T::Sig
 
-    sig { params(vacinas: ActiveRecord::Relation).void }
+    T::Sig::WithoutRuntime.sig { params(vacinas: Vacina::PrivateAssociationRelation).void }
     def initialize(vacinas:)
       super()
       self.vacinas = vacinas
@@ -36,7 +36,7 @@ module Views::Caderneta
 
 		private
 
-		sig { returns(ActiveRecord::Relation) }
+		T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
 		attr_accessor :vacinas
   end
 end
