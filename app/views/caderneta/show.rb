@@ -52,7 +52,7 @@ module Views::Caderneta
 		def table_row_fabricante_vacina(fabricante_vacina)
 			tr do
 				td { fabricante_vacina.descricao }
-				td { "#{::User::Doses::new(Current.user!).qtde_por_fabricante_vacina(fabricante_vacina)} doses" }
+				td { "#{Current.caderneta!.qtde_por_fabricante_vacina(fabricante_vacina)} doses" }
 				td do
 					helpers.link_to('Destroy', fabricante_vacina_path(fabricante_vacina), method: :delete, data: { confirm: 'Are you sure?' })
 				end

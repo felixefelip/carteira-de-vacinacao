@@ -20,7 +20,7 @@ class DosesController < ApplicationController
 
   def create
     @dose = Dose.new(dose_params)
-    @dose.user = Current.user!
+    @dose.caderneta = Current.caderneta!
 
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
@@ -42,7 +42,7 @@ class DosesController < ApplicationController
 
   T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
   def vacinas
-    Current.user!.vacinas.distinct
+    Current.caderneta!.vacinas.distinct
   end
 
   def dose_params

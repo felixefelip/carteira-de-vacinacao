@@ -12,4 +12,9 @@ class Current < ActiveSupport::CurrentAttributes
   def self.user=(user)
     @@user = user
   end
+
+  sig { returns(User::Caderneta) }
+  def self.caderneta!
+    user!.caderneta!
+  end
 end

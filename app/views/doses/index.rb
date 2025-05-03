@@ -9,6 +9,10 @@ module Views::Doses
     def initialize(vacinas:)
       super()
       self.vacinas = vacinas
+
+      return unless vacina = vacinas.first
+
+      vacina.descricao
     end
 
     def view_template

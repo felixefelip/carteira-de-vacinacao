@@ -302,6 +302,8 @@ class ActiveRecord::Base
   # source://activerecord/8.0.0.rc1/lib/active_record/inheritance.rb#47
   def store_full_sti_class?; end
 
+  def suppressed_turbo_broadcasts?(&_arg0); end
+
   # source://activerecord/8.0.0.rc1/lib/active_record/model_schema.rb#164
   def table_name_prefix; end
 
@@ -977,6 +979,12 @@ class ActiveRecord::Base
 
     # source://activerecord/8.0.0.rc1/lib/active_record/core.rb#230
     def strict_loading_violation!(owner:, reflection:); end
+
+    # source://activesupport/8.0.0.rc1/lib/active_support/core_ext/module/attribute_accessors_per_thread.rb#49
+    def suppressed_turbo_broadcasts; end
+
+    # source://activesupport/8.0.0.rc1/lib/active_support/core_ext/module/attribute_accessors_per_thread.rb#108
+    def suppressed_turbo_broadcasts=(obj); end
 
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
     def table_name_prefix; end
@@ -2086,6 +2094,8 @@ class ActiveStorage::BaseController < ::ActionController::Base
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
+
   class << self
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
     def __callbacks; end
@@ -2410,6 +2420,8 @@ class ActiveStorage::Blobs::ProxyController < ::ActiveStorage::BaseController
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
+
   class << self
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
     def __callbacks; end
@@ -2434,6 +2446,8 @@ class ActiveStorage::Blobs::RedirectController < ::ActiveStorage::BaseController
 
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   class << self
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
@@ -2474,6 +2488,7 @@ class ActiveStorage::DirectUploadsController < ::ActiveStorage::BaseController
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def blob_args; end
   def direct_upload_json(blob); end
 
@@ -2501,6 +2516,7 @@ class ActiveStorage::DiskController < ::ActiveStorage::BaseController
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def acceptable_content?(token); end
   def decode_verified_key; end
   def decode_verified_token; end
@@ -3106,6 +3122,7 @@ class ActiveStorage::Representations::BaseController < ::ActiveStorage::BaseCont
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def blob_scope; end
   def set_representation; end
 
@@ -3137,6 +3154,8 @@ class ActiveStorage::Representations::ProxyController < ::ActiveStorage::Represe
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
+
   class << self
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
     def __callbacks; end
@@ -3159,6 +3178,8 @@ class ActiveStorage::Representations::RedirectController < ::ActiveStorage::Repr
 
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   class << self
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12

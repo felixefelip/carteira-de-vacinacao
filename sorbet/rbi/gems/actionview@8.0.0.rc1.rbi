@@ -14,6 +14,7 @@ class ActionController::Base < ::ActionController::Metal
   include ::Devise::Controllers::StoreLocation
   extend ::AbstractController::Helpers::Resolution
 
+  # Adicionado manualmente
   def current_user; end
 
   # source://activesupport/8.0.0.rc1/lib/active_support/callbacks.rb#69
@@ -275,6 +276,8 @@ class ActionController::Base < ::ActionController::Metal
 
   # source://actionview//lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   # source://actionpack/8.0.0.rc1/lib/action_controller/base.rb#324
   def _protected_ivars; end
@@ -16055,6 +16058,8 @@ class ActionView::TestCase::TestController < ::ActionController::Base
 
   # source://actionview//lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   class << self
     # source://actionview//lib/action_view/test_case.rb#30

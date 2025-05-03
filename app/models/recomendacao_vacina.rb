@@ -8,14 +8,16 @@
 #  status_vacinal :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  user_id        :bigint
+#  caderneta_id   :bigint           not null
 #  vacina_id      :bigint
 #
 class RecomendacaoVacina < ApplicationRecord
   extend T::Sig
 
-  belongs_to :user
+  belongs_to :caderneta, class_name: 'User::Caderneta'
   belongs_to :vacina
+
+  has_one :user, through: :caderneta
 
   enum :status_vacinal, [:aguardando, :disponivel, :completo]
 
@@ -28,10 +30,10 @@ class RecomendacaoVacina < ApplicationRecord
 
   sig { returns(Integer) }
   def qtde_doses_tomadas
-    return 0 unless (user = self.user)
+    return 0 unless (caderneta = self.caderneta)
     return 0 unless (vacina = self.vacina)
 
-    ::User::Doses.new(user).qtde_por_vacina(vacina)
+    caderneta.qtde_por_vacina(vacina)
   end
 
   sig { void }
@@ -117,9 +119,9 @@ class RecomendacaoVacina < ApplicationRecord
 
   sig { returns(T.nilable(::Dose)) }
   def ultima_dose_tomada
-    return unless (user = self.user)
+    return unless (caderneta = self.caderneta)
 
-    user.doses.joins(:fabricante_vacina)
+    caderneta.doses.joins(:fabricante_vacina)
       .where(fabricante_vacina: { vacina: }).last
   end
 end

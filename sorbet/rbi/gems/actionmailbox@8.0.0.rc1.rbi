@@ -299,6 +299,7 @@ class ActionMailbox::BaseController < ::ActionController::Base
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def authenticate_by_password; end
   def ensure_configured; end
   def ingress_name; end
@@ -582,6 +583,7 @@ class ActionMailbox::Ingresses::Mailgun::InboundEmailsController < ::ActionMailb
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def authenticate; end
   def authenticated?; end
   def key; end
@@ -629,6 +631,7 @@ class ActionMailbox::Ingresses::Mandrill::InboundEmailsController < ::ActionMail
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def authenticate; end
   def authenticated?; end
   def events; end
@@ -674,6 +677,7 @@ class ActionMailbox::Ingresses::Postmark::InboundEmailsController < ::ActionMail
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def mail; end
 
   class << self
@@ -701,6 +705,7 @@ class ActionMailbox::Ingresses::Relay::InboundEmailsController < ::ActionMailbox
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def require_valid_rfc822_message; end
 
   class << self
@@ -728,6 +733,7 @@ class ActionMailbox::Ingresses::Sendgrid::InboundEmailsController < ::ActionMail
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def envelope; end
   def mail; end
 
@@ -1889,6 +1895,7 @@ class Rails::Conductor::BaseController < ::ActionController::Base
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
   def ensure_development_env; end
 
   class << self

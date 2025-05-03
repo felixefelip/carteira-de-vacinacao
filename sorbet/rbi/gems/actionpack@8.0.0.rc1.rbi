@@ -717,6 +717,9 @@ module AbstractController::Collector
   def ttf(*_arg0, **_arg1, &_arg2); end
 
   # source://actionpack//lib/abstract_controller/collector.rb#12
+  def turbo_stream(*_arg0, **_arg1, &_arg2); end
+
+  # source://actionpack//lib/abstract_controller/collector.rb#12
   def url_encoded_form(*_arg0, **_arg1, &_arg2); end
 
   # source://actionpack//lib/abstract_controller/collector.rb#12
@@ -1264,6 +1267,7 @@ class ActionController::API < ::ActionController::Metal
   include ::Devise::Controllers::StoreLocation
   include ::Devise::Controllers::Helpers
   include ::Devise::Controllers::UrlHelpers
+  include ::Turbo::RequestIdTracking
   extend ::ActionView::ViewPaths::ClassMethods
   extend ::AbstractController::UrlFor::ClassMethods
   extend ::ActionController::Rendering::ClassMethods
@@ -1972,6 +1976,9 @@ class ActionController::Base < ::ActionController::Metal
   include ::ActionController::Rescue
   include ::ActionController::Instrumentation
   include ::ActionController::ParamsWrapper
+  include ::Turbo::Native::Navigation
+  include ::Turbo::Frames::FrameRequest
+  include ::Turbo::Streams::TurboStreamsTagBuilder
   include ::ActionController::RespondWith
   include ::Turbolinks::Controller
   include ::Turbolinks::Redirection
@@ -1979,6 +1986,7 @@ class ActionController::Base < ::ActionController::Metal
   include ::Devise::Controllers::StoreLocation
   include ::Devise::Controllers::Helpers
   include ::Devise::Controllers::UrlHelpers
+  include ::Turbo::RequestIdTracking
   extend ::ActionView::ViewPaths::ClassMethods
   extend ::AbstractController::Helpers::Resolution
   extend ::AbstractController::Helpers::ClassMethods
@@ -2009,6 +2017,7 @@ class ActionController::Base < ::ActionController::Metal
   extend ::ActionController::Instrumentation::ClassMethods
   extend ::ActionController::ParamsWrapper::ClassMethods
   extend ::Responders::ControllerMethod
+  extend ::Importmap::Freshness
   extend ::ActionController::RespondWith::ClassMethods
   extend ::Devise::Controllers::Helpers::ClassMethods
 
@@ -2271,6 +2280,8 @@ class ActionController::Base < ::ActionController::Metal
 
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   # source://actionpack//lib/action_controller/base.rb#324
   def _protected_ivars; end
@@ -2586,6 +2597,15 @@ end
 module ActionController::Base::HelperMethods
   include ::ActionText::ContentHelper
   include ::ActionText::TagHelper
+  include ::Turbo::DriveHelper
+  include ::Turbo::FramesHelper
+  include ::Turbo::IncludesHelper
+  include ::Turbo::StreamsHelper
+  include ::ActionView::Helpers::CaptureHelper
+  include ::ActionView::Helpers::OutputSafetyHelper
+  include ::ActionView::Helpers::TagHelper
+  include ::Turbo::Streams::ActionHelper
+  include ::Importmap::ImportmapTagsHelper
   include ::Webpacker::Helper
   include ::DeviseI18n::ViewHelpers
 
@@ -2610,6 +2630,8 @@ module ActionController::Base::HelperMethods
   # source://actionpack//lib/action_controller/metal/request_forgery_protection.rb#102
   def form_authenticity_token(*_arg0, **_arg1, &_arg2); end
 
+  def hotwire_native_app?(*_arg0, **_arg1, &_arg2); end
+
   # source://actionpack//lib/action_controller/metal/flash.rb#41
   def notice(*_arg0, **_arg1, &_arg2); end
 
@@ -2618,6 +2640,10 @@ module ActionController::Base::HelperMethods
 
   # source://devise/4.9.4/lib/devise/controllers/helpers.rb#13
   def signed_in?(*_arg0, **_arg1, &_arg2); end
+
+  def turbo_frame_request?(*_arg0, **_arg1, &_arg2); end
+  def turbo_frame_request_id(*_arg0, **_arg1, &_arg2); end
+  def turbo_native_app?(*_arg0, **_arg1, &_arg2); end
 
   # source://actionpack//lib/abstract_controller/caching.rb#45
   def view_cache_dependencies(*_arg0, **_arg1, &_arg2); end
@@ -7253,6 +7279,9 @@ module ActionController::Renderers
 
   # source://actionpack//lib/action_controller/metal/renderers.rb#154
   def _render_with_renderer_json(json, options); end
+
+  # source://turbo-rails/2.0.13/lib/turbo/engine.rb#107
+  def _render_with_renderer_turbo_stream(turbo_streams_html, options); end
 
   # source://actionpack//lib/action_controller/metal/renderers.rb#175
   def _render_with_renderer_xml(xml, options); end
@@ -12780,6 +12809,7 @@ class ActionDispatch::IntegrationTest < ::ActiveSupport::TestCase
   include ::ActionDispatch::Routing::UrlFor
   include ::ActionDispatch::IntegrationTest::UrlOptions
   include ::ActionDispatch::Assertions::RoutingAssertions::WithIntegrationRouting
+  include ::Turbo::TestAssertions::IntegrationTestAssertions
   extend ::ActionDispatch::IntegrationTest::Behavior::ClassMethods
   extend ::ActionDispatch::Assertions::RoutingAssertions::WithIntegrationRouting::ClassMethods
 end
@@ -12800,6 +12830,7 @@ module ActionDispatch::IntegrationTest::Behavior
   include ::ActionDispatch::Routing::UrlFor
   include ::ActionDispatch::IntegrationTest::UrlOptions
   include ::ActionDispatch::Assertions::RoutingAssertions::WithIntegrationRouting
+  include ::Turbo::TestAssertions::IntegrationTestAssertions
 
   mixes_in_class_methods ::ActionDispatch::IntegrationTest::Behavior::ClassMethods
   mixes_in_class_methods ::ActionDispatch::Assertions::RoutingAssertions::WithIntegrationRouting::ClassMethods
@@ -16020,6 +16051,12 @@ class ActionDispatch::RequestEncoder::IdentityEncoder
 
   # source://actionpack//lib/action_dispatch/testing/request_encoder.rb#13
   def response_parser; end
+end
+
+# source://actionpack//lib/action_dispatch/testing/integration.rb#0
+class ActionDispatch::RequestEncoder::TurboStreamEncoder < ::ActionDispatch::RequestEncoder::IdentityEncoder
+  # source://turbo-rails/2.0.13/lib/turbo/engine.rb#148
+  def accept_header; end
 end
 
 # # Action Dispatch RequestId
@@ -20602,6 +20639,7 @@ class ActionDispatch::SystemTestCase < ::ActiveSupport::TestCase
   include ::ActionDispatch::SystemTesting::TestHelpers::SetupAndTeardown
   include ::ActionDispatch::SystemTesting::TestHelpers::ScreenshotHelper
   include ::ActionText::SystemTestHelper
+  include ::Turbo::SystemTestHelper
 
   # @return [SystemTestCase] a new instance of SystemTestCase
   #

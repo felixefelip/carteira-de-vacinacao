@@ -335,61 +335,26 @@ class User
   end
 
   module GeneratedAssociationMethods
-    sig { returns(T::Array[T.untyped]) }
-    def dose_ids; end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    def build_caderneta(*args, &blk); end
 
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def dose_ids=(ids); end
+    sig { returns(T.nilable(::User::Caderneta)) }
+    def caderneta; end
 
-    # This method is created by ActiveRecord on the `User` class because it declared `has_many :doses`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::Dose::PrivateCollectionProxy) }
-    def doses; end
+    sig { params(value: T.nilable(::User::Caderneta)).void }
+    def caderneta=(value); end
 
-    sig { params(value: T::Enumerable[::Dose]).void }
-    def doses=(value); end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    def create_caderneta(*args, &blk); end
 
-    sig { returns(T::Array[T.untyped]) }
-    def fabricante_vacina_ids; end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    def create_caderneta!(*args, &blk); end
 
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def fabricante_vacina_ids=(ids); end
+    sig { returns(T.nilable(::User::Caderneta)) }
+    def reload_caderneta; end
 
-    # This method is created by ActiveRecord on the `User` class because it declared `has_many :fabricante_vacinas, through: :doses`.
-    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-    sig { returns(::FabricanteVacina::PrivateCollectionProxy) }
-    def fabricante_vacinas; end
-
-    sig { params(value: T::Enumerable[::FabricanteVacina]).void }
-    def fabricante_vacinas=(value); end
-
-    sig { returns(T::Array[T.untyped]) }
-    def recomendacao_vacina_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def recomendacao_vacina_ids=(ids); end
-
-    # This method is created by ActiveRecord on the `User` class because it declared `has_many :recomendacao_vacinas`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::RecomendacaoVacina::PrivateCollectionProxy) }
-    def recomendacao_vacinas; end
-
-    sig { params(value: T::Enumerable[::RecomendacaoVacina]).void }
-    def recomendacao_vacinas=(value); end
-
-    sig { returns(T::Array[T.untyped]) }
-    def vacina_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def vacina_ids=(ids); end
-
-    # This method is created by ActiveRecord on the `User` class because it declared `has_many :vacinas, through: :fabricante_vacinas`.
-    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-    sig { returns(::Vacina::PrivateCollectionProxy) }
-    def vacinas; end
-
-    sig { params(value: T::Enumerable[::Vacina]).void }
-    def vacinas=(value); end
+    sig { void }
+    def reset_caderneta; end
   end
 
   module GeneratedAssociationRelationMethods

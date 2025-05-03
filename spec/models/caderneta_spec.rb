@@ -1,16 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe User::Caderneta do
   describe 'associations' do
+    it { should belong_to(:user).required }
     it { should have_many(:recomendacao_vacinas).dependent(:destroy) }
     it { should have_many(:doses).dependent(:destroy) }
     it { should have_many(:fabricante_vacinas).through(:doses) }
     it { should have_many(:vacinas).through(:fabricante_vacinas) }
-  end
-
-  describe 'validations' do
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:data_nascimento) }
-    it { should validate_comparison_of(:data_nascimento).is_less_than(Date.current).with_message('não pode ser no futuro') }
   end
 end

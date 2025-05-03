@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_06_195617) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_03_214621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "cadernetas", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cadernetas_on_user_id"
+  end
 
   create_table "dose_do_calendarios", force: :cascade do |t|
     t.float "idade_recomendada"
@@ -28,21 +35,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_06_195617) do
     t.string "lote_numero"
     t.string "vacinador_codigo"
     t.string "local_codigo"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "fabricante_vacina_id", null: false
+    t.bigint "caderneta_id", null: false
+    t.index ["caderneta_id"], name: "index_doses_on_caderneta_id"
     t.index ["fabricante_vacina_id"], name: "index_doses_on_fabricante_vacina_id"
-    t.index ["user_id"], name: "index_doses_on_user_id"
   end
 
   create_table "fabricante_vacinas", force: :cascade do |t|
     t.string "descricao"
-    t.bigint "user_id"
     t.bigint "vacina_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_fabricante_vacinas_on_user_id"
+    t.bigint "caderneta_id", null: false
+    t.index ["caderneta_id"], name: "index_fabricante_vacinas_on_caderneta_id"
     t.index ["vacina_id"], name: "index_fabricante_vacinas_on_vacina_id"
   end
 
@@ -61,8 +68,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_06_195617) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status_vacinal"
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_recomendacao_vacinas_on_user_id"
+    t.bigint "caderneta_id", null: false
+    t.index ["caderneta_id"], name: "index_recomendacao_vacinas_on_caderneta_id"
     t.index ["vacina_id"], name: "index_recomendacao_vacinas_on_vacina_id"
   end
 
@@ -87,11 +94,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_06_195617) do
     t.integer "ordem_no_calendario"
   end
 
+  add_foreign_key "cadernetas", "users"
   add_foreign_key "dose_do_calendarios", "vacinas"
   add_foreign_key "doses", "fabricante_vacinas"
-  add_foreign_key "doses", "users"
-  add_foreign_key "fabricante_vacinas", "users"
   add_foreign_key "fabricante_vacinas", "vacinas"
-  add_foreign_key "recomendacao_vacinas", "users"
   add_foreign_key "recomendacao_vacinas", "vacinas"
 end

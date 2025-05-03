@@ -8260,6 +8260,7 @@ class ActiveRecord::Base
   include ::ActiveStorage::Attached::Model
   include ::ActiveStorage::Reflection::ActiveRecordExtensions
   include ::ActionText::Attribute
+  include ::Turbo::Broadcastable
   extend ::ActiveModel::Validations::ClassMethods
   extend ::ActiveModel::Naming
   extend ::ActiveModel::Callbacks
@@ -8323,6 +8324,7 @@ class ActiveRecord::Base
   extend ::ActiveStorage::Attached::Model::ClassMethods
   extend ::ActiveStorage::Reflection::ActiveRecordExtensions::ClassMethods
   extend ::ActionText::Attribute::ClassMethods
+  extend ::Turbo::Broadcastable::ClassMethods
 
   # source://activesupport/8.0.0.rc1/lib/active_support/callbacks.rb#69
   def __callbacks; end
@@ -8614,6 +8616,8 @@ class ActiveRecord::Base
 
   # source://activerecord//lib/active_record/inheritance.rb#47
   def store_full_sti_class?; end
+
+  def suppressed_turbo_broadcasts?(&_arg0); end
 
   # source://activerecord//lib/active_record/model_schema.rb#164
   def table_name_prefix; end
@@ -9290,6 +9294,12 @@ class ActiveRecord::Base
 
     # source://activerecord//lib/active_record/core.rb#230
     def strict_loading_violation!(owner:, reflection:); end
+
+    # source://activesupport/8.0.0.rc1/lib/active_support/core_ext/module/attribute_accessors_per_thread.rb#49
+    def suppressed_turbo_broadcasts; end
+
+    # source://activesupport/8.0.0.rc1/lib/active_support/core_ext/module/attribute_accessors_per_thread.rb#108
+    def suppressed_turbo_broadcasts=(obj); end
 
     # source://activesupport/8.0.0.rc1/lib/active_support/class_attribute.rb#12
     def table_name_prefix; end

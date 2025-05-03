@@ -562,6 +562,8 @@ class ActionController::Base < ::ActionController::Metal
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
+
   # source://actionpack/8.0.0.rc1/lib/action_controller/base.rb#324
   def _protected_ivars; end
 

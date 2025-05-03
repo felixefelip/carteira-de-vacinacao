@@ -7,7 +7,7 @@ RSpec.describe Views::Sugestoes::Index do
         recomendacao_vacina = FactoryBot.create(:recomendacao_vacina_record)
         user = recomendacao_vacina.user
 
-        expect(described_class.new(user.recomendacao_vacinas).send(:exibe_quando_pode_tomar_proxima_dose, recomendacao_vacina)).to eq('')
+        expect(described_class.new(user.caderneta!.recomendacao_vacinas).send(:exibe_quando_pode_tomar_proxima_dose, recomendacao_vacina)).to eq('')
       end
     end
   end

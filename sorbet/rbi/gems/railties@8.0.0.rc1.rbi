@@ -373,6 +373,12 @@ class Rails::Application < ::Rails::Engine
   # source://railties//lib/rails/application.rb#524
   def helpers_paths; end
 
+  # source://importmap-rails/2.1.0/lib/importmap/engine.rb#4
+  def importmap; end
+
+  # source://importmap-rails/2.1.0/lib/importmap/engine.rb#4
+  def importmap=(_arg0); end
+
   # Initialize the application passing the given group. By default, the
   # group is :default
   #
@@ -1541,6 +1547,8 @@ class Rails::ApplicationController < ::ActionController::Base
 
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
+
+  def _layout_from_proc; end
 
   # source://railties//lib/rails/application_controller.rb#25
   def disable_content_security_policy_nonce!; end
@@ -2712,6 +2720,8 @@ class Rails::HealthController < ::ActionController::Base
   # source://actionview/8.0.0.rc1/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
+  def _layout_from_proc; end
+
   # source://railties//lib/rails/health_controller.rb#51
   def html_status(color:); end
 
@@ -2981,6 +2991,15 @@ end
 module Rails::MailersController::HelperMethods
   include ::ActionText::ContentHelper
   include ::ActionText::TagHelper
+  include ::Turbo::DriveHelper
+  include ::Turbo::FramesHelper
+  include ::Turbo::IncludesHelper
+  include ::Turbo::StreamsHelper
+  include ::ActionView::Helpers::CaptureHelper
+  include ::ActionView::Helpers::OutputSafetyHelper
+  include ::ActionView::Helpers::TagHelper
+  include ::Turbo::Streams::ActionHelper
+  include ::Importmap::ImportmapTagsHelper
   include ::Webpacker::Helper
   include ::DeviseI18n::ViewHelpers
   include ::ActionController::Base::HelperMethods

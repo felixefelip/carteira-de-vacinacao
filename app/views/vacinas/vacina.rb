@@ -16,7 +16,7 @@ module Views::Vacinas
 					link_to vacina.descricao, cadernetum_path(vacina.id)
 				end
 				td do
-					"#{::User::Doses.new(Current.user!).qtde_por_vacina(vacina)} doses"
+					"#{Current.caderneta!.qtde_por_vacina(vacina)} doses"
 				end
 				td do
 					link_to 'Editar', edit_vacina_path(vacina)

@@ -21,7 +21,7 @@ class CadernetaController < ApplicationController
 
   T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
   def vacinas
-    Current.user!.vacinas.distinct
+    Current.caderneta!.vacinas.distinct
   end
 
   T::Sig::WithoutRuntime.sig { returns(FabricanteVacina::PrivateAssociationRelation) }

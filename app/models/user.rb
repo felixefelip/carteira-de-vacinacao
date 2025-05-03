@@ -19,27 +19,23 @@ class User < ApplicationRecord
 
   include Idade
 
+  has_one :caderneta, dependent: :destroy, touch: true
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  has_many :doses, dependent: :destroy
-  has_many :fabricante_vacinas, through: :doses
-  has_many :vacinas, through: :fabricante_vacinas
-  has_many :recomendacao_vacinas, dependent: :destroy
 
   validates :email, :data_nascimento, presence: true
   validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
 
-  after_create :criar_caderneta_de_vacinacao
-  after_update :atualizar_caderneta_de_vacinacao
+  before_validation :set_user_dose_na_criacao
 
-  sig { void }
-  def criar_caderneta_de_vacinacao
-    Caderneta::Vacinacao::Create.call(self)
+  sig { returns(Caderneta) }
+  def caderneta!
+    T.must(caderneta)
   end
 
   sig { void }
-  def atualizar_caderneta_de_vacinacao
-    Caderneta::Vacinacao::Update.call(self)
+  def set_user_dose_na_criacao
+    caderneta || build_caderneta
   end
 end

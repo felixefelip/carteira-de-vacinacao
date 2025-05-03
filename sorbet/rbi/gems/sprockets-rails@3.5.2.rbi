@@ -160,6 +160,12 @@ class Rails::Application < ::Rails::Engine
   # source://railties/8.0.0.rc1/lib/rails/application.rb#524
   def helpers_paths; end
 
+  # source://importmap-rails/2.1.0/lib/importmap/engine.rb#4
+  def importmap; end
+
+  # source://importmap-rails/2.1.0/lib/importmap/engine.rb#4
+  def importmap=(_arg0); end
+
   # source://railties/8.0.0.rc1/lib/rails/application.rb#438
   def initialize!(group = T.unsafe(nil)); end
 
