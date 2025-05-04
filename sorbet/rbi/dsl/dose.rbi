@@ -529,49 +529,49 @@ class Dose
 
   module GeneratedAttributeMethods
     sig { returns(::Integer) }
-    def cadernetas_id; end
+    def caderneta_id; end
 
     sig { params(value: ::Integer).returns(::Integer) }
-    def cadernetas_id=(value); end
+    def caderneta_id=(value); end
 
     sig { returns(T::Boolean) }
-    def cadernetas_id?; end
+    def caderneta_id?; end
 
     sig { returns(T.nilable(::Integer)) }
-    def cadernetas_id_before_last_save; end
+    def caderneta_id_before_last_save; end
 
     sig { returns(T.untyped) }
-    def cadernetas_id_before_type_cast; end
+    def caderneta_id_before_type_cast; end
 
     sig { returns(T::Boolean) }
-    def cadernetas_id_came_from_user?; end
+    def caderneta_id_came_from_user?; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
-    def cadernetas_id_change; end
+    def caderneta_id_change; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
-    def cadernetas_id_change_to_be_saved; end
+    def caderneta_id_change_to_be_saved; end
 
     sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
-    def cadernetas_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+    def caderneta_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
     sig { returns(T.nilable(::Integer)) }
-    def cadernetas_id_in_database; end
+    def caderneta_id_in_database; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
-    def cadernetas_id_previous_change; end
+    def caderneta_id_previous_change; end
 
     sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
-    def cadernetas_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+    def caderneta_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
     sig { returns(T.nilable(::Integer)) }
-    def cadernetas_id_previously_was; end
+    def caderneta_id_previously_was; end
 
     sig { returns(T.nilable(::Integer)) }
-    def cadernetas_id_was; end
+    def caderneta_id_was; end
 
     sig { void }
-    def cadernetas_id_will_change!; end
+    def caderneta_id_will_change!; end
 
     sig { returns(::ActiveSupport::TimeWithZone) }
     def created_at; end
@@ -889,7 +889,7 @@ class Dose
     def lote_numero_will_change!; end
 
     sig { void }
-    def restore_cadernetas_id!; end
+    def restore_caderneta_id!; end
 
     sig { void }
     def restore_created_at!; end
@@ -922,10 +922,10 @@ class Dose
     def restore_vacinador_codigo!; end
 
     sig { returns(T.nilable([::Integer, ::Integer])) }
-    def saved_change_to_cadernetas_id; end
+    def saved_change_to_caderneta_id; end
 
     sig { returns(T::Boolean) }
-    def saved_change_to_cadernetas_id?; end
+    def saved_change_to_caderneta_id?; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_created_at; end
@@ -1123,7 +1123,7 @@ class Dose
     def vacinador_codigo_will_change!; end
 
     sig { returns(T::Boolean) }
-    def will_save_change_to_cadernetas_id?; end
+    def will_save_change_to_caderneta_id?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_created_at?; end

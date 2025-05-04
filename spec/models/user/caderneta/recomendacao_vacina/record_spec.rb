@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RecomendacaoVacina do
+RSpec.describe User::Caderneta::RecomendacaoVacina do
   describe 'associations' do
     it { should have_one(:user) }
     it { should belong_to(:vacina) }

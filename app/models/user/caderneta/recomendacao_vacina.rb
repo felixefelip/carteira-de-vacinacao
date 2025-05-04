@@ -11,8 +11,10 @@
 #  caderneta_id   :bigint           not null
 #  vacina_id      :bigint
 #
-class RecomendacaoVacina < ApplicationRecord
+class User::Caderneta::RecomendacaoVacina < ApplicationRecord
   extend T::Sig
+
+  self.table_name = 'recomendacao_vacinas'
 
   belongs_to :caderneta, class_name: 'User::Caderneta'
   belongs_to :vacina
@@ -105,13 +107,13 @@ class RecomendacaoVacina < ApplicationRecord
     Date.current + meses_para_dose
   end
 
-  sig { returns(T::Array[RecomendacaoVacina]) }
+  sig { returns(T::Array[User::Caderneta::RecomendacaoVacina]) }
   def self.recomendacoes_vacina_para_tomar_nova_dose_hoje
     T.cast(
-      RecomendacaoVacina.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
+      User::Caderneta::RecomendacaoVacina.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
         recomendacao_vacina.quando_pode_tomar_proxima_dose == Date.current
       end,
-      T::Array[RecomendacaoVacina],
+      T::Array[User::Caderneta::RecomendacaoVacina],
     )
   end
 

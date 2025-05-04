@@ -16,7 +16,8 @@ class Vacina < ApplicationRecord
 
   has_many :fabricante_vacinas, dependent: :destroy
   has_many :doses, through: :fabricante_vacinas
-  has_many :recomendacao_vacinas, dependent: :destroy
+  has_many :recomendacao_vacinas, dependent: :destroy,
+                                  class_name: 'User::Caderneta::RecomendacaoVacina'
   has_many :dose_do_calendarios, dependent: :destroy
 
   accepts_nested_attributes_for :fabricante_vacinas

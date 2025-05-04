@@ -4,7 +4,9 @@ module Views::Sugestoes
   class Index < Views::Base
     extend T::Sig
 
-    T::Sig::WithoutRuntime.sig { params(recomendacao_vacinas: RecomendacaoVacina::PrivateAssociationRelation).void }
+    T::Sig::WithoutRuntime.sig do
+			params(recomendacao_vacinas: User::Caderneta::RecomendacaoVacina::PrivateAssociationRelation).void
+		end
     def initialize(recomendacao_vacinas)
       super()
       self.recomendacao_vacinas = recomendacao_vacinas
@@ -49,10 +51,10 @@ module Views::Sugestoes
 
 		private
 
-		T::Sig::WithoutRuntime.sig { returns(RecomendacaoVacina::PrivateAssociationRelation) }
+		T::Sig::WithoutRuntime.sig { returns(User::Caderneta::RecomendacaoVacina::PrivateAssociationRelation) }
 		attr_accessor :recomendacao_vacinas
 
-		sig { params(recomendacao_vacina: RecomendacaoVacina).void }
+		sig { params(recomendacao_vacina: User::Caderneta::RecomendacaoVacina).void }
     def table_row_recomendacao_vacina(recomendacao_vacina)
 			tr do
 				td { recomendacao_vacina.vacina&.descricao }
@@ -62,7 +64,7 @@ module Views::Sugestoes
 			end
     end
 
-		sig { params(recomendacao_vacina: RecomendacaoVacina).returns(String) }
+		sig { params(recomendacao_vacina: User::Caderneta::RecomendacaoVacina).returns(String) }
 		def exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)
 			return '' if recomendacao_vacina.status_vacinal != 'aguardando'
 

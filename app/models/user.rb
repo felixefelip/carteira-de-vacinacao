@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   validates :email, :data_nascimento, presence: true
   validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
+  validates :caderneta, presence: true
 
   before_validation :set_user_dose_na_criacao
 
