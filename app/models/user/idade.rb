@@ -8,6 +8,8 @@ class User
 
     sig { overridable.returns(Float) }
     def idade
+      return 0.0 if data_nascimento.nil?
+
       ((Date.current - data_nascimento) / 365).to_f.truncate(2)
     end
 
@@ -25,7 +27,7 @@ class User
     end
 
     # No user o tipo é nilable, mas não apontou problema, será um bug?
-    sig { abstract.returns(Date) }
+    sig { abstract.returns(T.nilable(Date)) }
     def data_nascimento; end
   end
 end

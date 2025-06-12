@@ -57,7 +57,7 @@ module Views::Sugestoes
 		sig { params(recomendacao_vacina: User::Caderneta::RecomendacaoVacina).void }
     def table_row_recomendacao_vacina(recomendacao_vacina)
 			tr do
-				td { recomendacao_vacina.vacina&.descricao }
+				td { recomendacao_vacina.vacina.descricao }
 				td { recomendacao_vacina.qtde_doses_tomadas }
 				td { "#{recomendacao_vacina.status_vacinal} #{exibe_quando_pode_tomar_proxima_dose(recomendacao_vacina)}" }
 				td { link_to 'Cadastrar dose', new_vacina_dose_path(recomendacao_vacina.vacina) }
