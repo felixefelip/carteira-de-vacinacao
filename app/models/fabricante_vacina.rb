@@ -20,14 +20,4 @@ class FabricanteVacina < ApplicationRecord
   belongs_to :vacina
 
   has_many :doses, dependent: :nullify
-
-  sig { returns(User::Caderneta) }
-  def teste
-    caderneta
-  end
-
-  sig { returns(User::Caderneta) }
-  def caderneta
-    super || User::CadernetaNil.new
-  end
 end
