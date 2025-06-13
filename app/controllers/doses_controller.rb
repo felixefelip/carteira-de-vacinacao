@@ -33,7 +33,6 @@ class DosesController < ApplicationController
 
   def set_dose
     @dose = Dose.find(params[:id])
-    @dose.vacina
   end
 
   def set_vacina

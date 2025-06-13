@@ -23,8 +23,6 @@ class Dose < ApplicationRecord
 
   after_save :atualizar_calendario
 
-  delegate :vacina, to: :fabricante_vacina
-
   sig { void }
   def atualizar_calendario
     caderneta!.atualizar_caderneta_de_vacinacao
