@@ -27,6 +27,11 @@ class Dose < ApplicationRecord
 
   sig { void }
   def atualizar_calendario
-    caderneta&.atualizar_caderneta_de_vacinacao
+    caderneta!.atualizar_caderneta_de_vacinacao
+  end
+
+  sig { returns(User::Caderneta) }
+  def caderneta!
+    T.must(caderneta)
   end
 end
