@@ -45,14 +45,8 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
     user!.idade
   end
 
-  #: -> User
-  def user_teste
-    user!
-  end
-
   #: -> Integer
   def qtde_doses_tomadas
-    user_teste.caderneta!
     caderneta!.qtde_por_vacina(vacina!)
   end
 

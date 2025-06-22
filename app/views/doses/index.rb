@@ -5,7 +5,7 @@ module Views::Doses
   class Index < Views::Base
     extend T::Sig
 
-    T::Sig::WithoutRuntime.sig { params(vacinas: Vacina::PrivateAssociationRelation).void }
+    #: (vacinas: Vacina::PrivateAssociationRelation) -> void
     def initialize(vacinas:)
       super()
       self.vacinas = vacinas
@@ -29,7 +29,7 @@ module Views::Doses
         end
 
         tbody do
-          @vacinas.each { |vacina| table_row_vacina(vacina) }
+          vacinas.each { |vacina| table_row_vacina(vacina) }
         end
 
         br
@@ -40,11 +40,10 @@ module Views::Doses
 
 		private
 
-		T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
+    #: Vacina::PrivateAssociationRelation
 		attr_accessor :vacinas
 
-
-		sig { params(vacina: Vacina).void }
+    # : (Vacina) -> void
 		def table_row_vacina(vacina)
 			td { link_to 'Cadastrar dose', new_vacina_dose_path(vacina) }
 			# td { link_to 'Destroy', vacina, method: :delete, data: { confirm: 'Are you sure?' } }

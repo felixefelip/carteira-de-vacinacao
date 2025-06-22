@@ -5,7 +5,7 @@ module Views::Doses
   class Form < Views::Base
     extend T::Sig
 
-    sig { params(dose: Dose, vacina: Vacina).void }
+    #: (dose: Dose, vacina: Vacina) -> void
     def initialize(dose:, vacina:)
       super()
       self.dose = dose
@@ -59,10 +59,10 @@ module Views::Doses
 
     private
 
-    sig { returns(Vacina) }
+    #: Vacina
     attr_accessor :vacina
 
-    sig { returns(Dose) }
+    #: Dose
     attr_accessor :dose
   end
 end
