@@ -25,32 +25,38 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
 
   before_save :calcular_status_vacinal
 
-  sig { returns(User::Caderneta) }
+  #: -> User::Caderneta
   def caderneta!
     T.must(caderneta)
   end
 
-  sig { returns(Vacina) }
+  #: -> Vacina
   def vacina!
     T.must(vacina)
   end
 
-  sig { returns(User) }
+  #: -> User
   def user!
     T.must(user)
   end
 
-  sig { returns(Float) }
+  #: -> Float
   def user_idade
     user!.idade
   end
 
-  sig { returns(Integer) }
+  #: -> User
+  def user_teste
+    user!
+  end
+
+  #: -> Integer
   def qtde_doses_tomadas
+    user_teste.caderneta!
     caderneta!.qtde_por_vacina(vacina!)
   end
 
-  sig { void }
+  #: -> void
   def calcular_status_vacinal
     self.status_vacinal = if tomou_todas_as_doses?
                             :completo
@@ -61,21 +67,21 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
                           end
   end
 
-  sig { returns(T.nilable(::DoseDoCalendario)) }
+  #: -> DoseDoCalendario?
   def dose_recomendada_atual
     return if tomou_todas_as_doses?
 
     vacina!.dose_do_calendarios[qtde_doses_tomadas]
   end
 
-  sig { returns(T::Boolean) }
+  #: -> bool
   def pode_tomar_nova_dose?
     return false if tomou_todas_as_doses?
 
     tem_idade_para_tomar_a_nova_dose? && !dose_atual_dentro_do_intervalo_de_espera?
   end
 
-  sig { returns(T::Boolean) }
+  #: -> bool
   def tem_idade_para_tomar_a_nova_dose?
     idade_recomendada_para_proxima_dose = dose_recomendada_atual&.idade_recomendada
     return true if idade_recomendada_para_proxima_dose.nil?
@@ -83,14 +89,14 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
     user_idade >= idade_recomendada_para_proxima_dose
   end
 
-  sig { returns(T::Boolean) }
+  #: -> bool
   def dose_atual_dentro_do_intervalo_de_espera?
     return false unless (intervalo_para_proxima_dose_termina_em = self.intervalo_para_proxima_dose_termina_em)
 
     intervalo_para_proxima_dose_termina_em > Date.current
   end
 
-  sig { returns(T.nilable(::Date)) }
+  #: -> Date?
   def intervalo_para_proxima_dose_termina_em
     return unless (data_vacinacao_ultima_dose = ultima_dose_tomada&.data_vacinacao)
     return if vacina!.dias_de_intervalo.zero?
@@ -98,14 +104,14 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
     data_vacinacao_ultima_dose + vacina!.dias_de_intervalo.days
   end
 
-  sig { returns(T::Boolean) }
+  #: -> bool
   def tomou_todas_as_doses?
     return false if (vacina_doses_do_calendario_count = vacina!.dose_do_calendarios.count).zero?
 
     qtde_doses_tomadas >= vacina_doses_do_calendario_count
   end
 
-  sig { returns(T.nilable(::Date)) }
+  #: -> Date?
   def quando_pode_tomar_proxima_dose
     return intervalo_para_proxima_dose_termina_em if tem_idade_para_tomar_a_nova_dose?
     return unless (idade_dose_recomendada_atual = dose_recomendada_atual&.idade_recomendada)
@@ -115,7 +121,7 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
     Date.current + meses_para_dose
   end
 
-  sig { returns(T::Array[User::Caderneta::RecomendacaoVacina]) }
+  #: -> Array[User::Caderneta::RecomendacaoVacina]
   def self.recomendacoes_vacina_para_tomar_nova_dose_hoje
     T.cast(
       User::Caderneta::RecomendacaoVacina.where(status_vacinal: :aguardando).select do |recomendacao_vacina|
@@ -127,7 +133,7 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
 
   private
 
-  sig { returns(T.nilable(::Dose)) }
+  #: -> Dose?
   def ultima_dose_tomada
     caderneta!.doses.joins(:fabricante_vacina)
       .where(fabricante_vacina: { vacina: vacina! }).last

@@ -24,22 +24,22 @@ class User::Caderneta < ApplicationRecord
   after_create :criar_caderneta_de_vacinacao
   after_update :atualizar_caderneta_de_vacinacao
 
-  sig { void }
+  #: -> void
   def criar_caderneta_de_vacinacao
     Cadastrar.new(self).call
   end
 
-  sig { void }
+  #: -> void
   def atualizar_caderneta_de_vacinacao
     Atualizar.new(self).call
   end
 
-  sig { params(fabricante_vacina: FabricanteVacina).returns(Integer) }
+  #: (FabricanteVacina) -> Integer
   def qtde_por_fabricante_vacina(fabricante_vacina)
     fabricante_vacinas.where(id: fabricante_vacina.id).count
   end
 
-  sig { params(vacina: Vacina).returns(Integer) }
+  #: (Vacina) -> Integer
   def qtde_por_vacina(vacina)
     fabricante_vacinas.where(vacina:).count
   end

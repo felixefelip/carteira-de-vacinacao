@@ -4,7 +4,7 @@ module Views::Caderneta
   class Show < Views::Base
     extend T::Sig
 
-    T::Sig::WithoutRuntime.sig { params(vacina: Vacina, fabricante_vacinas: FabricanteVacina::PrivateAssociationRelation).void }
+    #: (vacina: Vacina, fabricante_vacinas: FabricanteVacina::PrivateAssociationRelation) -> void
     def initialize(vacina:, fabricante_vacinas:)
       super()
 			self.vacina = vacina
@@ -42,13 +42,13 @@ module Views::Caderneta
 
 		private
 
-		sig { returns(Vacina) }
+		#: Vacina
 		attr_accessor :vacina
 
-		T::Sig::WithoutRuntime.sig { returns(FabricanteVacina::PrivateAssociationRelation) }
+		#: FabricanteVacina::PrivateAssociationRelation
 		attr_accessor :fabricante_vacinas
 
-		sig { params(fabricante_vacina: FabricanteVacina).void }
+		#: (FabricanteVacina) -> void
 		def table_row_fabricante_vacina(fabricante_vacina)
 			tr do
 				td { fabricante_vacina.descricao }

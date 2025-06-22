@@ -1,3 +1,5 @@
+--enable-experimental-rbs-signatures
+
 --dir
 .
 --ignore=tmp/
