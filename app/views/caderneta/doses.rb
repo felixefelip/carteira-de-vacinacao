@@ -1,7 +1,7 @@
 # typed: true
 
-module Views::Vacinas
-  class Vacina < Views::Base
+module Views::Caderneta
+  class Doses < Views::Base
     extend T::Sig
 
     sig { params(vacina: ::Vacina).void }
