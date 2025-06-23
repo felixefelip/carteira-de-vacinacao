@@ -23,12 +23,12 @@ class Dose < ApplicationRecord
 
   after_save :atualizar_calendario
 
-  sig { void }
+  #: -> void
   def atualizar_calendario
     caderneta!.atualizar_caderneta_de_vacinacao
   end
 
-  sig { returns(User::Caderneta) }
+  #: -> User::Caderneta
   def caderneta!
     T.must(caderneta)
   end

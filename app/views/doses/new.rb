@@ -3,7 +3,6 @@
 module Views::Doses
   class New < Phlex::HTML
     extend T::Sig
-    # include Phlex::Rails::Helpers::FormWith
 
     #: (dose: Dose, vacina: Vacina) -> void
     def initialize(dose:, vacina:)

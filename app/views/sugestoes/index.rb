@@ -4,9 +4,7 @@ module Views::Sugestoes
   class Index < Views::Base
     extend T::Sig
 
-    T::Sig::WithoutRuntime.sig do
-			params(recomendacao_vacinas: User::Caderneta::RecomendacaoVacina::PrivateAssociationRelation).void
-		end
+		#: (User::Caderneta::RecomendacaoVacina::PrivateAssociationRelation) -> void
     def initialize(recomendacao_vacinas)
       super()
       self.recomendacao_vacinas = recomendacao_vacinas

@@ -1,19 +1,20 @@
+# typed: true
+
 class User
-  # typed: true
+  # @abstract
   module Idade
     extend T::Sig
-    extend T::Helpers
 
-    abstract!
-
-    sig { overridable.returns(Float) }
+    # @overridable
+    #: -> Float
     def idade
       return 0.0 if data_nascimento.nil?
 
       ((Date.current - data_nascimento) / 365).to_f.truncate(2)
     end
 
-    sig { overridable.returns(String) }
+    # @overridable
+    #: -> String
     def idade_formatada
       if idade >= 1.2
         "#{idade.to_i} anos"
@@ -27,7 +28,10 @@ class User
     end
 
     # No user o tipo é nilable, mas não apontou problema, será um bug?
-    sig { abstract.returns(T.nilable(Date)) }
-    def data_nascimento; end
+    # @abstract
+    #: -> Date?
+    def data_nascimento
+      raise NotImplementedError
+    end
   end
 end

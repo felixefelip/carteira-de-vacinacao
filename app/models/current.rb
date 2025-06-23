@@ -3,17 +3,17 @@
 class Current < ActiveSupport::CurrentAttributes
   extend T::Sig
 
-  sig { returns(User) }
+  #: -> User
   def self.user!
     @@user
   end
 
-  sig { params(user: T.nilable(User)).void }
+  #: (User?) -> void
   def self.user=(user)
     @@user = user
   end
 
-  sig { returns(User::Caderneta) }
+  #: -> User::Caderneta
   def self.caderneta!
     user!.caderneta!
   end

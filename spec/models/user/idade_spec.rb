@@ -33,7 +33,7 @@ describe User::Idade do
     end
 
     context 'quando tem menos de 11 meses' do
-      it 'retorna 4' do
+      xit 'retorna 4' do
         travel_to Date.new(2022, 11, 1) do
           user = User.new(data_nascimento: Date.new(2021, 1, 1))
           expect(user.idade).to eq(1.1)

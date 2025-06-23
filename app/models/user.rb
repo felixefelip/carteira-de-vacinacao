@@ -30,13 +30,19 @@ class User < ApplicationRecord
 
   before_validation :set_user_dose_na_criacao
 
-  sig { returns(Caderneta) }
+  #: -> Caderneta
   def caderneta!
     T.must(caderneta)
   end
 
-  sig { void }
+  #: -> void
   def set_user_dose_na_criacao
     caderneta || build_caderneta
+  end
+
+  # @override
+  #: -> Date?
+  def data_nascimento
+    self[:data_nascimento]
   end
 end
