@@ -45,5 +45,8 @@ describe 'Cadastrando uma nova dose', type: :feature do
     click_button 'Salvar'
 
     expect(page).to have_content 'Dose cadastrada com sucesso.'
+
+    bcg_row_cadastrada = page.find('tr', text: 'BCG')
+    bcg_row_cadastrada.find('td', text: '1 doses')
   end
 end
