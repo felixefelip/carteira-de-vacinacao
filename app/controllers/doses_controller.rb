@@ -25,7 +25,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
     else
-      render :new, status: :unprocessable_entity
+      render Views::Doses::New.new(dose: @dose, vacina: @vacina), status: :unprocessable_entity
     end
   end
 
@@ -45,6 +45,6 @@ class DosesController < ApplicationController
   end
 
   def dose_params
-    params.require(:dose_record).permit(:data_vacinacao, :lote_numero, :vacinador_codigo, :local_codigo, :fabricante_vacina_id)
+    params.require(:dose).permit(:data_vacinacao, :lote_numero, :vacinador_codigo, :local_codigo, :fabricante_vacina_id)
   end
 end
