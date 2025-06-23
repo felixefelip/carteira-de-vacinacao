@@ -17,7 +17,7 @@ class CadastraVacinasPadrao
 
     # Poliomielite
     poliomielite = Vacina.create!(descricao: 'Poliomielite 1,2,3 (VIP - inativada)',
-                                          ordem_no_calendario: 2, dias_de_intervalo: 30)
+                                  ordem_no_calendario: 2, dias_de_intervalo: 30)
 
     poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.2)
     poliomielite.dose_do_calendarios.create!(idade_recomendada: 0.4)
