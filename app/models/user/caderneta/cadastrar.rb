@@ -4,22 +4,22 @@ class User::Caderneta
   class Cadastrar
     extend T::Sig
 
-    sig { params(caderneta: User::Caderneta).void }
+    #: (User::Caderneta) -> void
     def initialize(caderneta)
       self.caderneta = caderneta
     end
 
-    sig { void }
+    #: -> void
     def call
       criar_calendario_de_vacinacao!
     end
 
     private
 
-    sig { returns(User::Caderneta) }
+    #: User::Caderneta
     attr_accessor :caderneta
 
-    sig { void }
+    #: -> void
     def criar_calendario_de_vacinacao!
       ApplicationRecord.transaction do
         vacinas_do_calendario = ::Vacina.where.not(ordem_no_calendario: nil)
