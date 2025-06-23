@@ -27,7 +27,7 @@ module Views::Doses
 
         div class: "form-group" do
           form.label :fabricante_vacina
-          form.collection_select :fabricante_vacina_id, @vacina.fabricante_vacinas.all, :id, :descricao, {}, class: "form-control"
+          form.collection_select :fabricante_vacina_id, vacina.fabricante_vacinas.all, :id, :descricao, {}, class: "form-control"
         end
 
         div class: "form-group" do

@@ -8,7 +8,7 @@
 #  descricao    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  caderneta_id :bigint           not null
+#  caderneta_id :bigint
 #  vacina_id    :bigint           not null
 #
 class FabricanteVacina < ApplicationRecord

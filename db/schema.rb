@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_03_214621) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_23_012632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_03_214621) do
     t.bigint "vacina_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "caderneta_id", null: false
+    t.bigint "caderneta_id"
     t.index ["caderneta_id"], name: "index_fabricante_vacinas_on_caderneta_id"
     t.index ["vacina_id"], name: "index_fabricante_vacinas_on_vacina_id"
   end

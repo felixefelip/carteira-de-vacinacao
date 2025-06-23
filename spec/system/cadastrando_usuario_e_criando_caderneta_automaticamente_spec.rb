@@ -6,6 +6,10 @@ describe 'Cadastrando usuário e criando caderneta automaticamente', type: :feat
     # Capybara.current_driver = :selenium_chrome
     Vacina::CadastraVacinasPadrao.call
 
+    expect(Vacina.count).to eq(3)
+    expect(FabricanteVacina.count).to eq(3)
+    expect(DoseDoCalendario.count).to eq(5)
+
     visit '/users/sign_up'
 
     within('#new_user') do

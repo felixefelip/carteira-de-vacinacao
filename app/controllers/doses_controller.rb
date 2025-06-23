@@ -5,7 +5,6 @@ class DosesController < ApplicationController
   before_action :set_vacina, only: %i[new create edit]
 
   def index
-    # @doses = current_user!.doses.all
     render Views::Doses::Index.new(vacinas:)
   end
 
