@@ -1,6 +1,6 @@
 # typed: true
 
-class Vacina::CadastraVacinasPadrao
+class CadastraVacinasPadrao
   extend T::Sig
 
   sig { void }

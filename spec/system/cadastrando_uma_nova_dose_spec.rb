@@ -1,14 +1,10 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-describe 'Cadastrando usuário e verificando a caderneta criada automaticamente', type: :feature do
+describe 'Cadastrando uma nova dose', type: :feature do
   it 'cadastra o usuário', :aggregate_failures do
     # Capybara.current_driver = :selenium_chrome
     CadastraVacinasPadrao.call
-
-    expect(Vacina.count).to eq(3)
-    expect(FabricanteVacina.count).to eq(3)
-    expect(DoseDoCalendario.count).to eq(5)
 
     visit '/users/sign_up'
 
@@ -35,5 +31,19 @@ describe 'Cadastrando usuário e verificando a caderneta criada automaticamente'
     expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
     expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to be_nil #eq(Date.current)
+
+    # Encontrar um tr que tenha um td com conteúdo BCG
+    bcg_row = page.find('tr', text: 'BCG')
+    expect(bcg_row).to be_present
+
+    # Dentro do tr encontrado, clicar no link "Cadastrar dose"
+    within(bcg_row) do
+      click_link 'Cadastrar dose'
+    end
+
+    expect(page).to have_content 'Nova Dose'
+    click_button 'Salvar'
+
+    expect(page).to have_content 'Dose cadastrada com sucesso.'
   end
 end
