@@ -14,18 +14,18 @@ class CadernetaController < ApplicationController
 
   private
 
-  sig { returns(Vacina) }
+  #: -> Vacina
   def vacina
     @vacina ||= Vacina.find(params[:id])
   end
 
-  T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
+  #: -> Vacina::PrivateAssociationRelation
   def vacinas
     Current.caderneta!.vacinas.distinct
   end
 
-  T::Sig::WithoutRuntime.sig { returns(FabricanteVacina::PrivateAssociationRelation) }
+  #: -> FabricanteVacina::PrivateAssociationRelation
   def fabricante_vacinas
-    vacina.fabricante_vacinas.joins(:doses).where('doses.user_id = ? ', current_user.id).distinct
+    vacina.fabricante_vacinas.joins(:doses).where('doses.caderneta_id = ? ', Current.caderneta!.id).distinct
   end
 end

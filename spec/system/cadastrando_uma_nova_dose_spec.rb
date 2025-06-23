@@ -34,5 +34,13 @@ describe 'Cadastrando uma nova dose', type: :feature do
 
     bcg_row_cadastrada = page.find('tr', text: 'BCG')
     bcg_row_cadastrada.find('td', text: '1 doses')
+
+    within(bcg_row_cadastrada) do
+      click_link 'BCG'
+    end
+
+    expect(page).to have_content 'Doses tomadas da vacina BCG'
+
+    expect(page).to have_content '1 doses'
   end
 end
