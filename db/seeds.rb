@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
-  Vacina::CadastraVacinasPadrao.call
+  CadastraVacinasPadrao.call
 end
