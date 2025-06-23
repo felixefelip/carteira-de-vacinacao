@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :fabricante_vacinas
 
   resources :vacinas do
-    resources :doses
+    resources :doses, only: %i[new create edit update destroy show]
   end
 
   resources :caderneta, only: %i[index show]

@@ -4,10 +4,6 @@ class DosesController < ApplicationController
   before_action :set_dose, only: %i[show edit]
   before_action :set_vacina, only: %i[new create edit]
 
-  def index
-    render Views::Doses::Index.new(vacinas:)
-  end
-
   def show; end
 
   def new
@@ -36,11 +32,6 @@ class DosesController < ApplicationController
 
   def set_vacina
     @vacina = Vacina.find(params[:vacina_id])
-  end
-
-  T::Sig::WithoutRuntime.sig { returns(Vacina::PrivateAssociationRelation) }
-  def vacinas
-    Current.caderneta!.vacinas.distinct
   end
 
   def dose_params
