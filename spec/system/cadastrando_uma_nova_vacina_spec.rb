@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'capybara/rspec'
 
-describe 'Cadastrando uma nova dose', type: :feature do
+describe 'Cadastrando uma nova vacina', type: :feature do
   it 'cadastra o usuário', :aggregate_failures do
     # Capybara.current_driver = :selenium_chrome
     CadastraVacinasPadrao.call
@@ -18,21 +18,22 @@ describe 'Cadastrando uma nova dose', type: :feature do
 
     expect(page).to have_content 'Login efetuado com sucesso. Se não foi autorizado, a confirmação será enviada por e-mail.'
 
-    click_link 'Calendário'
+    click_link 'Vacinas'
+    expect(page).to have_content 'Escolha uma vacina'
 
     bcg_row = page.find('tr', text: 'BCG')
     expect(bcg_row).to be_present
 
-    within(bcg_row) do
-      click_link 'Cadastrar dose'
-    end
+    click_link 'Criar Vacina'
+    expect(page).to have_content 'Nova Vacina'
 
-    expect(page).to have_content 'Nova Dose'
-    click_button 'Salvar'
+    fill_in 'Descricao', with: 'Pfizer'
+    click_button 'Criar Vacina'
 
-    expect(page).to have_content 'Dose cadastrada com sucesso.'
+    expect(page).to have_content 'Vacina foi criada com sucesso'
 
-    bcg_row_cadastrada = page.find('tr', text: 'BCG')
-    bcg_row_cadastrada.find('td', text: '1 doses')
+    expect(page).to have_content 'Escolha uma vacina'
+
+    page.find('tr', text: 'Pfizer')
   end
 end
