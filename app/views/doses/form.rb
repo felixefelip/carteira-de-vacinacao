@@ -5,20 +5,20 @@ module Views::Doses
   class Form < Views::Base
     extend T::Sig
 
-    #: (dose: Dose, vacina: Vacina) -> void
-    def initialize(dose:, vacina:)
+    #: (Dose, Vacina) -> void
+    def initialize(dose, vacina)
       super()
       self.dose = dose
       self.vacina = vacina
     end
 
     def view_template
-      form_with model: @dose, url: vacina_doses_path do |form|
-        if @dose.errors.any?
+      form_with model: dose, url: vacina_doses_path do |form|
+        if dose.errors.any?
           div id: "error_explanation" do
-            h2 { "#{helpers.pluralize(@dose.errors.count, 'error')} prohibited this dose from being saved:" }
+            h2 { "#{helpers.pluralize(dose.errors.count, 'error')} prohibited this dose from being saved:" }
             ul do
-              @dose.errors.each do |error|
+              dose.errors.each do |error|
                 li { error.full_message }
               end
             end
