@@ -14,6 +14,8 @@ module Views::Doses
 
     def view_template
       form_with model: dose, url: vacina_doses_path do |form|
+        form = T.let(form, ActionView::Helpers::FormBuilder)
+
         if dose.errors.any?
           div id: "error_explanation" do
             h2 { "#{helpers.pluralize(dose.errors.count, 'error')} prohibited this dose from being saved:" }
