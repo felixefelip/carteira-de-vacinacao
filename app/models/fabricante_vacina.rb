@@ -19,5 +19,5 @@ class FabricanteVacina < ApplicationRecord
   belongs_to :caderneta, optional: true, class_name: 'User::Caderneta'
   belongs_to :vacina
 
-  has_many :doses, dependent: :nullify
+  has_many :doses, dependent: :destroy
 end

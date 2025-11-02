@@ -25,6 +25,8 @@ class User::Caderneta
         vacinas_do_calendario = ::Vacina.where.not(ordem_no_calendario: nil)
 
         vacinas_do_calendario.each do |vacina|
+          next if caderneta.recomendacao_vacinas.map(&:vacina).include?(vacina)
+
           caderneta.recomendacao_vacinas.create!(vacina:)
         end
       end

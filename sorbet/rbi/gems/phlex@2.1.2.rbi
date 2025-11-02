@@ -764,6 +764,8 @@ class Phlex::SGML
   def to_proc; end
 
   # source://phlex//lib/phlex/sgml.rb#79
+
+  sig { returns(String) }
   def view_template; end
 
   # Output a single space character. If a block is given, a space will be output before and after the block.
