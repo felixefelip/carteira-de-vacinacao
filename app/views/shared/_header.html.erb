@@ -1,44 +1,60 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+            <span class="vaccine-icon me-2"></span>
+            <strong>Carteira de Vacinação</strong>
+        <% end %>
 
-    <%= link_to "Carteira de Vacinação", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to "Caderneta", caderneta_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Calendário", sugestoes_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Vacinas", vacinas_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Pessoas", "#", class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Editar Perfil", edit_user_registration_path, class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-link" %>
-                </li>
-            <% else %>
-                <li class="nav-item">
-                    <%= link_to "Cadastrar-se", new_user_registration_path, class: "nav-link" %>
-                </li>
-
-                <li class="nav-item">
-                    <%= link_to "Entrar", new_user_session_path, class: "nav-link" %>
-                </li>
-            <% end %>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-
-        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to caderneta_path, class: "nav-link d-flex align-items-center" do %>
+                            📅 Caderneta
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to sugestoes_path, class: "nav-link d-flex align-items-center" do %>
+                            📆 Calendário
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to vacinas_path, class: "nav-link d-flex align-items-center" do %>
+                            💉 Vacinas
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "#", class: "nav-link d-flex align-items-center" do %>
+                            👥 Pessoas
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to edit_user_registration_path, class: "nav-link d-flex align-items-center" do %>
+                            ⚙️ Perfil
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link d-flex align-items-center" do %>
+                            🚪 Sair
+                        <% end %>
+                    </li>
+                <% else %>
+                    <li class="nav-item">
+                        <%= link_to new_user_registration_path, class: "nav-link d-flex align-items-center" do %>
+                            📝 Cadastrar-se
+                        <% end %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to new_user_session_path, class: "nav-link d-flex align-items-center" do %>
+                            🔐 Entrar
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     </div>
 </nav>

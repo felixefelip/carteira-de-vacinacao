@@ -13,3 +13,230 @@
  *= require_tree .
  *= require_self
  */
+
+/* Tema da Carteira de Vacinação */
+:root {
+  --primary-green: #27ae60;
+  --secondary-green: #2ecc71;
+  --light-green: #e8f5e8;
+  --accent-blue: #3498db;
+  --text-dark: #2c3e50;
+  --success-green: #27ae60;
+  --warning-orange: #f39c12;
+  --danger-red: #e74c3c;
+  --light-bg: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Container principal */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--light-bg);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Cabeçalhos */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+/* Tabelas melhoradas */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 20px 0;
+}
+
+table thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+table thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Botões e links de ação */
+.btn, .action-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary, .action-link {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+  color: white;
+}
+
+.btn-primary:hover, .action-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+  color: white;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--accent-blue), #5dade2);
+  color: white;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger-red), #ec7063);
+  color: white;
+}
+
+/* Status indicators */
+.status-completo {
+  background: linear-gradient(135deg, var(--success-green), var(--secondary-green));
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-disponivel {
+  background: linear-gradient(135deg, var(--warning-orange), #f8c471);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Navbar melhorada */
+.navbar {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)) !important;
+  box-shadow: var(--shadow);
+  padding: 15px 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white !important;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500;
+  padding: 8px 16px !important;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin: 0 2px;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* Cards e seções */
+.card {
+  background: var(--light-bg);
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: var(--shadow);
+  border: none;
+}
+
+/* Ícones de vacina */
+.vaccine-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.vaccine-icon::before {
+  content: "💉";
+  font-size: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .main-container {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 8px 10px;
+  }
+}
+
+/* Animações sutis */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Melhorias nos formulários */
+.form-control {
+  border-radius: 8px;
+  border: 2px solid #ecf0f1;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.25);
+}

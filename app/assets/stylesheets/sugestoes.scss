@@ -1,3 +1,93 @@
 // Place all the styles related to the Sugestoes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Estilo específico para a página de calendário/sugestões
+.sugestoes {
+  .age-info {
+    background: linear-gradient(135deg, #3498db, #5dade2);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    
+    &::before {
+      content: "🎂 ";
+      font-size: 1.2rem;
+    }
+  }
+  
+  .status-badge {
+    &.completo {
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-block;
+      
+      &::before {
+        content: "✅ ";
+      }
+    }
+    
+    &.disponivel {
+      background: linear-gradient(135deg, #f39c12, #f8c471);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-block;
+      
+      &::before {
+        content: "⏰ ";
+      }
+    }
+    
+    &.atrasado {
+      background: linear-gradient(135deg, #e74c3c, #ec7063);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-block;
+      
+      &::before {
+        content: "⚠️ ";
+      }
+    }
+  }
+  
+  .vaccine-name {
+    font-weight: 600;
+    color: #2c3e50;
+    
+    &::before {
+      content: "💉 ";
+      margin-right: 5px;
+    }
+  }
+  
+  .dose-count {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2c3e50;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .action-cell {
+    .btn {
+      font-size: 0.85rem;
+      padding: 6px 12px;
+    }
+  }
+}

@@ -66,6 +66,7 @@ group :development do
   gem 'rubycritic', require: false
   gem 'spring'
   gem 'tapioca', require: false
+  gem 'tidewave'
 end
 
 group :test do
