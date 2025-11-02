@@ -86,6 +86,46 @@ table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 12px;
 }
 
+/* Links dentro das tabelas */
+table a {
+  color: var(--primary-green) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+table a:hover {
+  color: var(--secondary-green) !important;
+  text-decoration: none !important;
+  transform: translateY(-1px);
+  text-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+}
+
+table a:visited {
+  color: var(--primary-green) !important;
+}
+
+/* Links de ação específicos */
+table a[href*="edit"] {
+  color: var(--warning-orange) !important;
+  font-weight: 600;
+}
+
+table a[href*="edit"]:hover {
+  color: #e67e22 !important;
+  text-shadow: 0 2px 4px rgba(243, 156, 18, 0.3);
+}
+
+table a[href*="doses"]:not([href*="new"]) {
+  color: var(--danger-red) !important;
+  font-weight: 600;
+}
+
+table a[href*="doses"]:not([href*="new"]):hover {
+  color: #c0392b !important;
+  text-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
 /* Botões e links de ação */
 .btn, .action-link {
   display: inline-block;
