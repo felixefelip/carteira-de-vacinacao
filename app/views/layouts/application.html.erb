@@ -20,7 +20,7 @@
 
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <%= render 'shared/header' %>
 
     <% if notice %>
@@ -45,14 +45,14 @@
       </div>
     <% end %>
     
-    <div class="container">
+    <div class="container flex-grow-1">
       <div class="main-container">
         <%= yield %>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="text-center py-4 mt-5" style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white;">
+    <footer class="text-center py-4 mt-auto" style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white;">
       <div class="container">
         <p class="mb-0">💉 Carteira de Vacinação Digital - Mantenha sua saúde em dia! 🏥</p>
         <small>Desenvolvido com ❤️ para cuidar da sua saúde</small>
