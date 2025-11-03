@@ -45,6 +45,11 @@ class User::Caderneta::RecomendacaoVacina < ApplicationRecord
     user!.idade
   end
 
+  #: -> String
+  def status_vacinal!
+    T.must(status_vacinal)
+  end
+
   #: -> Integer
   def qtde_doses_tomadas
     caderneta!.qtde_por_vacina(vacina!)
