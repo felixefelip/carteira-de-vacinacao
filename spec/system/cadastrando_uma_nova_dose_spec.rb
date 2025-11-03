@@ -10,10 +10,10 @@ describe 'Cadastrando uma nova dose', type: :feature do
 
     within('#new_user') do
       fill_in 'E-mail', with: 'user@example.com'
-      fill_in 'Data nascimento', with: '01/01/2000'
+      fill_in 'Data de Nascimento', with: '01/01/2000'
       fill_in 'Senha', with: '123456'
       fill_in 'Confirme sua senha', with: '123456'
-      click_button 'Sign up'
+      click_button 'Cadastrar'
     end
 
     expect(page).to have_content 'Login efetuado com sucesso. Se não foi autorizado, a confirmação será enviada por e-mail.'
