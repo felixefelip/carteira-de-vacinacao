@@ -195,6 +195,12 @@ GEM
       sexp_processor (~> 4.8)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    herb (0.7.5)
+    herb (0.7.5-aarch64-linux-musl)
+    herb (0.7.5-arm64-darwin)
+    herb (0.7.5-x86_64-darwin)
+    herb (0.7.5-x86_64-linux-gnu)
+    herb (0.7.5-x86_64-linux-musl)
     hotwire-rails (0.1.3)
       rails (>= 6.0.0)
       stimulus-rails
@@ -535,6 +541,9 @@ GEM
     unicode-display_width (2.6.0)
     uri (0.13.1)
     useragent (0.16.10)
+    view_component (4.1.0)
+      activesupport (>= 7.1.0, < 8.2)
+      concurrent-ruby (~> 1)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -587,6 +596,7 @@ DEPENDENCIES
   devise
   devise-i18n
   factory_bot_rails
+  herb
   hotwire-rails (~> 0.1.3)
   importmap-rails
   jbuilder (~> 2.7)
@@ -617,6 +627,7 @@ DEPENDENCIES
   tidewave
   turbolinks (~> 5)
   tzinfo-data
+  view_component
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
