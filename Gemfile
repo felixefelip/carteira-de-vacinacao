@@ -35,7 +35,6 @@ gem 'rbs_rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'phlex-rails'
 gem 'view_component'
 
 gem 'hotwire-rails', '~> 0.1.3'

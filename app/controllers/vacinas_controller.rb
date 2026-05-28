@@ -5,8 +5,6 @@ class VacinasController < ApplicationController
 
   def index
     @vacinas = Vacina.all
-
-    render Views::Vacinas::Index.new(vacinas: @vacinas)
   end
 
   def show; end

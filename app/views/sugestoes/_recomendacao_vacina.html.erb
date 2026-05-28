@@ -1,0 +1,41 @@
+<% status = recomendacao_vacina.status_vacinal! %>
+<% idade_recomendada = idade_recomendada_para(recomendacao_vacina) %>
+
+<tr class="vaccine-row">
+  <td class="vaccine-name"><%= recomendacao_vacina.vacina!.descricao %></td>
+  <td class="dose-count text-center">
+    <span class="badge badge-info dose-badge"><%= recomendacao_vacina.qtde_doses_tomadas %></span>
+  </td>
+  <td class="status-cell">
+    <% case status %>
+    <% when 'completo' %>
+      <span class="badge badge-success status-completo">✅ Completo</span>
+    <% when 'disponivel' %>
+      <div>
+        <span class="badge badge-warning status-disponivel mb-1">🕐 Disponível</span>
+        <% if idade_recomendada %>
+          <br>
+          <small class="text-muted idade-recomendada">👶 Recomendada: <%= idade_recomendada %></small>
+        <% end %>
+      </div>
+    <% when 'aguardando' %>
+      <div>
+        <span class="badge badge-secondary status-aguardando mb-1">⏳ Aguardando</span>
+        <% data_disponivel = recomendacao_vacina.quando_pode_tomar_proxima_dose&.strftime('%d/%m/%Y') %>
+        <% if data_disponivel %>
+          <br>
+          <small class="text-muted data-disponivel">📅 Disponível em: <%= data_disponivel %></small>
+        <% end %>
+        <% if idade_recomendada %>
+          <br>
+          <small class="text-muted idade-recomendada">👶 Recomendada: <%= idade_recomendada %></small>
+        <% end %>
+      </div>
+    <% else %>
+      <span class="badge badge-light"><%= status.capitalize %></span>
+    <% end %>
+  </td>
+  <td class="action-cell text-center">
+    <%= link_to 'Cadastrar dose', new_vacina_dose_path(recomendacao_vacina.vacina), class: "btn btn-sm btn-success" %>
+  </td>
+</tr>

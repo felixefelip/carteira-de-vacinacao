@@ -8,7 +8,6 @@ class DosesController < ApplicationController
 
   def new
     @dose = Dose.new
-    render Views::Doses::New.new(dose: @dose, vacina: @vacina)
   end
 
   def edit; end
@@ -20,7 +19,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
     else
-      render Views::Doses::New.new(dose: @dose, vacina: @vacina), status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

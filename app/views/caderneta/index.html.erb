@@ -11,8 +11,8 @@
     </thead>
 
     <tbody>
-      <% vacinas.each do |vacina| %>
-        <%= render Views::Caderneta::Doses.new(vacina) %>
+      <% @vacinas.each do |vacina| %>
+        <%= render 'doses', vacina: vacina %>
       <% end %>
     </tbody>
   </table>
