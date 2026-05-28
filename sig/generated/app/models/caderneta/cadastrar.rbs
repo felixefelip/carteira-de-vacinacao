@@ -1,9 +1,11 @@
 class Caderneta
-  def initialize: (untyped caderneta) -> untyped
-  def call: () -> untyped
+  class Cadastrar
+    def initialize: (untyped caderneta) -> void
+    def call: () -> untyped
 
-  private
+    private
 
-  attr_accessor caderneta: untyped
-  def criar_calendario_de_vacinacao!: () -> untyped
+    attr_accessor caderneta: untyped
+    def criar_calendario_de_vacinacao!: () -> untyped
+  end
 end

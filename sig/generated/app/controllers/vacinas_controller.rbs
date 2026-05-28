@@ -1,6 +1,6 @@
 class VacinasController < ApplicationController
-  @vacinas: nil
-  @vacina: nil
+  @vacinas: Vacina::ActiveRecord_Relation?
+  @vacina: (Vacina | (Vacina & Vacina::Validated))?
   def index: () -> void
   def show: () -> void
   def new: () -> void
@@ -11,6 +11,6 @@ class VacinasController < ApplicationController
 
   private
 
-  def set_vacina: () -> untyped
+  def set_vacina: () -> (Vacina & Vacina::Validated)
   def vacina_params: () -> untyped
 end

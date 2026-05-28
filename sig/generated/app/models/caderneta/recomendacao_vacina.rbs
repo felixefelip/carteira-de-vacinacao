@@ -3,7 +3,7 @@ class Caderneta
     def self.recomendacoes_vacina_para_tomar_nova_dose_hoje: () -> Array[(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated)]
     def user_idade: () -> untyped
     def qtde_doses_tomadas: () -> untyped
-    def calcular_status_vacinal: () -> untyped
+    def calcular_status_vacinal: () -> Symbol
     def dose_recomendada_atual: () -> untyped
     def pode_tomar_nova_dose?: () -> untyped
     def tem_idade_para_tomar_a_nova_dose?: () -> untyped

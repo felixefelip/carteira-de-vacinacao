@@ -1,4 +1,6 @@
 class User
-  def idade: () -> untyped
-  def idade_formatada: () -> untyped
+  module Idade
+    def idade: () -> untyped
+    def idade_formatada: () -> String
+  end
 end

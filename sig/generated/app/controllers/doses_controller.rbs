@@ -1,6 +1,6 @@
 class DosesController < ApplicationController
-  @dose: nil
-  @vacina: nil
+  @dose: (Dose | (Dose & Dose::Validated))?
+  @vacina: (Vacina & Vacina::Validated)?
   def show: () -> void
   def new: () -> void
   def edit: () -> void
@@ -8,7 +8,7 @@ class DosesController < ApplicationController
 
   private
 
-  def set_dose: () -> untyped
-  def set_vacina: () -> untyped
+  def set_dose: () -> (Dose & Dose::Validated)
+  def set_vacina: () -> (Vacina & Vacina::Validated)
   def dose_params: () -> untyped
 end

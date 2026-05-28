@@ -30,3 +30,18 @@
 #
 #   # library "pathname"              # Standard libraries
 # end
+#
+
+ENV['STEEP_ERB_CONVENTION'] = '1'
+ENV['STEEP_MODULE_CONVENTION'] = '1'
+
+target :app do
+  check 'app'
+  check 'lib'
+  check 'app/views/**/*.erb'
+  signature 'sig'
+  signature 'app'
+  signature 'lib'
+
+  library 'pathname'
+end

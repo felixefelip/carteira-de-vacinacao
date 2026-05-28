@@ -1,3 +1,0 @@
-class ExampleComponent < ViewComponent::Base
-  def initialize: (title: untyped) -> untyped
-end
