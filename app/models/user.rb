@@ -1,5 +1,3 @@
-# typed: true
-
 # == Schema Information
 #
 # Table name: users
@@ -15,8 +13,6 @@
 #  updated_at             :datetime         not null
 #
 class User < ApplicationRecord
-  extend T::Sig
-
   include Idade
 
   has_one :caderneta, dependent: :destroy, touch: true
@@ -30,18 +26,14 @@ class User < ApplicationRecord
 
   before_validation :set_user_dose_na_criacao
 
-  #: -> ::Caderneta
   def caderneta!
-    T.must(caderneta)
+    caderneta
   end
 
-  #: -> void
   def set_user_dose_na_criacao
     caderneta || build_caderneta
   end
 
-  # @override
-  #: -> Date?
   def data_nascimento
     self[:data_nascimento]
   end

@@ -1,5 +1,3 @@
-# typed: true
-
 # == Schema Information
 #
 # Table name: doses
@@ -16,20 +14,16 @@
 #  fabricante_vacina_id :bigint           not null
 #
 class Dose < ApplicationRecord
-  extend T::Sig
-
   belongs_to :caderneta
   belongs_to :fabricante_vacina
 
   after_save :atualizar_calendario
 
-  #: -> void
   def atualizar_calendario
     caderneta!.atualizar_caderneta_de_vacinacao
   end
 
-  #: -> Caderneta
   def caderneta!
-    T.must(caderneta)
+    caderneta
   end
 end

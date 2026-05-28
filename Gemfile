@@ -66,7 +66,6 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'rubycritic', require: false
   gem 'spring'
-  gem 'tapioca', require: false
   gem 'tidewave'
 end
 

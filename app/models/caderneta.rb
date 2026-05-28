@@ -1,5 +1,3 @@
-# typed: true
-
 # == Schema Information
 #
 # Table name: cadernetas
@@ -11,8 +9,6 @@
 #
 
 class Caderneta < ApplicationRecord
-  extend T::Sig
-
   self.table_name = 'cadernetas'
 
   belongs_to :user
@@ -24,22 +20,18 @@ class Caderneta < ApplicationRecord
   after_create :criar_caderneta_de_vacinacao
   after_update :atualizar_caderneta_de_vacinacao
 
-  #: -> void
   def criar_caderneta_de_vacinacao
     Cadastrar.new(self).call
   end
 
-  #: -> void
   def atualizar_caderneta_de_vacinacao
     Atualizar.new(self).call
   end
 
-  #: (FabricanteVacina) -> Integer
   def qtde_por_fabricante_vacina(fabricante_vacina)
     fabricante_vacinas.where(id: fabricante_vacina.id).count
   end
 
-  #: (Vacina) -> Integer
   def qtde_por_vacina(vacina)
     fabricante_vacinas.where(vacina:).count
   end

@@ -1,5 +1,3 @@
-# typed: true
-
 # == Schema Information
 #
 # Table name: vacinas
@@ -12,8 +10,6 @@
 #  updated_at          :datetime         not null
 #
 class Vacina < ApplicationRecord
-  extend T::Sig
-
   has_many :fabricante_vacinas, dependent: :destroy
   has_many :doses, through: :fabricante_vacinas
   has_many :recomendacao_vacinas, dependent: :destroy,
@@ -28,12 +24,10 @@ class Vacina < ApplicationRecord
   validates :ordem_no_calendario, uniqueness: true
   validates :fabricante_vacinas, length: { minimum: 1, message: 'deve ter pelo menos um fabricante' }
 
-  #: -> void
   def cadastrar_fornecedor_vacina_padrao
     fabricante_vacinas.new(descricao:)
   end
 
-  #: -> bool
   def sem_fabricante_vacina?
     fabricante_vacinas.none?
   end

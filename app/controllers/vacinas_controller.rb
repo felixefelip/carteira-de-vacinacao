@@ -1,5 +1,3 @@
-# typed: true
-
 class VacinasController < ApplicationController
   before_action :set_vacina, only: %i[show edit update destroy]
 

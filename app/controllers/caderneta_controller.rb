@@ -1,8 +1,4 @@
-# typed: true
-
 class CadernetaController < ApplicationController
-  extend T::Sig
-
   def index
     @vacinas = Current.caderneta!.vacinas.distinct
   end

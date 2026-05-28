@@ -1,6 +1,0 @@
---enable-experimental-rbs-signatures
-
---dir
-.
---ignore=tmp/
---ignore=vendor/

@@ -1,9 +1,4 @@
-# typed: true
-
 class CadastraVacinasPadrao
-  extend T::Sig
-
-  sig { void }
   def self.call
     return if Vacina.all.any?
 

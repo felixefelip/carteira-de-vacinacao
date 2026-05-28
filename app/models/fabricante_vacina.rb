@@ -1,5 +1,3 @@
-# typed: true
-
 # == Schema Information
 #
 # Table name: fabricante_vacinas
@@ -13,8 +11,6 @@
 #
 class FabricanteVacina < ApplicationRecord
   self.table_name = 'fabricante_vacinas'
-
-  extend T::Sig
 
   belongs_to :caderneta, optional: true
   belongs_to :vacina

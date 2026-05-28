@@ -1,9 +1,4 @@
-# typed: true
-
 module SugestoesHelper
-  extend T::Sig
-
-  sig { params(recomendacao_vacina: Caderneta::RecomendacaoVacina).returns(T.nilable(String)) }
   def idade_recomendada_para(recomendacao_vacina)
     dose_atual = recomendacao_vacina.dose_recomendada_atual
     return nil unless dose_atual
