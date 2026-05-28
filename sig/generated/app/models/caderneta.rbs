@@ -1,0 +1,6 @@
+class Caderneta < ApplicationRecord
+  def criar_caderneta_de_vacinacao: () -> untyped
+  def atualizar_caderneta_de_vacinacao: () -> untyped
+  def qtde_por_fabricante_vacina: (untyped fabricante_vacina) -> untyped
+  def qtde_por_vacina: (untyped vacina) -> untyped
+end

@@ -1,0 +1,4 @@
+class SugestoesController < ApplicationController
+  @recomendacao_vacinas: nil
+  def index: () -> void
+end

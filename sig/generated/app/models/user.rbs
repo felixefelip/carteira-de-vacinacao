@@ -1,0 +1,4 @@
+class User < ApplicationRecord
+  include Idade
+  def set_user_dose_na_criacao: () -> untyped
+end

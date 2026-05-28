@@ -1,0 +1,4 @@
+class User
+  def idade: () -> untyped
+  def idade_formatada: () -> untyped
+end

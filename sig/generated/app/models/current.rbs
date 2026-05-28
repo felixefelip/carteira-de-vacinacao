@@ -1,0 +1,5 @@
+class Current < ActiveSupport::CurrentAttributes
+  def self.user!: () -> untyped
+  def self.user=: (untyped user) -> untyped
+  def self.caderneta!: () -> untyped
+end

@@ -1,0 +1,16 @@
+class VacinasController < ApplicationController
+  @vacinas: nil
+  @vacina: nil
+  def index: () -> void
+  def show: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+  def destroy: () -> void
+
+  private
+
+  def set_vacina: () -> untyped
+  def vacina_params: () -> untyped
+end

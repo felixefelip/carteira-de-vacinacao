@@ -1,0 +1,7 @@
+class CadernetaController < ApplicationController
+  @vacinas: nil
+  @vacina: nil
+  @fabricante_vacinas: nil
+  def index: () -> void
+  def show: () -> void
+end

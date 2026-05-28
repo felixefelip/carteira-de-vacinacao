@@ -1,0 +1,2 @@
+class DoseDoCalendario < ApplicationRecord
+end

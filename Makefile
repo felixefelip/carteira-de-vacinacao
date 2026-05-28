@@ -25,3 +25,4 @@ rbs_generators_all:
 	make rbs_infer_enumerize
 	make rbs_infer_carrierwave
 	make rbs_infer_erb
+	rbs_infer_all

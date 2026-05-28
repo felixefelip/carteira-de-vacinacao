@@ -1,0 +1,9 @@
+class Caderneta
+  def initialize: (untyped caderneta) -> untyped
+  def call: () -> untyped
+
+  private
+
+  attr_reader caderneta: untyped
+  def atualizar_calendario!: () -> untyped
+end

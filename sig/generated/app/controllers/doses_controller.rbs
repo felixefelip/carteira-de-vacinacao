@@ -1,0 +1,14 @@
+class DosesController < ApplicationController
+  @dose: nil
+  @vacina: nil
+  def show: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+
+  private
+
+  def set_dose: () -> untyped
+  def set_vacina: () -> untyped
+  def dose_params: () -> untyped
+end
