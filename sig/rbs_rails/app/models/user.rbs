@@ -1,12 +1,12 @@
 # resolve-type-names: false
 
 class ::User < ::ApplicationRecord
-  extend ::ActiveRecord::Base::ClassMethods[::User, ::User::ActiveRecord_Relation, ::Integer]
+  extend ::ActiveRecord::Base::ClassMethods[::User, ::User::ActiveRecord_Relation, ::Integer, ::User::Validated]
 
   module ::User::GeneratedAttributeMethods
-    def id: () -> ::Integer
+    def id: () -> ::Integer?
 
-    def id=: (::Integer) -> ::Integer
+    def id=: (::Integer?) -> ::Integer?
 
     def id?: () -> bool
 
@@ -40,13 +40,13 @@ class ::User < ::ApplicationRecord
 
     def clear_id_change: () -> void
 
-    def id_before_type_cast: () -> ::Integer
+    def id_before_type_cast: () -> ::Integer?
 
-    def id_for_database: () -> ::Integer
+    def id_for_database: () -> ::Integer?
 
-    def email: () -> ::String
+    def email: () -> ::String?
 
-    def email=: (::String) -> ::String
+    def email=: (::String?) -> ::String?
 
     def email?: () -> bool
 
@@ -80,13 +80,13 @@ class ::User < ::ApplicationRecord
 
     def clear_email_change: () -> void
 
-    def email_before_type_cast: () -> ::String
+    def email_before_type_cast: () -> ::String?
 
-    def email_for_database: () -> ::String
+    def email_for_database: () -> ::String?
 
-    def encrypted_password: () -> ::String
+    def encrypted_password: () -> ::String?
 
-    def encrypted_password=: (::String) -> ::String
+    def encrypted_password=: (::String?) -> ::String?
 
     def encrypted_password?: () -> bool
 
@@ -120,9 +120,9 @@ class ::User < ::ApplicationRecord
 
     def clear_encrypted_password_change: () -> void
 
-    def encrypted_password_before_type_cast: () -> ::String
+    def encrypted_password_before_type_cast: () -> ::String?
 
-    def encrypted_password_for_database: () -> ::String
+    def encrypted_password_for_database: () -> ::String?
 
     def reset_password_token: () -> ::String?
 
@@ -244,9 +244,9 @@ class ::User < ::ApplicationRecord
 
     def remember_created_at_for_database: () -> ::Time?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def created_at?: () -> bool
 
@@ -280,13 +280,13 @@ class ::User < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    def created_at_before_type_cast: () -> ::Time?
 
-    def created_at_for_database: () -> ::Time
+    def created_at_for_database: () -> ::Time?
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def updated_at?: () -> bool
 
@@ -320,9 +320,9 @@ class ::User < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    def updated_at_before_type_cast: () -> ::Time?
 
-    def updated_at_for_database: () -> ::Time
+    def updated_at_for_database: () -> ::Time?
 
     def data_nascimento: () -> ::Date?
 
@@ -427,13 +427,13 @@ class ::User < ::ApplicationRecord
   class ::User::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::User]
     include ::User::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::User, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::User, ::Integer, ::User::Validated]
   end
 
   class ::User::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
     include ::Enumerable[::User]
     include ::User::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::User, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::User, ::Integer, ::User::Validated]
 
     def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::User
              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::User]
@@ -448,6 +448,18 @@ class ::User < ::ApplicationRecord
     def destroy: (*::User | ::Integer) -> ::Array[::User]
     def <<: (*::User | ::Array[::User]) -> self
     def prepend: (*::User | ::Array[::User]) -> self
+  end
+
+  class ::User::Validated
+    def id: () -> ::Integer
+    def email: () -> ::String
+    def data_nascimento: () -> ::Date
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+
+  class ::User::ValidatedAsEmailRequired
+    def email: () -> ::String
   end
 end
 

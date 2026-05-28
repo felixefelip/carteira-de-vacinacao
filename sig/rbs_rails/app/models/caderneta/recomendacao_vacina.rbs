@@ -2,12 +2,12 @@
 
 class ::Caderneta < ::ApplicationRecord
   class ::Caderneta::RecomendacaoVacina < ::ApplicationRecord
-    extend ::ActiveRecord::Base::ClassMethods[::Caderneta::RecomendacaoVacina, ::Caderneta::RecomendacaoVacina::ActiveRecord_Relation, ::Integer]
+    extend ::ActiveRecord::Base::ClassMethods[::Caderneta::RecomendacaoVacina, ::Caderneta::RecomendacaoVacina::ActiveRecord_Relation, ::Integer, ::Caderneta::RecomendacaoVacina::Validated]
 
     module ::Caderneta::RecomendacaoVacina::GeneratedAttributeMethods
-      def id: () -> ::Integer
+      def id: () -> ::Integer?
 
-      def id=: (::Integer) -> ::Integer
+      def id=: (::Integer?) -> ::Integer?
 
       def id?: () -> bool
 
@@ -41,9 +41,9 @@ class ::Caderneta < ::ApplicationRecord
 
       def clear_id_change: () -> void
 
-      def id_before_type_cast: () -> ::Integer
+      def id_before_type_cast: () -> ::Integer?
 
-      def id_for_database: () -> ::Integer
+      def id_for_database: () -> ::Integer?
 
       def vacina_id: () -> ::Integer?
 
@@ -85,9 +85,9 @@ class ::Caderneta < ::ApplicationRecord
 
       def vacina_id_for_database: () -> ::Integer?
 
-      def created_at: () -> ::ActiveSupport::TimeWithZone
+      def created_at: () -> ::ActiveSupport::TimeWithZone?
 
-      def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+      def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
       def created_at?: () -> bool
 
@@ -121,13 +121,13 @@ class ::Caderneta < ::ApplicationRecord
 
       def clear_created_at_change: () -> void
 
-      def created_at_before_type_cast: () -> ::Time
+      def created_at_before_type_cast: () -> ::Time?
 
-      def created_at_for_database: () -> ::Time
+      def created_at_for_database: () -> ::Time?
 
-      def updated_at: () -> ::ActiveSupport::TimeWithZone
+      def updated_at: () -> ::ActiveSupport::TimeWithZone?
 
-      def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+      def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
       def updated_at?: () -> bool
 
@@ -161,9 +161,9 @@ class ::Caderneta < ::ApplicationRecord
 
       def clear_updated_at_change: () -> void
 
-      def updated_at_before_type_cast: () -> ::Time
+      def updated_at_before_type_cast: () -> ::Time?
 
-      def updated_at_for_database: () -> ::Time
+      def updated_at_for_database: () -> ::Time?
 
       def status_vacinal: () -> ::String?
 
@@ -205,9 +205,9 @@ class ::Caderneta < ::ApplicationRecord
 
       def status_vacinal_for_database: () -> ::Integer?
 
-      def caderneta_id: () -> ::Integer
+      def caderneta_id: () -> ::Integer?
 
-      def caderneta_id=: (::Integer) -> ::Integer
+      def caderneta_id=: (::Integer?) -> ::Integer?
 
       def caderneta_id?: () -> bool
 
@@ -241,9 +241,9 @@ class ::Caderneta < ::ApplicationRecord
 
       def clear_caderneta_id_change: () -> void
 
-      def caderneta_id_before_type_cast: () -> ::Integer
+      def caderneta_id_before_type_cast: () -> ::Integer?
 
-      def caderneta_id_for_database: () -> ::Integer
+      def caderneta_id_for_database: () -> ::Integer?
     end
     include ::Caderneta::RecomendacaoVacina::GeneratedAttributeMethods
     module ::Caderneta::RecomendacaoVacina::GeneratedAliasAttributeMethods
@@ -297,13 +297,13 @@ class ::Caderneta < ::ApplicationRecord
     def create_user: (?untyped) -> ::User
     def create_user!: (?untyped) -> ::User
     def reload_user: () -> ::User?
-    def caderneta: () -> ::Caderneta
+    def caderneta: () -> ::Caderneta?
     def caderneta=: (::Caderneta?) -> ::Caderneta?
     def reload_caderneta: () -> ::Caderneta?
     def build_caderneta: (untyped) -> ::Caderneta
     def create_caderneta: (untyped) -> ::Caderneta
     def create_caderneta!: (untyped) -> ::Caderneta
-    def vacina: () -> ::Vacina
+    def vacina: () -> ::Vacina?
     def vacina=: (::Vacina?) -> ::Vacina?
     def reload_vacina: () -> ::Vacina?
     def build_vacina: (untyped) -> ::Vacina
@@ -346,13 +346,13 @@ class ::Caderneta < ::ApplicationRecord
     class ::Caderneta::RecomendacaoVacina::ActiveRecord_Relation < ::ActiveRecord::Relation
       include ::Enumerable[::Caderneta::RecomendacaoVacina]
       include ::Caderneta::RecomendacaoVacina::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Caderneta::RecomendacaoVacina, ::Integer]
+      include ::ActiveRecord::Relation::Methods[::Caderneta::RecomendacaoVacina, ::Integer, ::Caderneta::RecomendacaoVacina::Validated]
     end
 
     class ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
       include ::Enumerable[::Caderneta::RecomendacaoVacina]
       include ::Caderneta::RecomendacaoVacina::GeneratedRelationMethods
-      include ::ActiveRecord::Relation::Methods[::Caderneta::RecomendacaoVacina, ::Integer]
+      include ::ActiveRecord::Relation::Methods[::Caderneta::RecomendacaoVacina, ::Integer, ::Caderneta::RecomendacaoVacina::Validated]
 
       def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Caderneta::RecomendacaoVacina
                | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Caderneta::RecomendacaoVacina]
@@ -368,6 +368,18 @@ class ::Caderneta < ::ApplicationRecord
       def <<: (*::Caderneta::RecomendacaoVacina | ::Array[::Caderneta::RecomendacaoVacina]) -> self
       def prepend: (*::Caderneta::RecomendacaoVacina | ::Array[::Caderneta::RecomendacaoVacina]) -> self
     end
+
+    class ::Caderneta::RecomendacaoVacina::Validated
+      def id: () -> ::Integer
+      def caderneta: () -> ::Caderneta
+      def vacina: () -> ::Vacina
+      def created_at: () -> ::ActiveSupport::TimeWithZone
+      def updated_at: () -> ::ActiveSupport::TimeWithZone
+    end
+
+    class ::Caderneta::RecomendacaoVacina::ValidatedViaCaderneta
+      def user: () -> ::User
+    end
   end
 end
 
@@ -375,7 +387,7 @@ class ::Caderneta < ::ApplicationRecord
 end
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::User < ::ApplicationRecord
-end
 class ::Vacina < ::ApplicationRecord
+end
+class ::User < ::ApplicationRecord
 end

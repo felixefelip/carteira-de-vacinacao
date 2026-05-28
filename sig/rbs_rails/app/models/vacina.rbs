@@ -1,12 +1,12 @@
 # resolve-type-names: false
 
 class ::Vacina < ::ApplicationRecord
-  extend ::ActiveRecord::Base::ClassMethods[::Vacina, ::Vacina::ActiveRecord_Relation, ::Integer]
+  extend ::ActiveRecord::Base::ClassMethods[::Vacina, ::Vacina::ActiveRecord_Relation, ::Integer, ::Vacina::Validated]
 
   module ::Vacina::GeneratedAttributeMethods
-    def id: () -> ::Integer
+    def id: () -> ::Integer?
 
-    def id=: (::Integer) -> ::Integer
+    def id=: (::Integer?) -> ::Integer?
 
     def id?: () -> bool
 
@@ -40,9 +40,9 @@ class ::Vacina < ::ApplicationRecord
 
     def clear_id_change: () -> void
 
-    def id_before_type_cast: () -> ::Integer
+    def id_before_type_cast: () -> ::Integer?
 
-    def id_for_database: () -> ::Integer
+    def id_for_database: () -> ::Integer?
 
     def descricao: () -> ::String?
 
@@ -84,9 +84,9 @@ class ::Vacina < ::ApplicationRecord
 
     def descricao_for_database: () -> ::String?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def created_at?: () -> bool
 
@@ -120,13 +120,13 @@ class ::Vacina < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    def created_at_before_type_cast: () -> ::Time?
 
-    def created_at_for_database: () -> ::Time
+    def created_at_for_database: () -> ::Time?
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def updated_at?: () -> bool
 
@@ -160,13 +160,13 @@ class ::Vacina < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    def updated_at_before_type_cast: () -> ::Time?
 
-    def updated_at_for_database: () -> ::Time
+    def updated_at_for_database: () -> ::Time?
 
-    def dias_de_intervalo: () -> ::Integer
+    def dias_de_intervalo: () -> ::Integer?
 
-    def dias_de_intervalo=: (::Integer) -> ::Integer
+    def dias_de_intervalo=: (::Integer?) -> ::Integer?
 
     def dias_de_intervalo?: () -> bool
 
@@ -200,9 +200,9 @@ class ::Vacina < ::ApplicationRecord
 
     def clear_dias_de_intervalo_change: () -> void
 
-    def dias_de_intervalo_before_type_cast: () -> ::Integer
+    def dias_de_intervalo_before_type_cast: () -> ::Integer?
 
-    def dias_de_intervalo_for_database: () -> ::Integer
+    def dias_de_intervalo_for_database: () -> ::Integer?
 
     def ordem_no_calendario: () -> ::Integer?
 
@@ -316,13 +316,13 @@ class ::Vacina < ::ApplicationRecord
   class ::Vacina::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Vacina]
     include ::Vacina::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer, ::Vacina::Validated]
   end
 
   class ::Vacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
     include ::Enumerable[::Vacina]
     include ::Vacina::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer, ::Vacina::Validated]
 
     def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Vacina
              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Vacina]
@@ -337,6 +337,13 @@ class ::Vacina < ::ApplicationRecord
     def destroy: (*::Vacina | ::Integer) -> ::Array[::Vacina]
     def <<: (*::Vacina | ::Array[::Vacina]) -> self
     def prepend: (*::Vacina | ::Array[::Vacina]) -> self
+  end
+
+  class ::Vacina::Validated
+    def id: () -> ::Integer
+    def descricao: () -> ::String
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
   end
 end
 

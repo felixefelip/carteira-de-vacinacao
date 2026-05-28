@@ -1,12 +1,12 @@
 # resolve-type-names: false
 
 class ::FabricanteVacina < ::ApplicationRecord
-  extend ::ActiveRecord::Base::ClassMethods[::FabricanteVacina, ::FabricanteVacina::ActiveRecord_Relation, ::Integer]
+  extend ::ActiveRecord::Base::ClassMethods[::FabricanteVacina, ::FabricanteVacina::ActiveRecord_Relation, ::Integer, ::FabricanteVacina::Validated]
 
   module ::FabricanteVacina::GeneratedAttributeMethods
-    def id: () -> ::Integer
+    def id: () -> ::Integer?
 
-    def id=: (::Integer) -> ::Integer
+    def id=: (::Integer?) -> ::Integer?
 
     def id?: () -> bool
 
@@ -40,9 +40,9 @@ class ::FabricanteVacina < ::ApplicationRecord
 
     def clear_id_change: () -> void
 
-    def id_before_type_cast: () -> ::Integer
+    def id_before_type_cast: () -> ::Integer?
 
-    def id_for_database: () -> ::Integer
+    def id_for_database: () -> ::Integer?
 
     def descricao: () -> ::String?
 
@@ -84,9 +84,9 @@ class ::FabricanteVacina < ::ApplicationRecord
 
     def descricao_for_database: () -> ::String?
 
-    def vacina_id: () -> ::Integer
+    def vacina_id: () -> ::Integer?
 
-    def vacina_id=: (::Integer) -> ::Integer
+    def vacina_id=: (::Integer?) -> ::Integer?
 
     def vacina_id?: () -> bool
 
@@ -120,13 +120,13 @@ class ::FabricanteVacina < ::ApplicationRecord
 
     def clear_vacina_id_change: () -> void
 
-    def vacina_id_before_type_cast: () -> ::Integer
+    def vacina_id_before_type_cast: () -> ::Integer?
 
-    def vacina_id_for_database: () -> ::Integer
+    def vacina_id_for_database: () -> ::Integer?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def created_at?: () -> bool
 
@@ -160,13 +160,13 @@ class ::FabricanteVacina < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    def created_at_before_type_cast: () -> ::Time?
 
-    def created_at_for_database: () -> ::Time
+    def created_at_for_database: () -> ::Time?
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def updated_at?: () -> bool
 
@@ -200,9 +200,9 @@ class ::FabricanteVacina < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    def updated_at_before_type_cast: () -> ::Time?
 
-    def updated_at_for_database: () -> ::Time
+    def updated_at_for_database: () -> ::Time?
 
     def caderneta_id: () -> ::Integer?
 
@@ -300,7 +300,7 @@ class ::FabricanteVacina < ::ApplicationRecord
   def build_caderneta: (untyped) -> ::Caderneta
   def create_caderneta: (untyped) -> ::Caderneta
   def create_caderneta!: (untyped) -> ::Caderneta
-  def vacina: () -> ::Vacina
+  def vacina: () -> ::Vacina?
   def vacina=: (::Vacina?) -> ::Vacina?
   def reload_vacina: () -> ::Vacina?
   def build_vacina: (untyped) -> ::Vacina
@@ -316,13 +316,13 @@ class ::FabricanteVacina < ::ApplicationRecord
   class ::FabricanteVacina::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::FabricanteVacina]
     include ::FabricanteVacina::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer, ::FabricanteVacina::Validated]
   end
 
   class ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
     include ::Enumerable[::FabricanteVacina]
     include ::FabricanteVacina::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer, ::FabricanteVacina::Validated]
 
     def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::FabricanteVacina
              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::FabricanteVacina]
@@ -338,15 +338,22 @@ class ::FabricanteVacina < ::ApplicationRecord
     def <<: (*::FabricanteVacina | ::Array[::FabricanteVacina]) -> self
     def prepend: (*::FabricanteVacina | ::Array[::FabricanteVacina]) -> self
   end
+
+  class ::FabricanteVacina::Validated
+    def id: () -> ::Integer
+    def vacina: () -> ::Vacina
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
 end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Vacina < ::ApplicationRecord
 end
 class ::Dose < ::ApplicationRecord
 end
 class ::Dose::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end
 class ::Caderneta < ::ApplicationRecord
-end
-class ::Vacina < ::ApplicationRecord
 end

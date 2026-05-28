@@ -1,0 +1,21 @@
+---
+version: 1
+callbacks:
+- class: DosesController
+  apply_postcondition_of: set_dose
+  runs_before:
+  - show
+  - edit
+- class: DosesController
+  apply_postcondition_of: set_vacina
+  runs_before:
+  - new
+  - create
+  - edit
+- class: VacinasController
+  apply_postcondition_of: set_vacina
+  runs_before:
+  - show
+  - edit
+  - update
+  - destroy

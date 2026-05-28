@@ -7,6 +7,14 @@ PATH
       steep
 
 PATH
+  remote: ../rbs_rails
+  specs:
+    rbs_rails (0.13.0)
+      parser
+      prism
+      rbs (>= 1)
+
+PATH
   remote: ../steep
   specs:
     steep (2.0.0.dev)
@@ -423,10 +431,6 @@ GEM
     rbs-inline (0.14.0)
       prism (>= 0.29)
       rbs (~> 4.0)
-    rbs_rails (0.13.0)
-      parser
-      prism
-      rbs (>= 1)
     rdoc (7.2.0)
       erb
       psych (>= 4.0.0)
@@ -642,7 +646,7 @@ DEPENDENCIES
   rbs (~> 4.0.0.dev.5)
   rbs-inline
   rbs_infer!
-  rbs_rails
+  rbs_rails!
   rspec-rails (~> 8.0.0)
   rubocop
   rubocop-performance

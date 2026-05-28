@@ -44,7 +44,7 @@ gem 'steep', path: '../steep', require: false
 gem 'rbs', '~> 4.0.0.dev.5', require: false
 gem 'rbs_infer', path: '../rbs_infer'
 gem 'rbs-inline', require: false
-gem 'rbs_rails', require: false#, path: '../rbs_rails'
+gem 'rbs_rails', require: false, path: '../rbs_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

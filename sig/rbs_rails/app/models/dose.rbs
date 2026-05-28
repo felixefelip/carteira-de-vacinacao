@@ -1,12 +1,12 @@
 # resolve-type-names: false
 
 class ::Dose < ::ApplicationRecord
-  extend ::ActiveRecord::Base::ClassMethods[::Dose, ::Dose::ActiveRecord_Relation, ::Integer]
+  extend ::ActiveRecord::Base::ClassMethods[::Dose, ::Dose::ActiveRecord_Relation, ::Integer, ::Dose::Validated]
 
   module ::Dose::GeneratedAttributeMethods
-    def id: () -> ::Integer
+    def id: () -> ::Integer?
 
-    def id=: (::Integer) -> ::Integer
+    def id=: (::Integer?) -> ::Integer?
 
     def id?: () -> bool
 
@@ -40,9 +40,9 @@ class ::Dose < ::ApplicationRecord
 
     def clear_id_change: () -> void
 
-    def id_before_type_cast: () -> ::Integer
+    def id_before_type_cast: () -> ::Integer?
 
-    def id_for_database: () -> ::Integer
+    def id_for_database: () -> ::Integer?
 
     def tipo: () -> ::String?
 
@@ -244,9 +244,9 @@ class ::Dose < ::ApplicationRecord
 
     def local_codigo_for_database: () -> ::String?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def created_at?: () -> bool
 
@@ -280,13 +280,13 @@ class ::Dose < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    def created_at_before_type_cast: () -> ::Time?
 
-    def created_at_for_database: () -> ::Time
+    def created_at_for_database: () -> ::Time?
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def updated_at?: () -> bool
 
@@ -320,13 +320,13 @@ class ::Dose < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    def updated_at_before_type_cast: () -> ::Time?
 
-    def updated_at_for_database: () -> ::Time
+    def updated_at_for_database: () -> ::Time?
 
-    def fabricante_vacina_id: () -> ::Integer
+    def fabricante_vacina_id: () -> ::Integer?
 
-    def fabricante_vacina_id=: (::Integer) -> ::Integer
+    def fabricante_vacina_id=: (::Integer?) -> ::Integer?
 
     def fabricante_vacina_id?: () -> bool
 
@@ -360,13 +360,13 @@ class ::Dose < ::ApplicationRecord
 
     def clear_fabricante_vacina_id_change: () -> void
 
-    def fabricante_vacina_id_before_type_cast: () -> ::Integer
+    def fabricante_vacina_id_before_type_cast: () -> ::Integer?
 
-    def fabricante_vacina_id_for_database: () -> ::Integer
+    def fabricante_vacina_id_for_database: () -> ::Integer?
 
-    def caderneta_id: () -> ::Integer
+    def caderneta_id: () -> ::Integer?
 
-    def caderneta_id=: (::Integer) -> ::Integer
+    def caderneta_id=: (::Integer?) -> ::Integer?
 
     def caderneta_id?: () -> bool
 
@@ -400,9 +400,9 @@ class ::Dose < ::ApplicationRecord
 
     def clear_caderneta_id_change: () -> void
 
-    def caderneta_id_before_type_cast: () -> ::Integer
+    def caderneta_id_before_type_cast: () -> ::Integer?
 
-    def caderneta_id_for_database: () -> ::Integer
+    def caderneta_id_for_database: () -> ::Integer?
   end
   include ::Dose::GeneratedAttributeMethods
   module ::Dose::GeneratedAliasAttributeMethods
@@ -450,13 +450,13 @@ class ::Dose < ::ApplicationRecord
   end
   include ::Dose::GeneratedAliasAttributeMethods
 
-  def caderneta: () -> ::Caderneta
+  def caderneta: () -> ::Caderneta?
   def caderneta=: (::Caderneta?) -> ::Caderneta?
   def reload_caderneta: () -> ::Caderneta?
   def build_caderneta: (untyped) -> ::Caderneta
   def create_caderneta: (untyped) -> ::Caderneta
   def create_caderneta!: (untyped) -> ::Caderneta
-  def fabricante_vacina: () -> ::FabricanteVacina
+  def fabricante_vacina: () -> ::FabricanteVacina?
   def fabricante_vacina=: (::FabricanteVacina?) -> ::FabricanteVacina?
   def reload_fabricante_vacina: () -> ::FabricanteVacina?
   def build_fabricante_vacina: (untyped) -> ::FabricanteVacina
@@ -472,13 +472,13 @@ class ::Dose < ::ApplicationRecord
   class ::Dose::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Dose]
     include ::Dose::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::Dose, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::Dose, ::Integer, ::Dose::Validated]
   end
 
   class ::Dose::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
     include ::Enumerable[::Dose]
     include ::Dose::GeneratedRelationMethods
-    include ::ActiveRecord::Relation::Methods[::Dose, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::Dose, ::Integer, ::Dose::Validated]
 
     def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Dose
              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Dose]
@@ -493,6 +493,14 @@ class ::Dose < ::ApplicationRecord
     def destroy: (*::Dose | ::Integer) -> ::Array[::Dose]
     def <<: (*::Dose | ::Array[::Dose]) -> self
     def prepend: (*::Dose | ::Array[::Dose]) -> self
+  end
+
+  class ::Dose::Validated
+    def id: () -> ::Integer
+    def caderneta: () -> ::Caderneta
+    def fabricante_vacina: () -> ::FabricanteVacina
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
   end
 end
 

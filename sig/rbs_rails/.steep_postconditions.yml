@@ -1,0 +1,221 @@
+---
+postconditions:
+- class: Caderneta
+  method: save
+  when_true:
+    via_receiver:
+    - &1
+      through: Caderneta::RecomendacaoVacina#caderneta
+      as: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta
+    self: Caderneta & Caderneta::Validated
+  when_false:
+    drops:
+    - Caderneta::Validated
+- class: Caderneta
+  method: save!
+  when_true:
+    via_receiver:
+    - *1
+    self: Caderneta & Caderneta::Validated
+- class: Caderneta
+  method: update
+  when_true:
+    via_receiver:
+    - *1
+    self: Caderneta & Caderneta::Validated
+  when_false:
+    drops:
+    - Caderneta::Validated
+- class: Caderneta
+  method: update!
+  when_true:
+    via_receiver:
+    - *1
+    self: Caderneta & Caderneta::Validated
+- class: Caderneta
+  method: valid?
+  when_true:
+    via_receiver:
+    - *1
+    self: Caderneta & Caderneta::Validated
+  when_false:
+    drops:
+    - Caderneta::Validated
+- class: Caderneta::RecomendacaoVacina
+  method: save
+  when_true:
+    self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+  when_false:
+    drops:
+    - Caderneta::RecomendacaoVacina::Validated
+- class: Caderneta::RecomendacaoVacina
+  method: save!
+  when_true:
+    self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+- class: Caderneta::RecomendacaoVacina
+  method: update
+  when_true:
+    self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+  when_false:
+    drops:
+    - Caderneta::RecomendacaoVacina::Validated
+- class: Caderneta::RecomendacaoVacina
+  method: update!
+  when_true:
+    self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+- class: Caderneta::RecomendacaoVacina
+  method: valid?
+  when_true:
+    self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+  when_false:
+    drops:
+    - Caderneta::RecomendacaoVacina::Validated
+- class: Dose
+  method: save
+  when_true:
+    self: Dose & Dose::Validated
+  when_false:
+    drops:
+    - Dose::Validated
+- class: Dose
+  method: save!
+  when_true:
+    self: Dose & Dose::Validated
+- class: Dose
+  method: update
+  when_true:
+    self: Dose & Dose::Validated
+  when_false:
+    drops:
+    - Dose::Validated
+- class: Dose
+  method: update!
+  when_true:
+    self: Dose & Dose::Validated
+- class: Dose
+  method: valid?
+  when_true:
+    self: Dose & Dose::Validated
+  when_false:
+    drops:
+    - Dose::Validated
+- class: DoseDoCalendario
+  method: save
+  when_true:
+    self: DoseDoCalendario & DoseDoCalendario::Validated
+  when_false:
+    drops:
+    - DoseDoCalendario::Validated
+- class: DoseDoCalendario
+  method: save!
+  when_true:
+    self: DoseDoCalendario & DoseDoCalendario::Validated
+- class: DoseDoCalendario
+  method: update
+  when_true:
+    self: DoseDoCalendario & DoseDoCalendario::Validated
+  when_false:
+    drops:
+    - DoseDoCalendario::Validated
+- class: DoseDoCalendario
+  method: update!
+  when_true:
+    self: DoseDoCalendario & DoseDoCalendario::Validated
+- class: DoseDoCalendario
+  method: valid?
+  when_true:
+    self: DoseDoCalendario & DoseDoCalendario::Validated
+  when_false:
+    drops:
+    - DoseDoCalendario::Validated
+- class: FabricanteVacina
+  method: save
+  when_true:
+    self: FabricanteVacina & FabricanteVacina::Validated
+  when_false:
+    drops:
+    - FabricanteVacina::Validated
+- class: FabricanteVacina
+  method: save!
+  when_true:
+    self: FabricanteVacina & FabricanteVacina::Validated
+- class: FabricanteVacina
+  method: update
+  when_true:
+    self: FabricanteVacina & FabricanteVacina::Validated
+  when_false:
+    drops:
+    - FabricanteVacina::Validated
+- class: FabricanteVacina
+  method: update!
+  when_true:
+    self: FabricanteVacina & FabricanteVacina::Validated
+- class: FabricanteVacina
+  method: valid?
+  when_true:
+    self: FabricanteVacina & FabricanteVacina::Validated
+  when_false:
+    drops:
+    - FabricanteVacina::Validated
+- class: User
+  method: email_required?
+  when_true:
+    self: User & User::ValidatedAsEmailRequired
+- class: User
+  method: save
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: User
+  method: save!
+  when_true:
+    self: User & User::Validated
+- class: User
+  method: update
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: User
+  method: update!
+  when_true:
+    self: User & User::Validated
+- class: User
+  method: valid?
+  when_true:
+    self: User & User::Validated
+  when_false:
+    drops:
+    - User::Validated
+- class: Vacina
+  method: save
+  when_true:
+    self: Vacina & Vacina::Validated
+  when_false:
+    drops:
+    - Vacina::Validated
+- class: Vacina
+  method: save!
+  when_true:
+    self: Vacina & Vacina::Validated
+- class: Vacina
+  method: update
+  when_true:
+    self: Vacina & Vacina::Validated
+  when_false:
+    drops:
+    - Vacina::Validated
+- class: Vacina
+  method: update!
+  when_true:
+    self: Vacina & Vacina::Validated
+- class: Vacina
+  method: valid?
+  when_true:
+    self: Vacina & Vacina::Validated
+  when_false:
+    drops:
+    - Vacina::Validated
