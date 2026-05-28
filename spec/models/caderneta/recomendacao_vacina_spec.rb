@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Caderneta::RecomendacaoVacina, :aggregate_failures do
+RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures do
   describe 'associations' do
     it { should have_one(:user) }
   end

@@ -30,7 +30,7 @@ class User < ApplicationRecord
 
   before_validation :set_user_dose_na_criacao
 
-  #: -> Caderneta
+  #: -> ::Caderneta
   def caderneta!
     T.must(caderneta)
   end

@@ -335,22 +335,22 @@ class User
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def build_caderneta(*args, &blk); end
 
-    sig { returns(T.nilable(::User::Caderneta)) }
+    sig { returns(T.nilable(::Caderneta)) }
     def caderneta; end
 
-    sig { params(value: T.nilable(::User::Caderneta)).void }
+    sig { params(value: T.nilable(::Caderneta)).void }
     def caderneta=(value); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def create_caderneta(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def create_caderneta!(*args, &blk); end
 
-    sig { returns(T.nilable(::User::Caderneta)) }
+    sig { returns(T.nilable(::Caderneta)) }
     def reload_caderneta; end
 
     sig { void }

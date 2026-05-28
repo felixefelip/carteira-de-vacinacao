@@ -13,7 +13,7 @@ class Current < ActiveSupport::CurrentAttributes
     @@user = user
   end
 
-  #: -> User::Caderneta
+  #: -> Caderneta
   def self.caderneta!
     user!.caderneta!
   end

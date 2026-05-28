@@ -384,16 +384,16 @@ class FabricanteVacina
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def build_caderneta(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
     def build_vacina(*args, &blk); end
 
-    sig { returns(T.nilable(::User::Caderneta)) }
+    sig { returns(T.nilable(::Caderneta)) }
     def caderneta; end
 
-    sig { params(value: T.nilable(::User::Caderneta)).void }
+    sig { params(value: T.nilable(::Caderneta)).void }
     def caderneta=(value); end
 
     sig { returns(T::Boolean) }
@@ -402,10 +402,10 @@ class FabricanteVacina
     sig { returns(T::Boolean) }
     def caderneta_previously_changed?; end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def create_caderneta(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::User::Caderneta) }
+    sig { params(args: T.untyped, blk: T.untyped).returns(::Caderneta) }
     def create_caderneta!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Vacina) }
@@ -428,7 +428,7 @@ class FabricanteVacina
     sig { params(value: T::Enumerable[::Dose]).void }
     def doses=(value); end
 
-    sig { returns(T.nilable(::User::Caderneta)) }
+    sig { returns(T.nilable(::Caderneta)) }
     def reload_caderneta; end
 
     sig { returns(T.nilable(::Vacina)) }

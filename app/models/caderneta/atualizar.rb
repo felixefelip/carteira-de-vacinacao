@@ -1,10 +1,10 @@
 # typed: true
 
-class User::Caderneta
+class Caderneta
   class Atualizar
     extend T::Sig
 
-    #: (User::Caderneta) -> void
+    #: (Caderneta) -> void
     def initialize(caderneta)
       @caderneta = caderneta
     end
@@ -16,7 +16,7 @@ class User::Caderneta
 
     private
 
-    sig { returns(User::Caderneta) }
+    sig { returns(Caderneta) }
     attr_reader :caderneta
 
     #: -> void

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::Caderneta do
+RSpec.describe Caderneta do
   describe 'associations' do
     it { should belong_to(:user).required }
     it { should have_many(:recomendacao_vacinas).dependent(:destroy) }

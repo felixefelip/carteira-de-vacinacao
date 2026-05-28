@@ -382,10 +382,10 @@ class Vacina
 
     # This method is created by ActiveRecord on the `Vacina` class because it declared `has_many :recomendacao_vacinas`.
     # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::User::Caderneta::RecomendacaoVacina::PrivateCollectionProxy) }
+    sig { returns(::Caderneta::RecomendacaoVacina::PrivateCollectionProxy) }
     def recomendacao_vacinas; end
 
-    sig { params(value: T::Enumerable[::User::Caderneta::RecomendacaoVacina]).void }
+    sig { params(value: T::Enumerable[::Caderneta::RecomendacaoVacina]).void }
     def recomendacao_vacinas=(value); end
   end
 

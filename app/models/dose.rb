@@ -18,7 +18,7 @@
 class Dose < ApplicationRecord
   extend T::Sig
 
-  belongs_to :caderneta, class_name: 'User::Caderneta'
+  belongs_to :caderneta
   belongs_to :fabricante_vacina
 
   after_save :atualizar_calendario
@@ -28,7 +28,7 @@ class Dose < ApplicationRecord
     caderneta!.atualizar_caderneta_de_vacinacao
   end
 
-  #: -> User::Caderneta
+  #: -> Caderneta
   def caderneta!
     T.must(caderneta)
   end

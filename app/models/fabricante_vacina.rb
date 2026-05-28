@@ -16,7 +16,7 @@ class FabricanteVacina < ApplicationRecord
 
   extend T::Sig
 
-  belongs_to :caderneta, optional: true, class_name: 'User::Caderneta'
+  belongs_to :caderneta, optional: true
   belongs_to :vacina
 
   has_many :doses, dependent: :destroy

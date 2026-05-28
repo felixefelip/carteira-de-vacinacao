@@ -10,7 +10,7 @@
 #  user_id    :bigint           not null
 #
 
-class User::Caderneta < ApplicationRecord
+class Caderneta < ApplicationRecord
   extend T::Sig
 
   self.table_name = 'cadernetas'

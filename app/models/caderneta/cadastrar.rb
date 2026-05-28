@@ -1,10 +1,10 @@
 # typed: true
 
-class User::Caderneta
+class Caderneta
   class Cadastrar
     extend T::Sig
 
-    #: (User::Caderneta) -> void
+    #: (Caderneta) -> void
     def initialize(caderneta)
       self.caderneta = caderneta
     end
@@ -16,7 +16,7 @@ class User::Caderneta
 
     private
 
-    #: User::Caderneta
+    #: Caderneta
     attr_accessor :caderneta
 
     #: -> void
