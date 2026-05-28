@@ -17,10 +17,10 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures do
 
         user = FactoryBot.create(:user, data_nascimento: 5.months.ago)
 
-        expect(user.caderneta!.recomendacao_vacinas.count).to eq(17)
+        expect(user.caderneta.recomendacao_vacinas.count).to eq(17)
 
-        recomendacao_vacina = user.caderneta!.recomendacao_vacinas.detect do |recomendacao_vacina_busca|
-          recomendacao_vacina_busca.vacina!.descricao == 'Poliomielite 1,2,3 (VIP - inativada)'
+        recomendacao_vacina = user.caderneta.recomendacao_vacinas.detect do |recomendacao_vacina_busca|
+          recomendacao_vacina_busca.vacina.descricao == 'Poliomielite 1,2,3 (VIP - inativada)'
         end
 
         expect(recomendacao_vacina.pode_tomar_nova_dose?).to(be(true))
@@ -29,14 +29,14 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures do
         expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
         Dose.create!(
-          caderneta: user.caderneta!,
+          caderneta: user.caderneta,
           data_vacinacao: Date.current,
-          fabricante_vacina: recomendacao_vacina.vacina!.fabricante_vacinas.first!,
+          fabricante_vacina: recomendacao_vacina.vacina.fabricante_vacinas.first!,
         )
 
         expect(recomendacao_vacina.pode_tomar_nova_dose?).to(be(false))
         expect(recomendacao_vacina.dose_atual_dentro_do_intervalo_de_espera?).to(be(true))
-        expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to eq(Date.current + recomendacao_vacina.vacina!.dias_de_intervalo.days)
+        expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to eq(Date.current + recomendacao_vacina.vacina.dias_de_intervalo.days)
         expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to eq(Date.current + 30.days)
         expect(recomendacao_vacina.status_vacinal).to eq('aguardando')
 
@@ -49,14 +49,14 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures do
         expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
         Dose.create!(
-          caderneta: user.caderneta!,
+          caderneta: user.caderneta,
           data_vacinacao: Date.current,
-          fabricante_vacina: recomendacao_vacina.vacina!.fabricante_vacinas.first!,
+          fabricante_vacina: recomendacao_vacina.vacina.fabricante_vacinas.first!,
         )
 
         expect(recomendacao_vacina.pode_tomar_nova_dose?).to(be(false))
         expect(recomendacao_vacina.dose_atual_dentro_do_intervalo_de_espera?).to(be(true))
-        # expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to eq(Date.current + recomendacao_vacina.vacina!.dias_de_intervalo.days)
+        # expect(recomendacao_vacina.quando_pode_tomar_proxima_dose).to eq(Date.current + recomendacao_vacina.vacina.dias_de_intervalo.days)
         expect(recomendacao_vacina.status_vacinal).to eq('aguardando')
       end
     end

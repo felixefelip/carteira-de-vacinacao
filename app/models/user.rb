@@ -26,15 +26,7 @@ class User < ApplicationRecord
 
   before_validation :set_user_dose_na_criacao
 
-  def caderneta!
-    caderneta
-  end
-
   def set_user_dose_na_criacao
     caderneta || build_caderneta
-  end
-
-  def data_nascimento
-    self[:data_nascimento]
   end
 end

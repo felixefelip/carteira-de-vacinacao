@@ -20,10 +20,6 @@ class Dose < ApplicationRecord
   after_save :atualizar_calendario
 
   def atualizar_calendario
-    caderneta!.atualizar_caderneta_de_vacinacao
-  end
-
-  def caderneta!
-    caderneta
+    caderneta.atualizar_caderneta_de_vacinacao
   end
 end

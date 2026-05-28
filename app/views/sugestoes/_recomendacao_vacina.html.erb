@@ -1,8 +1,8 @@
-<% status = recomendacao_vacina.status_vacinal! %>
+<% status = recomendacao_vacina.status_vacinal %>
 <% idade_recomendada = idade_recomendada_para(recomendacao_vacina) %>
 
 <tr class="vaccine-row">
-  <td class="vaccine-name"><%= recomendacao_vacina.vacina!.descricao %></td>
+  <td class="vaccine-name"><%= recomendacao_vacina.vacina.descricao %></td>
   <td class="dose-count text-center">
     <span class="badge badge-info dose-badge"><%= recomendacao_vacina.qtde_doses_tomadas %></span>
   </td>

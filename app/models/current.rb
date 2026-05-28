@@ -8,6 +8,6 @@ class Current < ActiveSupport::CurrentAttributes
   end
 
   def self.caderneta!
-    user!.caderneta!
+    user!.caderneta
   end
 end

@@ -17,9 +17,5 @@ class User
         "#{idade.to_s[2]} mês"
       end
     end
-
-    def data_nascimento
-      raise NotImplementedError
-    end
   end
 end
