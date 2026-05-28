@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User do
+RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_one(:caderneta).dependent(:destroy) }
   end

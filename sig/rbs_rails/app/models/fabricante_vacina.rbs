@@ -1,0 +1,352 @@
+# resolve-type-names: false
+
+class ::FabricanteVacina < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::FabricanteVacina, ::FabricanteVacina::ActiveRecord_Relation, ::Integer]
+
+  module ::FabricanteVacina::GeneratedAttributeMethods
+    def id: () -> ::Integer
+
+    def id=: (::Integer) -> ::Integer
+
+    def id?: () -> bool
+
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> ::Integer?
+
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_previous_change: () -> ::Array[::Integer?]?
+
+    def id_previously_was: () -> ::Integer?
+
+    def id_before_last_save: () -> ::Integer?
+
+    def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def id_in_database: () -> ::Integer?
+
+    def saved_change_to_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::Integer
+
+    def id_for_database: () -> ::Integer
+
+    def descricao: () -> ::String?
+
+    def descricao=: (::String?) -> ::String?
+
+    def descricao?: () -> bool
+
+    def descricao_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def descricao_change: () -> [ ::String?, ::String? ]
+
+    def descricao_will_change!: () -> void
+
+    def descricao_was: () -> ::String?
+
+    def descricao_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def descricao_previous_change: () -> ::Array[::String?]?
+
+    def descricao_previously_was: () -> ::String?
+
+    def descricao_before_last_save: () -> ::String?
+
+    def descricao_change_to_be_saved: () -> ::Array[::String?]?
+
+    def descricao_in_database: () -> ::String?
+
+    def saved_change_to_descricao: () -> ::Array[::String?]?
+
+    def saved_change_to_descricao?: () -> bool
+
+    def will_save_change_to_descricao?: () -> bool
+
+    def restore_descricao!: () -> void
+
+    def clear_descricao_change: () -> void
+
+    def descricao_before_type_cast: () -> ::String?
+
+    def descricao_for_database: () -> ::String?
+
+    def vacina_id: () -> ::Integer
+
+    def vacina_id=: (::Integer) -> ::Integer
+
+    def vacina_id?: () -> bool
+
+    def vacina_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def vacina_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def vacina_id_will_change!: () -> void
+
+    def vacina_id_was: () -> ::Integer?
+
+    def vacina_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def vacina_id_previous_change: () -> ::Array[::Integer?]?
+
+    def vacina_id_previously_was: () -> ::Integer?
+
+    def vacina_id_before_last_save: () -> ::Integer?
+
+    def vacina_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def vacina_id_in_database: () -> ::Integer?
+
+    def saved_change_to_vacina_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_vacina_id?: () -> bool
+
+    def will_save_change_to_vacina_id?: () -> bool
+
+    def restore_vacina_id!: () -> void
+
+    def clear_vacina_id_change: () -> void
+
+    def vacina_id_before_type_cast: () -> ::Integer
+
+    def vacina_id_for_database: () -> ::Integer
+
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+
+    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+
+    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
+    def caderneta_id: () -> ::Integer?
+
+    def caderneta_id=: (::Integer?) -> ::Integer?
+
+    def caderneta_id?: () -> bool
+
+    def caderneta_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def caderneta_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def caderneta_id_will_change!: () -> void
+
+    def caderneta_id_was: () -> ::Integer?
+
+    def caderneta_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def caderneta_id_previous_change: () -> ::Array[::Integer?]?
+
+    def caderneta_id_previously_was: () -> ::Integer?
+
+    def caderneta_id_before_last_save: () -> ::Integer?
+
+    def caderneta_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def caderneta_id_in_database: () -> ::Integer?
+
+    def saved_change_to_caderneta_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_caderneta_id?: () -> bool
+
+    def will_save_change_to_caderneta_id?: () -> bool
+
+    def restore_caderneta_id!: () -> void
+
+    def clear_caderneta_id_change: () -> void
+
+    def caderneta_id_before_type_cast: () -> ::Integer?
+
+    def caderneta_id_for_database: () -> ::Integer?
+  end
+  include ::FabricanteVacina::GeneratedAttributeMethods
+  module ::FabricanteVacina::GeneratedAliasAttributeMethods
+    include ::FabricanteVacina::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::FabricanteVacina::GeneratedAliasAttributeMethods
+  def doses: () -> ::Dose::ActiveRecord_Associations_CollectionProxy
+  def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
+  def dose_ids: () -> ::Array[::Integer]
+  def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
+  def caderneta: () -> ::Caderneta?
+  def caderneta=: (::Caderneta?) -> ::Caderneta?
+  def reload_caderneta: () -> ::Caderneta?
+  def build_caderneta: (untyped) -> ::Caderneta
+  def create_caderneta: (untyped) -> ::Caderneta
+  def create_caderneta!: (untyped) -> ::Caderneta
+  def vacina: () -> ::Vacina
+  def vacina=: (::Vacina?) -> ::Vacina?
+  def reload_vacina: () -> ::Vacina?
+  def build_vacina: (untyped) -> ::Vacina
+  def create_vacina: (untyped) -> ::Vacina
+  def create_vacina!: (untyped) -> ::Vacina
+  module ::FabricanteVacina::GeneratedAssociationMethods
+  end
+  include ::FabricanteVacina::GeneratedAssociationMethods
+
+  module ::FabricanteVacina::GeneratedRelationMethods
+  end
+
+  class ::FabricanteVacina::ActiveRecord_Relation < ::ActiveRecord::Relation
+    include ::Enumerable[::FabricanteVacina]
+    include ::FabricanteVacina::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer]
+  end
+
+  class ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::FabricanteVacina]
+    include ::FabricanteVacina::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::FabricanteVacina, ::Integer]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::FabricanteVacina
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::FabricanteVacina]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::FabricanteVacina
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::FabricanteVacina]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::FabricanteVacina
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::FabricanteVacina]
+    def reload: () -> ::Array[::FabricanteVacina]
+
+    def replace: (::Array[::FabricanteVacina]) -> void
+    def delete: (*::FabricanteVacina | ::Integer) -> ::Array[::FabricanteVacina]
+    def destroy: (*::FabricanteVacina | ::Integer) -> ::Array[::FabricanteVacina]
+    def <<: (*::FabricanteVacina | ::Array[::FabricanteVacina]) -> self
+    def prepend: (*::FabricanteVacina | ::Array[::FabricanteVacina]) -> self
+  end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Dose < ::ApplicationRecord
+end
+class ::Dose::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Caderneta < ::ApplicationRecord
+end
+class ::Vacina < ::ApplicationRecord
+end

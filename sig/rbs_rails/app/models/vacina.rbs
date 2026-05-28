@@ -1,0 +1,362 @@
+# resolve-type-names: false
+
+class ::Vacina < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Vacina, ::Vacina::ActiveRecord_Relation, ::Integer]
+
+  module ::Vacina::GeneratedAttributeMethods
+    def id: () -> ::Integer
+
+    def id=: (::Integer) -> ::Integer
+
+    def id?: () -> bool
+
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> ::Integer?
+
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_previous_change: () -> ::Array[::Integer?]?
+
+    def id_previously_was: () -> ::Integer?
+
+    def id_before_last_save: () -> ::Integer?
+
+    def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def id_in_database: () -> ::Integer?
+
+    def saved_change_to_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::Integer
+
+    def id_for_database: () -> ::Integer
+
+    def descricao: () -> ::String?
+
+    def descricao=: (::String?) -> ::String?
+
+    def descricao?: () -> bool
+
+    def descricao_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def descricao_change: () -> [ ::String?, ::String? ]
+
+    def descricao_will_change!: () -> void
+
+    def descricao_was: () -> ::String?
+
+    def descricao_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def descricao_previous_change: () -> ::Array[::String?]?
+
+    def descricao_previously_was: () -> ::String?
+
+    def descricao_before_last_save: () -> ::String?
+
+    def descricao_change_to_be_saved: () -> ::Array[::String?]?
+
+    def descricao_in_database: () -> ::String?
+
+    def saved_change_to_descricao: () -> ::Array[::String?]?
+
+    def saved_change_to_descricao?: () -> bool
+
+    def will_save_change_to_descricao?: () -> bool
+
+    def restore_descricao!: () -> void
+
+    def clear_descricao_change: () -> void
+
+    def descricao_before_type_cast: () -> ::String?
+
+    def descricao_for_database: () -> ::String?
+
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+
+    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+
+    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+
+    def updated_at_before_type_cast: () -> ::Time
+
+    def updated_at_for_database: () -> ::Time
+
+    def dias_de_intervalo: () -> ::Integer
+
+    def dias_de_intervalo=: (::Integer) -> ::Integer
+
+    def dias_de_intervalo?: () -> bool
+
+    def dias_de_intervalo_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def dias_de_intervalo_change: () -> [ ::Integer?, ::Integer? ]
+
+    def dias_de_intervalo_will_change!: () -> void
+
+    def dias_de_intervalo_was: () -> ::Integer?
+
+    def dias_de_intervalo_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def dias_de_intervalo_previous_change: () -> ::Array[::Integer?]?
+
+    def dias_de_intervalo_previously_was: () -> ::Integer?
+
+    def dias_de_intervalo_before_last_save: () -> ::Integer?
+
+    def dias_de_intervalo_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def dias_de_intervalo_in_database: () -> ::Integer?
+
+    def saved_change_to_dias_de_intervalo: () -> ::Array[::Integer?]?
+
+    def saved_change_to_dias_de_intervalo?: () -> bool
+
+    def will_save_change_to_dias_de_intervalo?: () -> bool
+
+    def restore_dias_de_intervalo!: () -> void
+
+    def clear_dias_de_intervalo_change: () -> void
+
+    def dias_de_intervalo_before_type_cast: () -> ::Integer
+
+    def dias_de_intervalo_for_database: () -> ::Integer
+
+    def ordem_no_calendario: () -> ::Integer?
+
+    def ordem_no_calendario=: (::Integer?) -> ::Integer?
+
+    def ordem_no_calendario?: () -> bool
+
+    def ordem_no_calendario_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def ordem_no_calendario_change: () -> [ ::Integer?, ::Integer? ]
+
+    def ordem_no_calendario_will_change!: () -> void
+
+    def ordem_no_calendario_was: () -> ::Integer?
+
+    def ordem_no_calendario_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def ordem_no_calendario_previous_change: () -> ::Array[::Integer?]?
+
+    def ordem_no_calendario_previously_was: () -> ::Integer?
+
+    def ordem_no_calendario_before_last_save: () -> ::Integer?
+
+    def ordem_no_calendario_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def ordem_no_calendario_in_database: () -> ::Integer?
+
+    def saved_change_to_ordem_no_calendario: () -> ::Array[::Integer?]?
+
+    def saved_change_to_ordem_no_calendario?: () -> bool
+
+    def will_save_change_to_ordem_no_calendario?: () -> bool
+
+    def restore_ordem_no_calendario!: () -> void
+
+    def clear_ordem_no_calendario_change: () -> void
+
+    def ordem_no_calendario_before_type_cast: () -> ::Integer?
+
+    def ordem_no_calendario_for_database: () -> ::Integer?
+  end
+  include ::Vacina::GeneratedAttributeMethods
+  module ::Vacina::GeneratedAliasAttributeMethods
+    include ::Vacina::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Vacina::GeneratedAliasAttributeMethods
+  def fabricante_vacinas: () -> ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  def fabricante_vacinas=: (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina]) -> (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina])
+  def fabricante_vacina_ids: () -> ::Array[::Integer]
+  def fabricante_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def doses: () -> ::Dose::ActiveRecord_Associations_CollectionProxy
+  def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
+  def dose_ids: () -> ::Array[::Integer]
+  def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def recomendacao_vacinas: () -> ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  def recomendacao_vacinas=: (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina]) -> (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina])
+  def recomendacao_vacina_ids: () -> ::Array[::Integer]
+  def recomendacao_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def dose_do_calendarios: () -> ::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy
+  def dose_do_calendarios=: (::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy | ::Array[::DoseDoCalendario]) -> (::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy | ::Array[::DoseDoCalendario])
+  def dose_do_calendario_ids: () -> ::Array[::Integer]
+  def dose_do_calendario_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
+  module ::Vacina::GeneratedAssociationMethods
+  end
+  include ::Vacina::GeneratedAssociationMethods
+
+  module ::Vacina::GeneratedRelationMethods
+  end
+
+  class ::Vacina::ActiveRecord_Relation < ::ActiveRecord::Relation
+    include ::Enumerable[::Vacina]
+    include ::Vacina::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer]
+  end
+
+  class ::Vacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Vacina]
+    include ::Vacina::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Vacina, ::Integer]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Vacina
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Vacina]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Vacina
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Vacina]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Vacina
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Vacina]
+    def reload: () -> ::Array[::Vacina]
+
+    def replace: (::Array[::Vacina]) -> void
+    def delete: (*::Vacina | ::Integer) -> ::Array[::Vacina]
+    def destroy: (*::Vacina | ::Integer) -> ::Array[::Vacina]
+    def <<: (*::Vacina | ::Array[::Vacina]) -> self
+    def prepend: (*::Vacina | ::Array[::Vacina]) -> self
+  end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::FabricanteVacina < ::ApplicationRecord
+end
+class ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Dose < ::ApplicationRecord
+end
+class ::Dose::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Caderneta::RecomendacaoVacina < ::ApplicationRecord
+end
+class ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::DoseDoCalendario < ::ApplicationRecord
+end
+class ::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Caderneta < ::ApplicationRecord
+end

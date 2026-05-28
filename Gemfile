@@ -29,9 +29,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
 
-gem 'rbs'
-gem 'rbs_rails'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -40,6 +37,15 @@ gem 'view_component'
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'importmap-rails'
 
+# gem "steep", "~> 1.10.0", require: false
+gem 'steep', path: '../steep', require: false
+# gem "steep", branch: "master", git: "https://github.com/soutaro/steep.git", require: false
+
+gem 'rbs', '~> 4.0.0.dev.5', require: false
+gem 'rbs_infer', path: '../rbs_infer'
+gem 'rbs-inline', require: false
+gem 'rbs_rails', require: false#, path: '../rbs_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -47,7 +53,7 @@ group :development, :test do
   gem 'packs-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 6.0.0'
+  gem 'rspec-rails', '~> 8.0.0'
 end
 
 group :development do
