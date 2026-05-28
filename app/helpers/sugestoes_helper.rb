@@ -13,15 +13,15 @@ module SugestoesHelper
 
     idade_meses = dose_calendario.idade_recomendada.to_i
 
-    if idade_meses == 0
-      "Ao nascer"
+    if idade_meses.zero?
+      'Ao nascer'
     elsif idade_meses < 12
       "#{idade_meses} #{idade_meses == 1 ? 'mês' : 'meses'}"
     else
       anos = idade_meses / 12
       meses_restantes = idade_meses % 12
 
-      if meses_restantes == 0
+      if meses_restantes.zero?
         "#{anos} #{anos == 1 ? 'ano' : 'anos'}"
       else
         "#{anos}a #{meses_restantes}m"
