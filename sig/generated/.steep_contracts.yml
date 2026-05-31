@@ -1,0 +1,66 @@
+---
+version: 1
+methods:
+  Caderneta::RecomendacaoVacina#dose_recomendada_atual:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: vacina
+    enforced: false
+  Caderneta::RecomendacaoVacina#intervalo_para_proxima_dose_termina_em:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: vacina
+    enforced: false
+  Caderneta::RecomendacaoVacina#qtde_doses_tomadas:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: caderneta
+    enforced: false
+  Caderneta::RecomendacaoVacina#tomou_todas_as_doses?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: vacina
+    enforced: false
+  Caderneta::RecomendacaoVacina#ultima_dose_tomada:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: caderneta
+    enforced: false
+  Caderneta::RecomendacaoVacina#user_idade:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: user
+    enforced: false
+  Dose#atualizar_calendario:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: caderneta
+    enforced: false

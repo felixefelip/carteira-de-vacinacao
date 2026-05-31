@@ -1,0 +1,70 @@
+---
+version: 1
+postconditions:
+- class: CadernetaController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": untyped
+    self: "::CadernetaController & ::CadernetaController::AfterIndex"
+- class: CadernetaController
+  method: show
+  unconditional:
+    ivars:
+      "@fabricante_vacinas": "::FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::CadernetaController & ::CadernetaController::AfterShow"
+- class: DosesController
+  method: create
+  unconditional:
+    ivars:
+      "@dose": "::Dose"
+    self: "::DosesController & ::DosesController::AfterCreate"
+- class: DosesController
+  method: new
+  unconditional:
+    ivars:
+      "@dose": "::Dose"
+    self: "::DosesController & ::DosesController::AfterNew"
+- class: DosesController
+  method: set_dose
+  unconditional:
+    ivars:
+      "@dose": "(::Dose & ::Dose::Validated)"
+    self: "::DosesController & ::DosesController::AfterSetDose"
+- class: DosesController
+  method: set_vacina
+  unconditional:
+    ivars:
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::DosesController & ::DosesController::AfterSetVacina"
+- class: SugestoesController
+  method: index
+  unconditional:
+    ivars:
+      "@recomendacao_vacinas": untyped
+    self: "::SugestoesController & ::SugestoesController::AfterIndex"
+- class: VacinasController
+  method: create
+  unconditional:
+    ivars:
+      "@vacina": "::Vacina"
+    self: "::VacinasController & ::VacinasController::AfterCreate"
+- class: VacinasController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": "::Vacina::ActiveRecord_Relation"
+    self: "::VacinasController & ::VacinasController::AfterIndex"
+- class: VacinasController
+  method: new
+  unconditional:
+    ivars:
+      "@vacina": "::Vacina"
+    self: "::VacinasController & ::VacinasController::AfterNew"
+- class: VacinasController
+  method: set_vacina
+  unconditional:
+    ivars:
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::VacinasController & ::VacinasController::AfterSetVacina"
