@@ -1,3 +1,2 @@
 class ApplicationRecord < ActiveRecord::Base
-  def self.devise: (**untyped) -> void
 end
