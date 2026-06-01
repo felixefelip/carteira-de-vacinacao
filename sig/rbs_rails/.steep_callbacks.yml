@@ -8,6 +8,7 @@ callbacks:
   - atualizar_caderneta_de_vacinacao
 - class: Caderneta::RecomendacaoVacina
   applies_self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+    & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta
   runs_before:
   - calcular_status_vacinal
   - tomou_todas_as_doses?

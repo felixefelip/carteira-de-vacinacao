@@ -267,7 +267,7 @@ class ::Caderneta < ::ApplicationRecord
 
   class ::Caderneta::Validated
     def id: () -> ::Integer
-    def user: () -> ::User
+    def user: () -> (::User & ::User::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end

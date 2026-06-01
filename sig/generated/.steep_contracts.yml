@@ -12,23 +12,3 @@ methods:
         chain:
         - dose_do_calendarios
     enforced: false
-  Caderneta::RecomendacaoVacina#intervalo_para_proxima_dose_termina_em:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: vacina
-        chain:
-        - dias_de_intervalo
-    enforced: false
-  Caderneta::RecomendacaoVacina#user_idade:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: user
-    enforced: false

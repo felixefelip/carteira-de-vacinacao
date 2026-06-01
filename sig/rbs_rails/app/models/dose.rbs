@@ -497,8 +497,8 @@ class ::Dose < ::ApplicationRecord
 
   class ::Dose::Validated
     def id: () -> ::Integer
-    def caderneta: () -> ::Caderneta
-    def fabricante_vacina: () -> ::FabricanteVacina
+    def caderneta: () -> (::Caderneta & ::Caderneta::Validated)
+    def fabricante_vacina: () -> (::FabricanteVacina & ::FabricanteVacina::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end

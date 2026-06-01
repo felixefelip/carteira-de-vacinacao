@@ -291,7 +291,7 @@ class ::DoseDoCalendario < ::ApplicationRecord
 
   class ::DoseDoCalendario::Validated
     def id: () -> ::Integer
-    def vacina: () -> ::Vacina
+    def vacina: () -> (::Vacina & ::Vacina::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end

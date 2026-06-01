@@ -371,8 +371,8 @@ class ::Caderneta < ::ApplicationRecord
 
     class ::Caderneta::RecomendacaoVacina::Validated
       def id: () -> ::Integer
-      def caderneta: () -> ::Caderneta
-      def vacina: () -> ::Vacina
+      def caderneta: () -> (::Caderneta & ::Caderneta::Validated)
+      def vacina: () -> (::Vacina & ::Vacina::Validated)
       def created_at: () -> ::ActiveSupport::TimeWithZone
       def updated_at: () -> ::ActiveSupport::TimeWithZone
     end
