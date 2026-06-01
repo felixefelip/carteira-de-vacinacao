@@ -1,6 +1,15 @@
 ---
 version: 1
 callbacks:
+- class: Caderneta
+  applies_self: Caderneta & Caderneta::Validated
+  runs_before:
+  - criar_caderneta_de_vacinacao
+  - atualizar_caderneta_de_vacinacao
+- class: Dose
+  applies_self: Dose & Dose::Validated
+  runs_before:
+  - atualizar_calendario
 - class: DosesController
   apply_postcondition_of: set_dose
   runs_before:

@@ -55,12 +55,3 @@ methods:
           kind: self
         method: user
     enforced: false
-  Dose#atualizar_calendario:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: caderneta
-    enforced: false
