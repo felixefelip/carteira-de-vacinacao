@@ -342,6 +342,7 @@ class ::Vacina < ::ApplicationRecord
   class ::Vacina::Validated
     def id: () -> ::Integer
     def descricao: () -> ::String
+    def dias_de_intervalo: () -> ::Integer
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end

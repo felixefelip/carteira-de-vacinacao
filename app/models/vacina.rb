@@ -20,7 +20,7 @@ class Vacina < ApplicationRecord
 
   before_validation :cadastrar_fornecedor_vacina_padrao, if: :sem_fabricante_vacina?
 
-  validates :descricao, presence: true
+  validates :descricao, :dias_de_intervalo, presence: true
   validates :ordem_no_calendario, uniqueness: true
   validates :fabricante_vacinas, length: { minimum: 1, message: 'deve ter pelo menos um fabricante' }
 
