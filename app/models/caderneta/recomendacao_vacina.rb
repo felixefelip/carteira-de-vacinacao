@@ -31,11 +31,11 @@ class Caderneta::RecomendacaoVacina < ApplicationRecord
 
   def calcular_status_vacinal
     self.status_vacinal = if tomou_todas_as_doses?
-                            :completo
+                            'completo'
                           elsif pode_tomar_nova_dose?
-                            :disponivel
+                            'disponivel'
                           else
-                            :aguardando
+                            'aguardando'
                           end
   end
 
