@@ -9,6 +9,8 @@ methods:
         receiver:
           kind: self
         method: vacina
+        chain:
+        - dose_do_calendarios
     enforced: false
   Caderneta::RecomendacaoVacina#intervalo_para_proxima_dose_termina_em:
     requires:
@@ -18,33 +20,8 @@ methods:
         receiver:
           kind: self
         method: vacina
-    enforced: false
-  Caderneta::RecomendacaoVacina#qtde_doses_tomadas:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: caderneta
-    enforced: false
-  Caderneta::RecomendacaoVacina#tomou_todas_as_doses?:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: vacina
-    enforced: false
-  Caderneta::RecomendacaoVacina#ultima_dose_tomada:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: caderneta
+        chain:
+        - dias_de_intervalo
     enforced: false
   Caderneta::RecomendacaoVacina#user_idade:
     requires:

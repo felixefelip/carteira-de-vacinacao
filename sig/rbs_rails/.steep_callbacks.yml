@@ -6,6 +6,19 @@ callbacks:
   runs_before:
   - criar_caderneta_de_vacinacao
   - atualizar_caderneta_de_vacinacao
+- class: Caderneta::RecomendacaoVacina
+  applies_self: Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated
+  runs_before:
+  - calcular_status_vacinal
+  - tomou_todas_as_doses?
+  - pode_tomar_nova_dose?
+  - qtde_doses_tomadas
+  - tem_idade_para_tomar_a_nova_dose?
+  - dose_atual_dentro_do_intervalo_de_espera?
+  - dose_recomendada_atual
+  - user_idade
+  - intervalo_para_proxima_dose_termina_em
+  - ultima_dose_tomada
 - class: Dose
   applies_self: Dose & Dose::Validated
   runs_before:
