@@ -12,7 +12,7 @@ class DosesController < ApplicationController
 
   def create
     @dose = Dose.new(dose_params)
-    @dose.caderneta = Current.caderneta!
+    @dose.caderneta = Current.caderneta
 
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'

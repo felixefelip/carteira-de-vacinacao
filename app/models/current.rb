@@ -1,13 +1,7 @@
 class Current < ActiveSupport::CurrentAttributes
-  def self.user!
-    @@user
-  end
+  attribute :user
 
-  def self.user=(user)
-    @@user = user
-  end
-
-  def self.caderneta!
-    user!.caderneta
+  def self.caderneta
+    user.caderneta
   end
 end
