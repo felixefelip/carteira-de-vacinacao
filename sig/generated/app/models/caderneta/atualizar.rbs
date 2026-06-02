@@ -1,11 +1,11 @@
 class Caderneta
   class Atualizar
-    def initialize: (untyped caderneta) -> void
-    def call: () -> untyped
+    def initialize: (Caderneta caderneta) -> void
+    def call: () -> Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
 
     private
 
-    attr_reader caderneta: untyped
-    def atualizar_calendario!: () -> untyped
+    attr_reader caderneta: Caderneta
+    def atualizar_calendario!: () -> Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   end
 end
