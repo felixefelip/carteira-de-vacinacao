@@ -1,6 +1,6 @@
 class User
   module Idade
-    def idade: () -> untyped
+    def idade: () -> (Integer | Float)
     def idade_formatada: () -> String
   end
 end

@@ -1,16 +1,16 @@
 class Caderneta
   class RecomendacaoVacina < ApplicationRecord
     def self.recomendacoes_vacina_para_tomar_nova_dose_hoje: () -> Array[(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated)]
-    def user_idade: () -> untyped
+    def user_idade: () -> (Integer | Float)
     def qtde_doses_tomadas: () -> Integer
     def calcular_status_vacinal: () -> String
     def dose_recomendada_atual: () -> (DoseDoCalendario & DoseDoCalendario::Validated)?
-    def pode_tomar_nova_dose?: () -> untyped
-    def tem_idade_para_tomar_a_nova_dose?: () -> untyped
-    def dose_atual_dentro_do_intervalo_de_espera?: () -> untyped
-    def intervalo_para_proxima_dose_termina_em: () -> untyped
+    def pode_tomar_nova_dose?: () -> bool
+    def tem_idade_para_tomar_a_nova_dose?: () -> bool
+    def dose_atual_dentro_do_intervalo_de_espera?: () -> bool
+    def intervalo_para_proxima_dose_termina_em: () -> Date?
     def tomou_todas_as_doses?: () -> bool
-    def quando_pode_tomar_proxima_dose: () -> untyped
+    def quando_pode_tomar_proxima_dose: () -> Date?
 
     private
 
