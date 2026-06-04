@@ -1,3 +1,9 @@
 class Current < ActiveSupport::CurrentAttributes
+  def self.user: () -> untyped
+  def self.user=: (untyped value) -> untyped
+  def self.set: (?user: untyped) ?{ (untyped) -> untyped } -> untyped
+  def self.with: (?user: untyped) ?{ (untyped) -> untyped } -> untyped
   def self.caderneta: () -> untyped
+  def user: () -> untyped
+  def user=: (untyped value) -> untyped
 end
