@@ -27,3 +27,16 @@ callbacks:
   - create
   - update
   - destroy
+- class: ApplicationController
+  applies_self: ApplicationController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - set_authenticated_user
+- class: DosesController
+  applies_self: DosesController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - set_dose
+  - set_vacina
+- class: VacinasController
+  applies_self: VacinasController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - set_vacina
