@@ -2,5 +2,5 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_authenticated_user: () -> untyped
+  def set_authenticated_user: () -> User?
 end

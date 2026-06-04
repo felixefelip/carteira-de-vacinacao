@@ -1,0 +1,29 @@
+---
+version: 1
+callbacks:
+- class: CadernetaController
+  applies_self: CadernetaController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - index
+  - show
+- class: DosesController
+  applies_self: DosesController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - show
+  - new
+  - edit
+  - create
+- class: SugestoesController
+  applies_self: SugestoesController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - index
+- class: VacinasController
+  applies_self: VacinasController & DeviseScopedHelpers::UserAuthenticated
+  runs_before:
+  - index
+  - show
+  - new
+  - edit
+  - create
+  - update
+  - destroy
