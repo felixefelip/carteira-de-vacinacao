@@ -6,9 +6,9 @@
 # declarations in config/routes.rb.
 
 module DeviseScopedHelpers
-  def current_user: () -> User?
+  def current_user: () -> (User & User::Validated)?
 
-  def authenticate_user!: (?::Hash[::Symbol, untyped] opts) -> User
+  def authenticate_user!: (?::Hash[::Symbol, untyped] opts) -> (User & User::Validated)
 
   def user_signed_in?: () -> bool
 
@@ -16,7 +16,7 @@ module DeviseScopedHelpers
 
   # Receiver narrowed under `authenticate_user!`.
   module UserAuthenticated
-    def current_user: () -> User
+    def current_user: () -> (User & User::Validated)
 
     def user_signed_in?: () -> true
   end

@@ -1,10 +1,10 @@
 class Current < ActiveSupport::CurrentAttributes
-  @user: User?
-  def self.user: () -> User?
-  def self.user=: (User? value) -> User?
-  def self.set: (?user: User?) ?{ (untyped) -> untyped } -> untyped
-  def self.with: (?user: User?) ?{ (untyped) -> untyped } -> untyped
+  @user: (User & User::Validated)?
+  def self.user: () -> (User & User::Validated)?
+  def self.user=: ((User & User::Validated)? value) -> (User & User::Validated)?
+  def self.set: (?user: (User & User::Validated)?) ?{ (untyped) -> untyped } -> untyped
+  def self.with: (?user: (User & User::Validated)?) ?{ (untyped) -> untyped } -> untyped
   def self.caderneta: () -> Caderneta?
-  def user: () -> User?
-  def user=: (User? value) -> User?
+  def user: () -> (User & User::Validated)?
+  def user=: ((User & User::Validated)? value) -> (User & User::Validated)?
 end
