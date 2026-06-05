@@ -6,10 +6,6 @@ class Current < ActiveSupport::CurrentAttributes
     @user
   end
 
-  def user=(value)
-    @user = value
-  end
-
   def self.user
     @user
   end
@@ -18,17 +14,39 @@ class Current < ActiveSupport::CurrentAttributes
     @user = value
   end
 
-  def self.set(user: nil, &block)
-    @user = user
-    block.call
+  def caderneta
+    @caderneta
   end
 
-  def self.with(user: nil, &block)
-    @user = user
-    block.call
+  def caderneta=(value)
+    @caderneta = value
   end
 
   def self.caderneta
-    user.caderneta
+    @caderneta
+  end
+
+  def self.caderneta=(value)
+    @caderneta = value
+  end
+
+  def self.set(user: nil, caderneta: nil, &block)
+    @user = user
+    @caderneta = caderneta
+    block.call
+  end
+
+  def self.with(user: nil, caderneta: nil, &block)
+    @user = user
+    @caderneta = caderneta
+    block.call
+  end
+
+  def user=(value)
+    @user = value
+
+    if value.present?
+      self.caderneta = value.caderneta
+    end
   end
 end
