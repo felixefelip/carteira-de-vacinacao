@@ -2,5 +2,5 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_authenticated_user: () -> Caderneta?
+  def set_authenticated_user: () -> (Caderneta & Caderneta::Validated)?
 end

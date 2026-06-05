@@ -454,6 +454,7 @@ class ::User < ::ApplicationRecord
     def id: () -> ::Integer
     def email: () -> ::String
     def data_nascimento: () -> ::Date
+    def caderneta: () -> (::Caderneta & ::Caderneta::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end

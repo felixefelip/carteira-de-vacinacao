@@ -1,14 +1,14 @@
 class Current < ActiveSupport::CurrentAttributes
   @user: (User & User::Validated)?
-  @caderneta: Caderneta?
+  @caderneta: (Caderneta & Caderneta::Validated)?
   def self.user: () -> (User & User::Validated)?
-  def self.user=: ((User & User::Validated)? value) -> Caderneta?
-  def self.caderneta: () -> Caderneta?
-  def self.caderneta=: (Caderneta? value) -> Caderneta?
-  def self.set: (?user: (User & User::Validated)?, ?caderneta: Caderneta?) ?{ (untyped) -> untyped } -> untyped
-  def self.with: (?user: (User & User::Validated)?, ?caderneta: Caderneta?) ?{ (untyped) -> untyped } -> untyped
+  def self.user=: ((User & User::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
+  def self.caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def self.set: (?user: (User & User::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ (untyped) -> untyped } -> untyped
+  def self.with: (?user: (User & User::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ (untyped) -> untyped } -> untyped
   def user: () -> (User & User::Validated)?
-  def caderneta: () -> Caderneta?
-  def caderneta=: (Caderneta? value) -> Caderneta?
-  def user=: ((User & User::Validated)? value) -> Caderneta?
+  def caderneta: () -> (Caderneta & Caderneta::Validated)?
+  def caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def user=: ((User & User::Validated)? value) -> (Caderneta & Caderneta::Validated)?
 end
