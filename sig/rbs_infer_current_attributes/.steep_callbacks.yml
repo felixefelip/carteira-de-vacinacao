@@ -1,0 +1,33 @@
+---
+version: 1
+callbacks:
+- class: CadernetaController
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
+  runs_before:
+  - index
+  - show
+- class: DosesController
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
+  runs_before:
+  - show
+  - new
+  - edit
+  - create
+- class: SugestoesController
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
+  runs_before:
+  - index
+- class: VacinasController
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
+  runs_before:
+  - index
+  - show
+  - new
+  - edit
+  - create
+  - update
+  - destroy
