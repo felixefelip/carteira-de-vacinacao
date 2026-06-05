@@ -6,6 +6,8 @@ callbacks:
   runs_before:
   - index
   - show
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
 - class: DosesController
   applies_self: DosesController & DeviseScopedHelpers::UserAuthenticated
   runs_before:
@@ -13,10 +15,14 @@ callbacks:
   - new
   - edit
   - create
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
 - class: SugestoesController
   applies_self: SugestoesController & DeviseScopedHelpers::UserAuthenticated
   runs_before:
   - index
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
 - class: VacinasController
   applies_self: VacinasController & DeviseScopedHelpers::UserAuthenticated
   runs_before:
@@ -27,6 +33,8 @@ callbacks:
   - create
   - update
   - destroy
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated
 - class: ApplicationController
   applies_self: ApplicationController & DeviseScopedHelpers::UserAuthenticated
   runs_before:
