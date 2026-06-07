@@ -1,4 +1,4 @@
-# D = Steep::Diagnostic
+D = Steep::Diagnostic
 #
 # target :lib do
 #   signature "sig"
@@ -44,4 +44,8 @@ target :app do
   signature 'lib'
 
   library 'pathname'
+
+  configure_code_diagnostics(D::Ruby.strict) do |hash|
+    # hash[D::Ruby::SetterBodyTypeMismatch] = :warning
+  end
 end
