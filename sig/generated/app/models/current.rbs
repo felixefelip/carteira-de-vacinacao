@@ -1,6 +1,11 @@
 class Current < ActiveSupport::CurrentAttributes
   @user: (User & User::Validated)?
   @caderneta: (Caderneta & Caderneta::Validated)?
+  module GeneratedAttributeMethods
+    def user=: ((User & User::Validated)? value) -> (User & User::Validated)?
+  end
+  include GeneratedAttributeMethods
+  extend GeneratedAttributeMethods
   def self.user: () -> (User & User::Validated)?
   def self.user=: ((User & User::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
