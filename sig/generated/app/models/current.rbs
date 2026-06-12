@@ -2,18 +2,17 @@ class Current < ActiveSupport::CurrentAttributes
   @user: (User & User::Validated)?
   @caderneta: (Caderneta & Caderneta::Validated)?
   module GeneratedAttributeMethods
+    def user: () -> (User & User::Validated)?
     def user=: ((User & User::Validated)? value) -> (User & User::Validated)?
+    def caderneta: () -> (Caderneta & Caderneta::Validated)?
+    def caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   end
   include GeneratedAttributeMethods
-  extend GeneratedAttributeMethods
   def self.user: () -> (User & User::Validated)?
-  def self.user=: ((User & User::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def self.user=: ((User & User::Validated)? value) -> (User & User::Validated)?
   def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
   def self.caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   def self.set: (?user: (User & User::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ (untyped) -> untyped } -> untyped
   def self.with: (?user: (User & User::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ (untyped) -> untyped } -> untyped
-  def user: () -> (User & User::Validated)?
-  def caderneta: () -> (Caderneta & Caderneta::Validated)?
-  def caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
-  def user=: ((User & User::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def user=: ((User & User::Validated)? value) -> untyped
 end

@@ -3,13 +3,13 @@ version: 1
 callbacks:
 - class: CadernetaController
   applies_constants:
-    Current: singleton(Current) & Current::UserPopulated
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   runs_before:
   - index
   - show
 - class: DosesController
   applies_constants:
-    Current: singleton(Current) & Current::UserPopulated
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   runs_before:
   - show
   - new
@@ -17,12 +17,12 @@ callbacks:
   - create
 - class: SugestoesController
   applies_constants:
-    Current: singleton(Current) & Current::UserPopulated
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   runs_before:
   - index
 - class: VacinasController
   applies_constants:
-    Current: singleton(Current) & Current::UserPopulated
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   runs_before:
   - index
   - show

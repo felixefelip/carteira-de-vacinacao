@@ -2,6 +2,12 @@
 version: 1
 postconditions:
 - class: CadernetaController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": "::Vacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::CadernetaController & ::CadernetaController::AfterIndex"
+- class: CadernetaController
   method: show
   unconditional:
     ivars:
@@ -32,6 +38,12 @@ postconditions:
     ivars:
       "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::DosesController & ::DosesController::AfterSetVacina"
+- class: SugestoesController
+  method: index
+  unconditional:
+    ivars:
+      "@recomendacao_vacinas": "::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::SugestoesController & ::SugestoesController::AfterIndex"
 - class: VacinasController
   method: create
   unconditional:

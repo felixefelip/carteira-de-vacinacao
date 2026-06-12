@@ -8,4 +8,8 @@ class Current
   module UserPopulated
     def user: () -> (User & User::Validated)
   end
+
+  module CadernetaPopulated
+    def caderneta: () -> (Caderneta & Caderneta::Validated)
+  end
 end

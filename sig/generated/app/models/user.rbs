@@ -1,4 +1,5 @@
 class User < ApplicationRecord
   include Idade
   def set_user_dose_na_criacao: () -> Caderneta
+  def teste: () -> Vacina::ActiveRecord_Associations_CollectionProxy?
 end

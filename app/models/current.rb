@@ -4,7 +4,7 @@ class Current < ActiveSupport::CurrentAttributes
   def user=(value)
     super(value)
 
-    if value.present?
+    unless value.nil?
       self.caderneta = value.caderneta
     end
   end

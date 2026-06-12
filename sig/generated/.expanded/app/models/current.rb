@@ -2,9 +2,21 @@
 #     Expanded view of app/models/current.rb (macros desugared into pseudo-code).
 #     Regenerated on every run; do not edit.
 class Current < ActiveSupport::CurrentAttributes
-  def user
-    @user
+  module GeneratedAttributeMethods
+    def user
+      @user
+    end
+    def user=(value)
+      @user = value
+    end
+    def caderneta
+      @caderneta
+    end
+    def caderneta=(value)
+      @caderneta = value
+    end
   end
+  include GeneratedAttributeMethods
 
   def self.user
     @user
@@ -12,14 +24,6 @@ class Current < ActiveSupport::CurrentAttributes
 
   def self.user=(value)
     @user = value
-  end
-
-  def caderneta
-    @caderneta
-  end
-
-  def caderneta=(value)
-    @caderneta = value
   end
 
   def self.caderneta
@@ -45,7 +49,7 @@ class Current < ActiveSupport::CurrentAttributes
   def user=(value)
     @user = value
 
-    if value.present?
+    unless value.nil?
       self.caderneta = value.caderneta
     end
   end
