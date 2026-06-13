@@ -7,6 +7,14 @@ callbacks:
   runs_before:
   - index
   - show
+- class: ERBCadernetaIndex
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBCadernetaShow
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
 - class: DosesController
   applies_constants:
     Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
@@ -15,11 +23,19 @@ callbacks:
   - new
   - edit
   - create
+- class: ERBDosesNew
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
 - class: SugestoesController
   applies_constants:
     Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   runs_before:
   - index
+- class: ERBSugestoesIndex
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
 - class: VacinasController
   applies_constants:
     Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
@@ -31,3 +47,19 @@ callbacks:
   - create
   - update
   - destroy
+- class: ERBVacinasIndex
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBVacinasShow
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBVacinasNew
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBVacinasEdit
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
