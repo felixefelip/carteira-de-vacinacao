@@ -3,5 +3,6 @@
 module ActionViewContext
   include ActionView::Helpers
   include _RbsRailsPathHelpers
+  include _RbsRailsFlashHelpers
   include ApplicationHelper
 end
