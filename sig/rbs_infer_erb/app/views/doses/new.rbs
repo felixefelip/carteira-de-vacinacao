@@ -4,5 +4,6 @@ class ERBDosesNew
   @dose: Dose | (Dose & Dose::Validated)
   @vacina: Vacina & Vacina::Validated
   def params: () -> ActionController::Parameters
+  include DosesHelper
   include ActionViewContext
 end

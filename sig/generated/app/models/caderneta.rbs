@@ -2,5 +2,5 @@ class Caderneta < ApplicationRecord
   def criar_caderneta_de_vacinacao: () -> untyped
   def atualizar_caderneta_de_vacinacao: () -> Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   def qtde_por_fabricante_vacina: (untyped fabricante_vacina) -> Integer
-  def qtde_por_vacina: (untyped vacina) -> Integer
+  def qtde_por_vacina: (Vacina & Vacina::Validated vacina) -> Integer
 end
