@@ -63,3 +63,19 @@ callbacks:
   applies_constants:
     Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
   toplevel: true
+- class: ERBPartialCadernetaDoses
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBPartialDosesForm
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBPartialSugestoesRecomendacaoVacina
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
+- class: ERBPartialVacinasForm
+  applies_constants:
+    Current: singleton(Current) & Current::UserPopulated & Current::CadernetaPopulated
+  toplevel: true
