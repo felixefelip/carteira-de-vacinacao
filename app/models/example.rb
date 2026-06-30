@@ -22,10 +22,10 @@ class Example
   def self.run
 	  board = Board.new(user_name: 'John Doe')
 
-		column = Column.new(column_name: 'To Do')
+		column = Column.new(column_name: 'To Do') # user_name e board são nil neste ponto
 
 		column.board = board
 
-		column.set_default_user_name
+		column.set_default_user_name # como o board foi atribuído, agora o user_name será definido corretamente sem NoMethodError
   end
 end
