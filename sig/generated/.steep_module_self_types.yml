@@ -1,0 +1,29 @@
+---
+app/models/caderneta/atualizar.rb:
+  anchor: Atualizar
+  annotations:
+  - "# @type instance: Caderneta & Caderneta::Atualizar"
+app/models/caderneta/cadastrar.rb:
+  anchor: Cadastrar
+  annotations:
+  - "# @type instance: Caderneta & Caderneta::Cadastrar"
+app/models/caderneta/recomendacao_vacina.rb:
+  anchor: RecomendacaoVacina
+  annotations:
+  - "# @type instance: Caderneta & Caderneta::RecomendacaoVacina"
+app/models/user/idade.rb:
+  anchor: Idade
+  annotations:
+  - "# @type instance: User & User::Idade"
+app/helpers/application_helper.rb:
+  anchor: ApplicationHelper
+  annotations:
+  - "# @type instance: ApplicationController & ApplicationHelper"
+app/helpers/doses_helper.rb:
+  anchor: DosesHelper
+  annotations:
+  - "# @type instance: ApplicationController & DosesHelper"
+app/helpers/sugestoes_helper.rb:
+  anchor: SugestoesHelper
+  annotations:
+  - "# @type instance: ApplicationController & SugestoesHelper"
