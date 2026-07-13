@@ -14,6 +14,12 @@ postconditions:
       "@fabricante_vacinas": "::FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
       "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::CadernetaController & ::CadernetaController::AfterShow"
+- class: Column
+  method: set_default_user_name
+  unconditional:
+    ivars:
+      "@user_name": "::String"
+    self: "::Column & ::Column::AfterSetDefaultUserName"
 - class: DosesController
   method: create
   unconditional:

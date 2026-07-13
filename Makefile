@@ -19,10 +19,14 @@ rbs_infer_rails_custom:
 rbs_infer_erb:
 	rake rbs_infer:erb:all
 
+rbs_infer_ar_runtime:
+	rake rbs_infer:ar_runtime:all
+
 rbs_generators_all:
 	make rbs_rails_generator
 	make rbs_infer_rails_custom
 	make rbs_infer_enumerize
 	make rbs_infer_carrierwave
 	make rbs_infer_erb
+	make rbs_infer_ar_runtime
 	make rbs_infer_all
