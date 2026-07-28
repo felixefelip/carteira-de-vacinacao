@@ -289,19 +289,15 @@ class ::Vacina < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Vacina::GeneratedAliasAttributeMethods
-  def fabricante_vacinas: () -> ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
   def fabricante_vacinas=: (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina]) -> (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina])
   def fabricante_vacina_ids: () -> ::Array[::Integer]
   def fabricante_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def doses: () -> ::Dose::ActiveRecord_Associations_CollectionProxy
   def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
   def dose_ids: () -> ::Array[::Integer]
   def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def recomendacao_vacinas: () -> ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   def recomendacao_vacinas=: (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina]) -> (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina])
   def recomendacao_vacina_ids: () -> ::Array[::Integer]
   def recomendacao_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def dose_do_calendarios: () -> ::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy
   def dose_do_calendarios=: (::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy | ::Array[::DoseDoCalendario]) -> (::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy | ::Array[::DoseDoCalendario])
   def dose_do_calendario_ids: () -> ::Array[::Integer]
   def dose_do_calendario_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -345,6 +341,26 @@ class ::Vacina < ::ApplicationRecord
     def dias_de_intervalo: () -> ::Integer
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Vacina_FabricanteVacina
+  class ActiveRecord_Associations_CollectionProxy < ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Vacina_Dose
+  class ActiveRecord_Associations_CollectionProxy < ::Dose::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Vacina_Caderneta_RecomendacaoVacina
+  class ActiveRecord_Associations_CollectionProxy < ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Vacina_DoseDoCalendario
+  class ActiveRecord_Associations_CollectionProxy < ::DoseDoCalendario::ActiveRecord_Associations_CollectionProxy
   end
 end
 

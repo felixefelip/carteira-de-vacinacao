@@ -209,19 +209,15 @@ class ::Caderneta < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::Caderneta::GeneratedAliasAttributeMethods
-  def doses: () -> ::Dose::ActiveRecord_Associations_CollectionProxy
   def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
   def dose_ids: () -> ::Array[::Integer]
   def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def fabricante_vacinas: () -> ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
   def fabricante_vacinas=: (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina]) -> (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina])
   def fabricante_vacina_ids: () -> ::Array[::Integer]
   def fabricante_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def vacinas: () -> ::Vacina::ActiveRecord_Associations_CollectionProxy
   def vacinas=: (::Vacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Vacina]) -> (::Vacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Vacina])
   def vacina_ids: () -> ::Array[::Integer]
   def vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
-  def recomendacao_vacinas: () -> ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   def recomendacao_vacinas=: (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina]) -> (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina])
   def recomendacao_vacina_ids: () -> ::Array[::Integer]
   def recomendacao_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -270,6 +266,26 @@ class ::Caderneta < ::ApplicationRecord
     def user: () -> (::User & ::User::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Caderneta_Dose
+  class ActiveRecord_Associations_CollectionProxy < ::Dose::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_FabricanteVacina
+  class ActiveRecord_Associations_CollectionProxy < ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_Vacina
+  class ActiveRecord_Associations_CollectionProxy < ::Vacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_Caderneta_RecomendacaoVacina
+  class ActiveRecord_Associations_CollectionProxy < ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   end
 end
 

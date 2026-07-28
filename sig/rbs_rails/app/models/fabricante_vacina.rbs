@@ -289,7 +289,6 @@ class ::FabricanteVacina < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::FabricanteVacina::GeneratedAliasAttributeMethods
-  def doses: () -> ::Dose::ActiveRecord_Associations_CollectionProxy
   def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
   def dose_ids: () -> ::Array[::Integer]
   def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
@@ -344,6 +343,11 @@ class ::FabricanteVacina < ::ApplicationRecord
     def vacina: () -> (::Vacina & ::Vacina::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module FabricanteVacina_Dose
+  class ActiveRecord_Associations_CollectionProxy < ::Dose::ActiveRecord_Associations_CollectionProxy
   end
 end
 
