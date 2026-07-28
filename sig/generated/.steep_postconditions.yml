@@ -48,6 +48,7 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@vacinas"
 - class: CadernetaController
   method: __rbs_infer__run_show
   effects:
@@ -55,6 +56,15 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@fabricante_vacinas"
     - "@vacina"
+- class: CadernetaController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": "::Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::CadernetaController & ::CadernetaController::AfterIndex"
+  effects:
+    may_write:
+    - "@vacinas"
 - class: CadernetaController
   method: render
   unconditional:
@@ -75,6 +85,21 @@ postconditions:
     may_write:
     - "@fabricante_vacinas"
     - "@vacina"
+- class: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - caderneta
+- class: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: Caderneta_Dose::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -243,6 +268,11 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
+- class: ERBCadernetaIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@vacinas"
 - class: ERBCadernetaShow
   method: initialize
   effects:
@@ -281,6 +311,11 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
+- class: ERBSugestoesIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@recomendacao_vacinas"
 - class: ERBVacinasEdit
   method: initialize
   effects:
@@ -321,6 +356,16 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@recomendacao_vacinas"
+- class: SugestoesController
+  method: index
+  unconditional:
+    ivars:
+      "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::SugestoesController & ::SugestoesController::AfterIndex"
+  effects:
+    may_write:
+    - "@recomendacao_vacinas"
 - class: SugestoesController
   method: render
   unconditional:
@@ -487,6 +532,16 @@ method_entry_facts:
   method: set_authenticated_user
   self_methods:
     current_user: "(::User & ::User::Validated)"
+- class: Caderneta
+  method: qtde_por_fabricante_vacina
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Caderneta
+  method: vacinas
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: index
   self_methods:
@@ -691,6 +746,8 @@ method_entry_facts:
   consts:
     Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
 - class: SugestoesHelper
   method: idade_recomendada_para
   consts:
@@ -783,6 +840,12 @@ argument_entry_facts:
 - class: CadernetaController
   method: render
   param: target
+  pattern: ":index"
+  ivars:
+    "@vacinas": "::Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy"
+- class: CadernetaController
+  method: render
+  param: target
   pattern: ":show"
   ivars:
     "@fabricante_vacinas": "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
@@ -794,6 +857,12 @@ argument_entry_facts:
   ivars:
     "@dose": "::Dose"
     "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: SugestoesController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
 - class: VacinasController
   method: render
   param: target

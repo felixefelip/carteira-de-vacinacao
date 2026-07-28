@@ -1,4 +1,5 @@
 class SugestoesController < ApplicationController
-  @recomendacao_vacinas: Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy?
+  @recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy?
+
   def index: () -> void
 end

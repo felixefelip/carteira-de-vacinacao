@@ -1,11 +1,12 @@
 class Caderneta
   class Atualizar
     def initialize: (Caderneta & Caderneta::Validated caderneta) -> void
-    def call: () -> Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+    def call: () -> Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
 
     private
 
     attr_reader caderneta: Caderneta & Caderneta::Validated
-    def atualizar_calendario!: () -> Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+
+    def atualizar_calendario!: () -> Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   end
 end
