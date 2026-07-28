@@ -1,14 +1,6 @@
 ---
 version: 1
 methods:
-  Column#set_default_user_name:
-    requires:
-    - kind: not_nil
-      expr:
-        kind: send
-        receiver:
-          kind: self
-        method: board
   Users::RegistrationsController#configure_account_update_params:
     requires:
     - kind: not_nil

@@ -1,12 +1,25 @@
 ---
 version: 1
 postconditions:
+- class: ApplicationController
+  method: set_authenticated_user
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+- class: Caderneta::Atualizar
+  method: initialize
+  effects:
+    may_write:
+    - "@caderneta"
 - class: CadernetaController
   method: index
   unconditional:
     ivars:
       "@vacinas": "::Vacina::ActiveRecord_Associations_CollectionProxy"
     self: "::CadernetaController & ::CadernetaController::AfterIndex"
+  effects:
+    may_write:
+    - "@vacinas"
 - class: CadernetaController
   method: show
   unconditional:
@@ -14,63 +27,88 @@ postconditions:
       "@fabricante_vacinas": "::FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
       "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::CadernetaController & ::CadernetaController::AfterShow"
-- class: Column
-  method: set_default_user_name
-  unconditional:
-    ivars:
-      "@user_name": "::String"
-    self: "::Column & ::Column::AfterSetDefaultUserName"
+  effects:
+    may_write:
+    - "@fabricante_vacinas"
+    - "@vacina"
 - class: DosesController
   method: create
   unconditional:
     ivars:
       "@dose": "::Dose"
     self: "::DosesController & ::DosesController::AfterCreate"
+  effects:
+    may_write:
+    - "@dose"
 - class: DosesController
   method: new
   unconditional:
     ivars:
       "@dose": "::Dose"
     self: "::DosesController & ::DosesController::AfterNew"
+  effects:
+    may_write:
+    - "@dose"
 - class: DosesController
   method: set_dose
   unconditional:
     ivars:
       "@dose": "(::Dose & ::Dose::Validated)"
     self: "::DosesController & ::DosesController::AfterSetDose"
+  effects:
+    may_write:
+    - "@dose"
 - class: DosesController
   method: set_vacina
   unconditional:
     ivars:
       "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::DosesController & ::DosesController::AfterSetVacina"
+  effects:
+    may_write:
+    - "@vacina"
 - class: SugestoesController
   method: index
   unconditional:
     ivars:
       "@recomendacao_vacinas": "::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
     self: "::SugestoesController & ::SugestoesController::AfterIndex"
+  effects:
+    may_write:
+    - "@recomendacao_vacinas"
 - class: VacinasController
   method: create
   unconditional:
     ivars:
       "@vacina": "::Vacina"
     self: "::VacinasController & ::VacinasController::AfterCreate"
+  effects:
+    may_write:
+    - "@vacina"
 - class: VacinasController
   method: index
   unconditional:
     ivars:
       "@vacinas": "::Vacina::ActiveRecord_Relation"
     self: "::VacinasController & ::VacinasController::AfterIndex"
+  effects:
+    may_write:
+    - "@vacinas"
 - class: VacinasController
   method: new
   unconditional:
     ivars:
       "@vacina": "::Vacina"
     self: "::VacinasController & ::VacinasController::AfterNew"
+  effects:
+    may_write:
+    - "@vacina"
 - class: VacinasController
   method: set_vacina
   unconditional:
     ivars:
       "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::VacinasController & ::VacinasController::AfterSetVacina"
+  effects:
+    may_write:
+    - "@vacina"
