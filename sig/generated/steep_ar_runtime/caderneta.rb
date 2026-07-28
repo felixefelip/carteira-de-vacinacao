@@ -15,4 +15,8 @@ class Caderneta
   def vacinas
     Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy.new(Vacina, self)
   end
+
+  def recomendacao_vacinas
+    Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy.new(Caderneta::RecomendacaoVacina, self)
+  end
 end

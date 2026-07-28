@@ -2,4 +2,5 @@ class Caderneta
   def doses: () -> Caderneta_Dose::ActiveRecord_Associations_CollectionProxy
   def fabricante_vacinas: () -> Caderneta_FabricanteVacina::ActiveRecord_Associations_CollectionProxy
   def vacinas: () -> Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy
+  def recomendacao_vacinas: () -> Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
 end

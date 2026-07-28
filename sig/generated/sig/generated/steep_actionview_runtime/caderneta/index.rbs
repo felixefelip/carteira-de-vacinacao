@@ -1,7 +1,9 @@
 class ERBCadernetaIndex
+  @vacinas: Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy?
+
   include ActionViewContext
 
-  def initialize: (vacinas: untyped) -> void
+  def initialize: (vacinas: Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy?) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
