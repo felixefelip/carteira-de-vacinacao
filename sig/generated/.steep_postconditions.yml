@@ -36,6 +36,7 @@ postconditions:
   method: set_authenticated_user
   unconditional:
     consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
       Current.user: "(::User & ::User::Validated)"
 - class: Caderneta::Atualizar
   method: initialize
@@ -491,26 +492,31 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Current
   method: caderneta
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: Current
   method: user
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DeviseScopedHelpers
   method: current_user
@@ -521,6 +527,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -529,6 +536,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -537,6 +545,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@dose": "(::Dose & ::Dose::Validated)"
@@ -546,6 +555,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -554,6 +564,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@dose": "::Dose"
@@ -563,120 +574,146 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: set_vacina
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@dose": "(::Dose & ::Dose::Validated)"
 - class: ERBCadernetaIndex
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCadernetaIndex
   method: render
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCadernetaShow
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBDosesNew
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBDosesNew
   method: render
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialCadernetaDoses
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialDosesForm
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialSugestoesRecomendacaoVacina
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialVacinasForm
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSugestoesIndex
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSugestoesIndex
   method: render
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasEdit
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasEdit
   method: render
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasIndex
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasNew
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasNew
   method: render
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasShow
   method: __rbs_infer__body
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: SugestoesController
   method: index
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: SugestoesController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: SugestoesHelper
   method: idade_recomendada_para
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: User::Idade
   method: idade_formatada
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: create
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: destroy
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -685,6 +722,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -693,30 +731,35 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: new
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: set_vacina
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -725,6 +768,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
   ivars:
     "@vacina": "(::Vacina & ::Vacina::Validated)"
@@ -733,6 +777,7 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
 argument_entry_facts:
 - class: CadernetaController

@@ -6,6 +6,7 @@ class Caderneta
     private
 
     attr_accessor caderneta: Caderneta & Caderneta::Validated
+
     def criar_calendario_de_vacinacao!: () -> untyped
   end
 end
