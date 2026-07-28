@@ -1,10 +1,10 @@
 class ERBSugestoesIndex
-  @recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy?
+  @recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
 
   include ActionViewContext
   include SugestoesHelper
 
-  def initialize: (recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy?) -> void
+  def initialize: (recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy) -> void
   def render: (?String target, *untyped) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
