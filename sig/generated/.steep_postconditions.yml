@@ -117,6 +117,7 @@ postconditions:
   method: user=
   unconditional:
     establishes_consts:
+      caderneta: "(::Caderneta & ::Caderneta::Validated)"
       user: "(::User & ::User::Validated)"
 - class: Current
   method: __rbs_infer_instance
@@ -659,6 +660,10 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: SugestoesHelper
   method: idade_recomendada_para
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: User::Idade
+  method: idade_formatada
   consts:
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
