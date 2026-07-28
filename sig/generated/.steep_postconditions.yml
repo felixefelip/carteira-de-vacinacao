@@ -542,6 +542,11 @@ method_entry_facts:
   consts:
     Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: Caderneta::RecomendacaoVacina
+  method: quando_pode_tomar_proxima_dose
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: index
   self_methods:
