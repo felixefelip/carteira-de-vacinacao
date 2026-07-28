@@ -1,0 +1,12 @@
+module DeviseScopedHelpers
+  def current_user: () -> (User & User::Validated)?
+  def authenticate_user!: () -> (User & User::Validated)?
+  def user_signed_in?: () -> bool
+  def user_session: () -> untyped
+end
+
+module ActionController
+  class Base
+    include DeviseScopedHelpers
+  end
+end

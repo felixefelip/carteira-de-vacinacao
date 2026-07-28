@@ -1,0 +1,11 @@
+class ERBPartialVacinasForm
+  include ActionViewContext
+
+  def initialize: (vacina: (Vacina | (Vacina & Vacina::Validated))?) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader vacina: (Vacina | (Vacina & Vacina::Validated))?
+end

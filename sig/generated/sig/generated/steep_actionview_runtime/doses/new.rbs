@@ -1,0 +1,12 @@
+class ERBDosesNew
+  @dose: Dose
+  @vacina: (Vacina & Vacina::Validated)
+
+  include ActionViewContext
+  include DosesHelper
+
+  def initialize: (dose: Dose, vacina: Vacina & ::Vacina::Validated) -> void
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

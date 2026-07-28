@@ -1,0 +1,10 @@
+class ERBCadernetaShow
+  @fabricante_vacinas: Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  @vacina: (Vacina & Vacina::Validated)
+
+  include ActionViewContext
+
+  def initialize: (fabricante_vacinas: Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy, vacina: Vacina & ::Vacina::Validated) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

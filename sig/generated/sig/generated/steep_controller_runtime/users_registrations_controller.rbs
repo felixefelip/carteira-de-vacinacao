@@ -1,0 +1,8 @@
+module Users
+  class RegistrationsController
+    private
+
+    def __rbs_infer__run_configure_sign_up_params: () -> untyped
+    def __rbs_infer__run_configure_account_update_params: () -> untyped
+  end
+end

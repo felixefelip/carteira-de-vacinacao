@@ -1,0 +1,9 @@
+class ERBVacinasIndex
+  @vacinas: Vacina::ActiveRecord_Relation
+
+  include ActionViewContext
+
+  def initialize: (vacinas: Vacina::ActiveRecord_Relation) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

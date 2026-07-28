@@ -1,0 +1,7 @@
+class ERBDeviseMailerConfirmationInstructions
+  include ActionViewContext
+
+  def initialize: (email: untyped, resource: untyped, token: untyped) -> untyped
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

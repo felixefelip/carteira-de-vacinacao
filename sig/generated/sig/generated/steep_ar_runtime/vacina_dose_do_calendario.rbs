@@ -1,0 +1,11 @@
+module Vacina_DoseDoCalendario
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Vacina
+
+    def initialize: (singleton(DoseDoCalendario) klass, Vacina owner) -> void
+    def owner: () -> Vacina
+    def build: (*untyped) -> ::DoseDoCalendario
+    def create: (*untyped) -> ::DoseDoCalendario
+    def create!: (*untyped) -> ::DoseDoCalendario
+  end
+end

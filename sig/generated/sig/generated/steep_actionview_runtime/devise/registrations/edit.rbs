@@ -1,0 +1,8 @@
+class ERBDeviseRegistrationsEdit
+  include ActionViewContext
+
+  def initialize: (minimum_password_length: untyped) -> untyped
+  def render: (?String target, *untyped) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

@@ -1,0 +1,8 @@
+class Vacina
+  def save: (**untyped) -> bool
+  def run_before_validation_callbacks: () -> untyped
+  def fabricante_vacinas: () -> Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  def doses: () -> Vacina_Dose::ActiveRecord_Associations_CollectionProxy
+  def recomendacao_vacinas: () -> Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  def dose_do_calendarios: () -> Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy
+end

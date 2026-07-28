@@ -1,0 +1,11 @@
+module Caderneta_Dose
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Caderneta
+
+    def initialize: (singleton(Dose) klass, Caderneta owner) -> void
+    def owner: () -> Caderneta
+    def build: (*untyped) -> ::Dose
+    def create: (*untyped) -> ::Dose
+    def create!: (*untyped) -> ::Dose
+  end
+end

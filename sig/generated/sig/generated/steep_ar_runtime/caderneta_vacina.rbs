@@ -1,0 +1,8 @@
+module Caderneta_Vacina
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Caderneta
+
+    def initialize: (singleton(Vacina) klass, Caderneta owner) -> void
+    def owner: () -> Caderneta
+  end
+end

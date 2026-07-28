@@ -1,0 +1,3 @@
+class FabricanteVacina
+  def doses: () -> FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy
+end

@@ -1,0 +1,11 @@
+module Vacina_Caderneta_RecomendacaoVacina
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Vacina
+
+    def initialize: (singleton(Caderneta::RecomendacaoVacina) klass, Vacina owner) -> void
+    def owner: () -> Vacina
+    def build: (*untyped) -> ::Caderneta::RecomendacaoVacina
+    def create: (*untyped) -> ::Caderneta::RecomendacaoVacina
+    def create!: (*untyped) -> ::Caderneta::RecomendacaoVacina
+  end
+end

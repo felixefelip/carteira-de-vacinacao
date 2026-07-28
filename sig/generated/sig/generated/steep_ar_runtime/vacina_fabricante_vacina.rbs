@@ -1,0 +1,11 @@
+module Vacina_FabricanteVacina
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Vacina
+
+    def initialize: (singleton(FabricanteVacina) klass, Vacina owner) -> void
+    def owner: () -> Vacina
+    def build: (*untyped) -> ::FabricanteVacina
+    def create: (*untyped) -> ::FabricanteVacina
+    def create!: (*untyped) -> ::FabricanteVacina
+  end
+end
