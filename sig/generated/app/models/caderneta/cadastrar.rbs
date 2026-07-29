@@ -1,12 +1,12 @@
 class Caderneta
   class Cadastrar
     def initialize: (Caderneta & Caderneta::Validated caderneta) -> void
-    def call: () -> untyped
+    def call: () -> Vacina::ActiveRecord_Relation
 
     private
 
     attr_accessor caderneta: Caderneta & Caderneta::Validated
 
-    def criar_calendario_de_vacinacao!: () -> untyped
+    def criar_calendario_de_vacinacao!: () -> Vacina::ActiveRecord_Relation
   end
 end
