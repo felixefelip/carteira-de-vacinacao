@@ -7,6 +7,6 @@ class User
 
     private
 
-    def pluralizar: (Integer quantidade, String singular, String plural) -> String
+    def pluralizar_trecho_idade: (Integer quantidade, String singular, String plural) -> String
   end
 end

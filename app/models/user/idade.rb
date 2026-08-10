@@ -27,19 +27,19 @@ class User
       dias = dias_desde_o_ultimo_mes_completo
 
       partes = [
-        pluralizar(anos, 'ano', 'anos'),
-        pluralizar(meses, 'mês', 'meses'),
-        pluralizar(dias, 'dia', 'dias')
+        pluralizar_trecho_idade(anos, 'ano', 'anos'),
+        pluralizar_trecho_idade(meses, 'mês', 'meses'),
+        pluralizar_trecho_idade(dias, 'dia', 'dias')
       ].reject { |parte| parte.start_with?('0 ') }
 
-      return pluralizar(dias, 'dia', 'dias') if partes.empty?
+      return pluralizar_trecho_idade(dias, 'dia', 'dias') if partes.empty?
 
       partes.to_sentence(two_words_connector: ' e ', last_word_connector: ' e ')
     end
 
     private
 
-    def pluralizar(quantidade, singular, plural)
+    def pluralizar_trecho_idade(quantidade, singular, plural)
       "#{quantidade} #{quantidade == 1 ? singular : plural}"
     end
   end
