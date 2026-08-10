@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Idade
+  private
 
-  def set_user_dose_na_criacao: () -> Caderneta
+  def preparar_pessoa_titular: () -> ::String?
 end

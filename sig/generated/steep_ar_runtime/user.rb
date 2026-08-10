@@ -10,6 +10,10 @@ class User
   end
 
   def run_before_validation_callbacks
-    set_user_dose_na_criacao
+    preparar_pessoa_titular
+  end
+
+  def pessoas
+    User_Pessoa::ActiveRecord_Associations_CollectionProxy.new(Pessoa, self)
   end
 end

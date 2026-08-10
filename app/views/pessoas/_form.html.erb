@@ -1,0 +1,52 @@
+<%= form_with(model: pessoa) do |form| %>
+  <% if pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+
+      <ul>
+        <% pessoa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-input", required: true, autofocus: true %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :data_nascimento, "Data de nascimento", class: "form-label" %>
+    <%= form.date_field :data_nascimento, class: "form-input", required: true %>
+    <span class="form-hint">É a partir dela que o calendário de vacinas é montado.</span>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :foto, "Foto", class: "form-label" %>
+
+    <div class="flex items-center gap-3">
+      <%= avatar_da_pessoa(pessoa, classes: "h-14 w-14 text-base") if pessoa.nome.present? %>
+      <%= form.file_field :foto, accept: Pessoa::TIPOS_DE_FOTO_ACEITOS.join(','), class: "form-input" %>
+    </div>
+
+    <span class="form-hint">PNG, JPEG ou WEBP, até <%= Pessoa::TAMANHO_MAXIMO_DA_FOTO / 1.megabyte %> MB. Opcional.</span>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :email, "E-mail", class: "form-label" %>
+
+    <% if pessoa.titular? %>
+      <p class="text-sm text-slate-600"><%= pessoa.email %></p>
+      <span class="form-hint">É o e-mail de acesso da conta e muda no cadastro da conta.</span>
+    <% else %>
+      <%= form.email_field :email, class: "form-input" %>
+      <span class="form-hint">Opcional. Fica guardado para quando esta pessoa tiver o próprio acesso.</span>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to "Voltar", pessoas_path, class: "link-muted text-sm" %>
+  </div>
+<% end %>

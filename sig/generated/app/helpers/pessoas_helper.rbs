@@ -1,0 +1,3 @@
+module PessoasHelper
+  def avatar_da_pessoa: (untyped pessoa, ?classes: untyped) -> untyped
+end

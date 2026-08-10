@@ -32,7 +32,23 @@
 pt-BR:
   hello: "Hello world"
   activerecord:
+    models:
+      pessoa: Pessoa
     attributes:
+      pessoa:
+        nome: Nome
+        data_nascimento: Data de nascimento
+        email: E-mail
+        foto: Foto
+        caderneta: Caderneta
+      user:
+        email: E-mail
+        pessoa_titular: Seus dados
+      # Erros da pessoa titular sobem para a conta no cadastro; sem estas
+      # chaves eles aparecem como "Pessoa titular nome ...".
+      user/pessoa_titular:
+        nome: Nome
+        data_nascimento: Data de nascimento
       dose:
         fabricante_vacina: Variação / Fornecedor
         data_vacinacao: Data da vacinação

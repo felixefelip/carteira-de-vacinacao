@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-md">
   <div class="page-header text-center">
     <h1 class="page-title">Criar sua conta</h1>
-    <p class="page-subtitle">A caderneta e o calendário são montados automaticamente a partir da sua data de nascimento.</p>
+    <p class="page-subtitle">Sua caderneta é montada na hora, e depois você pode cadastrar outras pessoas na mesma conta.</p>
   </div>
 
   <div class="card-padded">
@@ -13,10 +13,17 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input", required: true %>
       </div>
 
-      <div class="form-field">
-        <%= f.label :data_nascimento, "Data de Nascimento", class: "form-label" %>
-        <%= f.date_field :data_nascimento, class: "form-input", required: true %>
-      </div>
+      <%= f.fields_for :pessoa_titular do |pessoa| %>
+        <div class="form-field">
+          <%= pessoa.label :nome, "Seu nome", class: "form-label" %>
+          <%= pessoa.text_field :nome, class: "form-input", required: true %>
+        </div>
+
+        <div class="form-field">
+          <%= pessoa.label :data_nascimento, "Sua data de nascimento", class: "form-label" %>
+          <%= pessoa.date_field :data_nascimento, class: "form-input", required: true %>
+        </div>
+      <% end %>
 
       <div class="form-field">
         <%= f.label :password, "Senha", class: "form-label" %>

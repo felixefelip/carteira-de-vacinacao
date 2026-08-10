@@ -1,6 +1,10 @@
 ---
 version: 1
 callbacks:
+- class: ActiveStorage::Blob
+  applies_self: ActiveStorage::Blob & ActiveStorage::Blob::Validated
+  runs_before:
+  - touch_attachments
 - class: Caderneta
   applies_self: Caderneta & Caderneta::Validated
   runs_before:
@@ -17,7 +21,7 @@ callbacks:
   - tem_idade_para_tomar_a_nova_dose?
   - dose_atual_dentro_do_intervalo_de_espera?
   - dose_recomendada_atual
-  - user_idade
+  - pessoa_idade
   - intervalo_para_proxima_dose_termina_em
   - ultima_dose_tomada
 - class: Dose

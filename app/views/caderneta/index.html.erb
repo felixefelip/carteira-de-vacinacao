@@ -1,7 +1,11 @@
 <div class="page-header flex flex-wrap items-end justify-between gap-4">
-  <div>
-    <h1 class="page-title">Caderneta de Vacinação</h1>
-    <p class="page-subtitle">Vacinas registradas e o total de doses aplicadas.</p>
+  <div class="flex items-center gap-3">
+    <%= avatar_da_pessoa(Current.pessoa, classes: "h-12 w-12 text-base") %>
+
+    <div>
+      <h1 class="page-title">Caderneta de <%= Current.pessoa.nome %></h1>
+      <p class="page-subtitle">Vacinas registradas e o total de doses aplicadas.</p>
+    </div>
   </div>
 
   <%= link_to "Adicionar Vacinação", vacinas_path, class: "btn-primary" %>

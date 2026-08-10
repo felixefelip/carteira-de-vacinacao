@@ -1,7 +1,9 @@
 class Current < ActiveSupport::CurrentAttributes
-  attribute :user, :caderneta
+  attribute :user, :pessoa, :caderneta
 
-  def user=(value)
+  # Quem manda na caderneta em foco é a pessoa ativa, não a conta: uma conta
+  # administra várias pessoas e alterna entre elas.
+  def pessoa=(value)
     super(value)
 
     unless value.nil?

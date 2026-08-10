@@ -1,0 +1,7 @@
+class Caderneta
+  class RecomendacaoVacina
+    module GeneratedRelationMethods
+      def recomendacoes_vacina_para_tomar_nova_dose_hoje: () -> Array[Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated]
+    end
+  end
+end

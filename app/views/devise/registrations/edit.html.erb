@@ -1,7 +1,9 @@
 <div class="mx-auto max-w-xl">
   <div class="page-header">
-    <h1 class="page-title">Perfil</h1>
-    <p class="page-subtitle"><%= resource.email %></p>
+    <h1 class="page-title">Conta</h1>
+    <p class="page-subtitle">
+      Dados de acesso. Nome, data de nascimento e foto ficam em <%= link_to 'Pessoas', pessoas_path, class: "link" %>.
+    </p>
   </div>
 
   <div class="card-padded">
@@ -14,11 +16,6 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <span class="form-hint">Aguardando confirmação de: <%= resource.unconfirmed_email %></span>
         <% end %>
-      </div>
-
-      <div class="form-field">
-        <%= f.label :data_nascimento, "Data de Nascimento", class: "form-label" %>
-        <%= f.date_field :data_nascimento, class: "form-input" %>
       </div>
 
       <div class="form-field">
@@ -50,7 +47,8 @@
   <div class="card-padded mt-6">
     <h2 class="text-base font-semibold text-slate-900">Cancelar minha conta</h2>
     <p class="mt-1 text-sm text-slate-500">
-      A caderneta e todas as doses registradas serão removidas. Esta ação não pode ser desfeita.
+      Todas as pessoas da conta, com as cadernetas e as doses registradas, serão removidas.
+      Esta ação não pode ser desfeita.
     </p>
 
     <div class="mt-4">

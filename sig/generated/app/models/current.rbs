@@ -1,3 +1,3 @@
 class Current < ActiveSupport::CurrentAttributes
-  def user=: ((User & User::Validated)? value) -> untyped
+  def pessoa=: (untyped value) -> untyped
 end

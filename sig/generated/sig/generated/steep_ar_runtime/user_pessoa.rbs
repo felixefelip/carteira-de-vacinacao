@@ -1,0 +1,11 @@
+module User_Pessoa
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: User
+
+    def initialize: (singleton(::Pessoa) klass, User owner) -> void
+    def owner: () -> User
+    def build: (*untyped) -> ::Pessoa
+    def create: (*untyped) -> ::Pessoa
+    def create!: (*untyped) -> ::Pessoa
+  end
+end

@@ -44,46 +44,6 @@ class ::Caderneta < ::ApplicationRecord
 
     def id_for_database: () -> ::Integer?
 
-    def user_id: () -> ::Integer?
-
-    def user_id=: (::Integer?) -> ::Integer?
-
-    def user_id?: () -> bool
-
-    def user_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
-
-    def user_id_change: () -> [ ::Integer?, ::Integer? ]
-
-    def user_id_will_change!: () -> void
-
-    def user_id_was: () -> ::Integer?
-
-    def user_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
-
-    def user_id_previous_change: () -> ::Array[::Integer?]?
-
-    def user_id_previously_was: () -> ::Integer?
-
-    def user_id_before_last_save: () -> ::Integer?
-
-    def user_id_change_to_be_saved: () -> ::Array[::Integer?]?
-
-    def user_id_in_database: () -> ::Integer?
-
-    def saved_change_to_user_id: () -> ::Array[::Integer?]?
-
-    def saved_change_to_user_id?: () -> bool
-
-    def will_save_change_to_user_id?: () -> bool
-
-    def restore_user_id!: () -> void
-
-    def clear_user_id_change: () -> void
-
-    def user_id_before_type_cast: () -> ::Integer?
-
-    def user_id_for_database: () -> ::Integer?
-
     def created_at: () -> ::ActiveSupport::TimeWithZone?
 
     def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
@@ -163,6 +123,46 @@ class ::Caderneta < ::ApplicationRecord
     def updated_at_before_type_cast: () -> ::Time?
 
     def updated_at_for_database: () -> ::Time?
+
+    def pessoa_id: () -> ::Integer?
+
+    def pessoa_id=: (::Integer?) -> ::Integer?
+
+    def pessoa_id?: () -> bool
+
+    def pessoa_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def pessoa_id_will_change!: () -> void
+
+    def pessoa_id_was: () -> ::Integer?
+
+    def pessoa_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_previous_change: () -> ::Array[::Integer?]?
+
+    def pessoa_id_previously_was: () -> ::Integer?
+
+    def pessoa_id_before_last_save: () -> ::Integer?
+
+    def pessoa_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def pessoa_id_in_database: () -> ::Integer?
+
+    def saved_change_to_pessoa_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_pessoa_id?: () -> bool
+
+    def will_save_change_to_pessoa_id?: () -> bool
+
+    def restore_pessoa_id!: () -> void
+
+    def clear_pessoa_id_change: () -> void
+
+    def pessoa_id_before_type_cast: () -> ::Integer?
+
+    def pessoa_id_for_database: () -> ::Integer?
   end
   include ::Caderneta::GeneratedAttributeMethods
   module ::Caderneta::GeneratedAliasAttributeMethods
@@ -222,12 +222,12 @@ class ::Caderneta < ::ApplicationRecord
   def recomendacao_vacina_ids: () -> ::Array[::Integer]
   def recomendacao_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
 
-  def user: () -> ::User?
-  def user=: (::User?) -> ::User?
-  def reload_user: () -> ::User?
-  def build_user: (untyped) -> ::User
-  def create_user: (untyped) -> ::User
-  def create_user!: (untyped) -> ::User
+  def pessoa: () -> ::Pessoa?
+  def pessoa=: (::Pessoa?) -> ::Pessoa?
+  def reload_pessoa: () -> ::Pessoa?
+  def build_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa!: (untyped) -> ::Pessoa
   module ::Caderneta::GeneratedAssociationMethods
   end
   include ::Caderneta::GeneratedAssociationMethods
@@ -263,7 +263,7 @@ class ::Caderneta < ::ApplicationRecord
 
   class ::Caderneta::Validated
     def id: () -> ::Integer
-    def user: () -> (::User & ::User::Validated)
+    def pessoa: () -> (::Pessoa & ::Pessoa::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end
@@ -291,7 +291,7 @@ end
 
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::User < ::ApplicationRecord
+class ::Pessoa < ::ApplicationRecord
 end
 class ::Dose < ::ApplicationRecord
 end

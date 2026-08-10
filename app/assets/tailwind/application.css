@@ -196,6 +196,26 @@
     @apply mt-1 block text-xs text-slate-500;
   }
 
+  /* ---------- Pessoas ---------- */
+
+  /* O tamanho vem de fora (h-10 w-10 …): o mesmo avatar aparece na listagem,
+     no seletor do topo e no cabeçalho da caderneta. */
+  .avatar {
+    @apply inline-flex shrink-0 items-center justify-center overflow-hidden
+           rounded-full border border-paper-line bg-brand-100
+           font-semibold uppercase leading-none text-brand-800;
+  }
+
+  .avatar img,
+  img.avatar {
+    @apply h-full w-full object-cover;
+  }
+
+  .seletor-de-perfil {
+    @apply flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left
+           text-sm text-white/90 no-underline transition-colors hover:bg-brand-700;
+  }
+
   /* ---------- Formulários ---------- */
 
   .form-field {

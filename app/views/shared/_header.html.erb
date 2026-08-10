@@ -14,18 +14,20 @@
              ['Caderneta', caderneta_path],
              ['Calendário', sugestoes_path],
              ['Vacinas', vacinas_path],
-             ['Pessoas', '#'],
-             ['Perfil', edit_user_registration_path]
+             ['Pessoas', pessoas_path]
            ] %>
 
         <% itens.each do |rotulo, caminho| %>
-          <% atual = caminho != '#' && current_page?(caminho) %>
+          <% atual = current_page?(caminho) %>
           <%= link_to rotulo, caminho,
                       class: "nav-link #{'bg-white/10 text-white' if atual}",
                       'aria-current': ('page' if atual) %>
         <% end %>
 
         <span class="mx-1 hidden h-5 w-px shrink-0 bg-white/20 md:block" aria-hidden="true"></span>
+
+        <%= render 'shared/seletor_de_perfil' %>
+
         <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link' %>
       <% else %>
         <%= link_to 'Entrar', new_user_session_path, class: 'nav-link' %>
