@@ -9,9 +9,6 @@ class ApplicationController < ActionController::Base
     Current.pessoa = pessoa_ativa
   end
 
-  # A conta administra várias pessoas e vê uma de cada vez. A escolha vive na
-  # sessão e é sempre reencontrada dentro da própria conta — id de sessão
-  # apontando para pessoa de outra conta simplesmente não resolve.
   def pessoa_ativa
     return if current_user.nil?
 

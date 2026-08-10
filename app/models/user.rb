@@ -14,16 +14,7 @@
 class User < ApplicationRecord
   has_many :pessoas, dependent: :destroy, inverse_of: :user
 
-  # A conta é um login, não um paciente: quem tem caderneta é a pessoa. O dono
-  # do login é a pessoa titular, criada junto com a conta e indestrutível.
-  # Sem `dependent:` de propósito: quem destrói é o `has_many :pessoas` acima, e
-  # repetir aqui destruiria a titular duas vezes.
-  #
-  # `where` e não o escopo `Pessoa.titulares`: o bloco é avaliado na relação de
-  # Pessoa em tempo de execução, mas o Steep lê o `self` dele como singleton(User).
-  # rubocop:disable Rails/HasManyOrHasOneDependent
   has_one :pessoa_titular, -> { where(titular: true) }, class_name: 'Pessoa', inverse_of: :user
-  # rubocop:enable Rails/HasManyOrHasOneDependent
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

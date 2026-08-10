@@ -18,8 +18,6 @@ Rails.application.routes.draw do
 
   resources :pessoas, except: %i[show]
 
-  # Qual pessoa a conta está vendo agora. É estado de sessão, então muda por
-  # PATCH e não por link.
   resource :perfil_ativo, only: %i[update], controller: 'perfil_ativo'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

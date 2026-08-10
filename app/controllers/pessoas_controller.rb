@@ -45,8 +45,6 @@ class PessoasController < ApplicationController
     @pessoa = current_user.pessoas.find(params.expect(:id))
   end
 
-  # O e-mail da pessoa titular é o da conta, e muda no cadastro da conta —
-  # o formulário daqui não tem esse campo para ela.
   def pessoa_params
     permitidos = params.expect(pessoa: %i[nome data_nascimento email foto])
 

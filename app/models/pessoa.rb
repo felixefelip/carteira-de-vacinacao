@@ -46,9 +46,6 @@ class Pessoa < ApplicationRecord
     caderneta || build_caderneta
   end
 
-  # O e-mail da pessoa é o login que ela pode vir a ter. Enquanto esse caminho
-  # não existe, o mínimo é não deixar cadastrar aqui um e-mail que já é de
-  # outra conta. A titular é a exceção: o e-mail dela é o da própria conta.
   def email_nao_pode_ser_de_outra_conta
     return if titular? || email.blank?
     return unless User.exists?(email:)

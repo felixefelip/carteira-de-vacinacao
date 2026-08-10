@@ -3,8 +3,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
 
-  # A conta nasce junto com a pessoa titular, então o formulário de cadastro
-  # precisa dela montada para desenhar os campos de nome e nascimento.
   def build_resource(hash = {})
     super
 

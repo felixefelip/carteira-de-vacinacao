@@ -44,8 +44,6 @@ pt-BR:
       user:
         email: E-mail
         pessoa_titular: Seus dados
-      # Erros da pessoa titular sobem para a conta no cadastro; sem estas
-      # chaves eles aparecem como "Pessoa titular nome ...".
       user/pessoa_titular:
         nome: Nome
         data_nascimento: Data de nascimento

@@ -24,7 +24,6 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     expect(page).to have_content 'Joãozinho entrou na conta e já tem uma caderneta.'
     expect(page).to have_css("img.avatar[alt='Joãozinho']")
 
-    # Cadastrar já coloca a pessoa nova em exibição.
     click_link 'Caderneta'
     expect(page).to have_content 'Caderneta de Joãozinho'
 
@@ -36,7 +35,6 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     expect(joaozinho.caderneta.recomendacao_vacinas.count).to eq(17)
     expect(joaozinho.user.pessoas.count).to eq(2)
 
-    # Voltar para a caderneta do titular.
     click_link 'Pessoas'
 
     within('tr', text: 'Felipe') { click_button 'Ver caderneta' }
@@ -48,7 +46,6 @@ describe 'Cadastrando pessoas na conta', type: :feature do
 
     click_link 'Pessoas'
 
-    # O titular não pode ser excluído; o filho pode.
     within('tr', text: 'Felipe') { expect(page).to have_no_button 'Excluir' }
     within('tr', text: 'Joãozinho') { click_button 'Excluir' }
 

@@ -198,8 +198,6 @@
 
   /* ---------- Pessoas ---------- */
 
-  /* O tamanho vem de fora (h-10 w-10 …): o mesmo avatar aparece na listagem,
-     no seletor do topo e no cabeçalho da caderneta. */
   .avatar {
     @apply inline-flex shrink-0 items-center justify-center overflow-hidden
            rounded-full border border-paper-line bg-brand-100

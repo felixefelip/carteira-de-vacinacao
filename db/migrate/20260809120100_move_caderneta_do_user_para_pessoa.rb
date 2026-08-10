@@ -1,6 +1,4 @@
 class MoveCadernetaDoUserParaPessoa < ActiveRecord::Migration[8.0]
-  # Classes locais: os modelos da aplicação já enxergam o mundo depois desta
-  # migration (Caderneta pertence a Pessoa), então não servem para o backfill.
   class User < ActiveRecord::Base
     self.table_name = 'users'
   end
@@ -58,8 +56,6 @@ class MoveCadernetaDoUserParaPessoa < ActiveRecord::Migration[8.0]
     end
   end
 
-  # As contas existentes não têm nome, só e-mail. O trecho antes do @ vira um
-  # palpite editável em vez de um nome vazio.
   def nome_a_partir_do_email(email)
     email.split('@').first.tr('._-', ' ').split.map(&:capitalize).join(' ')
   end
