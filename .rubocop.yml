@@ -187,12 +187,6 @@ Rails/Delegate:
   Description: 'Prefer delegate method for delegations.'
   Enabled: false
 
-Rails/I18nLocaleTexts:
-  Description: 'App de um idioma só: as mensagens de flash e de validação são
-                escritas em pt-BR direto no código, e config/locales guarda
-                apenas os nomes de modelo e de atributo.'
-  Enabled: false
-
 # Bundler Cops
 Bundler/OrderedGems:
   Enabled: true
