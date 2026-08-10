@@ -1,5 +1,10 @@
-<h1>Nova Vacina</h1>
+<div class="mx-auto max-w-xl">
+  <div class="page-header">
+    <h1 class="page-title">Nova Vacina</h1>
+    <p class="page-subtitle">Cadastre uma vacina que ainda não está no calendário.</p>
+  </div>
 
-<%= render 'form', vacina: @vacina %>
-
-<%= link_to 'Voltar', vacinas_path %>
+  <div class="card-padded">
+    <%= render 'form', vacina: @vacina %>
+  </div>
+</div>

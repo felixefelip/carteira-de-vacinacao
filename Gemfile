@@ -9,8 +9,12 @@ gem 'rails', '~> 8.1'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 6.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+# Pipeline de assets. Vinha implícito pelo sass-rails, que saiu junto com o
+# Bootstrap: o sassc reprocessava o CSS do Tailwind e quebrava nos seletores
+# escapados que a v4 gera.
+gem 'sprockets-rails'
+# Tailwind CSS, compilado pelo binário standalone via `rails tailwindcss:build`
+gem 'tailwindcss-rails', '~> 4.6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

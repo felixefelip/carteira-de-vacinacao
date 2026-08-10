@@ -27,7 +27,7 @@ describe 'Cadastrando uma nova vacina', type: :feature do
     click_link 'Criar Vacina'
     expect(page).to have_content 'Nova Vacina'
 
-    fill_in 'Descricao', with: 'Pfizer'
+    fill_in 'Descrição', with: 'Pfizer'
     click_button 'Criar Vacina'
 
     expect(page).to have_content 'Vacina foi criada com sucesso'

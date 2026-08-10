@@ -35,3 +35,9 @@ pt-BR:
     attributes:
       dose:
         fabricante_vacina: Variação / Fornecedor
+        data_vacinacao: Data da vacinação
+        lote_numero: Número do lote
+        vacinador_codigo: Código do vacinador
+        local_codigo: Código do local
+      vacina:
+        descricao: Descrição

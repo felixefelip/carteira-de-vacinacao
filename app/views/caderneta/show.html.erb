@@ -1,32 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Caderneta</p>
+  <h1 class="page-title">Doses tomadas da vacina <%= @vacina.descricao %></h1>
+</div>
 
-<h3>
-  <span>Doses tomadas da vacina </span>
-  <strong><%= @vacina.descricao %></strong>
-</h3>
-
-<div class="table-responsive-md">
-  <table class="table table-striped table-bordered table-hover mt-4 shadow-sm">
-    <thead class="thead-light">
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
       <tr>
-        <th>Descricao</th>
-        <th>Qtde de doses</th>
-        <th colspan="3"></th>
+        <th scope="col">Variação / Fornecedor</th>
+        <th scope="col">Doses</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @fabricante_vacinas.each do |fabricante_vacina| %>
+      <% if @fabricante_vacinas.any? %>
+        <% @fabricante_vacinas.each do |fabricante_vacina| %>
+          <tr>
+            <td class="font-medium"><%= fabricante_vacina.descricao %></td>
+            <td class="cell-numeric"><%= Current.caderneta.qtde_por_fabricante_vacina(fabricante_vacina) %> doses</td>
+            <td>
+              <div class="flex justify-end text-sm">
+                <%= link_to 'Remover', fabricante_vacina_path(fabricante_vacina), class: "link-danger",
+                            data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
         <tr>
-          <td><%= fabricante_vacina.descricao %></td>
-          <td><%= Current.caderneta.qtde_por_fabricante_vacina(fabricante_vacina) %> doses</td>
-          <td>
-            <%= link_to 'Destroy', fabricante_vacina_path(fabricante_vacina), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
+          <td colspan="3" class="table-empty">Nenhuma dose registrada para esta vacina.</td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 
-<%= link_to 'Voltar', :back %>
+<div class="mt-6">
+  <%= link_to 'Voltar', :back, class: "btn-secondary" %>
+</div>

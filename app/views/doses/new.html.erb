@@ -1,6 +1,11 @@
-<div class="row mt-4">
-  <div class="col-10 col-lg-10 mx-auto">
-    <h1>Nova Dose</h1>
+<div class="mx-auto max-w-xl">
+  <div class="page-header">
+    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500"><%= @vacina.descricao %></p>
+    <h1 class="page-title">Nova Dose</h1>
+    <p class="page-subtitle">Registre os dados da dose aplicada.</p>
+  </div>
+
+  <div class="card-padded">
     <%= render 'form', dose: @dose, vacina: @vacina %>
   </div>
 </div>
