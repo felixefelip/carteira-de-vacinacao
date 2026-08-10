@@ -5,7 +5,7 @@
   </div>
 
   <div class="card-padded">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), local: true, html: { novalidate: false, "data-turbo": false }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="form-field">
