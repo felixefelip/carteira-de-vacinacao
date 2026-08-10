@@ -1,5 +1,13 @@
 class Pessoa
   module Idade
+    extend ActiveSupport::Concern
+
+    included do
+      validates :data_nascimento, presence: true
+      validates :data_nascimento,
+                comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
+    end
+
     def idade
       return 0.0 if data_nascimento.nil?
 
@@ -29,7 +37,7 @@ class Pessoa
       partes = [
         pluralizar_trecho_idade(anos, 'ano', 'anos'),
         pluralizar_trecho_idade(meses, 'mês', 'meses'),
-        pluralizar_trecho_idade(dias, 'dia', 'dias')
+        pluralizar_trecho_idade(dias, 'dia', 'dias'),
       ].reject { |parte| parte.start_with?('0 ') }
 
       return pluralizar_trecho_idade(dias, 'dia', 'dias') if partes.empty?

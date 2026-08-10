@@ -2,7 +2,7 @@ class PessoasController < ApplicationController
   before_action :set_pessoa, only: %i[edit update destroy]
 
   def index
-    @pessoas = current_user.pessoas.por_nome.with_attached_foto
+    @pessoas = current_user.pessoas.por_nome.with_attached_avatar
   end
 
   def new
@@ -46,7 +46,7 @@ class PessoasController < ApplicationController
   end
 
   def pessoa_params
-    permitidos = params.expect(pessoa: %i[nome data_nascimento email foto])
+    permitidos = params.expect(pessoa: %i[nome data_nascimento email avatar])
 
     @pessoa&.titular? ? permitidos.except(:email) : permitidos
   end

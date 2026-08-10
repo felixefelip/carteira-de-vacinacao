@@ -39,7 +39,7 @@ pt-BR:
         nome: Nome
         data_nascimento: Data de nascimento
         email: E-mail
-        foto: Foto
+        avatar: Foto
         caderneta: Caderneta
       user:
         email: E-mail

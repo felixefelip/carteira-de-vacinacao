@@ -23,14 +23,14 @@
   </div>
 
   <div class="form-field">
-    <%= form.label :foto, "Foto", class: "form-label" %>
+    <%= form.label :avatar, "Foto", class: "form-label" %>
 
     <div class="flex items-center gap-3">
       <%= avatar_da_pessoa(pessoa, classes: "h-14 w-14 text-base") if pessoa.nome.present? %>
-      <%= form.file_field :foto, accept: Pessoa::TIPOS_DE_FOTO_ACEITOS.join(','), class: "form-input" %>
+      <%= form.file_field :avatar, accept: Pessoa::Avatar::TIPOS_ACEITOS.join(','), class: "form-input" %>
     </div>
 
-    <span class="form-hint">PNG, JPEG ou WEBP, até <%= Pessoa::TAMANHO_MAXIMO_DA_FOTO / 1.megabyte %> MB. Opcional.</span>
+    <span class="form-hint">PNG, JPEG ou WEBP, até <%= Pessoa::Avatar::TAMANHO_MAXIMO / 1.megabyte %> MB. Opcional.</span>
   </div>
 
   <div class="form-field">
