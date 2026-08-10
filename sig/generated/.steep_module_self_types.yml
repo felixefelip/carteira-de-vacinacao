@@ -1,29 +1,37 @@
 ---
-app/models/caderneta/atualizar.rb:
-  anchor: Atualizar
-  annotations:
-  - "# @type instance: Caderneta & Caderneta::Atualizar"
-app/models/caderneta/cadastrar.rb:
-  anchor: Cadastrar
-  annotations:
-  - "# @type instance: Caderneta & Caderneta::Cadastrar"
-app/models/caderneta/recomendacao_vacina.rb:
-  anchor: RecomendacaoVacina
-  annotations:
-  - "# @type instance: Caderneta & Caderneta::RecomendacaoVacina"
-app/models/user/idade.rb:
-  anchor: Idade
-  annotations:
-  - "# @type instance: User & User::Idade"
 app/helpers/application_helper.rb:
-  anchor: ApplicationHelper
-  annotations:
-  - "# @type instance: ApplicationController & ApplicationHelper"
+  modules:
+  - anchor: ApplicationHelper
+    annotations:
+    - "# @type instance: ApplicationController & ApplicationHelper"
 app/helpers/doses_helper.rb:
-  anchor: DosesHelper
-  annotations:
-  - "# @type instance: ApplicationController & DosesHelper"
+  modules:
+  - anchor: DosesHelper
+    annotations:
+    - "# @type instance: ERBDosesNew & DosesHelper"
+app/helpers/pessoas_helper.rb:
+  modules:
+  - anchor: PessoasHelper
+    annotations:
+    - "# @type instance: (ERBPessoasEdit & PessoasHelper) | (ERBPessoasIndex & PessoasHelper)
+      | (ERBPessoasNew & PessoasHelper)"
 app/helpers/sugestoes_helper.rb:
-  anchor: SugestoesHelper
-  annotations:
-  - "# @type instance: ApplicationController & SugestoesHelper"
+  modules:
+  - anchor: SugestoesHelper
+    annotations:
+    - "# @type instance: ERBSugestoesIndex & SugestoesHelper"
+app/models/pessoa/idade.rb:
+  modules:
+  - anchor: Idade
+    annotations:
+    - "# @type instance: Pessoa & Pessoa::Idade"
+sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:
+  modules:
+  - anchor: ControllerMethods
+    annotations:
+    - "# @type instance: ActionController::Base & ActionController::HttpAuthentication::Token::ControllerMethods"
+sig/generated/steep_current_runtime/current.rb:
+  modules:
+  - anchor: GeneratedAttributeMethods
+    annotations:
+    - "# @type instance: Current & Current::GeneratedAttributeMethods"

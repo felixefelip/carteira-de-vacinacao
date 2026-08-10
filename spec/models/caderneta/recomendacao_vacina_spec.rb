@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures, type: :model do
   describe 'associations' do
-    it { should have_one(:user) }
+    it { should have_one(:pessoa) }
   end
 
   describe 'enums' do
@@ -15,11 +15,11 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures, type: :model 
         travel_to '2025-10-01'
         CadastraVacinasPadrao.call
 
-        user = FactoryBot.create(:user, data_nascimento: 5.months.ago)
+        pessoa = FactoryBot.create(:pessoa, data_nascimento: 5.months.ago)
 
-        expect(user.caderneta.recomendacao_vacinas.count).to eq(17)
+        expect(pessoa.caderneta.recomendacao_vacinas.count).to eq(17)
 
-        recomendacao_vacina = user.caderneta.recomendacao_vacinas.detect do |recomendacao_vacina_busca|
+        recomendacao_vacina = pessoa.caderneta.recomendacao_vacinas.detect do |recomendacao_vacina_busca|
           recomendacao_vacina_busca.vacina.descricao == 'Poliomielite 1,2,3 (VIP - inativada)'
         end
 
@@ -29,7 +29,7 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures, type: :model 
         expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
         Dose.create!(
-          caderneta: user.caderneta,
+          caderneta: pessoa.caderneta,
           data_vacinacao: Date.current,
           fabricante_vacina: recomendacao_vacina.vacina.fabricante_vacinas.first!,
         )
@@ -49,7 +49,7 @@ RSpec.describe Caderneta::RecomendacaoVacina, :aggregate_failures, type: :model 
         expect(recomendacao_vacina.status_vacinal).to eq('disponivel')
 
         Dose.create!(
-          caderneta: user.caderneta,
+          caderneta: pessoa.caderneta,
           data_vacinacao: Date.current,
           fabricante_vacina: recomendacao_vacina.vacina.fabricante_vacinas.first!,
         )

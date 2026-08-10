@@ -6,5 +6,6 @@ module ActionViewContext
   include _RbsRailsFlashHelpers
   include ApplicationHelper
   include DosesHelper
+  include PessoasHelper
   include SugestoesHelper
 end

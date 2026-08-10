@@ -15,14 +15,14 @@ class Caderneta::RecomendacaoVacina < ApplicationRecord
   belongs_to :caderneta
   belongs_to :vacina
 
-  has_one :user, through: :caderneta
+  has_one :pessoa, through: :caderneta
 
   enum :status_vacinal, [:aguardando, :disponivel, :completo]
 
   before_save :calcular_status_vacinal
 
-  def user_idade
-    user.idade
+  def pessoa_idade
+    pessoa.idade
   end
 
   def qtde_doses_tomadas
@@ -55,7 +55,7 @@ class Caderneta::RecomendacaoVacina < ApplicationRecord
     idade_recomendada_para_proxima_dose = dose_recomendada_atual&.idade_recomendada
     return true if idade_recomendada_para_proxima_dose.nil?
 
-    user_idade >= idade_recomendada_para_proxima_dose
+    pessoa_idade >= idade_recomendada_para_proxima_dose
   end
 
   def dose_atual_dentro_do_intervalo_de_espera?
@@ -81,7 +81,7 @@ class Caderneta::RecomendacaoVacina < ApplicationRecord
     return intervalo_para_proxima_dose_termina_em if tem_idade_para_tomar_a_nova_dose?
     return unless (idade_dose_recomendada_atual = dose_recomendada_atual&.idade_recomendada)
 
-    meses_para_dose = ((idade_dose_recomendada_atual - user_idade) / 0.1).to_i.months
+    meses_para_dose = ((idade_dose_recomendada_atual - pessoa_idade) / 0.1).to_i.months
 
     Date.current + meses_para_dose
   end

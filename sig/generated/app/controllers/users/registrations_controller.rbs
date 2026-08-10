@@ -1,6 +1,6 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    def build_resource: (?Hash[untyped, untyped] hash) -> untyped
     def configure_sign_up_params: () -> untyped
-    def configure_account_update_params: () -> untyped
   end
 end

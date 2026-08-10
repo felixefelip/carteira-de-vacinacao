@@ -1,0 +1,63 @@
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Pessoas</h1>
+    <p class="page-subtitle">Cada pessoa da conta tem a própria caderneta e o próprio calendário.</p>
+  </div>
+
+  <%= link_to 'Cadastrar pessoa', new_pessoa_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Pessoa</th>
+        <th scope="col">Idade</th>
+        <th scope="col">E-mail</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pessoas.each do |pessoa| %>
+        <% ativa = pessoa == Current.pessoa %>
+
+        <tr>
+          <td>
+            <div class="flex items-center gap-3">
+              <%= avatar_da_pessoa(pessoa) %>
+
+              <div>
+                <span class="font-medium text-slate-900"><%= pessoa.nome %></span>
+
+                <span class="meta">
+                  <% if pessoa.titular? %>Titular da conta<% else %>Nascimento em <%= l pessoa.data_nascimento %><% end %>
+                  <% if ativa %>· em exibição<% end %>
+                </span>
+              </div>
+            </div>
+          </td>
+
+          <td class="text-slate-600"><%= pessoa.idade_formatada %></td>
+          <td class="text-slate-600"><%= pessoa.email || '—' %></td>
+
+          <td>
+            <div class="flex flex-wrap justify-end gap-2">
+              <% unless ativa %>
+                <%= button_to 'Ver caderneta', perfil_ativo_path(pessoa_id: pessoa.id), method: :patch,
+                              class: "btn-secondary btn-sm" %>
+              <% end %>
+
+              <%= link_to 'Editar', edit_pessoa_path(pessoa), class: "btn-secondary btn-sm" %>
+
+              <% unless pessoa.titular? %>
+                <%= button_to 'Excluir', pessoa_path(pessoa), method: :delete, class: "btn-danger btn-sm",
+                              form: { data: { turbo_confirm: "Excluir #{pessoa.nome} e toda a caderneta dela?" } } %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

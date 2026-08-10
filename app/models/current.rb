@@ -1,7 +1,7 @@
 class Current < ActiveSupport::CurrentAttributes
-  attribute :user, :caderneta
+  attribute :user, :pessoa, :caderneta
 
-  def user=(value)
+  def pessoa=(value)
     super(value)
 
     unless value.nil?

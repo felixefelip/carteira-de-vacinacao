@@ -1,14 +1,23 @@
 ---
 version: 1
 methods:
-  Users::RegistrationsController#__rbs_infer__run_configure_account_update_params:
+  Pessoa#foto_precisa_ser_uma_imagem_pequena:
     requires:
     - kind: not_nil
       expr:
         kind: send
         receiver:
           kind: self
-        method: devise_parameter_sanitizer
+        method: foto
+    enforced: false
+  Users::RegistrationsController#__rbs_infer__run_build_resource:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: resource
     enforced: false
   Users::RegistrationsController#__rbs_infer__run_configure_sign_up_params:
     requires:
@@ -19,14 +28,14 @@ methods:
           kind: self
         method: devise_parameter_sanitizer
     enforced: false
-  Users::RegistrationsController#configure_account_update_params:
+  Users::RegistrationsController#build_resource:
     requires:
     - kind: not_nil
       expr:
         kind: send
         receiver:
           kind: self
-        method: devise_parameter_sanitizer
+        method: resource
     enforced: false
   Users::RegistrationsController#configure_sign_up_params:
     requires:

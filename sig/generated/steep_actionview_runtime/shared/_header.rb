@@ -6,6 +6,14 @@
 class ERBPartialSharedHeader
   include ActionViewContext
 
+  def render(target = nil, *rest)
+    name = target.is_a?(::Hash) ? target[:partial] : target
+    case name
+    when "shared/seletor_de_perfil" then ERBPartialSharedSeletorDePerfil.new.__rbs_infer__body
+    end
+    nil
+  end
+
   def params
     ActionController::Parameters.new
   end

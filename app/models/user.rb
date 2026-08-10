@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
-#  data_nascimento        :date
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  remember_created_at    :datetime
@@ -13,20 +12,25 @@
 #  updated_at             :datetime         not null
 #
 class User < ApplicationRecord
-  include Idade
+  has_many :pessoas, dependent: :destroy, inverse_of: :user
 
-  has_one :caderneta, dependent: :destroy, touch: true
+  has_one :pessoa_titular, -> { where(titular: true) }, class_name: 'Pessoa', inverse_of: :user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :email, :data_nascimento, presence: true
-  validates :data_nascimento, comparison: { less_than: -> { Date.current }, message: 'não pode ser no futuro' }
-  validates :caderneta, presence: true
+  accepts_nested_attributes_for :pessoa_titular
 
-  before_validation :set_user_dose_na_criacao
+  validates :pessoa_titular, presence: true
 
-  def set_user_dose_na_criacao
-    caderneta || build_caderneta
+  before_validation :preparar_pessoa_titular
+
+  private
+
+  def preparar_pessoa_titular
+    pessoa = pessoa_titular || build_pessoa_titular
+
+    pessoa.titular = true
+    pessoa.email = email
   end
 end

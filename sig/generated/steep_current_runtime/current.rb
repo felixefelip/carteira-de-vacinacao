@@ -11,6 +11,12 @@ class Current
     def user=(value)
       @user = value
     end
+    def pessoa
+      @pessoa
+    end
+    def pessoa=(value)
+      @pessoa = value
+    end
     def caderneta
       @caderneta
     end
@@ -29,6 +35,15 @@ class Current
     __rbs_infer_instance.user = value
   end
 
+  def self.pessoa
+    @pessoa
+  end
+
+  def self.pessoa=(value)
+    @pessoa = value
+    __rbs_infer_instance.pessoa = value
+  end
+
   def self.caderneta
     @caderneta
   end
@@ -42,15 +57,17 @@ class Current
     @__rbs_infer_instance ||= Current.new
   end
 
-  def self.set(user: nil, caderneta: nil, &block)
+  def self.set(user: nil, pessoa: nil, caderneta: nil, &block)
     @user = user
+    @pessoa = pessoa
     @caderneta = caderneta
-    block&.call(nil)
+    block&.call
   end
 
-  def self.with(user: nil, caderneta: nil, &block)
+  def self.with(user: nil, pessoa: nil, caderneta: nil, &block)
     @user = user
+    @pessoa = pessoa
     @caderneta = caderneta
-    block&.call(nil)
+    block&.call
   end
 end

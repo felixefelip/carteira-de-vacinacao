@@ -20,7 +20,7 @@ class VacinasController < ApplicationController
     if @vacina.save
       redirect_to vacinas_path, notice: "Vacina foi criada com sucesso"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -28,7 +28,7 @@ class VacinasController < ApplicationController
     if @vacina.update(vacina_params)
       redirect_to vacina_url(@vacina), notice: 'Vacina was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

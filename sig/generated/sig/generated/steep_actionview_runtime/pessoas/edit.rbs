@@ -1,0 +1,9 @@
+class ERBPessoasEdit
+  include ActionViewContext
+  include PessoasHelper
+
+  def initialize: (pessoa: untyped) -> void
+  def render: (?String target, *{ pessoa: untyped } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

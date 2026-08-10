@@ -1,10 +1,10 @@
 class ERBVacinasEdit
-  @vacina: (Vacina & Vacina::Validated)
+  @vacina: Vacina?
 
   include ActionViewContext
 
-  def initialize: (vacina: Vacina & ::Vacina::Validated) -> void
-  def render: (?String target, *untyped) -> nil
+  def initialize: (vacina: Vacina?) -> void
+  def render: (?String target, *{ vacina: Vacina? } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

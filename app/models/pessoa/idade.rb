@@ -1,4 +1,4 @@
-class User
+class Pessoa
   module Idade
     def idade
       return 0.0 if data_nascimento.nil?

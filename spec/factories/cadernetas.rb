@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :caderneta, class: 'Caderneta' do
-    user
+    skip_create
+    initialize_with { association(:pessoa).caderneta }
   end
 end

@@ -2,4 +2,5 @@ class ApplicationController < ActionController::Base
   private
 
   def set_authenticated_user: () -> (User & User::Validated)?
+  def pessoa_ativa: () -> untyped
 end

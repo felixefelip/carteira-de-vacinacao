@@ -35,6 +35,11 @@ interface ::_RbsRailsPathHelpers
   def caderneta_path: (*untyped) -> ::String
   def cadernetum_path: (*untyped) -> ::String
   def sugestoes_path: (*untyped) -> ::String
+  def pessoas_path: (*untyped) -> ::String
+  def new_pessoa_path: (*untyped) -> ::String
+  def edit_pessoa_path: (*untyped) -> ::String
+  def pessoa_path: (*untyped) -> ::String
+  def perfil_ativo_path: (*untyped) -> ::String
   def turbo_recede_historical_location_path: (*untyped) -> ::String
   def turbo_resume_historical_location_path: (*untyped) -> ::String
   def turbo_refresh_historical_location_path: (*untyped) -> ::String
@@ -96,6 +101,11 @@ interface ::_RbsRailsPathHelpers
   def caderneta_url: (*untyped) -> ::String
   def cadernetum_url: (*untyped) -> ::String
   def sugestoes_url: (*untyped) -> ::String
+  def pessoas_url: (*untyped) -> ::String
+  def new_pessoa_url: (*untyped) -> ::String
+  def edit_pessoa_url: (*untyped) -> ::String
+  def pessoa_url: (*untyped) -> ::String
+  def perfil_ativo_url: (*untyped) -> ::String
   def turbo_recede_historical_location_url: (*untyped) -> ::String
   def turbo_resume_historical_location_url: (*untyped) -> ::String
   def turbo_refresh_historical_location_url: (*untyped) -> ::String

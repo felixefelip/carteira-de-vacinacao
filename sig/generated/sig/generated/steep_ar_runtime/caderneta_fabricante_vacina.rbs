@@ -2,10 +2,7 @@ module Caderneta_FabricanteVacina
   class ActiveRecord_Associations_CollectionProxy
     @owner: Caderneta
 
-    def initialize: (singleton(FabricanteVacina) klass, Caderneta owner) -> void
+    def initialize: (singleton(::FabricanteVacina) klass, Caderneta owner) -> void
     def owner: () -> Caderneta
-    def build: (*untyped) -> ::FabricanteVacina
-    def create: (*untyped) -> ::FabricanteVacina
-    def create!: (*untyped) -> ::FabricanteVacina
   end
 end

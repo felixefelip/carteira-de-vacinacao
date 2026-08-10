@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   resources :caderneta, only: %i[index show]
   resources :sugestoes, only: %i[index]
 
+  resources :pessoas, except: %i[show]
+
+  resource :perfil_ativo, only: %i[update], controller: 'perfil_ativo'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -17,7 +17,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

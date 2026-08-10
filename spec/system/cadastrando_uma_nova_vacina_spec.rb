@@ -10,7 +10,8 @@ describe 'Cadastrando uma nova vacina', type: :feature do
 
     within('#new_user') do
       fill_in 'E-mail', with: 'user@example.com'
-      fill_in 'Data de Nascimento', with: '01/01/2000'
+      fill_in 'Seu nome', with: 'Felipe'
+      fill_in 'Sua data de nascimento', with: '01/01/2000'
       fill_in 'Senha', with: '123456'
       fill_in 'Confirme sua senha', with: '123456'
       click_button 'Cadastrar'

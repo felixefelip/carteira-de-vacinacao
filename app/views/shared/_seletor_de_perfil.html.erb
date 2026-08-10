@@ -1,0 +1,33 @@
+<details class="relative shrink-0">
+  <summary class="flex cursor-pointer list-none items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white/10 [&::-webkit-details-marker]:hidden">
+    <%= avatar_da_pessoa(Current.pessoa, classes: "h-7 w-7 text-xs") %>
+    <span class="max-w-32 truncate"><%= Current.pessoa.nome %></span>
+
+    <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-white/70" aria-hidden="true">
+      <path d="M5.5 7.5 10 12l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </summary>
+
+  <div class="absolute right-0 z-20 mt-2 w-64 rounded-md border border-brand-700 bg-brand-800 p-1.5 shadow-lg">
+    <p class="px-2 py-1 text-xs font-medium uppercase tracking-wider text-white/50">Ver a caderneta de</p>
+
+    <% Current.user.pessoas.por_nome.each do |pessoa| %>
+      <% if pessoa == Current.pessoa %>
+        <span class="seletor-de-perfil bg-brand-700 text-white">
+          <%= avatar_da_pessoa(pessoa, classes: "h-7 w-7 text-xs") %>
+          <span class="truncate"><%= pessoa.nome %></span>
+        </span>
+      <% else %>
+        <%= button_to perfil_ativo_path(pessoa_id: pessoa.id), method: :patch, class: "seletor-de-perfil" do %>
+          <%= avatar_da_pessoa(pessoa, classes: "h-7 w-7 text-xs") %>
+          <span class="truncate"><%= pessoa.nome %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <span class="my-1.5 block h-px bg-white/10" aria-hidden="true"></span>
+
+    <%= link_to 'Gerenciar pessoas', pessoas_path, class: "seletor-de-perfil" %>
+    <%= link_to 'Conta', edit_user_registration_path, class: "seletor-de-perfil" %>
+  </div>
+</details>

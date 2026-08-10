@@ -1,12 +1,12 @@
 <div class="page-header flex flex-wrap items-end justify-between gap-4">
   <div>
     <h1 class="page-title">Calendário de Vacinação</h1>
-    <p class="page-subtitle">Situação de cada vacina do calendário para a sua idade.</p>
+    <p class="page-subtitle">Situação de cada vacina do calendário para a idade de <%= Current.pessoa.nome %>.</p>
   </div>
 
   <div class="rounded-md border border-paper-line bg-white px-4 py-2 shadow-xs">
     <span class="block text-xs font-medium uppercase tracking-wider text-slate-500">Idade atual</span>
-    <span class="text-sm font-semibold text-brand-900"><%= Current.user.idade_formatada %></span>
+    <span class="text-sm font-semibold text-brand-900"><%= Current.pessoa.idade_formatada %></span>
   </div>
 </div>
 

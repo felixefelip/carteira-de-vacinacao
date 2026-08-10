@@ -6,11 +6,11 @@
 class Users::RegistrationsController
   private
 
-  def __rbs_infer__run_configure_sign_up_params
-    configure_sign_up_params
+  def __rbs_infer__run_build_resource
+    build_resource
   end
 
-  def __rbs_infer__run_configure_account_update_params
-    configure_account_update_params
+  def __rbs_infer__run_configure_sign_up_params
+    configure_sign_up_params
   end
 end

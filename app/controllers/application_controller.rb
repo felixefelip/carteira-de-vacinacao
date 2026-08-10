@@ -6,5 +6,12 @@ class ApplicationController < ActionController::Base
 
   def set_authenticated_user
     Current.user = current_user
+    Current.pessoa = pessoa_ativa
+  end
+
+  def pessoa_ativa
+    return if current_user.nil?
+
+    current_user.pessoas.find_by(id: session[:pessoa_id]) || current_user.pessoa_titular
   end
 end

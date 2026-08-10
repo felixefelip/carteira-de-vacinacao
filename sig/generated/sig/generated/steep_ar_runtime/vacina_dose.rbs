@@ -2,7 +2,7 @@ module Vacina_Dose
   class ActiveRecord_Associations_CollectionProxy
     @owner: Vacina
 
-    def initialize: (singleton(Dose) klass, Vacina owner) -> void
+    def initialize: (singleton(::Dose) klass, Vacina owner) -> void
     def owner: () -> Vacina
   end
 end

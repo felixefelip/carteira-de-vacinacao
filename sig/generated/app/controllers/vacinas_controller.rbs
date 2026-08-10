@@ -1,6 +1,5 @@
 class VacinasController < ApplicationController
-  @vacinas: Vacina::ActiveRecord_Relation?
-  @vacina: (Vacina | (Vacina & Vacina::Validated))?
+  @vacina: Vacina?
 
   def index: () -> void
   def show: () -> void

@@ -11,20 +11,4 @@ class Caderneta_FabricanteVacina::ActiveRecord_Associations_CollectionProxy
   def owner
     @owner
   end
-
-  def build(*)
-    record = FabricanteVacina.new
-    record.caderneta = owner
-    record
-  end
-
-  def create(*)
-    record = build
-    record.save
-    record
-  end
-
-  def create!(*)
-    create or raise ActiveRecord::RecordInvalid
-  end
 end

@@ -323,46 +323,6 @@ class ::User < ::ApplicationRecord
     def updated_at_before_type_cast: () -> ::Time?
 
     def updated_at_for_database: () -> ::Time?
-
-    def data_nascimento: () -> ::Date?
-
-    def data_nascimento=: (::Date?) -> ::Date?
-
-    def data_nascimento?: () -> bool
-
-    def data_nascimento_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
-
-    def data_nascimento_change: () -> [ ::Date?, ::Date? ]
-
-    def data_nascimento_will_change!: () -> void
-
-    def data_nascimento_was: () -> ::Date?
-
-    def data_nascimento_previously_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
-
-    def data_nascimento_previous_change: () -> ::Array[::Date?]?
-
-    def data_nascimento_previously_was: () -> ::Date?
-
-    def data_nascimento_before_last_save: () -> ::Date?
-
-    def data_nascimento_change_to_be_saved: () -> ::Array[::Date?]?
-
-    def data_nascimento_in_database: () -> ::Date?
-
-    def saved_change_to_data_nascimento: () -> ::Array[::Date?]?
-
-    def saved_change_to_data_nascimento?: () -> bool
-
-    def will_save_change_to_data_nascimento?: () -> bool
-
-    def restore_data_nascimento!: () -> void
-
-    def clear_data_nascimento_change: () -> void
-
-    def data_nascimento_before_type_cast: () -> ::Date?
-
-    def data_nascimento_for_database: () -> ::Date?
   end
   include ::User::GeneratedAttributeMethods
   module ::User::GeneratedAliasAttributeMethods
@@ -409,13 +369,16 @@ class ::User < ::ApplicationRecord
     alias id_value_for_database id_for_database
   end
   include ::User::GeneratedAliasAttributeMethods
+  def pessoas=: (::Pessoa::ActiveRecord_Associations_CollectionProxy | ::Array[::Pessoa]) -> (::Pessoa::ActiveRecord_Associations_CollectionProxy | ::Array[::Pessoa])
+  def pessoa_ids: () -> ::Array[::Integer]
+  def pessoa_ids=: (::Array[::Integer]) -> ::Array[::Integer]
 
-  def caderneta: () -> ::Caderneta?
-  def caderneta=: (::Caderneta?) -> ::Caderneta?
-  def build_caderneta: (?untyped) -> ::Caderneta
-  def create_caderneta: (?untyped) -> ::Caderneta
-  def create_caderneta!: (?untyped) -> ::Caderneta
-  def reload_caderneta: () -> ::Caderneta?
+  def pessoa_titular: () -> ::Pessoa?
+  def pessoa_titular=: (::Pessoa?) -> ::Pessoa?
+  def build_pessoa_titular: (?untyped) -> ::Pessoa
+  def create_pessoa_titular: (?untyped) -> ::Pessoa
+  def create_pessoa_titular!: (?untyped) -> ::Pessoa
+  def reload_pessoa_titular: () -> ::Pessoa?
 
   module ::User::GeneratedAssociationMethods
   end
@@ -452,9 +415,7 @@ class ::User < ::ApplicationRecord
 
   class ::User::Validated
     def id: () -> ::Integer
-    def email: () -> ::String
-    def data_nascimento: () -> ::Date
-    def caderneta: () -> (::Caderneta & ::Caderneta::Validated)
+    def pessoa_titular: () -> (::Pessoa & ::Pessoa::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end
@@ -464,7 +425,14 @@ class ::User < ::ApplicationRecord
   end
 end
 
+module User_Pessoa
+  class ActiveRecord_Associations_CollectionProxy < ::Pessoa::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
 class ::ApplicationRecord < ::ActiveRecord::Base
 end
-class ::Caderneta < ::ApplicationRecord
+class ::Pessoa < ::ApplicationRecord
+end
+class ::Pessoa::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
 end

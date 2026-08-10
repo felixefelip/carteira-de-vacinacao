@@ -1,0 +1,10 @@
+<div class="mx-auto max-w-lg">
+  <div class="page-header">
+    <h1 class="page-title">Editar <%= @pessoa.nome %></h1>
+    <p class="page-subtitle">Mudar a data de nascimento remonta o calendário de vacinas dela.</p>
+  </div>
+
+  <div class="card-padded">
+    <%= render 'form', pessoa: @pessoa %>
+  </div>
+</div>

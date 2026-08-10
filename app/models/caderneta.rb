@@ -5,13 +5,13 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  pessoa_id  :bigint           not null
 #
 
 class Caderneta < ApplicationRecord
   self.table_name = 'cadernetas'
 
-  belongs_to :user
+  belongs_to :pessoa
   has_many :doses, dependent: :destroy, inverse_of: :caderneta
   has_many :fabricante_vacinas, through: :doses
   has_many :vacinas, through: :fabricante_vacinas

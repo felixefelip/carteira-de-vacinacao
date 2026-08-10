@@ -291,12 +291,12 @@ class ::Caderneta < ::ApplicationRecord
     end
     include ::Caderneta::RecomendacaoVacina::GeneratedAliasAttributeMethods
 
-    def user: () -> ::User?
-    def user=: (::User?) -> ::User?
-    def build_user: (?untyped) -> ::User
-    def create_user: (?untyped) -> ::User
-    def create_user!: (?untyped) -> ::User
-    def reload_user: () -> ::User?
+    def pessoa: () -> ::Pessoa?
+    def pessoa=: (::Pessoa?) -> ::Pessoa?
+    def build_pessoa: (?untyped) -> ::Pessoa
+    def create_pessoa: (?untyped) -> ::Pessoa
+    def create_pessoa!: (?untyped) -> ::Pessoa
+    def reload_pessoa: () -> ::Pessoa?
     def caderneta: () -> ::Caderneta?
     def caderneta=: (::Caderneta?) -> ::Caderneta?
     def reload_caderneta: () -> ::Caderneta?
@@ -378,7 +378,7 @@ class ::Caderneta < ::ApplicationRecord
     end
 
     class ::Caderneta::RecomendacaoVacina::ValidatedViaCaderneta
-      def user: () -> ::User
+      def pessoa: () -> ::Pessoa
     end
   end
 end
@@ -389,5 +389,5 @@ class ::ApplicationRecord < ::ActiveRecord::Base
 end
 class ::Vacina < ::ApplicationRecord
 end
-class ::User < ::ApplicationRecord
+class ::Pessoa < ::ApplicationRecord
 end
