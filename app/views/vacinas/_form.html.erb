@@ -1,7 +1,7 @@
 <%= form_with(model: vacina, url: vacinas_path) do |form| %>
   <% if vacina.errors.any? %>
-    <div id="error_explanation" vacina>
-      <h2><%= pluralize(vacina.errors.count, "error") %> prohibited this vacina from being saved:</h2>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
 
       <ul>
         <% vacina.errors.each do |error| %>
@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :descricao %>
-    <%= form.text_field :descricao %>
+  <div class="form-field">
+    <%= form.label :descricao, class: "form-label" %>
+    <%= form.text_field :descricao, class: "form-input" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-    <%= link_to "Voltar", :back %>
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to "Voltar", :back, class: "link-muted text-sm" %>
   </div>
 <% end %>

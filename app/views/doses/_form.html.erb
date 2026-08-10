@@ -1,7 +1,8 @@
 <%= form_with model: dose, url: vacina_doses_path(vacina) do |form| %>
   <% if dose.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(dose.errors.count, 'error') %> prohibited this dose from being saved:</h2>
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+
       <ul>
         <% dose.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,33 +11,35 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :fabricante_vacina %>
-    <%= form.collection_select :fabricante_vacina_id, vacina.fabricante_vacinas.all, :id, :descricao, {}, class: "form-control" %>
+  <div class="form-field">
+    <%= form.label :fabricante_vacina, class: "form-label" %>
+    <%= form.collection_select :fabricante_vacina_id, vacina.fabricante_vacinas.all, :id, :descricao, {}, class: "form-input" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :data_vacinacao %>
-    <%= form.date_field :data_vacinacao, class: "form-control" %>
+  <div class="form-field">
+    <%= form.label :data_vacinacao, class: "form-label" %>
+    <%= form.date_field :data_vacinacao, class: "form-input" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :lote_numero %>
-    <%= form.text_field :lote_numero, class: "form-control" %>
+  <div class="form-field">
+    <%= form.label :lote_numero, class: "form-label" %>
+    <%= form.text_field :lote_numero, class: "form-input" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :vacinador_codigo %>
-    <%= form.text_field :vacinador_codigo, class: "form-control" %>
+  <div class="grid gap-x-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :vacinador_codigo, class: "form-label" %>
+      <%= form.text_field :vacinador_codigo, class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :local_codigo, class: "form-label" %>
+      <%= form.text_field :local_codigo, class: "form-input" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :local_codigo %>
-    <%= form.text_field :local_codigo, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Salvar", class: "btn btn-primary" %>
-    <%= link_to "Voltar", :back %>
+  <div class="form-actions">
+    <%= form.submit "Salvar", class: "btn-primary" %>
+    <%= link_to "Voltar", :back, class: "link-muted text-sm" %>
   </div>
 <% end %>

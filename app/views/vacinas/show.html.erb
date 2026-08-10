@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="mx-auto max-w-xl">
+  <div class="page-header">
+    <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Vacina</p>
+    <h1 class="page-title"><%= @vacina.descricao %></h1>
+  </div>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @vacina.descricao %>
-</p>
-
-<%= link_to 'Edit', edit_vacina_path(@vacina) %> |
-<%= link_to 'Back', vacinas_path %>
+  <div class="flex flex-wrap gap-3">
+    <%= link_to 'Editar', edit_vacina_path(@vacina), class: "btn-primary" %>
+    <%= link_to 'Voltar', vacinas_path, class: "btn-secondary" %>
+  </div>
+</div>

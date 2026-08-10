@@ -1,48 +1,64 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="mx-auto max-w-xl">
+  <div class="page-header">
+    <h1 class="page-title">Perfil</h1>
+    <p class="page-subtitle"><%= resource.email %></p>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="card-padded">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br>
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="form-field">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <span class="form-hint">Aguardando confirmação de: <%= resource.unconfirmed_email %></span>
+        <% end %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :data_nascimento, "Data de Nascimento", class: "form-label" %>
+        <%= f.date_field :data_nascimento, class: "form-input" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :password, "Nova senha", class: "form-label" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+        <span class="form-hint">
+          Deixe em branco para manter a senha atual<%= ", mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length %>.
+        </span>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :password_confirmation, "Confirme a nova senha", class: "form-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
+      </div>
+
+      <div class="form-field">
+        <%= f.label :current_password, "Senha atual", class: "form-label" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-input" %>
+        <span class="form-hint">Precisamos da sua senha atual para confirmar as alterações.</span>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Salvar alterações", class: "btn-primary" %>
+        <%= link_to "Voltar", :back, class: "link-muted text-sm" %>
+      </div>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="card-padded mt-6">
+    <h2 class="text-base font-semibold text-slate-900">Cancelar minha conta</h2>
+    <p class="mt-1 text-sm text-slate-500">
+      A caderneta e todas as doses registradas serão removidas. Esta ação não pode ser desfeita.
+    </p>
+
+    <div class="mt-4">
+      <%= button_to "Cancelar minha conta", registration_path(resource_name),
+                    method: :delete,
+                    class: "btn-danger",
+                    form: { data: { turbo_confirm: "Tem certeza?" } },
+                    data: { confirm: "Tem certeza?" } %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :data_nascimento %> <br>
-    <%= f.date_field :data_nascimento, class: "form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

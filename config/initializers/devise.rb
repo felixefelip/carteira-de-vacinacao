@@ -20,6 +20,14 @@ Devise.setup do |config|
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
 
+  # O Turbo descarta resposta de formulário que volta 200 sem redirecionar, e o
+  # padrão do Devise 4.9 para o recall ainda é `:ok` — por isso a falha de login
+  # não mostrava mensagem nenhuma. O erro precisa vir 422 e o redirect 303 (este
+  # último importa no "Sair", que é DELETE: com 302 o navegador repetiria o
+  # DELETE no destino).
+  config.responder.error_status = :unprocessable_content
+  config.responder.redirect_status = :see_other
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

@@ -1,0 +1,269 @@
+/*
+ * `source(none)` desliga a varredura automática: o repositório carrega
+ * `.gem_rbs_collection/` e `sig/`, e o rdoc de lá vira "classe" no build.
+ * As fontes reais são declaradas uma a uma abaixo.
+ */
+@import "tailwindcss" source(none);
+
+@source "../../views";
+@source "../../helpers";
+@source "../../javascript";
+
+/*
+ * Identidade visual: "documento clínico".
+ *
+ * A referência é a caderneta de papel — superfície clara e quente, tinta
+ * azul-nanquim, tipografia sóbria e hierarquia feita por peso e espaço, não
+ * por cor. Nada de gradiente, sombra colorida ou animação de entrada.
+ */
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Azul-nanquim: cor institucional, usada na barra, nos títulos e nas ações. */
+  --color-brand-50: #f2f6fa;
+  --color-brand-100: #e3ecf4;
+  --color-brand-200: #c3d6e7;
+  --color-brand-300: #94b4d1;
+  --color-brand-400: #5e8db4;
+  --color-brand-500: #3b6d99;
+  --color-brand-600: #2c567d;
+  --color-brand-700: #254765;
+  --color-brand-800: #223c55;
+  --color-brand-900: #1f3448;
+  --color-brand-950: #142231;
+
+  /* Papel: o fundo da página e a borda dos cartões. */
+  --color-paper: #faf9f7;
+  --color-paper-line: #e7e5e1;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-slate-800 antialiased;
+  }
+
+  /* Marcação que o Rails insere em volta do campo inválido. */
+  .field_with_errors {
+    @apply block;
+  }
+
+  .field_with_errors label {
+    @apply text-red-800;
+  }
+
+  .field_with_errors input,
+  .field_with_errors select {
+    @apply border-red-300 bg-red-50;
+  }
+}
+
+/*
+ * As variantes repetem o nome da base no seletor (`.btn, .btn-primary, …`)
+ * porque no Tailwind v4 o `@apply` só enxerga utilitários de verdade — não dá
+ * para uma classe de componente aplicar outra.
+ */
+@layer components {
+  /* ---------- Estrutura de página ---------- */
+
+  .page-header {
+    @apply mb-6 border-b border-paper-line pb-4;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight text-brand-900;
+  }
+
+  .page-subtitle {
+    @apply mt-1 text-sm text-slate-500;
+  }
+
+  .card,
+  .card-padded {
+    @apply rounded-lg border border-paper-line bg-white shadow-xs;
+  }
+
+  .card-padded {
+    @apply p-6;
+  }
+
+  /* ---------- Tabelas ---------- */
+
+  .table-wrap {
+    @apply overflow-x-auto rounded-lg border border-paper-line bg-white shadow-xs;
+  }
+
+  .data-table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+
+  .data-table thead th {
+    @apply border-b border-paper-line bg-brand-50 px-4 py-3
+           text-xs font-semibold tracking-wider text-brand-800 uppercase;
+  }
+
+  .data-table tbody tr + tr {
+    @apply border-t border-paper-line;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-brand-50/50;
+  }
+
+  .data-table td {
+    @apply px-4 py-3 align-middle;
+  }
+
+  .data-table .cell-numeric {
+    @apply text-slate-600 tabular-nums;
+  }
+
+  .table-empty {
+    @apply px-4 py-10 text-center text-sm text-slate-500;
+  }
+
+  /* ---------- Botões e links ---------- */
+
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-md border px-4 py-2 text-sm font-medium no-underline
+           transition-colors focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-brand-500;
+  }
+
+  .btn-primary {
+    @apply border-brand-700 bg-brand-700 text-white hover:bg-brand-800;
+  }
+
+  .btn-secondary {
+    @apply border-paper-line bg-white text-slate-700 hover:bg-slate-50;
+  }
+
+  .btn-danger {
+    @apply border-red-200 bg-white text-red-700 hover:bg-red-50;
+  }
+
+  /* Depois das variantes, para vencer o padding da base. */
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .link {
+    @apply font-medium text-brand-700 underline-offset-2 hover:underline;
+  }
+
+  .link-muted {
+    @apply text-slate-500 underline-offset-2 hover:text-slate-700 hover:underline;
+  }
+
+  .link-danger {
+    @apply font-medium text-red-700 underline-offset-2 hover:underline;
+  }
+
+  /* ---------- Etiquetas de situação ---------- */
+
+  .badge,
+  .badge-success,
+  .badge-warning,
+  .badge-neutral {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5
+           text-xs font-medium whitespace-nowrap;
+  }
+
+  .badge-success {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-800;
+  }
+
+  .badge-warning {
+    @apply border-amber-200 bg-amber-50 text-amber-800;
+  }
+
+  .badge-neutral {
+    @apply border-paper-line bg-slate-50 text-slate-600;
+  }
+
+  .badge-count {
+    @apply inline-flex min-w-7 items-center justify-center rounded-md
+           border border-brand-100 bg-brand-50 px-2 py-0.5
+           text-xs font-semibold text-brand-800 tabular-nums;
+  }
+
+  .meta {
+    @apply mt-1 block text-xs text-slate-500;
+  }
+
+  /* ---------- Formulários ---------- */
+
+  .form-field {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply mb-1.5 block text-sm font-medium text-slate-700;
+  }
+
+  .form-input {
+    @apply block w-full rounded-md border border-paper-line bg-white px-3 py-2
+           text-sm text-slate-900 shadow-xs placeholder:text-slate-400
+           focus:border-brand-400 focus:outline-2 focus:outline-offset-0
+           focus:outline-brand-200;
+  }
+
+  .form-hint {
+    @apply mt-1 block text-xs text-slate-500;
+  }
+
+  .form-actions {
+    @apply mt-6 flex flex-wrap items-center gap-4 border-t border-paper-line pt-5;
+  }
+
+  /* ---------- Avisos ---------- */
+
+  .alert,
+  .alert-success,
+  .alert-error {
+    @apply rounded-md border border-l-4 px-4 py-3 text-sm;
+  }
+
+  .alert-success {
+    @apply border-emerald-100 border-l-emerald-500 bg-emerald-50 text-emerald-900;
+  }
+
+  .alert-error {
+    @apply border-red-100 border-l-red-500 bg-red-50 text-red-900;
+  }
+
+  #error_explanation {
+    @apply mb-5 rounded-md border border-red-200 bg-red-50 px-4 py-3;
+  }
+
+  #error_explanation h2 {
+    @apply mb-1 text-sm font-semibold text-red-900;
+  }
+
+  #error_explanation ul {
+    @apply list-disc space-y-0.5 pl-5 text-sm text-red-800;
+  }
+
+  /* ---------- Barra de navegação ---------- */
+
+  .nav-link {
+    @apply rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap
+           text-brand-100 no-underline transition-colors
+           hover:bg-white/10 hover:text-white;
+  }
+
+  /* No celular a barra rola na horizontal; a barra de rolagem em si só faria
+     ruído sobre o fundo escuro. */
+  .nav-scroll {
+    scrollbar-width: none;
+  }
+
+  .nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

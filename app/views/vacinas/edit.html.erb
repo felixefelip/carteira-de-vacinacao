@@ -1,5 +1,10 @@
-<h1>Editing Vacina</h1>
+<div class="mx-auto max-w-xl">
+  <div class="page-header">
+    <h1 class="page-title">Editar Vacina</h1>
+    <p class="page-subtitle"><%= @vacina.descricao %></p>
+  </div>
 
-<%= render 'form', vacina: @vacina %>
-
-<%= link_to 'Show', vacina_path(@vacina) %>
+  <div class="card-padded">
+    <%= render 'form', vacina: @vacina %>
+  </div>
+</div>

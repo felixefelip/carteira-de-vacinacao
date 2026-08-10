@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Calendário de Vacinação</h1>
+    <p class="page-subtitle">Situação de cada vacina do calendário para a sua idade.</p>
+  </div>
 
-<h1>Calendário de Vacinação</h1>
-
-<div class="age-info mb-4">
-  <span>🎂 Idade atual: <%= Current.user.idade_formatada %></span>
+  <div class="rounded-md border border-paper-line bg-white px-4 py-2 shadow-xs">
+    <span class="block text-xs font-medium uppercase tracking-wider text-slate-500">Idade atual</span>
+    <span class="text-sm font-semibold text-brand-900"><%= Current.user.idade_formatada %></span>
+  </div>
 </div>
 
-<div class="table-responsive-md">
-  <table class="table table-striped table-bordered table-hover mt-4 shadow-sm">
-    <thead class="thead-light">
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
       <tr>
-        <th>Vacina</th>
-        <th>Doses Tomadas</th>
-        <th>Situação</th>
-        <th>Ação</th>
+        <th scope="col">Vacina</th>
+        <th scope="col">Doses tomadas</th>
+        <th scope="col">Situação</th>
+        <th scope="col"><span class="sr-only">Ação</span></th>
       </tr>
     </thead>
 
@@ -24,6 +28,3 @@
     </tbody>
   </table>
 </div>
-
-<br>
-<hr>

@@ -1,6 +1,13 @@
 <tr>
-  <td><%= link_to vacina.descricao, cadernetum_path(vacina.id) %></td>
-  <td><%= Current.caderneta.qtde_por_vacina(vacina) %> doses</td>
-  <td><%= link_to 'Editar', edit_vacina_path(vacina) %></td>
-  <td><%= link_to 'Remover', vacina_doses_path(vacina), data: { turbo: true, turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
+  <td class="font-medium">
+    <%= link_to vacina.descricao, cadernetum_path(vacina.id), class: "link" %>
+  </td>
+  <td class="cell-numeric"><%= Current.caderneta.qtde_por_vacina(vacina) %> doses</td>
+  <td>
+    <div class="flex justify-end gap-4 text-sm">
+      <%= link_to 'Editar', edit_vacina_path(vacina), class: "link-muted" %>
+      <%= link_to 'Remover', vacina_doses_path(vacina), class: "link-danger",
+                  data: { turbo: true, turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+    </div>
+  </td>
 </tr>
