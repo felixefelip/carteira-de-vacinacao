@@ -1,6 +1,12 @@
 class User
   module Idade
     def idade: () -> (Integer | Float)
+    def meses_de_vida: () -> Integer
+    def dias_desde_o_ultimo_mes_completo: () -> Integer
     def idade_formatada: () -> String
+
+    private
+
+    def pluralizar_trecho_idade: (Integer quantidade, String singular, String plural) -> String
   end
 end
