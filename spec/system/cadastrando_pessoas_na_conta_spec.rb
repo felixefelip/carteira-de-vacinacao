@@ -18,7 +18,7 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     fill_in 'Nome', with: 'Joãozinho'
     fill_in 'Data de nascimento', with: '01/03/2025'
     fill_in 'E-mail', with: 'joaozinho@example.com'
-    attach_file 'Foto', Rails.root.join('spec/fixtures/files/foto.png')
+    attach_file 'Foto', Rails.root.join('spec/fixtures/files/avatar.png')
     click_button 'Criar Pessoa'
 
     expect(page).to have_content 'Joãozinho entrou na conta e já tem uma caderneta.'
@@ -31,7 +31,7 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     expect(page).to have_content 'Situação de cada vacina do calendário para a idade de Joãozinho.'
 
     joaozinho = Pessoa.find_by!(nome: 'Joãozinho')
-    expect(joaozinho.foto).to be_attached
+    expect(joaozinho.avatar).to be_attached
     expect(joaozinho.caderneta.recomendacao_vacinas.count).to eq(17)
     expect(joaozinho.user.pessoas.count).to eq(2)
 

@@ -54,10 +54,10 @@ RSpec.describe Pessoa, type: :model do
     end
   end
 
-  describe 'foto', :aggregate_failures do
+  describe 'avatar', :aggregate_failures do
     it 'recusa arquivo que não é imagem' do
       pessoa = FactoryBot.build(:pessoa)
-      pessoa.foto.attach(io: StringIO.new('não sou imagem'), filename: 'texto.txt', content_type: 'text/plain')
+      pessoa.avatar.attach(io: StringIO.new('não sou imagem'), filename: 'texto.txt', content_type: 'text/plain')
 
       expect(pessoa).to be_invalid
       expect(pessoa.errors.full_messages).to include('Foto precisa ser PNG, JPEG ou WEBP')
@@ -65,8 +65,8 @@ RSpec.describe Pessoa, type: :model do
 
     it 'recusa imagem acima do tamanho máximo' do
       pessoa = FactoryBot.build(:pessoa)
-      conteudo = StringIO.new('x' * (Pessoa::TAMANHO_MAXIMO_DA_FOTO + 1))
-      pessoa.foto.attach(io: conteudo, filename: 'grande.png', content_type: 'image/png')
+      conteudo = StringIO.new('x' * (Pessoa::Avatar::TAMANHO_MAXIMO + 1))
+      pessoa.avatar.attach(io: conteudo, filename: 'grande.png', content_type: 'image/png')
 
       expect(pessoa).to be_invalid
       expect(pessoa.errors.full_messages).to include('Foto precisa ter no máximo 5 MB')
@@ -74,7 +74,7 @@ RSpec.describe Pessoa, type: :model do
 
     it 'aceita imagem dentro do limite' do
       pessoa = FactoryBot.build(:pessoa)
-      pessoa.foto.attach(io: StringIO.new('imagem'), filename: 'foto.png', content_type: 'image/png')
+      pessoa.avatar.attach(io: StringIO.new('imagem'), filename: 'foto.png', content_type: 'image/png')
 
       expect(pessoa).to be_valid
     end
