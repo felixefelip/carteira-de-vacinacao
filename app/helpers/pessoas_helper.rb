@@ -1,9 +1,9 @@
 module PessoasHelper
-  def avatar_da_pessoa(pessoa, classes: 'h-10 w-10 text-sm')
+  def avatar_da_pessoa(pessoa, classes: nil)
     if pessoa.foto.attached?
-      image_tag pessoa.foto, alt: pessoa.nome, class: "avatar #{classes}"
+      image_tag pessoa.foto, alt: pessoa.nome, class: class_names('avatar', classes)
     else
-      tag.span pessoa.iniciais, class: "avatar #{classes}", 'aria-hidden': true
+      tag.span pessoa.iniciais, class: class_names('avatar', classes), 'aria-hidden': true
     end
   end
 end

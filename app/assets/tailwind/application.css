@@ -199,14 +199,13 @@
   /* ---------- Pessoas ---------- */
 
   .avatar {
-    @apply inline-flex shrink-0 items-center justify-center overflow-hidden
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden
            rounded-full border border-paper-line bg-brand-100
-           font-semibold uppercase leading-none text-brand-800;
+           text-sm font-semibold uppercase leading-none text-brand-800;
   }
 
-  .avatar img,
   img.avatar {
-    @apply h-full w-full object-cover;
+    @apply object-cover;
   }
 
   .seletor-de-perfil {
