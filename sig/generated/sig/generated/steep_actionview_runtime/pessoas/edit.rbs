@@ -1,11 +1,11 @@
 class ERBPessoasEdit
-  @pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?
+  @pessoa: (Pessoa & Pessoa::Validated)
 
   include ActionViewContext
   include PessoasHelper
 
-  def initialize: (pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?) -> void
-  def render: (?String? target, *{ pessoa: (Pessoa | (Pessoa & Pessoa::Validated))? } rest) -> nil
+  def initialize: (pessoa: Pessoa & ::Pessoa::Validated) -> void
+  def render: (?String? target, *{ pessoa: Pessoa & Pessoa::Validated } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

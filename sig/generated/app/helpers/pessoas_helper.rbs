@@ -1,3 +1,3 @@
 module PessoasHelper
-  def avatar_da_pessoa: (untyped pessoa, ?classes: untyped) -> untyped
+  def avatar_da_pessoa: ((Pessoa & Pessoa::Validated) pessoa, ?classes: untyped) -> untyped
 end

@@ -1,11 +1,15 @@
 class ERBPartialPessoasForm
   include ActionViewContext
 
-  def initialize: (pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?) -> void
+  def initialize: (pessoa: (Pessoa & Pessoa::Validated | Pessoa)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?
+  attr_reader pessoa: (Pessoa & Pessoa::Validated | Pessoa)
+
+  class AfterInitialize
+    attr_reader pessoa: (Pessoa & Pessoa::Validated) | Pessoa
+  end
 end
