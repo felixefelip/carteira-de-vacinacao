@@ -354,6 +354,11 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
+- class: ERBCadernetaIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@vacinas"
 - class: ERBCadernetaShow
   method: initialize
   effects:
@@ -834,6 +839,12 @@ method_entry_facts:
     Current.user: "(::User & ::User::Validated)"
 - class: Caderneta
   method: vacinas
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Caderneta::RecomendacaoVacina
+  method: quando_pode_tomar_proxima_dose
   consts:
     Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
     Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"

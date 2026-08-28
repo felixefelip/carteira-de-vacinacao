@@ -1,11 +1,11 @@
 class ERBPartialSugestoesRecomendacaoVacina
   include ActionViewContext
 
-  def initialize: (recomendacao_vacina: untyped) -> void
+  def initialize: (recomendacao_vacina: (Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated)) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 
   private
 
-  attr_reader recomendacao_vacina: untyped
+  attr_reader recomendacao_vacina: (Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated)
 end
