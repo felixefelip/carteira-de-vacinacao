@@ -1,4 +1,6 @@
 class PessoasController < ApplicationController
+  @pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?
+
   def index: () -> void
   def new: () -> void
   def edit: () -> void
@@ -8,6 +10,6 @@ class PessoasController < ApplicationController
 
   private
 
-  def set_pessoa: () -> untyped
+  def set_pessoa: () -> (Pessoa & Pessoa::Validated)
   def pessoa_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
 end
