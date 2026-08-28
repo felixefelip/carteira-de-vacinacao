@@ -370,24 +370,24 @@ class ::Pessoa < ::ApplicationRecord
   end
   include ::Pessoa::GeneratedAliasAttributeMethods
 
+  def avatar_attachment: () -> ::ActiveStorage::Attachment?
+  def avatar_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
+  def build_avatar_attachment: (?untyped) -> ::ActiveStorage::Attachment
+  def create_avatar_attachment: (?untyped) -> ::ActiveStorage::Attachment
+  def create_avatar_attachment!: (?untyped) -> ::ActiveStorage::Attachment
+  def reload_avatar_attachment: () -> ::ActiveStorage::Attachment?
+  def avatar_blob: () -> ::ActiveStorage::Blob?
+  def avatar_blob=: (::ActiveStorage::Blob?) -> ::ActiveStorage::Blob?
+  def build_avatar_blob: (?untyped) -> ::ActiveStorage::Blob
+  def create_avatar_blob: (?untyped) -> ::ActiveStorage::Blob
+  def create_avatar_blob!: (?untyped) -> ::ActiveStorage::Blob
+  def reload_avatar_blob: () -> ::ActiveStorage::Blob?
   def caderneta: () -> ::Caderneta?
   def caderneta=: (::Caderneta?) -> ::Caderneta?
   def build_caderneta: (?untyped) -> ::Caderneta
   def create_caderneta: (?untyped) -> ::Caderneta
   def create_caderneta!: (?untyped) -> ::Caderneta
   def reload_caderneta: () -> ::Caderneta?
-  def foto_attachment: () -> ::ActiveStorage::Attachment?
-  def foto_attachment=: (::ActiveStorage::Attachment?) -> ::ActiveStorage::Attachment?
-  def build_foto_attachment: (?untyped) -> ::ActiveStorage::Attachment
-  def create_foto_attachment: (?untyped) -> ::ActiveStorage::Attachment
-  def create_foto_attachment!: (?untyped) -> ::ActiveStorage::Attachment
-  def reload_foto_attachment: () -> ::ActiveStorage::Attachment?
-  def foto_blob: () -> ::ActiveStorage::Blob?
-  def foto_blob=: (::ActiveStorage::Blob?) -> ::ActiveStorage::Blob?
-  def build_foto_blob: (?untyped) -> ::ActiveStorage::Blob
-  def create_foto_blob: (?untyped) -> ::ActiveStorage::Blob
-  def create_foto_blob!: (?untyped) -> ::ActiveStorage::Blob
-  def reload_foto_blob: () -> ::ActiveStorage::Blob?
   def user: () -> ::User?
   def user=: (::User?) -> ::User?
   def reload_user: () -> ::User?
@@ -395,23 +395,23 @@ class ::Pessoa < ::ApplicationRecord
   def create_user: (untyped) -> ::User
   def create_user!: (untyped) -> ::User
   module ::Pessoa::GeneratedAssociationMethods
-    def foto: () -> ::ActiveStorage::Attached::One
+    def avatar: () -> ::ActiveStorage::Attached::One
 
-    def foto=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
-             | (::Rack::Test::UploadedFile) -> ::Rack::Test::UploadedFile
-             | (::ActiveStorage::Blob) -> ::ActiveStorage::Blob
-             | (::String) -> ::String
-             | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
-             | (nil) -> nil
+    def avatar=: (::ActionDispatch::Http::UploadedFile) -> ::ActionDispatch::Http::UploadedFile
+               | (::Rack::Test::UploadedFile) -> ::Rack::Test::UploadedFile
+               | (::ActiveStorage::Blob) -> ::ActiveStorage::Blob
+               | (::String) -> ::String
+               | ({ io: ::IO, filename: ::String, content_type: ::String? }) -> { io: ::IO, filename: ::String, content_type: ::String? }
+               | (nil) -> nil
   end
   include ::Pessoa::GeneratedAssociationMethods
 
-  def self.with_attached_foto: () -> ::Pessoa::ActiveRecord_Relation
+  def self.with_attached_avatar: () -> ::Pessoa::ActiveRecord_Relation
   def self.titulares: () -> ::Pessoa::ActiveRecord_Relation
   def self.por_nome: () -> ::Pessoa::ActiveRecord_Relation
 
   module ::Pessoa::GeneratedRelationMethods
-    def with_attached_foto: () -> ::Pessoa::ActiveRecord_Relation
+    def with_attached_avatar: () -> ::Pessoa::ActiveRecord_Relation
 
     def titulares: () -> ::Pessoa::ActiveRecord_Relation
 
@@ -447,15 +447,15 @@ class ::Pessoa < ::ApplicationRecord
   class ::Pessoa::Validated
     def id: () -> ::Integer
     def user: () -> (::User & ::User::Validated)
-    def nome: () -> ::String
     def data_nascimento: () -> ::Date
+    def nome: () -> ::String
     def caderneta: () -> (::Caderneta & ::Caderneta::Validated)
     def created_at: () -> ::ActiveSupport::TimeWithZone
     def updated_at: () -> ::ActiveSupport::TimeWithZone
   end
 
-  class ::Pessoa::ValidatedViaFotoAttachment
-    def foto_blob: () -> ::ActiveStorage::Blob
+  class ::Pessoa::ValidatedViaAvatarAttachment
+    def avatar_blob: () -> ::ActiveStorage::Blob
   end
 end
 
