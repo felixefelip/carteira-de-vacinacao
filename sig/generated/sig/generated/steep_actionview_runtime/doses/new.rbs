@@ -5,7 +5,7 @@ class ERBDosesNew
   include DosesHelper
 
   def initialize: (dose: Dose?, vacina: untyped) -> void
-  def render: (?String target, *{ dose: Dose?, vacina: untyped } rest) -> nil
+  def render: (?String? target, *{ dose: Dose?, vacina: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

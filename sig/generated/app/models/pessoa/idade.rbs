@@ -1,5 +1,7 @@
 class Pessoa
   module Idade
+    extend ActiveSupport::Concern
+
     def idade: () -> (Integer | Float)
     def meses_de_vida: () -> Integer
     def dias_desde_o_ultimo_mes_completo: () -> Integer

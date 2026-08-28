@@ -3,7 +3,7 @@ class ERBSugestoesIndex
   include SugestoesHelper
 
   def initialize: (recomendacao_vacinas: untyped) -> void
-  def render: (?String target, *{ recomendacao_vacina: untyped } rest) -> nil
+  def render: (?String? target, *{ recomendacao_vacina: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

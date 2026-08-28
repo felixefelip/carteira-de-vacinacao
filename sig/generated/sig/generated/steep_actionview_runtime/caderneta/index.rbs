@@ -2,7 +2,7 @@ class ERBCadernetaIndex
   include ActionViewContext
 
   def initialize: (vacinas: untyped) -> void
-  def render: (?String target, *{ vacina: untyped } rest) -> nil
+  def render: (?String? target, *{ vacina: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

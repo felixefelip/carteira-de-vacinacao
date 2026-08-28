@@ -1,15 +1,18 @@
 class Current
   self.@user: (User & User::Validated)?
+  self.@pessoa: (Pessoa & Pessoa::Validated)?
+  self.@caderneta: (Caderneta & Caderneta::Validated)?
   self.@__rbs_infer_instance: Current?
 
-  @user: (User & User::Validated)?
-  @caderneta: (Caderneta & Caderneta::Validated)?
-
   module GeneratedAttributeMethods
+    @user: (User & User::Validated)?
+    @pessoa: (Pessoa & Pessoa::Validated)?
+    @caderneta: (Caderneta & Caderneta::Validated)?
+
     def user: () -> (User & User::Validated)?
     def user=: ((User & User::Validated)? value) -> (User & User::Validated)?
-    def pessoa: () -> untyped
-    def pessoa=: (untyped value) -> untyped
+    def pessoa: () -> (Pessoa & Pessoa::Validated)?
+    def pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)?
     def caderneta: () -> (Caderneta & Caderneta::Validated)?
     def caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   end
@@ -18,11 +21,11 @@ class Current
 
   def self.user: () -> (User & User::Validated)?
   def self.user=: ((User & User::Validated)? value) -> (User & User::Validated)?
-  def self.pessoa: () -> untyped
-  def self.pessoa=: (untyped value) -> untyped
+  def self.pessoa: () -> (Pessoa & Pessoa::Validated)?
+  def self.pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)?
   def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
   def self.caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   def self.__rbs_infer_instance: () -> Current
-  def self.set: (?user: (User & User::Validated)?, ?pessoa: untyped, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped
-  def self.with: (?user: (User & User::Validated)?, ?pessoa: untyped, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped
+  def self.set: (?user: (User & User::Validated)?, ?pessoa: (Pessoa & Pessoa::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped
+  def self.with: (?user: (User & User::Validated)?, ?pessoa: (Pessoa & Pessoa::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped
 end

@@ -9,5 +9,5 @@ class PessoasController < ApplicationController
   private
 
   def set_pessoa: () -> untyped
-  def pessoa_params: () -> untyped
+  def pessoa_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
 end

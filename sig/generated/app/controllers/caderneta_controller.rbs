@@ -1,4 +1,7 @@
 class CadernetaController < ApplicationController
+  @vacina: (Vacina & Vacina::Validated)?
+  @fabricante_vacinas: Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy?
+
   def index: () -> void
   def show: () -> void
 end

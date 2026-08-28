@@ -20,11 +20,23 @@ app/helpers/sugestoes_helper.rb:
   - anchor: SugestoesHelper
     annotations:
     - "# @type instance: ERBSugestoesIndex & SugestoesHelper"
+app/models/pessoa/avatar.rb:
+  modules:
+  - anchor: Avatar
+    annotations:
+    - "# @type self: singleton(Pessoa) & singleton(Pessoa::Avatar)"
+    - "# @type instance: Pessoa & Pessoa::Avatar"
 app/models/pessoa/idade.rb:
   modules:
   - anchor: Idade
     annotations:
+    - "# @type self: singleton(Pessoa) & singleton(Pessoa::Idade)"
     - "# @type instance: Pessoa & Pessoa::Idade"
+sig/generated/steep_ar_runtime/active_support/concern.rb:
+  modules:
+  - anchor: Concern
+    annotations:
+    - "# @type instance: (singleton(Pessoa::Avatar)) | (singleton(Pessoa::Idade))"
 sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:
   modules:
   - anchor: ControllerMethods
@@ -35,3 +47,8 @@ sig/generated/steep_current_runtime/current.rb:
   - anchor: GeneratedAttributeMethods
     annotations:
     - "# @type instance: Current & Current::GeneratedAttributeMethods"
+sig/generated/steep_devise_runtime/devise_scoped_helpers.rb:
+  modules:
+  - anchor: DeviseScopedHelpers
+    annotations:
+    - "# @type instance: ActionController::Base & DeviseScopedHelpers"

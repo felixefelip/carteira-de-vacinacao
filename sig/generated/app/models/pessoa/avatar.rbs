@@ -1,0 +1,14 @@
+class Pessoa
+  module Avatar
+    TIPOS_ACEITOS: Array[String]
+    TAMANHO_MAXIMO: untyped
+
+    extend ActiveSupport::Concern
+
+    def iniciais: () -> String
+
+    private
+
+    def avatar_precisa_ser_uma_imagem_pequena: () -> ActiveModel::Error?
+  end
+end
