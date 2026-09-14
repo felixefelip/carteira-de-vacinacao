@@ -9,6 +9,6 @@ class Pessoa
 
     private
 
-    def pluralizar_trecho_idade: (Integer quantidade, String singular, String plural) -> String
+    def pluralizar_trecho_idade: (Integer quantidade, ("ano" | "mês" | "dia") singular, ("anos" | "meses" | "dias") plural) -> String
   end
 end

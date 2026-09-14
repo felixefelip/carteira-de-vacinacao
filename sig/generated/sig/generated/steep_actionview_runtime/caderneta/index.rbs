@@ -4,7 +4,7 @@ class ERBCadernetaIndex
   include ActionViewContext
 
   def initialize: (vacinas: Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy) -> void
-  def render: (?String? target, *{ vacina: (Vacina & Vacina::Validated) } rest) -> nil
+  def render: (?"doses"? target, *{ vacina: (Vacina & Vacina::Validated) } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

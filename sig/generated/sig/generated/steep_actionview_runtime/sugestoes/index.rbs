@@ -5,7 +5,7 @@ class ERBSugestoesIndex
   include SugestoesHelper
 
   def initialize: (recomendacao_vacinas: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy) -> void
-  def render: (?String? target, *{ recomendacao_vacina: (Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated) } rest) -> nil
+  def render: (?"recomendacao_vacina"? target, *{ recomendacao_vacina: (Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated) } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

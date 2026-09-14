@@ -4,7 +4,7 @@ class Caderneta
 
     def pessoa_idade: () -> (Integer | Float)
     def qtde_doses_tomadas: () -> Integer
-    def calcular_status_vacinal: () -> String
+    def calcular_status_vacinal: () -> ("completo" | "disponivel" | "aguardando")
     def dose_recomendada_atual: () -> (DoseDoCalendario & DoseDoCalendario::Validated)?
     def pode_tomar_nova_dose?: () -> bool
     def tem_idade_para_tomar_a_nova_dose?: () -> bool

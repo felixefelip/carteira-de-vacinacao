@@ -1,5 +1,5 @@
 class User
-  def save: (**untyped) -> bool
+  def save: (**untyped) -> true
   def run_before_validation_callbacks: () -> ::String?
   def pessoas: () -> User_Pessoa::ActiveRecord_Associations_CollectionProxy
 end

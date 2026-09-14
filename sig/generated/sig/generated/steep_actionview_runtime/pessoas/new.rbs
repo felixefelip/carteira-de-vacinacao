@@ -5,7 +5,7 @@ class ERBPessoasNew
   include PessoasHelper
 
   def initialize: (pessoa: Pessoa) -> void
-  def render: (?String? target, *{ pessoa: Pessoa } rest) -> nil
+  def render: (?"form"? target, *{ pessoa: Pessoa } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end
