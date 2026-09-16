@@ -1,13 +1,13 @@
-class CadernetaController < VacinacaoController
+class CadernetaController < ApplicationController
   def index
-    @vacinas = caderneta_ativa.vacinas.distinct
+    @vacinas = Current.caderneta.vacinas.distinct
   end
 
   def show
     @vacina = Vacina.find(params.expect(:id))
     @fabricante_vacinas = @vacina.fabricante_vacinas
       .joins(:doses)
-      .where(doses: { caderneta_id: caderneta_ativa.id })
+      .where(doses: { caderneta_id: Current.caderneta.id })
       .distinct
   end
 end

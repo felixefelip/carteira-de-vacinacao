@@ -2,7 +2,7 @@
   <td class="font-medium">
     <%= link_to vacina.descricao, cadernetum_path(vacina.id), class: "link" %>
   </td>
-  <td class="cell-numeric"><%= caderneta_ativa.qtde_por_vacina(vacina) %> doses</td>
+  <td class="cell-numeric"><%= Current.caderneta.qtde_por_vacina(vacina) %> doses</td>
   <td>
     <div class="flex justify-end gap-4 text-sm">
       <%= link_to 'Editar', edit_vacina_path(vacina), class: "link-muted" %>
