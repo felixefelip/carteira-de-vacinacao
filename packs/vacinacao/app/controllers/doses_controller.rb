@@ -1,4 +1,4 @@
-class DosesController < ApplicationController
+class DosesController < VacinacaoController
   before_action :set_dose, only: %i[show edit]
   before_action :set_vacina, only: %i[new create edit]
 
@@ -12,7 +12,7 @@ class DosesController < ApplicationController
 
   def create
     @dose = Dose.new(dose_params)
-    @dose.caderneta = Current.caderneta
+    @dose.caderneta = caderneta_ativa
 
     if @dose.save
       redirect_to caderneta_url, notice: 'Dose cadastrada com sucesso.'

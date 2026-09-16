@@ -40,6 +40,7 @@ gem 'view_component'
 
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'importmap-rails'
+gem 'packs-rails'
 
 # gem "steep", "~> 1.10.0", require: false
 gem 'steep', path: '../steep', require: false
@@ -54,7 +55,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
-  gem 'packs-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 8.0.0'

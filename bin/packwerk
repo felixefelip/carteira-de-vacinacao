@@ -23,5 +23,6 @@ end
 
 require "rubygems"
 require "bundler/setup"
+require 'stringio'
 
 load Gem.bin_path("packwerk", "packwerk")

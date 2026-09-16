@@ -1,4 +1,4 @@
-class VacinasController < ApplicationController
+class VacinasController < VacinacaoController
   before_action :set_vacina, only: %i[show edit update destroy]
 
   def index
