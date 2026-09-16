@@ -1,7 +1,7 @@
 class ERBPartialSharedHeader
   include ActionViewContext
 
-  def render: (?String target, *untyped rest) -> nil
+  def render: (?"shared/seletor_de_perfil"? target, *untyped rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

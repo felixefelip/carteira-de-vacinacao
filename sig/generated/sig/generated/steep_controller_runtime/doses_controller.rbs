@@ -1,12 +1,12 @@
 class DosesController
   @__rbs_infer__performed: true?
 
-  def render: (?Symbol target, *{ status: Symbol } rest) -> bool
+  def render: (?(:new)? target, *{ status: :unprocessable_content } rest) -> true
 
   private
 
   def __rbs_infer__run_show: () -> void
-  def __rbs_infer__run_new: () -> bool?
+  def __rbs_infer__run_new: () -> true?
   def __rbs_infer__run_edit: () -> void
   def __rbs_infer__run_create: () -> void
 end

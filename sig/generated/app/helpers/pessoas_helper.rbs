@@ -1,3 +1,3 @@
 module PessoasHelper
-  def avatar_da_pessoa: (untyped pessoa, ?classes: untyped) -> untyped
+  def avatar_da_pessoa: (((Pessoa & Pessoa::Validated) | Pessoa | (Pessoa & Pessoa::Validated)?) pessoa, ?classes: ("h-12 w-12 text-base" | "h-14 w-14 text-base" | "h-7 w-7 text-xs")?) -> untyped
 end

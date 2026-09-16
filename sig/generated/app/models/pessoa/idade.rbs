@@ -1,5 +1,7 @@
 class Pessoa
   module Idade
+    extend ActiveSupport::Concern
+
     def idade: () -> (Integer | Float)
     def meses_de_vida: () -> Integer
     def dias_desde_o_ultimo_mes_completo: () -> Integer
@@ -7,6 +9,6 @@ class Pessoa
 
     private
 
-    def pluralizar_trecho_idade: (Integer quantidade, String singular, String plural) -> String
+    def pluralizar_trecho_idade: (Integer quantidade, ("ano" | "mês" | "dia") singular, ("anos" | "meses" | "dias") plural) -> String
   end
 end

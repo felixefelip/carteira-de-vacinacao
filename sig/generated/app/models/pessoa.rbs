@@ -1,14 +1,9 @@
 class Pessoa < ApplicationRecord
-  TIPOS_DE_FOTO_ACEITOS: Array[String]
-  TAMANHO_MAXIMO_DA_FOTO: untyped
-
   include Idade
-
-  def iniciais: () -> String
+  include Avatar
 
   private
 
   def montar_caderneta: () -> Caderneta
   def email_nao_pode_ser_de_outra_conta: () -> ActiveModel::Error?
-  def foto_precisa_ser_uma_imagem_pequena: () -> ActiveModel::Error?
 end

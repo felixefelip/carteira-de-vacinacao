@@ -1,5 +1,6 @@
 class DosesController < ApplicationController
-  @dose: Dose?
+  @dose: (Dose | (Dose & Dose::Validated))?
+  @vacina: (Vacina & Vacina::Validated)?
 
   def show: () -> void
   def new: () -> void

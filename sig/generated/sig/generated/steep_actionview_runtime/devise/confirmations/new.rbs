@@ -1,7 +1,7 @@
 class ERBDeviseConfirmationsNew
   include ActionViewContext
 
-  def render: (?String target, *{ resource: untyped } rest) -> nil
+  def render: (?("devise/shared/error_messages" | "devise/shared/links")? target, *{ resource: untyped } rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

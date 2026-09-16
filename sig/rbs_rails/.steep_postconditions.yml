@@ -11,8 +11,8 @@ postconditions:
       through: ActiveStorage::VariantRecord#image_attachment
       as: ActiveStorage::VariantRecord & ActiveStorage::VariantRecord::ValidatedViaImageAttachment
     - &3
-      through: Pessoa#foto_attachment
-      as: Pessoa & Pessoa::ValidatedViaFotoAttachment
+      through: Pessoa#avatar_attachment
+      as: Pessoa & Pessoa::ValidatedViaAvatarAttachment
     self: ActiveStorage::Attachment & ActiveStorage::Attachment::Validated
   when_false:
     drops:

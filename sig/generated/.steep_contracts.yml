@@ -1,14 +1,14 @@
 ---
 version: 1
 methods:
-  Pessoa#foto_precisa_ser_uma_imagem_pequena:
+  Pessoa::Avatar#avatar_precisa_ser_uma_imagem_pequena:
     requires:
     - kind: not_nil
       expr:
         kind: send
         receiver:
           kind: self
-        method: foto
+        method: avatar
     enforced: false
   Users::RegistrationsController#__rbs_infer__run_build_resource:
     requires:

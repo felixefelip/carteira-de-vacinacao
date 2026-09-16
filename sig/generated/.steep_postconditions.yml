@@ -1,15 +1,118 @@
 ---
 version: 1
 postconditions:
+- class: ActionController::Base
+  method: head
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::ActionController::Base & ::ActionController::Base::AfterHead"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: ActionController::Base
+  method: performed?
+  effects:
+    returns_ivar: "@__rbs_infer__performed"
+- class: ActionController::Base
+  method: redirect_to
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::ActionController::Base & ::ActionController::Base::AfterRedirectTo"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: ActionController::Base
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::ActionController::Base & ::ActionController::Base::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
 - class: ActionController::HttpAuthentication::Token
   method: authenticate
   when_true:
     block_truthy: true
+- class: ActionController::HttpAuthentication::Token::ControllerMethods
+  method: authenticate_or_request_with_http_token
+  conditional_block_truthy:
+    gate_ivar: "@__rbs_infer__performed"
+- class: ActionController::HttpAuthentication::Token::ControllerMethods
+  method: authenticate_with_http_token
+  when_true:
+    block_truthy: true
+- class: ActiveSupport::Concern
+  method: included
+  effects:
+    may_write:
+    - "@_included_block"
+- class: ApplicationController
+  method: set_authenticated_user
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
 - class: Caderneta::Atualizar
   method: initialize
   effects:
     may_write:
     - "@caderneta"
+- class: CadernetaController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacinas"
+- class: CadernetaController
+  method: __rbs_infer__run_show
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@fabricante_vacinas"
+    - "@vacina"
+- class: CadernetaController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": "::Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::CadernetaController & ::CadernetaController::AfterIndex"
+  effects:
+    may_write:
+    - "@vacinas"
+- class: CadernetaController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::CadernetaController & ::CadernetaController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: CadernetaController
+  method: show
+  unconditional:
+    ivars:
+      "@fabricante_vacinas": "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::CadernetaController & ::CadernetaController::AfterShow"
+  effects:
+    may_write:
+    - "@fabricante_vacinas"
+    - "@vacina"
 - class: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -62,21 +165,46 @@ postconditions:
   method: pessoa=
   unconditional:
     establishes_consts:
-      caderneta: untyped
+      caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      pessoa: "(::Pessoa & ::Pessoa::Validated)"
+  effects:
+    may_write:
+    - "@caderneta"
 - class: Current
   method: __rbs_infer_instance
   effects:
     may_write:
     - "@__rbs_infer_instance"
 - class: Current
+  method: caderneta
+  effects:
+    returns_ivar: "@caderneta"
+- class: Current
   method: caderneta=
   unconditional:
     establishes_consts:
       caderneta: "(::Caderneta & ::Caderneta::Validated)"
+  effects:
+    may_write:
+    - "@caderneta"
+- class: Current
+  method: pessoa
+  effects:
+    returns_ivar: "@pessoa"
+- class: Current
+  method: pessoa=
+  unconditional:
+    establishes_consts:
+      pessoa: "(::Pessoa & ::Pessoa::Validated)"
+  effects:
+    may_write:
+    - "@pessoa"
 - class: Current
   method: set
   effects:
     may_write:
+    - "@caderneta"
+    - "@pessoa"
     - "@user"
 - class: Current
   method: user
@@ -94,12 +222,155 @@ postconditions:
   method: with
   effects:
     may_write:
+    - "@caderneta"
+    - "@pessoa"
     - "@user"
+- class: Current::GeneratedAttributeMethods
+  method: caderneta
+  effects:
+    returns_ivar: "@caderneta"
+- class: Current::GeneratedAttributeMethods
+  method: caderneta=
+  effects:
+    may_write:
+    - "@caderneta"
+- class: Current::GeneratedAttributeMethods
+  method: pessoa
+  effects:
+    returns_ivar: "@pessoa"
+- class: Current::GeneratedAttributeMethods
+  method: pessoa=
+  effects:
+    may_write:
+    - "@pessoa"
+- class: Current::GeneratedAttributeMethods
+  method: user
+  effects:
+    returns_ivar: "@user"
+- class: Current::GeneratedAttributeMethods
+  method: user=
+  effects:
+    may_write:
+    - "@user"
+- class: DeviseScopedHelpers
+  method: authenticate_user!
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+  conditional_returns:
+    current_user:
+      gate_ivar: "@__rbs_infer__performed"
+      type: "(::User & ::User::Validated)"
+- class: DosesController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@dose"
+    - "@vacina"
+- class: DosesController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@dose"
+    - "@vacina"
+- class: DosesController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@dose"
+    - "@vacina"
+- class: DosesController
+  method: __rbs_infer__run_show
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@dose"
+- class: DosesController
+  method: create
+  unconditional:
+    ivars:
+      "@dose": "::Dose"
+    self: "::DosesController & ::DosesController::AfterCreate"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@dose"
+- class: DosesController
+  method: new
+  unconditional:
+    ivars:
+      "@dose": "::Dose"
+    self: "::DosesController & ::DosesController::AfterNew"
+  effects:
+    may_write:
+    - "@dose"
+- class: DosesController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::DosesController & ::DosesController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: DosesController
+  method: set_dose
+  unconditional:
+    ivars:
+      "@dose": "(::Dose & ::Dose::Validated)"
+    self: "::DosesController & ::DosesController::AfterSetDose"
+  effects:
+    may_write:
+    - "@dose"
+- class: DosesController
+  method: set_vacina
+  unconditional:
+    ivars:
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::DosesController & ::DosesController::AfterSetVacina"
+  effects:
+    may_write:
+    - "@vacina"
+- class: ERBCadernetaIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@vacinas"
+- class: ERBCadernetaShow
+  method: initialize
+  effects:
+    may_write:
+    - "@fabricante_vacinas"
+    - "@vacina"
 - class: ERBDosesNew
   method: initialize
   effects:
     may_write:
     - "@dose"
+    - "@vacina"
 - class: ERBPartialCadernetaDoses
   method: initialize
   effects:
@@ -131,11 +402,36 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
+- class: ERBPessoasEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@pessoa"
+- class: ERBPessoasIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@pessoas"
+- class: ERBPessoasNew
+  method: initialize
+  effects:
+    may_write:
+    - "@pessoa"
+- class: ERBSugestoesIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@recomendacao_vacinas"
 - class: ERBVacinasEdit
   method: initialize
   effects:
     may_write:
     - "@vacina"
+- class: ERBVacinasIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@vacinas"
 - class: ERBVacinasNew
   method: initialize
   effects:
@@ -161,6 +457,167 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: PerfilAtivoController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: PessoasController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: __rbs_infer__run_destroy
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoas"
+- class: PessoasController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: create
+  unconditional:
+    ivars:
+      "@pessoa": "::Pessoa"
+    self: "::PessoasController & ::PessoasController::AfterCreate"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@pessoa"
+- class: PessoasController
+  method: destroy
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: PessoasController
+  method: index
+  unconditional:
+    ivars:
+      "@pessoas": "::Pessoa::ActiveRecord_Relation"
+    self: "::PessoasController & ::PessoasController::AfterIndex"
+  effects:
+    may_write:
+    - "@pessoas"
+- class: PessoasController
+  method: new
+  unconditional:
+    ivars:
+      "@pessoa": "::Pessoa"
+    self: "::PessoasController & ::PessoasController::AfterNew"
+  effects:
+    may_write:
+    - "@pessoa"
+- class: PessoasController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::PessoasController & ::PessoasController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: PessoasController
+  method: set_pessoa
+  unconditional:
+    ivars:
+      "@pessoa": "(::Pessoa & ::Pessoa::Validated)"
+    self: "::PessoasController & ::PessoasController::AfterSetPessoa"
+  effects:
+    may_write:
+    - "@pessoa"
+- class: PessoasController
+  method: update
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: SugestoesController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@recomendacao_vacinas"
+- class: SugestoesController
+  method: index
+  unconditional:
+    ivars:
+      "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+    self: "::SugestoesController & ::SugestoesController::AfterIndex"
+  effects:
+    may_write:
+    - "@recomendacao_vacinas"
+- class: SugestoesController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::SugestoesController & ::SugestoesController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
 - class: User_Pessoa::ActiveRecord_Associations_CollectionProxy
   method: build
   unconditional:
@@ -230,3 +687,706 @@ postconditions:
   method: owner
   effects:
     returns_ivar: "@owner"
+- class: VacinasController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: __rbs_infer__run_destroy
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacinas"
+- class: VacinasController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: __rbs_infer__run_show
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: create
+  unconditional:
+    ivars:
+      "@vacina": "::Vacina"
+    self: "::VacinasController & ::VacinasController::AfterCreate"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@vacina"
+- class: VacinasController
+  method: destroy
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: VacinasController
+  method: index
+  unconditional:
+    ivars:
+      "@vacinas": "::Vacina::ActiveRecord_Relation"
+    self: "::VacinasController & ::VacinasController::AfterIndex"
+  effects:
+    may_write:
+    - "@vacinas"
+- class: VacinasController
+  method: new
+  unconditional:
+    ivars:
+      "@vacina": "::Vacina"
+    self: "::VacinasController & ::VacinasController::AfterNew"
+  effects:
+    may_write:
+    - "@vacina"
+- class: VacinasController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::VacinasController & ::VacinasController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: VacinasController
+  method: set_vacina
+  unconditional:
+    ivars:
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
+    self: "::VacinasController & ::VacinasController::AfterSetVacina"
+  effects:
+    may_write:
+    - "@vacina"
+- class: VacinasController
+  method: update
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+method_entry_facts:
+- class: ApplicationController
+  method: pessoa_ativa
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ApplicationController
+  method: set_authenticated_user
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+- class: Caderneta
+  method: qtde_por_fabricante_vacina
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Caderneta
+  method: vacinas
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Caderneta::RecomendacaoVacina
+  method: quando_pode_tomar_proxima_dose
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: CadernetaController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: CadernetaController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: CadernetaController
+  method: show
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Current
+  method: caderneta
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: DosesController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: dose_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "(::Dose & ::Dose::Validated)"
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "::Dose"
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: set_dose
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: DosesController
+  method: set_vacina
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: DosesController
+  method: show
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "(::Dose & ::Dose::Validated)"
+- class: ERBCadernetaIndex
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBCadernetaIndex
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBCadernetaShow
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBDosesNew
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBDosesNew
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialCadernetaDoses
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialDosesForm
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialPessoasForm
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialSugestoesRecomendacaoVacina
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialVacinasForm
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPessoasEdit
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPessoasEdit
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPessoasIndex
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPessoasNew
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPessoasNew
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBSugestoesIndex
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBSugestoesIndex
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasEdit
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasEdit
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasIndex
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasNew
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasNew
+  method: render
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBVacinasShow
+  method: __rbs_infer__body
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PerfilAtivoController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Pessoa::Idade
+  method: dias_desde_o_ultimo_mes_completo
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Pessoa::Idade
+  method: idade_formatada
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Pessoa::Idade
+  method: meses_de_vida
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: Pessoa::Idade
+  method: pluralizar_trecho_idade
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: destroy
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@pessoa": "(::Pessoa & ::Pessoa::Validated)"
+- class: PessoasController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@pessoa": "(::Pessoa & ::Pessoa::Validated)"
+- class: PessoasController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: pessoa_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: set_pessoa
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: PessoasController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@pessoa": "(::Pessoa & ::Pessoa::Validated)"
+- class: SugestoesController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: SugestoesController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+- class: SugestoesHelper
+  method: idade_recomendada_para
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: pessoas
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: destroy
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: set_vacina
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: VacinasController
+  method: show
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: vacina_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.caderneta: "(::Caderneta & ::Caderneta::Validated)"
+    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+argument_entry_facts:
+- class: CadernetaController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@vacinas": "::Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy"
+- class: CadernetaController
+  method: render
+  param: target
+  pattern: ":show"
+  ivars:
+    "@fabricante_vacinas": "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: DosesController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@dose": "::Dose"
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: PessoasController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@pessoa": "(::Pessoa & ::Pessoa::Validated)"
+- class: PessoasController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@pessoas": "::Pessoa::ActiveRecord_Relation"
+- class: PessoasController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@pessoa": "::Pessoa"
+- class: SugestoesController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@recomendacao_vacinas": "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@vacinas": "::Vacina::ActiveRecord_Relation"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@vacina": "::Vacina"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":show"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
