@@ -1,9 +1,4 @@
 class AgendamentosController < ApplicationController
-  PARAMETROS_PERMITIDOS = %i[
-    inicio_em duracao_minutos motivo especialidade profissional_nome
-    estabelecimento_nome observacoes status valor pago_em
-  ].freeze
-
   before_action :set_agendamento, only: %i[edit update]
 
   def index
@@ -45,6 +40,11 @@ class AgendamentosController < ApplicationController
   end
 
   def agendamento_params
-    params.expect(agendamento: PARAMETROS_PERMITIDOS)
+    params.expect(
+      agendamento: %i[
+        inicio_em duracao_minutos motivo especialidade profissional_nome
+        estabelecimento_nome observacoes status valor pago_em
+      ],
+    )
   end
 end

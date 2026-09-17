@@ -31,27 +31,10 @@
 
 pt-BR:
   hello: "Hello world"
-  agendamentos:
-    create:
-      success: Agendamento cadastrado com sucesso.
-    update:
-      success: Agendamento atualizado com sucesso.
   activerecord:
     models:
-      agendamento: Agendamento
       pessoa: Pessoa
     attributes:
-      agendamento:
-        inicio_em: Data e horário
-        duracao_minutos: Duração em minutos
-        motivo: Motivo do atendimento
-        especialidade: Especialidade
-        profissional_nome: Profissional
-        estabelecimento_nome: Estabelecimento
-        observacoes: Observações
-        status: Situação
-        valor: Valor
-        pago_em: Pago em
       pessoa:
         nome: Nome
         data_nascimento: Data de nascimento
