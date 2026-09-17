@@ -1,0 +1,76 @@
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Agendamentos de <%= Current.pessoa.nome %></h1>
+    <p class="page-subtitle">Consultas e outros atendimentos, com valor e situação do pagamento.</p>
+  </div>
+
+  <%= link_to 'Novo agendamento', new_agendamento_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Data e horário</th>
+        <th scope="col">Atendimento</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Situação</th>
+        <th scope="col">Pagamento</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @agendamentos.empty? %>
+        <tr>
+          <td colspan="6" class="table-empty">Nenhum agendamento cadastrado para esta pessoa.</td>
+        </tr>
+      <% end %>
+
+      <% @agendamentos.each do |agendamento| %>
+        <tr>
+          <td class="whitespace-nowrap text-slate-700">
+            <%= l agendamento.inicio_em, format: :short %>
+            <% if agendamento.duracao_minutos.present? %>
+              <span class="meta"><%= agendamento.duracao_minutos %> minutos</span>
+            <% end %>
+          </td>
+
+          <td>
+            <span class="font-medium text-slate-900"><%= agendamento.motivo %></span>
+            <% detalhes = [agendamento.especialidade, agendamento.profissional_nome, agendamento.estabelecimento_nome].compact_blank %>
+            <span class="meta"><%= detalhes.any? ? detalhes.join(' · ') : 'Sem detalhes adicionais' %></span>
+          </td>
+
+          <td class="cell-numeric whitespace-nowrap">
+            <%= agendamento.valor.present? ? number_to_currency(agendamento.valor) : '—' %>
+          </td>
+
+          <td>
+            <% classe_status = case agendamento.status
+                               when 'realizado' then 'badge-success'
+                               when 'cancelado' then 'badge-neutral'
+                               else 'badge-warning'
+                               end %>
+            <span class="<%= classe_status %>"><%= agendamento.status.humanize %></span>
+          </td>
+
+          <td>
+            <% if agendamento.pago? %>
+              <span class="badge-success">Pago</span>
+              <span class="meta"><%= l agendamento.pago_em %></span>
+            <% else %>
+              <span class="badge-neutral">Não pago</span>
+            <% end %>
+          </td>
+
+          <td>
+            <div class="flex justify-end">
+              <%= link_to 'Editar', edit_agendamento_path(agendamento), class: "btn-secondary btn-sm" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
