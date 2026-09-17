@@ -36,7 +36,7 @@ class AgendamentosController < ApplicationController
   end
 
   def agendamentos_da_pessoa
-    Agendamento.with_attached_anexos.where(pessoa_id: Current.pessoa.id)
+    Agendamento.with_attached_anexos.includes(:consulta).where(pessoa_id: Current.pessoa.id)
   end
 
   def agendamento_params

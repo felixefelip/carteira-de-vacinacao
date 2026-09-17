@@ -21,6 +21,7 @@ class Agendamento < ApplicationRecord
   include Anexavel
 
   belongs_to :pessoa
+  has_one :consulta, dependent: :nullify
 
   enum :status, {
     agendado: 'agendado',
