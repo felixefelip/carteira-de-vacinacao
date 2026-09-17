@@ -48,7 +48,7 @@ describe 'Gerenciando consultas', type: :feature do
 
     click_link 'Agendamentos'
     expect(page).to have_content 'Realizado'
-    expect(page).to have_link 'Editar consulta'
+    expect(page).to have_link 'Ver consulta'
   end
 
   it 'permite registrar uma consulta sem agendamento e a isola por pessoa', :aggregate_failures do

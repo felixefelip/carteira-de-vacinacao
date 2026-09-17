@@ -1,0 +1,36 @@
+<%= form_with(model: medicamento) do |form| %>
+  <%= hidden_field_tag :consulta_id, @consulta.id if @consulta.present? %>
+
+  <% if medicamento.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+      <ul>
+        <% medicamento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-input", required: true, autofocus: true,
+                        placeholder: "Ex.: Losartana" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :principio_ativo, "Princípio ativo", class: "form-label" %>
+    <%= form.text_field :principio_ativo, class: "form-input", placeholder: "Ex.: Losartana potássica" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :apresentacao, "Apresentação ou concentração", class: "form-label" %>
+    <%= form.text_field :apresentacao, class: "form-input", placeholder: "Ex.: Comprimido 50 mg" %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to 'Voltar', @consulta.present? ? consulta_path(@consulta) : medicamentos_path,
+                class: "link-muted text-sm" %>
+  </div>
+<% end %>

@@ -9,10 +9,22 @@ pt-BR:
       success: Consulta registrada com sucesso.
     update:
       success: Consulta atualizada com sucesso.
+  medicamentos:
+    create:
+      success: Medicamento cadastrado com sucesso.
+    update:
+      success: Medicamento atualizado com sucesso.
+  prescricoes:
+    create:
+      success: Prescrição registrada com sucesso.
+    update:
+      success: Prescrição atualizada com sucesso.
   activerecord:
     models:
       agendamento: Agendamento
       consulta: Consulta
+      medicamento: Medicamento
+      prescricao: Prescrição
     attributes:
       agendamento:
         inicio_em: Data e horário
@@ -36,3 +48,14 @@ pt-BR:
         orientacoes: Orientações
         agendamento: Agendamento
         anexos: Anexos
+      medicamento:
+        nome: Nome
+        principio_ativo: Princípio ativo
+        apresentacao: Apresentação ou concentração
+      prescricao:
+        medicamento: Medicamento
+        posologia: Posologia
+        via_administracao: Via de administração
+        inicio_em: Início do tratamento
+        termino_em: Término do tratamento
+        orientacoes: Orientações

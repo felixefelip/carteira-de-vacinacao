@@ -1,0 +1,20 @@
+<div class="mx-auto max-w-2xl">
+  <div class="page-header">
+    <h1 class="page-title">Nova prescrição</h1>
+    <p class="page-subtitle"><%= @consulta.motivo %> para <%= Current.pessoa.nome %>.</p>
+  </div>
+
+  <% if @medicamentos.any? %>
+    <div class="card-padded">
+      <%= render 'form', consulta: @consulta, prescricao: @prescricao, medicamentos: @medicamentos %>
+    </div>
+  <% else %>
+    <div class="card-padded text-center">
+      <h2 class="text-lg font-semibold text-brand-900">Cadastre o primeiro medicamento</h2>
+      <p class="mx-auto mt-2 max-w-md text-sm text-slate-600">A prescrição precisa apontar para uma referência de medicamento.</p>
+      <div class="mt-5">
+        <%= link_to 'Cadastrar medicamento', new_medicamento_path(consulta_id: @consulta), class: "btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_17_040000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -125,6 +125,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_040000) do
     t.decimal "valor_unitario"
   end
 
+  create_table "medicamentos", force: :cascade do |t|
+    t.string "apresentacao"
+    t.datetime "created_at", null: false
+    t.string "nome", null: false
+    t.string "principio_ativo"
+    t.datetime "updated_at", null: false
+    t.index ["nome"], name: "index_medicamentos_on_nome"
+  end
+
   create_table "pessoas", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "data_nascimento", null: false
@@ -136,6 +145,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_040000) do
     t.index ["email"], name: "index_pessoas_on_email", unique: true, where: "(email IS NOT NULL)"
     t.index ["user_id"], name: "index_pessoas_on_user_id"
     t.index ["user_id"], name: "index_pessoas_on_user_id_quando_titular", unique: true, where: "titular"
+  end
+
+  create_table "prescricoes", force: :cascade do |t|
+    t.bigint "consulta_id", null: false
+    t.datetime "created_at", null: false
+    t.date "inicio_em", null: false
+    t.bigint "medicamento_id", null: false
+    t.text "orientacoes"
+    t.string "posologia", null: false
+    t.date "termino_em"
+    t.datetime "updated_at", null: false
+    t.string "via_administracao"
+    t.index ["consulta_id", "inicio_em"], name: "index_prescricoes_on_consulta_id_and_inicio_em"
+    t.index ["consulta_id"], name: "index_prescricoes_on_consulta_id"
+    t.index ["medicamento_id"], name: "index_prescricoes_on_medicamento_id"
   end
 
   create_table "recomendacao_vacinas", force: :cascade do |t|
@@ -178,5 +202,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_040000) do
   add_foreign_key "doses", "fabricante_vacinas"
   add_foreign_key "fabricante_vacinas", "vacinas"
   add_foreign_key "pessoas", "users"
+  add_foreign_key "prescricoes", "consultas", on_delete: :cascade
+  add_foreign_key "prescricoes", "medicamentos"
   add_foreign_key "recomendacao_vacinas", "vacinas"
 end

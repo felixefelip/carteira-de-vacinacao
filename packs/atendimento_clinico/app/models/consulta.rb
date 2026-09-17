@@ -20,6 +20,7 @@ class Consulta < ApplicationRecord
 
   belongs_to :pessoa
   belongs_to :agendamento, optional: true
+  has_many :prescricoes, dependent: :destroy
 
   validates :motivo, :realizada_em, presence: true
   validates :agendamento_id, uniqueness: true, allow_nil: true

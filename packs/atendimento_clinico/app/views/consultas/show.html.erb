@@ -1,0 +1,81 @@
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <p class="mb-1 text-sm text-slate-500"><%= l @consulta.realizada_em, format: :short %></p>
+    <h1 class="page-title"><%= @consulta.motivo %></h1>
+    <p class="page-subtitle">Consulta de <%= Current.pessoa.nome %>.</p>
+  </div>
+
+  <div class="flex flex-wrap gap-2">
+    <%= link_to 'Editar consulta', edit_consulta_path(@consulta), class: "btn-secondary" %>
+    <%= link_to 'Nova prescrição', new_consulta_prescricao_path(@consulta), class: "btn-primary" %>
+  </div>
+</div>
+
+<div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+  <section class="card-padded" aria-labelledby="registro-clinico">
+    <h2 id="registro-clinico" class="mb-5 text-lg font-semibold text-brand-900">Registro clínico</h2>
+
+    <div class="space-y-6">
+      <div>
+        <h3 class="mb-1 text-sm font-semibold text-slate-700">Resumo</h3>
+        <p class="whitespace-pre-line text-sm leading-6 text-slate-700"><%= @consulta.resumo.presence || 'Nenhum resumo clínico registrado.' %></p>
+      </div>
+
+      <div class="border-t border-paper-line pt-5">
+        <h3 class="mb-1 text-sm font-semibold text-slate-700">Orientações</h3>
+        <p class="whitespace-pre-line text-sm leading-6 text-slate-700"><%= @consulta.orientacoes.presence || 'Nenhuma orientação registrada.' %></p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="border-t border-paper-line pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-6" aria-label="Detalhes da consulta">
+    <h2 class="mb-4 text-sm font-semibold text-brand-900">Detalhes do atendimento</h2>
+
+    <dl class="space-y-4 text-sm">
+      <div>
+        <dt class="text-xs text-slate-500">Especialidade</dt>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.especialidade.presence || 'Não informada' %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-slate-500">Profissional</dt>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.profissional_nome.presence || 'Não informado' %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-slate-500">Estabelecimento</dt>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.estabelecimento_nome.presence || 'Não informado' %></dd>
+      </div>
+    </dl>
+
+    <div class="mt-6 border-t border-paper-line pt-5">
+      <h2 class="mb-3 text-sm font-semibold text-brand-900">Anexos</h2>
+      <% if @consulta.anexos.attached? %>
+        <ul class="space-y-2 text-sm">
+          <% @consulta.anexos.each do |anexo| %>
+            <li><%= link_to anexo.filename, rails_blob_path(anexo, disposition: 'attachment'), class: "link" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-sm text-slate-500">Nenhum documento anexado.</p>
+      <% end %>
+    </div>
+  </aside>
+</div>
+
+<section class="mt-10" aria-labelledby="prescricoes-da-consulta">
+  <div class="mb-4 flex flex-wrap items-end justify-between gap-3 border-b border-paper-line pb-3">
+    <div>
+      <h2 id="prescricoes-da-consulta" class="text-lg font-semibold text-brand-900">Prescrições</h2>
+      <p class="mt-1 text-sm text-slate-500">Medicamentos e orientações definidos neste atendimento.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <%= link_to 'Tratamentos', prescricoes_path, class: "btn-secondary btn-sm" %>
+      <%= link_to 'Adicionar prescrição', new_consulta_prescricao_path(@consulta), class: "btn-secondary btn-sm" %>
+    </div>
+  </div>
+
+  <%= render 'prescricoes/tabela', prescricoes: @prescricoes, contexto: :consulta %>
+</section>
+
+<div class="mt-6">
+  <%= link_to 'Voltar para consultas', consultas_path, class: "link-muted text-sm" %>
+</div>

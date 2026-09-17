@@ -75,7 +75,7 @@
           <td>
             <div class="flex flex-wrap justify-end gap-2">
               <% if agendamento.consulta.present? %>
-                <%= link_to 'Editar consulta', edit_consulta_path(agendamento.consulta), class: "btn-secondary btn-sm" %>
+                <%= link_to 'Ver consulta', consulta_path(agendamento.consulta), class: "btn-secondary btn-sm" %>
               <% elsif !agendamento.cancelado? %>
                 <%= link_to 'Registrar consulta', new_consulta_path(agendamento_id: agendamento), class: "btn-secondary btn-sm" %>
               <% end %>
