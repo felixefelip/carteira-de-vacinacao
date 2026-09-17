@@ -1,0 +1,37 @@
+<%= render 'cadastros_clinicos/navegacao' %>
+
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Profissionais</h1>
+    <p class="page-subtitle">Profissionais que participam dos agendamentos e consultas.</p>
+  </div>
+  <%= link_to 'Cadastrar profissional', new_profissional_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Profissional</th>
+        <th scope="col">Especialidade</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @profissionais.empty? %>
+        <tr><td colspan="3" class="table-empty">Nenhum profissional cadastrado.</td></tr>
+      <% end %>
+      <% @profissionais.each do |profissional| %>
+        <tr>
+          <td class="font-medium text-slate-900"><%= profissional.nome %></td>
+          <td class="text-slate-700"><%= profissional.especialidade&.nome || 'Sem especialidade vinculada' %></td>
+          <td>
+            <div class="flex justify-end">
+              <%= link_to 'Editar', edit_profissional_path(profissional), class: "btn-secondary btn-sm" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

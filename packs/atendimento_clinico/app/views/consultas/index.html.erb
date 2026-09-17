@@ -40,7 +40,7 @@
 
           <td>
             <span class="font-medium text-slate-900"><%= consulta.motivo %></span>
-            <% detalhes = [consulta.especialidade, consulta.profissional_nome, consulta.estabelecimento_nome].compact_blank %>
+            <% detalhes = [consulta.especialidade&.nome, consulta.profissional&.nome, consulta.estabelecimento&.nome].compact_blank %>
             <span class="meta"><%= detalhes.any? ? detalhes.join(' · ') : 'Sem detalhes adicionais' %></span>
           </td>
 

@@ -4,14 +4,15 @@ require 'capybara/rspec'
 describe 'Gerenciando consultas', type: :feature do
   it 'registra uma consulta a partir de um agendamento e mantém seus anexos', :aggregate_failures do
     cadastra_a_conta
+    profissional, especialidade, estabelecimento = cadastra_referencias_clinicas
     agendamento = FactoryBot.create(
       :agendamento,
       pessoa: User.last.pessoa_titular,
       motivo: 'Consulta cardiológica',
       inicio_em: Time.zone.local(2026, 9, 20, 14, 30),
-      especialidade: 'Cardiologia',
-      profissional_nome: 'Dra. Ana',
-      estabelecimento_nome: 'Clínica Central',
+      especialidade:,
+      profissional:,
+      estabelecimento:,
     )
 
     click_link 'Agendamentos'
@@ -19,7 +20,7 @@ describe 'Gerenciando consultas', type: :feature do
 
     expect(page).to have_content 'Esta consulta será vinculada ao agendamento de 20 de setembro, 14:30.'
     expect(page).to have_field('Motivo da consulta', with: 'Consulta cardiológica')
-    expect(page).to have_field('Especialidade', with: 'Cardiologia')
+    expect(page).to have_select('Especialidade', selected: 'Cardiologia')
 
     fill_in 'Resumo clínico', with: 'Paciente em bom estado geral.'
     fill_in 'Orientações', with: 'Retornar em seis meses.'
@@ -86,5 +87,12 @@ describe 'Gerenciando consultas', type: :feature do
       fill_in 'Confirme sua senha', with: '123456'
       click_button 'Cadastrar'
     end
+  end
+
+  def cadastra_referencias_clinicas
+    especialidade = FactoryBot.create(:especialidade, nome: 'Cardiologia')
+    profissional = FactoryBot.create(:profissional, nome: 'Dra. Ana', especialidade:)
+    estabelecimento = FactoryBot.create(:estabelecimento, nome: 'Clínica Central')
+    [profissional, especialidade, estabelecimento]
   end
 end

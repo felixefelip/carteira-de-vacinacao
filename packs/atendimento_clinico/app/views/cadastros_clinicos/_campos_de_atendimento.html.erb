@@ -1,0 +1,37 @@
+<div data-controller="profissional-especialidade">
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :profissional_id, "Profissional", class: "form-label" %>
+      <% opcoes = @profissionais.map do |profissional|
+           [profissional.identificacao, profissional.id, { data: { especialidade_id: profissional.especialidade_id } }]
+         end %>
+      <%= form.select :profissional_id,
+                      options_for_select(opcoes, form.object.profissional_id),
+                      { include_blank: 'Selecione um profissional' },
+                      class: "form-input",
+                      data: {
+                        profissional_especialidade_target: 'profissional',
+                        action: 'profissional-especialidade#selecionar'
+                      } %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :especialidade_id, "Especialidade", class: "form-label" %>
+      <%= form.collection_select :especialidade_id, @especialidades, :id, :nome,
+                                 { include_blank: 'Selecione uma especialidade' },
+                                 class: "form-input",
+                                 data: { profissional_especialidade_target: 'especialidade' } %>
+      <span class="form-hint">Preenchida automaticamente ao selecionar um profissional vinculado.</span>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :estabelecimento_id, "Estabelecimento", class: "form-label" %>
+    <%= form.collection_select :estabelecimento_id, @estabelecimentos, :id, :nome,
+                               { include_blank: 'Selecione um estabelecimento' }, class: "form-input" %>
+  </div>
+
+  <p class="mb-4 text-xs text-slate-500">
+    <%= link_to 'Gerenciar profissionais, especialidades e estabelecimentos', profissionais_path, class: "link" %>
+  </p>
+</div>

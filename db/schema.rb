@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_060100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,19 +45,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
   create_table "agendamentos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "duracao_minutos"
-    t.string "especialidade"
-    t.string "estabelecimento_nome"
+    t.bigint "especialidade_id"
+    t.bigint "estabelecimento_id"
     t.datetime "inicio_em", null: false
     t.string "motivo", null: false
     t.text "observacoes"
     t.date "pago_em"
     t.bigint "pessoa_id", null: false
-    t.string "profissional_nome"
+    t.bigint "profissional_id"
     t.string "status", default: "agendado", null: false
     t.datetime "updated_at", null: false
     t.decimal "valor", precision: 10, scale: 2
+    t.index ["especialidade_id"], name: "index_agendamentos_on_especialidade_id"
+    t.index ["estabelecimento_id"], name: "index_agendamentos_on_estabelecimento_id"
     t.index ["pessoa_id", "inicio_em"], name: "index_agendamentos_on_pessoa_id_and_inicio_em"
     t.index ["pessoa_id"], name: "index_agendamentos_on_pessoa_id"
+    t.index ["profissional_id"], name: "index_agendamentos_on_profissional_id"
   end
 
   create_table "cadernetas", force: :cascade do |t|
@@ -70,17 +73,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
   create_table "consultas", force: :cascade do |t|
     t.bigint "agendamento_id"
     t.datetime "created_at", null: false
-    t.string "especialidade"
-    t.string "estabelecimento_nome"
+    t.bigint "especialidade_id"
+    t.bigint "estabelecimento_id"
     t.string "motivo", null: false
     t.text "orientacoes"
     t.bigint "pessoa_id", null: false
-    t.string "profissional_nome"
+    t.bigint "profissional_id"
     t.datetime "realizada_em", null: false
     t.text "resumo"
     t.datetime "updated_at", null: false
     t.index ["agendamento_id"], name: "index_consultas_on_agendamento_id", unique: true
+    t.index ["especialidade_id"], name: "index_consultas_on_especialidade_id"
+    t.index ["estabelecimento_id"], name: "index_consultas_on_estabelecimento_id"
     t.index ["pessoa_id", "realizada_em"], name: "index_consultas_on_pessoa_id_and_realizada_em"
+    t.index ["profissional_id"], name: "index_consultas_on_profissional_id"
   end
 
   create_table "dose_do_calendarios", force: :cascade do |t|
@@ -103,6 +109,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
     t.string "vacinador_codigo"
     t.index ["caderneta_id"], name: "index_doses_on_caderneta_id"
     t.index ["fabricante_vacina_id"], name: "index_doses_on_fabricante_vacina_id"
+  end
+
+  create_table "especialidades", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "nome", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nome"], name: "index_especialidades_on_nome", unique: true
+  end
+
+  create_table "estabelecimentos", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "nome", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nome"], name: "index_estabelecimentos_on_nome", unique: true
   end
 
   create_table "fabricante_vacinas", force: :cascade do |t|
@@ -162,6 +182,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
     t.index ["medicamento_id"], name: "index_prescricoes_on_medicamento_id"
   end
 
+  create_table "profissionais", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "especialidade_id"
+    t.string "nome", null: false
+    t.datetime "updated_at", null: false
+    t.index ["especialidade_id"], name: "index_profissionais_on_especialidade_id"
+    t.index ["nome", "especialidade_id"], name: "index_profissionais_on_nome_and_especialidade_id", unique: true, nulls_not_distinct: true
+  end
+
   create_table "recomendacao_vacinas", force: :cascade do |t|
     t.bigint "caderneta_id", null: false
     t.datetime "created_at", null: false
@@ -194,15 +223,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_050100) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendamentos", "especialidades"
+  add_foreign_key "agendamentos", "estabelecimentos"
   add_foreign_key "agendamentos", "pessoas", on_delete: :cascade
+  add_foreign_key "agendamentos", "profissionais"
   add_foreign_key "cadernetas", "pessoas"
   add_foreign_key "consultas", "agendamentos"
+  add_foreign_key "consultas", "especialidades"
+  add_foreign_key "consultas", "estabelecimentos"
   add_foreign_key "consultas", "pessoas", on_delete: :cascade
+  add_foreign_key "consultas", "profissionais"
   add_foreign_key "dose_do_calendarios", "vacinas"
   add_foreign_key "doses", "fabricante_vacinas"
   add_foreign_key "fabricante_vacinas", "vacinas"
   add_foreign_key "pessoas", "users"
   add_foreign_key "prescricoes", "consultas", on_delete: :cascade
   add_foreign_key "prescricoes", "medicamentos"
+  add_foreign_key "profissionais", "especialidades"
   add_foreign_key "recomendacao_vacinas", "vacinas"
 end

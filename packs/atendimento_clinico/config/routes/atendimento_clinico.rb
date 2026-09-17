@@ -4,3 +4,6 @@ resources :consultas, except: :destroy do
 end
 resources :prescricoes, only: :index
 resources :medicamentos, except: %i[show destroy]
+resources :especialidades, except: %i[show destroy]
+resources :profissionais, except: %i[show destroy]
+resources :estabelecimentos, except: %i[show destroy]

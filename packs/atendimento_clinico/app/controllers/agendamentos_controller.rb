@@ -1,5 +1,6 @@
 class AgendamentosController < ApplicationController
   before_action :set_agendamento, only: %i[edit update]
+  before_action :carregar_cadastros_clinicos, only: %i[new edit create update]
 
   def index
     @agendamentos = agendamentos_da_pessoa.order(inicio_em: :asc)
@@ -36,14 +37,22 @@ class AgendamentosController < ApplicationController
   end
 
   def agendamentos_da_pessoa
-    Agendamento.with_attached_anexos.includes(:consulta).where(pessoa_id: Current.pessoa.id)
+    Agendamento.with_attached_anexos
+      .includes(:consulta, :especialidade, :profissional, :estabelecimento)
+      .where(pessoa_id: Current.pessoa.id)
+  end
+
+  def carregar_cadastros_clinicos
+    @especialidades = Especialidade.order(:nome)
+    @profissionais = Profissional.includes(:especialidade).order(:nome)
+    @estabelecimentos = Estabelecimento.order(:nome)
   end
 
   def agendamento_params
     params.expect(
       agendamento: [
-        :inicio_em, :duracao_minutos, :motivo, :especialidade, :profissional_nome,
-        :estabelecimento_nome, :observacoes, :status, :valor, :pago_em,
+        :inicio_em, :duracao_minutos, :motivo, :especialidade_id, :profissional_id,
+        :estabelecimento_id, :observacoes, :status, :valor, :pago_em,
         { anexos: [] }
       ],
     )

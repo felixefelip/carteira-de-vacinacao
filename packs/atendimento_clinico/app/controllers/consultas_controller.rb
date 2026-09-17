@@ -1,5 +1,6 @@
 class ConsultasController < ApplicationController
   before_action :set_consulta, only: %i[show edit update]
+  before_action :carregar_cadastros_clinicos, only: %i[new edit create update]
 
   def index
     @consultas = consultas_da_pessoa.order(realizada_em: :desc)
@@ -44,7 +45,9 @@ class ConsultasController < ApplicationController
   end
 
   def consultas_da_pessoa
-    Consulta.with_attached_anexos.includes(:agendamento).where(pessoa_id: Current.pessoa.id)
+    Consulta.with_attached_anexos
+      .includes(:agendamento, :especialidade, :profissional, :estabelecimento)
+      .where(pessoa_id: Current.pessoa.id)
   end
 
   def agendamentos_da_pessoa
@@ -64,16 +67,22 @@ class ConsultasController < ApplicationController
       realizada_em: agendamento.inicio_em,
       motivo: agendamento.motivo,
       especialidade: agendamento.especialidade,
-      profissional_nome: agendamento.profissional_nome,
-      estabelecimento_nome: agendamento.estabelecimento_nome,
+      profissional: agendamento.profissional,
+      estabelecimento: agendamento.estabelecimento,
     }
+  end
+
+  def carregar_cadastros_clinicos
+    @especialidades = Especialidade.order(:nome)
+    @profissionais = Profissional.includes(:especialidade).order(:nome)
+    @estabelecimentos = Estabelecimento.order(:nome)
   end
 
   def consulta_params
     params.expect(
       consulta: [
-        :agendamento_id, :realizada_em, :motivo, :especialidade, :profissional_nome,
-        :estabelecimento_nome, :resumo, :orientacoes, { anexos: [] }
+        :agendamento_id, :realizada_em, :motivo, :especialidade_id, :profissional_id,
+        :estabelecimento_id, :resumo, :orientacoes, { anexos: [] }
       ],
     )
   end

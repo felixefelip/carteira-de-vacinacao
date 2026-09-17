@@ -1,0 +1,23 @@
+<%= form_with(model: estabelecimento) do |form| %>
+  <% if estabelecimento.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+      <ul>
+        <% estabelecimento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-input", required: true, autofocus: true,
+                        placeholder: "Ex.: Clínica Central" %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to 'Voltar', estabelecimentos_path, class: "link-muted text-sm" %>
+  </div>
+<% end %>

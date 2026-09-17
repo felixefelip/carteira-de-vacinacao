@@ -1,0 +1,8 @@
+<nav class="mb-6 flex flex-wrap gap-2 border-b border-paper-line pb-4" aria-label="Cadastros clínicos">
+  <%= link_to 'Profissionais', profissionais_path,
+              class: current_page?(profissionais_path) ? 'btn-primary btn-sm' : 'btn-secondary btn-sm' %>
+  <%= link_to 'Especialidades', especialidades_path,
+              class: current_page?(especialidades_path) ? 'btn-primary btn-sm' : 'btn-secondary btn-sm' %>
+  <%= link_to 'Estabelecimentos', estabelecimentos_path,
+              class: current_page?(estabelecimentos_path) ? 'btn-primary btn-sm' : 'btn-secondary btn-sm' %>
+</nav>
