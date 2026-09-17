@@ -1,0 +1,16 @@
+<div class="mx-auto max-w-2xl">
+  <div class="page-header">
+    <h1 class="page-title">Registrar consulta</h1>
+    <p class="page-subtitle">
+      <% if @consulta.agendamento.present? %>
+        Complete o registro do atendimento agendado para <%= Current.pessoa.nome %>.
+      <% else %>
+        Registre um atendimento realizado por <%= Current.pessoa.nome %>.
+      <% end %>
+    </p>
+  </div>
+
+  <div class="card-padded">
+    <%= render 'form', consulta: @consulta %>
+  </div>
+</div>

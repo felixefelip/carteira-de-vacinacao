@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Agendamento, type: :model do
   describe 'associations' do
     it { should belong_to(:pessoa).required }
+    it { should have_one(:consulta).dependent(:nullify) }
   end
 
   describe 'validations' do

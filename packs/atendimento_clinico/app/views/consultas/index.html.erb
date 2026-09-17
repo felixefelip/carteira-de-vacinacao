@@ -1,0 +1,76 @@
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Consultas de <%= Current.pessoa.nome %></h1>
+    <p class="page-subtitle">Histórico dos atendimentos realizados, orientações e documentos clínicos.</p>
+  </div>
+
+  <%= link_to 'Registrar consulta', new_consulta_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Data e horário</th>
+        <th scope="col">Atendimento</th>
+        <th scope="col">Registro clínico</th>
+        <th scope="col">Anexos</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @consultas.empty? %>
+        <tr>
+          <td colspan="5" class="table-empty">Nenhuma consulta registrada para esta pessoa.</td>
+        </tr>
+      <% end %>
+
+      <% @consultas.each do |consulta| %>
+        <tr>
+          <td class="whitespace-nowrap text-slate-700">
+            <%= l consulta.realizada_em, format: :short %>
+            <% if consulta.agendamento.present? %>
+              <span class="meta">Originada de agendamento</span>
+            <% end %>
+          </td>
+
+          <td>
+            <span class="font-medium text-slate-900"><%= consulta.motivo %></span>
+            <% detalhes = [consulta.especialidade, consulta.profissional_nome, consulta.estabelecimento_nome].compact_blank %>
+            <span class="meta"><%= detalhes.any? ? detalhes.join(' · ') : 'Sem detalhes adicionais' %></span>
+          </td>
+
+          <td class="max-w-sm">
+            <% if consulta.resumo.present? %>
+              <span class="text-slate-700"><%= truncate(consulta.resumo, length: 120) %></span>
+            <% else %>
+              <span class="text-slate-400">Sem resumo clínico</span>
+            <% end %>
+            <% if consulta.orientacoes.present? %>
+              <span class="meta"><%= truncate(consulta.orientacoes, length: 100) %></span>
+            <% end %>
+          </td>
+
+          <td>
+            <% if consulta.anexos.attached? %>
+              <div class="space-y-1">
+                <% consulta.anexos.each do |anexo| %>
+                  <%= link_to anexo.filename, rails_blob_path(anexo, disposition: 'attachment'), class: "link block" %>
+                <% end %>
+              </div>
+            <% else %>
+              <span class="text-slate-400">—</span>
+            <% end %>
+          </td>
+
+          <td>
+            <div class="flex justify-end">
+              <%= link_to 'Editar', edit_consulta_path(consulta), class: "btn-secondary btn-sm" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

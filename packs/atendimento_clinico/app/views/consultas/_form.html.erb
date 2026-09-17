@@ -1,0 +1,70 @@
+<%= form_with(model: consulta) do |form| %>
+  <% if consulta.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+
+      <ul>
+        <% consulta.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if consulta.new_record? && consulta.agendamento.present? %>
+    <%= form.hidden_field :agendamento_id %>
+    <div class="alert-success mb-5">
+      Esta consulta será vinculada ao agendamento de <%= l consulta.agendamento.inicio_em, format: :short %>.
+      Ao salvar, o agendamento será marcado como realizado.
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :motivo, "Motivo da consulta", class: "form-label" %>
+    <%= form.text_field :motivo, class: "form-input", required: true, autofocus: true,
+                        placeholder: "Ex.: consulta de rotina" %>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :realizada_em, "Data e horário", class: "form-label" %>
+      <%= form.datetime_local_field :realizada_em, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :especialidade, class: "form-label" %>
+      <%= form.text_field :especialidade, class: "form-input", placeholder: "Ex.: Cardiologia" %>
+    </div>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :profissional_nome, "Profissional", class: "form-label" %>
+      <%= form.text_field :profissional_nome, class: "form-input", placeholder: "Nome do profissional" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :estabelecimento_nome, "Estabelecimento", class: "form-label" %>
+      <%= form.text_field :estabelecimento_nome, class: "form-input", placeholder: "Clínica, consultório ou hospital" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :resumo, "Resumo clínico", class: "form-label" %>
+    <%= form.text_area :resumo, class: "form-input", rows: 5,
+                       placeholder: "Principais observações da consulta" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :orientacoes, class: "form-label" %>
+    <%= form.text_area :orientacoes, class: "form-input", rows: 4,
+                       placeholder: "Cuidados, retornos e recomendações" %>
+  </div>
+
+  <%= render 'form_anexos', form: form, consulta: consulta %>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to "Voltar", consultas_path, class: "link-muted text-sm" %>
+  </div>
+<% end %>

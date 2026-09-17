@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_16_234000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_040000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -65,6 +65,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_234000) do
     t.bigint "pessoa_id", null: false
     t.datetime "updated_at", null: false
     t.index ["pessoa_id"], name: "index_cadernetas_on_pessoa_id"
+  end
+
+  create_table "consultas", force: :cascade do |t|
+    t.bigint "agendamento_id"
+    t.datetime "created_at", null: false
+    t.string "especialidade"
+    t.string "estabelecimento_nome"
+    t.string "motivo", null: false
+    t.text "orientacoes"
+    t.bigint "pessoa_id", null: false
+    t.string "profissional_nome"
+    t.datetime "realizada_em", null: false
+    t.text "resumo"
+    t.datetime "updated_at", null: false
+    t.index ["agendamento_id"], name: "index_consultas_on_agendamento_id", unique: true
+    t.index ["pessoa_id", "realizada_em"], name: "index_consultas_on_pessoa_id_and_realizada_em"
   end
 
   create_table "dose_do_calendarios", force: :cascade do |t|
@@ -156,6 +172,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_234000) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agendamentos", "pessoas", on_delete: :cascade
   add_foreign_key "cadernetas", "pessoas"
+  add_foreign_key "consultas", "agendamentos"
+  add_foreign_key "consultas", "pessoas", on_delete: :cascade
   add_foreign_key "dose_do_calendarios", "vacinas"
   add_foreign_key "doses", "fabricante_vacinas"
   add_foreign_key "fabricante_vacinas", "vacinas"

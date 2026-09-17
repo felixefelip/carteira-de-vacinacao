@@ -1,0 +1,10 @@
+<div class="mx-auto max-w-2xl">
+  <div class="page-header">
+    <h1 class="page-title">Editar consulta</h1>
+    <p class="page-subtitle"><%= @consulta.motivo %> para <%= Current.pessoa.nome %>.</p>
+  </div>
+
+  <div class="card-padded">
+    <%= render 'form', consulta: @consulta %>
+  </div>
+</div>
