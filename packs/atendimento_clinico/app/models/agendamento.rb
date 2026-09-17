@@ -18,6 +18,8 @@
 #  pessoa_id            :bigint           not null
 #
 class Agendamento < ApplicationRecord
+  include Anexavel
+
   belongs_to :pessoa
 
   enum :status, {

@@ -18,6 +18,7 @@ describe 'Gerenciando agendamentos', type: :feature do
     fill_in 'Profissional', with: 'Dra. Ana'
     fill_in 'Estabelecimento', with: 'Clínica Central'
     fill_in 'Valor', with: '250.00'
+    anexa_avatar_e_comprovante
     click_button 'Criar Agendamento'
 
     expect(page).to have_content 'Agendamento cadastrado com sucesso.'
@@ -26,10 +27,12 @@ describe 'Gerenciando agendamentos', type: :feature do
     expect(page).to have_content 'R$ 250,00'
     expect(page).to have_content 'Agendado'
     expect(page).to have_content 'Não pago'
+    expect(page).to have_link('avatar.png').and have_link('comprovante.pdf')
 
     click_link 'Editar'
     select 'Realizado', from: 'Situação'
     fill_in 'Pago em', with: '2026-09-20'
+    attach_file 'Anexos', Rails.root.join('spec/fixtures/files/pedido-medico.pdf')
     click_button 'Atualizar Agendamento'
 
     expect(page).to have_content 'Agendamento atualizado com sucesso.'
@@ -38,8 +41,9 @@ describe 'Gerenciando agendamentos', type: :feature do
 
     agendamento = Agendamento.find_by!(motivo: 'Consulta de rotina')
     expect(agendamento.pessoa).to eq(User.last.pessoa_titular)
-    expect(agendamento.valor).to eq(250)
-    expect(agendamento.pago_em).to eq(Date.new(2026, 9, 20))
+    expect(agendamento).to have_attributes(valor: 250, pago_em: Date.new(2026, 9, 20))
+    expect(agendamento.anexos.map { |anexo| anexo.filename.to_s })
+      .to match_array(%w[avatar.png comprovante.pdf pedido-medico.pdf])
 
     FactoryBot.create(:pessoa, user: User.last, nome: 'João')
 
@@ -50,6 +54,13 @@ describe 'Gerenciando agendamentos', type: :feature do
     expect(page).to have_content 'Agendamentos de João'
     expect(page).to have_content 'Nenhum agendamento cadastrado para esta pessoa.'
     expect(page).to have_no_content 'Consulta de rotina'
+  end
+
+  def anexa_avatar_e_comprovante
+    attach_file 'Anexos', [
+      Rails.root.join('spec/fixtures/files/avatar.png'),
+      Rails.root.join('spec/fixtures/files/comprovante.pdf'),
+    ]
   end
 
   def cadastra_a_conta

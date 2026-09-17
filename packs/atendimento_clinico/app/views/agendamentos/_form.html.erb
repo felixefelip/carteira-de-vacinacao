@@ -73,6 +73,8 @@
     <%= form.text_area :observacoes, class: "form-input", rows: 4 %>
   </div>
 
+  <%= render 'form_anexos', form: form, agendamento: agendamento %>
+
   <div class="form-actions">
     <%= form.submit class: "btn-primary" %>
     <%= link_to "Voltar", agendamentos_path, class: "link-muted text-sm" %>
