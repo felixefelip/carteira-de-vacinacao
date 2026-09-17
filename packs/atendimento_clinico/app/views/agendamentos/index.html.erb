@@ -4,7 +4,10 @@
     <p class="page-subtitle">Consultas e outros atendimentos, com valor e situação do pagamento.</p>
   </div>
 
-  <%= link_to 'Novo agendamento', new_agendamento_path, class: "btn-primary" %>
+  <div class="flex flex-wrap gap-2">
+    <%= link_to 'Cadastros clínicos', profissionais_path, class: "btn-secondary" %>
+    <%= link_to 'Novo agendamento', new_agendamento_path, class: "btn-primary" %>
+  </div>
 </div>
 
 <div class="table-wrap">
@@ -38,7 +41,7 @@
 
           <td>
             <span class="font-medium text-slate-900"><%= agendamento.motivo %></span>
-            <% detalhes = [agendamento.especialidade, agendamento.profissional_nome, agendamento.estabelecimento_nome].compact_blank %>
+            <% detalhes = [agendamento.especialidade&.nome, agendamento.profissional&.nome, agendamento.estabelecimento&.nome].compact_blank %>
             <span class="meta"><%= detalhes.any? ? detalhes.join(' · ') : 'Sem detalhes adicionais' %></span>
 
             <% if agendamento.anexos.attached? %>

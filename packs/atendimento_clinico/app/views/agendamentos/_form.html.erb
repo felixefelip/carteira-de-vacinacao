@@ -30,22 +30,7 @@
     </div>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2">
-    <div class="form-field">
-      <%= form.label :especialidade, class: "form-label" %>
-      <%= form.text_field :especialidade, class: "form-input", placeholder: "Ex.: Cardiologia" %>
-    </div>
-
-    <div class="form-field">
-      <%= form.label :profissional_nome, "Profissional", class: "form-label" %>
-      <%= form.text_field :profissional_nome, class: "form-input", placeholder: "Nome do profissional" %>
-    </div>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :estabelecimento_nome, "Estabelecimento", class: "form-label" %>
-    <%= form.text_field :estabelecimento_nome, class: "form-input", placeholder: "Clínica, consultório ou hospital" %>
-  </div>
+  <%= render 'cadastros_clinicos/campos_de_atendimento', form: form %>
 
   <div class="grid gap-4 sm:grid-cols-3">
     <div class="form-field">

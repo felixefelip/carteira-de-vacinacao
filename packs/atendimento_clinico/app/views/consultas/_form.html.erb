@@ -25,29 +25,12 @@
                         placeholder: "Ex.: consulta de rotina" %>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2">
-    <div class="form-field">
-      <%= form.label :realizada_em, "Data e horário", class: "form-label" %>
-      <%= form.datetime_local_field :realizada_em, class: "form-input", required: true %>
-    </div>
-
-    <div class="form-field">
-      <%= form.label :especialidade, class: "form-label" %>
-      <%= form.text_field :especialidade, class: "form-input", placeholder: "Ex.: Cardiologia" %>
-    </div>
+  <div class="form-field sm:w-1/2 sm:pr-2">
+    <%= form.label :realizada_em, "Data e horário", class: "form-label" %>
+    <%= form.datetime_local_field :realizada_em, class: "form-input", required: true %>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2">
-    <div class="form-field">
-      <%= form.label :profissional_nome, "Profissional", class: "form-label" %>
-      <%= form.text_field :profissional_nome, class: "form-input", placeholder: "Nome do profissional" %>
-    </div>
-
-    <div class="form-field">
-      <%= form.label :estabelecimento_nome, "Estabelecimento", class: "form-label" %>
-      <%= form.text_field :estabelecimento_nome, class: "form-input", placeholder: "Clínica, consultório ou hospital" %>
-    </div>
-  </div>
+  <%= render 'cadastros_clinicos/campos_de_atendimento', form: form %>
 
   <div class="form-field">
     <%= form.label :resumo, "Resumo clínico", class: "form-label" %>

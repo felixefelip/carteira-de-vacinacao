@@ -1,0 +1,32 @@
+<%= form_with(model: profissional) do |form| %>
+  <% if profissional.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+      <ul>
+        <% profissional.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :nome, class: "form-label" %>
+    <%= form.text_field :nome, class: "form-input", required: true, autofocus: true,
+                        placeholder: "Ex.: Dra. Ana Silva" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :especialidade_id, "Especialidade", class: "form-label" %>
+    <%= form.collection_select :especialidade_id, @especialidades, :id, :nome,
+                               { include_blank: 'Sem especialidade vinculada' }, class: "form-input" %>
+    <span class="form-hint">
+      <%= link_to 'Gerenciar especialidades', especialidades_path, class: "link" %>
+    </span>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to 'Voltar', profissionais_path, class: "link-muted text-sm" %>
+  </div>
+<% end %>

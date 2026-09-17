@@ -3,7 +3,20 @@ require 'rails_helper'
 RSpec.describe Agendamento, type: :model do
   describe 'associations' do
     it { should belong_to(:pessoa).required }
+    it { should belong_to(:especialidade).optional }
+    it { should belong_to(:profissional).optional }
+    it { should belong_to(:estabelecimento).optional }
     it { should have_one(:consulta).dependent(:nullify) }
+  end
+
+  it 'usa a especialidade do profissional selecionado' do
+    profissional = FactoryBot.create(:profissional)
+    outra_especialidade = FactoryBot.create(:especialidade)
+    agendamento = FactoryBot.build(:agendamento, profissional:, especialidade: outra_especialidade)
+
+    agendamento.validate
+
+    expect(agendamento.especialidade).to eq(profissional.especialidade)
   end
 
   describe 'validations' do

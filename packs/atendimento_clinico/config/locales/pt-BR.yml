@@ -19,12 +19,30 @@ pt-BR:
       success: Prescrição registrada com sucesso.
     update:
       success: Prescrição atualizada com sucesso.
+  especialidades:
+    create:
+      success: Especialidade cadastrada com sucesso.
+    update:
+      success: Especialidade atualizada com sucesso.
+  profissionais:
+    create:
+      success: Profissional cadastrado com sucesso.
+    update:
+      success: Profissional atualizado com sucesso.
+  estabelecimentos:
+    create:
+      success: Estabelecimento cadastrado com sucesso.
+    update:
+      success: Estabelecimento atualizado com sucesso.
   activerecord:
     models:
       agendamento: Agendamento
       consulta: Consulta
       medicamento: Medicamento
       prescricao: Prescrição
+      especialidade: Especialidade
+      profissional: Profissional
+      estabelecimento: Estabelecimento
     attributes:
       agendamento:
         inicio_em: Data e horário
@@ -59,3 +77,10 @@ pt-BR:
         inicio_em: Início do tratamento
         termino_em: Término do tratamento
         orientacoes: Orientações
+      especialidade:
+        nome: Nome
+      profissional:
+        nome: Nome
+        especialidade: Especialidade
+      estabelecimento:
+        nome: Nome

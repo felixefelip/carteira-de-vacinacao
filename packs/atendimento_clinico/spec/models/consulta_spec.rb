@@ -4,7 +4,20 @@ RSpec.describe Consulta, type: :model do
   describe 'associations' do
     it { should belong_to(:pessoa).required }
     it { should belong_to(:agendamento).optional }
+    it { should belong_to(:especialidade).optional }
+    it { should belong_to(:profissional).optional }
+    it { should belong_to(:estabelecimento).optional }
     it { should have_many(:prescricoes).dependent(:destroy) }
+  end
+
+  it 'usa a especialidade do profissional selecionado' do
+    profissional = FactoryBot.create(:profissional)
+    outra_especialidade = FactoryBot.create(:especialidade)
+    consulta = FactoryBot.build(:consulta, profissional:, especialidade: outra_especialidade)
+
+    consulta.validate
+
+    expect(consulta.especialidade).to eq(profissional.especialidade)
   end
 
   describe 'validations' do

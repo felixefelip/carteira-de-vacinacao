@@ -1,0 +1,26 @@
+<%= render 'cadastros_clinicos/navegacao' %>
+
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Especialidades</h1>
+    <p class="page-subtitle">Áreas de atuação associadas aos profissionais e atendimentos.</p>
+  </div>
+  <%= link_to 'Cadastrar especialidade', new_especialidade_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th scope="col">Especialidade</th><th scope="col"><span class="sr-only">Ações</span></th></tr></thead>
+    <tbody>
+      <% if @especialidades.empty? %>
+        <tr><td colspan="2" class="table-empty">Nenhuma especialidade cadastrada.</td></tr>
+      <% end %>
+      <% @especialidades.each do |especialidade| %>
+        <tr>
+          <td class="font-medium text-slate-900"><%= especialidade.nome %></td>
+          <td><div class="flex justify-end"><%= link_to 'Editar', edit_especialidade_path(especialidade), class: "btn-secondary btn-sm" %></div></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

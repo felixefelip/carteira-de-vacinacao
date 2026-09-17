@@ -34,15 +34,15 @@
     <dl class="space-y-4 text-sm">
       <div>
         <dt class="text-xs text-slate-500">Especialidade</dt>
-        <dd class="mt-0.5 text-slate-800"><%= @consulta.especialidade.presence || 'Não informada' %></dd>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.especialidade&.nome || 'Não informada' %></dd>
       </div>
       <div>
         <dt class="text-xs text-slate-500">Profissional</dt>
-        <dd class="mt-0.5 text-slate-800"><%= @consulta.profissional_nome.presence || 'Não informado' %></dd>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.profissional&.nome || 'Não informado' %></dd>
       </div>
       <div>
         <dt class="text-xs text-slate-500">Estabelecimento</dt>
-        <dd class="mt-0.5 text-slate-800"><%= @consulta.estabelecimento_nome.presence || 'Não informado' %></dd>
+        <dd class="mt-0.5 text-slate-800"><%= @consulta.estabelecimento&.nome || 'Não informado' %></dd>
       </div>
     </dl>
 

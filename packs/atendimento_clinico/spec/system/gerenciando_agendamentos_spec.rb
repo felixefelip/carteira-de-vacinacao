@@ -4,6 +4,7 @@ require 'capybara/rspec'
 describe 'Gerenciando agendamentos', type: :feature do
   it 'cadastra um agendamento e registra sua realização e pagamento', :aggregate_failures do
     cadastra_a_conta
+    cadastra_referencias_clinicas
 
     click_link 'Agendamentos'
 
@@ -14,9 +15,8 @@ describe 'Gerenciando agendamentos', type: :feature do
     fill_in 'Motivo do atendimento', with: 'Consulta de rotina'
     fill_in 'Data e horário', with: '2026-09-20T14:30'
     fill_in 'Duração em minutos', with: '60'
-    fill_in 'Especialidade', with: 'Cardiologia'
-    fill_in 'Profissional', with: 'Dra. Ana'
-    fill_in 'Estabelecimento', with: 'Clínica Central'
+    select 'Dra. Ana · Cardiologia', from: 'Profissional'
+    select 'Clínica Central', from: 'Estabelecimento'
     fill_in 'Valor', with: '250.00'
     anexa_avatar_e_comprovante
     click_button 'Criar Agendamento'
@@ -74,5 +74,11 @@ describe 'Gerenciando agendamentos', type: :feature do
       fill_in 'Confirme sua senha', with: '123456'
       click_button 'Cadastrar'
     end
+  end
+
+  def cadastra_referencias_clinicas
+    especialidade = FactoryBot.create(:especialidade, nome: 'Cardiologia')
+    FactoryBot.create(:profissional, nome: 'Dra. Ana', especialidade:)
+    FactoryBot.create(:estabelecimento, nome: 'Clínica Central')
   end
 end
