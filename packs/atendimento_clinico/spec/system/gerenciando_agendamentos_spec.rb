@@ -47,7 +47,7 @@ describe 'Gerenciando agendamentos', type: :feature do
 
     FactoryBot.create(:pessoa, user: User.last, nome: 'João')
 
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
     within('tr', text: 'João') { click_button 'Ver caderneta' }
     click_link 'Agendamentos'
 

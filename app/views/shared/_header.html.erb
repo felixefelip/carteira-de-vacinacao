@@ -8,23 +8,36 @@
       <span class="text-base font-semibold tracking-tight">Carteira de Vacinação</span>
     <% end %>
 
-    <nav class="nav-scroll -mx-1 flex items-center gap-1 overflow-x-auto px-1 md:justify-end" aria-label="Navegação principal">
+    <nav class="-mx-1 flex w-full flex-wrap items-center gap-1 px-1 md:w-auto md:justify-end" aria-label="Navegação principal">
       <% if user_signed_in? %>
-        <% itens = [
-             ['Caderneta', caderneta_path],
-             ['Calendário', sugestoes_path],
-             ['Agendamentos', agendamentos_path],
-             ['Consultas', consultas_path],
-             ['Vacinas', vacinas_path],
-             ['Pessoas', pessoas_path]
-           ] %>
+        <% vacinacao = %w[caderneta sugestoes vacinas doses fabricante_vacinas] %>
+        <% atendimento_clinico = %w[agendamentos consultas prescricoes medicamentos especialidades profissionais estabelecimentos] %>
 
-        <% itens.each do |rotulo, caminho| %>
-          <% atual = current_page?(caminho) %>
-          <%= link_to rotulo, caminho,
-                      class: "nav-link #{'bg-white/10 text-white' if atual}",
-                      'aria-current': ('page' if atual) %>
-        <% end %>
+        <%= render 'shared/menu_de_navegacao',
+                   rotulo: 'Vacinação',
+                   descricao: 'Cadernetas, calendário e vacinas',
+                   icone: :vacinacao,
+                   alinhamento: :left,
+                   ativo: vacinacao.include?(controller_name),
+                   itens: [
+                     { rotulo: 'Caderneta', descricao: 'Doses e histórico vacinal', caminho: caderneta_path, ativo: controller_name == 'caderneta' },
+                     { rotulo: 'Calendário', descricao: 'Recomendações por idade', caminho: sugestoes_path, ativo: controller_name == 'sugestoes' },
+                     { rotulo: 'Vacinas', descricao: 'Vacinas e fabricantes', caminho: vacinas_path, ativo: %w[vacinas doses fabricante_vacinas].include?(controller_name) }
+                   ] %>
+
+        <%= render 'shared/menu_de_navegacao',
+                   rotulo: 'Atendimento clínico',
+                   descricao: 'Agenda, consultas e prescrições',
+                   icone: :atendimento_clinico,
+                   alinhamento: :right,
+                   ativo: atendimento_clinico.include?(controller_name),
+                   itens: [
+                     { rotulo: 'Agendamentos', descricao: 'Próximos atendimentos', caminho: agendamentos_path, ativo: controller_name == 'agendamentos' },
+                     { rotulo: 'Consultas', descricao: 'Histórico de atendimentos', caminho: consultas_path, ativo: controller_name == 'consultas' },
+                     { rotulo: 'Prescrições', descricao: 'Orientações e medicamentos', caminho: prescricoes_path, ativo: controller_name == 'prescricoes' },
+                     { rotulo: 'Medicamentos', descricao: 'Cadastro de insumos', caminho: medicamentos_path, ativo: controller_name == 'medicamentos' },
+                     { rotulo: 'Cadastros clínicos', descricao: 'Profissionais, especialidades e locais', caminho: profissionais_path, ativo: %w[especialidades profissionais estabelecimentos].include?(controller_name) }
+                   ] %>
 
         <span class="mx-1 hidden h-5 w-px shrink-0 bg-white/20 md:block" aria-hidden="true"></span>
 

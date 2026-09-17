@@ -41,7 +41,7 @@ describe 'Gerenciando prescrições', type: :feature do
     FactoryBot.create(:prescricao, consulta:, medicamento: FactoryBot.create(:medicamento))
     FactoryBot.create(:pessoa, user: User.last, nome: 'João')
 
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
     within('tr', text: 'João') { click_button 'Ver caderneta' }
     click_link 'Consultas'
     click_link 'Tratamentos'

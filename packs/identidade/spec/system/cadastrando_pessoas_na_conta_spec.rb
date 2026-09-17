@@ -8,7 +8,7 @@ describe 'Cadastrando pessoas na conta', type: :feature do
 
     expect(page).to have_content 'Caderneta de Felipe'
 
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
 
     expect(page).to have_content 'Titular da conta'
     expect(page).to have_content 'pai@example.com'
@@ -35,7 +35,7 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     expect(joaozinho.caderneta.recomendacao_vacinas.count).to eq(17)
     expect(joaozinho.user.pessoas.count).to eq(2)
 
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
 
     within('tr', text: 'Felipe') { click_button 'Ver caderneta' }
 
@@ -44,7 +44,7 @@ describe 'Cadastrando pessoas na conta', type: :feature do
     click_link 'Caderneta'
     expect(page).to have_content 'Caderneta de Felipe'
 
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
 
     within('tr', text: 'Felipe') { expect(page).to have_no_button 'Excluir' }
     within('tr', text: 'Joãozinho') { click_button 'Excluir' }
