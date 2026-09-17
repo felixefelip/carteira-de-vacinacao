@@ -275,13 +275,61 @@
            hover:bg-white/10 hover:text-white;
   }
 
-  /* No celular a barra rola na horizontal; a barra de rolagem em si só faria
-     ruído sobre o fundo escuro. */
-  .nav-scroll {
-    scrollbar-width: none;
+  .nav-menu {
+    @apply relative shrink-0;
   }
 
-  .nav-scroll::-webkit-scrollbar {
-    display: none;
+  .nav-menu-trigger {
+    @apply flex cursor-pointer items-center gap-2 rounded-md px-3 py-2
+           text-sm font-medium whitespace-nowrap text-brand-100 transition-colors
+           hover:bg-white/10 hover:text-white focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-brand-200;
+  }
+
+  .nav-menu--active .nav-menu-trigger,
+  .nav-menu--open .nav-menu-trigger,
+  .nav-menu:hover .nav-menu-trigger {
+    @apply bg-white/10 text-white;
+  }
+
+  .nav-menu-caret {
+    @apply h-4 w-4 text-white/70 transition-transform;
+  }
+
+  .nav-menu--open .nav-menu-caret,
+  .nav-menu:hover .nav-menu-caret {
+    @apply rotate-180;
+  }
+
+  .nav-menu-panel {
+    @apply absolute left-0 z-20 w-72 overflow-hidden rounded-lg border
+           border-paper-line bg-white shadow-lg;
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.25rem);
+    transition: opacity 120ms ease, transform 120ms ease, visibility 120ms;
+  }
+
+  .nav-menu-panel--right {
+    @apply right-0 left-auto;
+  }
+
+  .nav-menu:hover .nav-menu-panel,
+  .nav-menu--open .nav-menu-panel {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-menu-link {
+    @apply flex flex-col gap-0.5 rounded-md border-l-2 border-transparent
+           px-3 py-2.5 no-underline hover:bg-brand-50;
+  }
+
+  .nav-menu-link--active {
+    @apply border-brand-500 bg-brand-50;
   }
 }

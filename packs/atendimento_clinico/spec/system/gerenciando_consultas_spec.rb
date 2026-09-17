@@ -67,7 +67,7 @@ describe 'Gerenciando consultas', type: :feature do
     expect(Consulta.last.agendamento).to be_nil
 
     FactoryBot.create(:pessoa, user: User.last, nome: 'João')
-    click_link 'Pessoas'
+    click_link 'Gerenciar pessoas', visible: :all
     within('tr', text: 'João') { click_button 'Ver caderneta' }
     click_link 'Consultas'
 
