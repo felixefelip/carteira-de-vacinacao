@@ -8,6 +8,7 @@
 @source "../../views";
 @source "../../helpers";
 @source "../../javascript";
+@source "../../../packs";
 
 /*
  * Identidade visual: "documento clínico".

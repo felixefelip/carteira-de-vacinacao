@@ -1,0 +1,80 @@
+<%= form_with(model: agendamento) do |form| %>
+  <% if agendamento.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+
+      <ul>
+        <% agendamento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :motivo, "Motivo do atendimento", class: "form-label" %>
+    <%= form.text_field :motivo, class: "form-input", required: true, autofocus: true,
+                        placeholder: "Ex.: consulta de rotina" %>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :inicio_em, "Data e horário", class: "form-label" %>
+      <%= form.datetime_local_field :inicio_em, class: "form-input", required: true %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :duracao_minutos, "Duração em minutos", class: "form-label" %>
+      <%= form.number_field :duracao_minutos, class: "form-input", min: 1, step: 1,
+                            placeholder: "Ex.: 60" %>
+    </div>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :especialidade, class: "form-label" %>
+      <%= form.text_field :especialidade, class: "form-input", placeholder: "Ex.: Cardiologia" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :profissional_nome, "Profissional", class: "form-label" %>
+      <%= form.text_field :profissional_nome, class: "form-input", placeholder: "Nome do profissional" %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :estabelecimento_nome, "Estabelecimento", class: "form-label" %>
+    <%= form.text_field :estabelecimento_nome, class: "form-input", placeholder: "Clínica, consultório ou hospital" %>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-3">
+    <div class="form-field">
+      <%= form.label :status, "Situação", class: "form-label" %>
+      <%= form.select :status,
+                      Agendamento.statuses.keys.map { |status| [status.humanize, status] },
+                      {}, class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :valor, class: "form-label" %>
+      <%= form.number_field :valor, class: "form-input", min: 0, step: 0.01,
+                            placeholder: "0,00" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :pago_em, "Pago em", class: "form-label" %>
+      <%= form.date_field :pago_em, class: "form-input" %>
+      <span class="form-hint">Deixe vazio se não foi pago.</span>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :observacoes, class: "form-label" %>
+    <%= form.text_area :observacoes, class: "form-input", rows: 4 %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to "Voltar", agendamentos_path, class: "link-muted text-sm" %>
+  </div>
+<% end %>

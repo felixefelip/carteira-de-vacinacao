@@ -1,0 +1,50 @@
+class AgendamentosController < ApplicationController
+  before_action :set_agendamento, only: %i[edit update]
+
+  def index
+    @agendamentos = agendamentos_da_pessoa.order(inicio_em: :asc)
+  end
+
+  def new
+    @agendamento = agendamentos_da_pessoa.build
+  end
+
+  def edit; end
+
+  def create
+    @agendamento = agendamentos_da_pessoa.build(agendamento_params)
+
+    if @agendamento.save
+      redirect_to agendamentos_path, notice: t('.success')
+    else
+      render :new, status: :unprocessable_content
+    end
+  end
+
+  def update
+    if @agendamento.update(agendamento_params)
+      redirect_to agendamentos_path, notice: t('.success')
+    else
+      render :edit, status: :unprocessable_content
+    end
+  end
+
+  private
+
+  def set_agendamento
+    @agendamento = agendamentos_da_pessoa.find(params.expect(:id))
+  end
+
+  def agendamentos_da_pessoa
+    Agendamento.where(pessoa_id: Current.pessoa.id)
+  end
+
+  def agendamento_params
+    params.expect(
+      agendamento: %i[
+        inicio_em duracao_minutos motivo especialidade profissional_nome
+        estabelecimento_nome observacoes status valor pago_em
+      ],
+    )
+  end
+end

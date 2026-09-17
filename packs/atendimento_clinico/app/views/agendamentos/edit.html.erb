@@ -1,0 +1,10 @@
+<div class="mx-auto max-w-2xl">
+  <div class="page-header">
+    <h1 class="page-title">Editar agendamento</h1>
+    <p class="page-subtitle"><%= @agendamento.motivo %> para <%= Current.pessoa.nome %>.</p>
+  </div>
+
+  <div class="card-padded">
+    <%= render 'form', agendamento: @agendamento %>
+  </div>
+</div>
