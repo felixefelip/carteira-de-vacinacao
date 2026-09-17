@@ -1,0 +1,56 @@
+<%= form_with(model: [consulta, prescricao]) do |form| %>
+  <% if prescricao.errors.any? %>
+    <div id="error_explanation">
+      <h2>Não foi possível salvar. Corrija os campos abaixo:</h2>
+      <ul>
+        <% prescricao.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-field">
+    <%= form.label :medicamento_id, "Medicamento", class: "form-label" %>
+    <%= form.collection_select :medicamento_id, medicamentos, :id, :identificacao,
+                               { prompt: 'Selecione um medicamento' }, class: "form-input", required: true %>
+    <span class="form-hint">
+      Não encontrou a referência?
+      <%= link_to 'Cadastre um medicamento', new_medicamento_path(consulta_id: consulta), class: "link" %>.
+    </span>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :posologia, class: "form-label" %>
+    <%= form.text_field :posologia, class: "form-input", required: true,
+                        placeholder: "Ex.: 1 comprimido a cada 8 horas" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :via_administracao, "Via de administração", class: "form-label" %>
+    <%= form.text_field :via_administracao, class: "form-input", placeholder: "Ex.: Via oral" %>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div class="form-field">
+      <%= form.label :inicio_em, "Início do tratamento", class: "form-label" %>
+      <%= form.date_field :inicio_em, class: "form-input", required: true %>
+    </div>
+    <div class="form-field">
+      <%= form.label :termino_em, "Término do tratamento", class: "form-label" %>
+      <%= form.date_field :termino_em, class: "form-input" %>
+      <span class="form-hint">Deixe vazio para tratamento contínuo.</span>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :orientacoes, class: "form-label" %>
+    <%= form.text_area :orientacoes, class: "form-input", rows: 4,
+                       placeholder: "Cuidados e observações sobre o uso" %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn-primary" %>
+    <%= link_to 'Voltar', consulta_path(consulta), class: "link-muted text-sm" %>
+  </div>
+<% end %>

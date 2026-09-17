@@ -1,0 +1,63 @@
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Medicamento</th>
+        <th scope="col">Como usar</th>
+        <th scope="col">Período</th>
+        <th scope="col">Situação</th>
+        <% if contexto == :tratamentos %>
+          <th scope="col">Consulta</th>
+        <% end %>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if prescricoes.empty? %>
+        <tr>
+          <td colspan="<%= contexto == :tratamentos ? 6 : 5 %>" class="table-empty">
+            Nenhuma prescrição registrada.
+          </td>
+        </tr>
+      <% end %>
+
+      <% prescricoes.each do |prescricao| %>
+        <% situacao = prescricao.situacao_em(Date.current) %>
+        <tr>
+          <td>
+            <span class="font-medium text-slate-900"><%= prescricao.medicamento.nome %></span>
+            <% referencia = [prescricao.medicamento.principio_ativo, prescricao.medicamento.apresentacao].compact_blank %>
+            <% if referencia.any? %>
+              <span class="meta"><%= referencia.join(' · ') %></span>
+            <% end %>
+          </td>
+          <td>
+            <span class="text-slate-700"><%= prescricao.posologia %></span>
+            <% if prescricao.via_administracao.present? %>
+              <span class="meta"><%= prescricao.via_administracao %></span>
+            <% end %>
+          </td>
+          <td class="whitespace-nowrap text-slate-700">
+            <%= l prescricao.inicio_em %>
+            <span class="meta"><%= prescricao.termino_em.present? ? "até #{l prescricao.termino_em}" : 'sem término informado' %></span>
+          </td>
+          <td>
+            <% classe = situacao == :em_uso ? 'badge-success' : (situacao == :planejada ? 'badge-warning' : 'badge-neutral') %>
+            <span class="<%= classe %>"><%= { em_uso: 'Em uso', planejada: 'Planejado', encerrada: 'Encerrado' }.fetch(situacao) %></span>
+          </td>
+          <% if contexto == :tratamentos %>
+            <td>
+              <%= link_to prescricao.consulta.motivo, consulta_path(prescricao.consulta), class: "link" %>
+              <span class="meta"><%= l prescricao.consulta.realizada_em, format: :short %></span>
+            </td>
+          <% end %>
+          <td>
+            <div class="flex justify-end">
+              <%= link_to 'Editar', edit_consulta_prescricao_path(prescricao.consulta, prescricao), class: "btn-secondary btn-sm" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

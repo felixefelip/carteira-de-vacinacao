@@ -17,4 +17,5 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'consulta', 'consultas'
+  inflect.irregular 'prescricao', 'prescricoes'
 end

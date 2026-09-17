@@ -4,6 +4,7 @@ RSpec.describe Consulta, type: :model do
   describe 'associations' do
     it { should belong_to(:pessoa).required }
     it { should belong_to(:agendamento).optional }
+    it { should have_many(:prescricoes).dependent(:destroy) }
   end
 
   describe 'validations' do

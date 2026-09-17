@@ -1,8 +1,12 @@
 class ConsultasController < ApplicationController
-  before_action :set_consulta, only: %i[edit update]
+  before_action :set_consulta, only: %i[show edit update]
 
   def index
     @consultas = consultas_da_pessoa.order(realizada_em: :desc)
+  end
+
+  def show
+    @prescricoes = @consulta.prescricoes.includes(:medicamento).order(inicio_em: :desc)
   end
 
   def new
@@ -19,7 +23,7 @@ class ConsultasController < ApplicationController
     @consulta.agendamento = agendamentos_da_pessoa.find(agendamento_id) if agendamento_id.present?
 
     if @consulta.save
-      redirect_to consultas_path, notice: t('.success')
+      redirect_to @consulta, notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +31,7 @@ class ConsultasController < ApplicationController
 
   def update
     if @consulta.update(consulta_params.except(:agendamento_id))
-      redirect_to consultas_path, notice: t('.success')
+      redirect_to @consulta, notice: t('.success')
     else
       render :edit, status: :unprocessable_content
     end
@@ -49,7 +53,7 @@ class ConsultasController < ApplicationController
 
   def preencher_com_agendamento
     agendamento = agendamentos_da_pessoa.find(params.expect(:agendamento_id))
-    return redirect_to edit_consulta_path(agendamento.consulta) if agendamento.consulta.present?
+    return redirect_to agendamento.consulta if agendamento.consulta.present?
 
     @consulta.assign_attributes(atributos_do_agendamento(agendamento))
   end

@@ -1,0 +1,45 @@
+<div class="page-header flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Medicamentos</h1>
+    <p class="page-subtitle">Referências usadas para registrar prescrições e tratamentos.</p>
+  </div>
+
+  <%= link_to 'Cadastrar medicamento', new_medicamento_path, class: "btn-primary" %>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Medicamento</th>
+        <th scope="col">Princípio ativo</th>
+        <th scope="col">Apresentação</th>
+        <th scope="col"><span class="sr-only">Ações</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @medicamentos.empty? %>
+        <tr>
+          <td colspan="4" class="table-empty">Nenhum medicamento cadastrado.</td>
+        </tr>
+      <% end %>
+
+      <% @medicamentos.each do |medicamento| %>
+        <tr>
+          <td class="font-medium text-slate-900"><%= medicamento.nome %></td>
+          <td class="text-slate-700"><%= medicamento.principio_ativo.presence || '—' %></td>
+          <td class="text-slate-700"><%= medicamento.apresentacao.presence || '—' %></td>
+          <td>
+            <div class="flex justify-end">
+              <%= link_to 'Editar', edit_medicamento_path(medicamento), class: "btn-secondary btn-sm" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-6">
+  <%= link_to 'Voltar para tratamentos', prescricoes_path, class: "link-muted text-sm" %>
+</div>
