@@ -89,7 +89,7 @@
     <% end %>
 
     <%= form.file_field :anexos, multiple: true,
-                        accept: Agendamento::TIPOS_DE_ANEXO_ACEITOS.join(','), class: "form-input" %>
+                        accept: Agendamento::Anexavel::TIPOS_ACEITOS.join(','), class: "form-input" %>
     <span class="form-hint">PDF, PNG, JPEG ou WEBP, até 10 MB por arquivo. Você pode selecionar mais de um.</span>
   </div>
 

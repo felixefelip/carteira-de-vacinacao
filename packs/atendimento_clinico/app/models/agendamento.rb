@@ -18,11 +18,9 @@
 #  pessoa_id            :bigint           not null
 #
 class Agendamento < ApplicationRecord
-  TIPOS_DE_ANEXO_ACEITOS = %w[application/pdf image/png image/jpeg image/webp].freeze
-  TAMANHO_MAXIMO_DO_ANEXO = 10.megabytes
+  include Anexavel
 
   belongs_to :pessoa
-  has_many_attached :anexos
 
   enum :status, {
     agendado: 'agendado',
@@ -33,25 +31,8 @@ class Agendamento < ApplicationRecord
   validates :motivo, :inicio_em, presence: true
   validates :duracao_minutos, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
   validates :valor, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validate :anexos_precisam_ser_arquivos_aceitos
 
   def pago?
     pago_em.present?
-  end
-
-  private
-
-  def anexos_precisam_ser_arquivos_aceitos
-    anexos.each { |anexo| validar_anexo(anexo.blob) }
-  end
-
-  def validar_anexo(blob)
-    unless TIPOS_DE_ANEXO_ACEITOS.include?(blob.content_type)
-      errors.add(:anexos, "#{blob.filename} precisa ser PDF, PNG, JPEG ou WEBP")
-    end
-
-    return unless blob.byte_size > TAMANHO_MAXIMO_DO_ANEXO
-
-    errors.add(:anexos, "#{blob.filename} precisa ter no máximo #{TAMANHO_MAXIMO_DO_ANEXO / 1.megabyte} MB")
   end
 end
