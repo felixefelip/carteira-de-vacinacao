@@ -40,6 +40,14 @@
             <span class="font-medium text-slate-900"><%= agendamento.motivo %></span>
             <% detalhes = [agendamento.especialidade, agendamento.profissional_nome, agendamento.estabelecimento_nome].compact_blank %>
             <span class="meta"><%= detalhes.any? ? detalhes.join(' · ') : 'Sem detalhes adicionais' %></span>
+
+            <% if agendamento.anexos.attached? %>
+              <span class="meta">
+                <% agendamento.anexos.each do |anexo| %>
+                  <%= link_to anexo.filename, rails_blob_path(anexo, disposition: 'attachment'), class: "link mr-2" %>
+                <% end %>
+              </span>
+            <% end %>
           </td>
 
           <td class="cell-numeric whitespace-nowrap">

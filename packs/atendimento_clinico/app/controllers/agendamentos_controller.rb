@@ -36,14 +36,15 @@ class AgendamentosController < ApplicationController
   end
 
   def agendamentos_da_pessoa
-    Agendamento.where(pessoa_id: Current.pessoa.id)
+    Agendamento.with_attached_anexos.where(pessoa_id: Current.pessoa.id)
   end
 
   def agendamento_params
     params.expect(
-      agendamento: %i[
-        inicio_em duracao_minutos motivo especialidade profissional_nome
-        estabelecimento_nome observacoes status valor pago_em
+      agendamento: [
+        :inicio_em, :duracao_minutos, :motivo, :especialidade, :profissional_nome,
+        :estabelecimento_nome, :observacoes, :status, :valor, :pago_em,
+        { anexos: [] }
       ],
     )
   end

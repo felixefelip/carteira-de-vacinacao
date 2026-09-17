@@ -73,6 +73,26 @@
     <%= form.text_area :observacoes, class: "form-input", rows: 4 %>
   </div>
 
+  <div class="form-field">
+    <%= form.label :anexos, class: "form-label" %>
+
+    <% anexos_existentes = agendamento.anexos.select { |anexo| anexo.blob.persisted? } %>
+    <% if anexos_existentes.any? %>
+      <ul class="mb-3 space-y-1 text-sm">
+        <% anexos_existentes.each do |anexo| %>
+          <li>
+            <%= link_to anexo.filename, rails_blob_path(anexo, disposition: 'attachment'), class: "link" %>
+            <%= form.hidden_field :anexos, multiple: true, value: anexo.signed_id %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form.file_field :anexos, multiple: true,
+                        accept: Agendamento::TIPOS_DE_ANEXO_ACEITOS.join(','), class: "form-input" %>
+    <span class="form-hint">PDF, PNG, JPEG ou WEBP, até 10 MB por arquivo. Você pode selecionar mais de um.</span>
+  </div>
+
   <div class="form-actions">
     <%= form.submit class: "btn-primary" %>
     <%= link_to "Voltar", agendamentos_path, class: "link-muted text-sm" %>
