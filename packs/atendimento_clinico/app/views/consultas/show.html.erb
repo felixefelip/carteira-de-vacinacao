@@ -67,10 +67,7 @@
       <h2 id="prescricoes-da-consulta" class="text-lg font-semibold text-brand-900">Prescrições</h2>
       <p class="mt-1 text-sm text-slate-500">Medicamentos e orientações definidos neste atendimento.</p>
     </div>
-    <div class="flex flex-wrap gap-2">
-      <%= link_to 'Tratamentos', prescricoes_path, class: "btn-secondary btn-sm" %>
-      <%= link_to 'Adicionar prescrição', new_consulta_prescricao_path(@consulta), class: "btn-secondary btn-sm" %>
-    </div>
+    <%= link_to 'Adicionar prescrição', new_consulta_prescricao_path(@consulta), class: "btn-secondary btn-sm" %>
   </div>
 
   <%= render 'prescricoes/tabela', prescricoes: @prescricoes, contexto: :consulta %>
