@@ -4,10 +4,7 @@
     <p class="page-subtitle">Medicamentos planejados, em uso e encerrados, registrados nas consultas.</p>
   </div>
 
-  <div class="flex flex-wrap gap-2">
-    <%= link_to 'Medicamentos', medicamentos_path, class: "btn-secondary" %>
-    <%= link_to 'Ver consultas', consultas_path, class: "btn-primary" %>
-  </div>
+  <%= link_to 'Ver consultas', consultas_path, class: "btn-primary" %>
 </div>
 
 <%= render 'tabela', prescricoes: @prescricoes, contexto: :tratamentos %>
