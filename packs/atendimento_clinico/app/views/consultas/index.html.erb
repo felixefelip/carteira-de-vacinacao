@@ -7,6 +7,12 @@
   <%= link_to 'Registrar consulta', new_consulta_path, class: "btn-primary" %>
 </div>
 
+<%= render 'atendimentos/filtros',
+           url: consultas_path,
+           filtros: @filtros,
+           filtros_ativos: @filtros_ativos,
+           filtrar_agendamentos: false %>
+
 <div class="table-wrap">
   <table class="data-table">
     <thead>
@@ -22,7 +28,9 @@
     <tbody>
       <% if @consultas.empty? %>
         <tr>
-          <td colspan="5" class="table-empty">Nenhuma consulta registrada para esta pessoa.</td>
+          <td colspan="5" class="table-empty">
+            <%= @filtros_ativos ? 'Nenhuma consulta encontrada com esses filtros.' : 'Nenhuma consulta registrada para esta pessoa.' %>
+          </td>
         </tr>
       <% end %>
 

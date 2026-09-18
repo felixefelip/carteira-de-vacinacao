@@ -1,0 +1,65 @@
+<section class="mb-6 border-y border-paper-line py-4" aria-labelledby="titulo-dos-filtros">
+  <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+    <div>
+      <h2 id="titulo-dos-filtros" class="text-sm font-semibold text-brand-900">Filtrar resultados</h2>
+      <p class="mt-0.5 text-xs text-slate-500">Combine os campos para encontrar um atendimento.</p>
+    </div>
+
+    <% if filtros_ativos %>
+      <%= link_to 'Limpar filtros', url, class: "link-muted text-sm" %>
+    <% end %>
+  </div>
+
+  <%= form_with scope: :filtro, url:, method: :get, class: "grid gap-x-4 sm:grid-cols-2 lg:grid-cols-4" do |form| %>
+    <div class="form-field">
+      <%= form.label :data_de, 'Data inicial', class: "form-label" %>
+      <%= form.date_field :data_de, value: filtros[:data_de], class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :data_ate, 'Data final', class: "form-label" %>
+      <%= form.date_field :data_ate, value: filtros[:data_ate], class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :profissional_id, 'Profissional', class: "form-label" %>
+      <%= form.select :profissional_id,
+                      options_from_collection_for_select(@profissionais, :id, :identificacao, filtros[:profissional_id]),
+                      { include_blank: 'Todos os profissionais' }, class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :especialidade_id, 'Especialidade', class: "form-label" %>
+      <%= form.select :especialidade_id,
+                      options_from_collection_for_select(@especialidades, :id, :nome, filtros[:especialidade_id]),
+                      { include_blank: 'Todas as especialidades' }, class: "form-input" %>
+    </div>
+
+    <div class="form-field">
+      <%= form.label :estabelecimento_id, 'Estabelecimento', class: "form-label" %>
+      <%= form.select :estabelecimento_id,
+                      options_from_collection_for_select(@estabelecimentos, :id, :nome, filtros[:estabelecimento_id]),
+                      { include_blank: 'Todos os estabelecimentos' }, class: "form-input" %>
+    </div>
+
+    <% if filtrar_agendamentos %>
+      <div class="form-field">
+        <%= form.label :status, 'Situação', class: "form-label" %>
+        <%= form.select :status,
+                        options_for_select(Agendamento.statuses.keys.map { |status| [status.humanize, status] }, filtros[:status]),
+                        { include_blank: 'Todas as situações' }, class: "form-input" %>
+      </div>
+
+      <div class="form-field">
+        <%= form.label :pagamento, 'Pagamento', class: "form-label" %>
+        <%= form.select :pagamento,
+                        options_for_select([['Pago', 'pago'], ['Não pago', 'pendente']], filtros[:pagamento]),
+                        { include_blank: 'Todos os pagamentos' }, class: "form-input" %>
+      </div>
+    <% end %>
+
+    <div class="form-field flex items-end">
+      <%= form.submit 'Filtrar', class: "btn-primary w-full sm:w-auto" %>
+    </div>
+  <% end %>
+</section>
