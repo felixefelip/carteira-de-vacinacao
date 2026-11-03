@@ -1,0 +1,3 @@
+class Profissional < ApplicationRecord
+  def identificacao: () -> String
+end

@@ -1,0 +1,23 @@
+class FiltroDeAtendimentos
+  @data_de: Date?
+  @data_ate: Date?
+
+  REFERENCIAS: [ :profissional_id, :especialidade_id, :estabelecimento_id ]
+
+  def initialize: (untyped relacao, nil filtros, coluna_data: (:inicio_em | :realizada_em)) -> void
+  def resultado: () -> untyped
+
+  private
+
+  attr_accessor relacao: untyped
+  attr_reader filtros: nil
+  attr_reader coluna_data: (:inicio_em | :realizada_em)
+
+  def filtrar_periodo: () -> untyped
+  def filtrar_referencias: () -> [ :profissional_id, :especialidade_id, :estabelecimento_id ]
+  def filtrar_status: () -> untyped
+  def filtrar_pagamento: () -> untyped
+  def data_de: () -> Date?
+  def data_ate: () -> Date?
+  def converter_data: ((:data_de | :data_ate) chave) -> Date?
+end

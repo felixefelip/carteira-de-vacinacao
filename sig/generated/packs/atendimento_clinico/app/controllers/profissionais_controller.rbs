@@ -1,0 +1,15 @@
+class ProfissionaisController < ApplicationController
+  @profissional: Profissional?
+
+  def index: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_profissional: () -> Profissional?
+  def carregar_especialidades: () -> untyped
+  def profissional_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+end

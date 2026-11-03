@@ -1,0 +1,11 @@
+class Consulta < ApplicationRecord
+  include Anexavel
+
+  private
+
+  def agendamento_precisa_ser_da_mesma_pessoa: () -> ActiveModel::Error?
+  def referencia_clinica_alterada?: () -> untyped
+  def especialidade_precisa_ser_do_profissional: () -> ActiveModel::Error?
+  def usar_especialidade_do_profissional: () -> untyped
+  def marcar_agendamento_como_realizado: () -> untyped
+end

@@ -1,0 +1,11 @@
+class Agendamento < ApplicationRecord
+  include Anexavel
+
+  def pago?: () -> untyped
+
+  private
+
+  def referencia_clinica_alterada?: () -> untyped
+  def especialidade_precisa_ser_do_profissional: () -> ActiveModel::Error?
+  def usar_especialidade_do_profissional: () -> untyped
+end

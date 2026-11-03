@@ -1,0 +1,22 @@
+class ConsultasController < ApplicationController
+  @filtros_ativos: bool?
+  @filtros: nil
+
+  def index: () -> void
+  def show: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_consulta: () -> untyped
+  def consultas_da_pessoa: () -> untyped
+  def agendamentos_da_pessoa: () -> untyped
+  def preencher_com_agendamento: () -> untyped
+  def atributos_do_agendamento: (untyped agendamento) -> Hash[(:agendamento | :realizada_em | :motivo | :especialidade | :profissional | :estabelecimento), untyped]
+  def carregar_cadastros_clinicos: () -> untyped
+  def consulta_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+  def filtros_params: () -> untyped
+end

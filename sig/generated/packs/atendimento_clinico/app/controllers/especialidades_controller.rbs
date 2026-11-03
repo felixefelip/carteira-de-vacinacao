@@ -1,0 +1,14 @@
+class EspecialidadesController < ApplicationController
+  @especialidade: Especialidade?
+
+  def index: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_especialidade: () -> Especialidade?
+  def especialidade_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+end

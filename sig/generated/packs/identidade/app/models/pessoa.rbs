@@ -1,0 +1,9 @@
+class Pessoa < ApplicationRecord
+  include Idade
+  include Avatar
+
+  private
+
+  def montar_caderneta: () -> Caderneta
+  def email_nao_pode_ser_de_outra_conta: () -> ActiveModel::Error?
+end

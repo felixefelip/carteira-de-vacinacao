@@ -1,0 +1,14 @@
+class PrescricoesController < ApplicationController
+  def index: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_consulta: () -> untyped
+  def set_prescricao: () -> untyped
+  def carregar_medicamentos: () -> untyped
+  def prescricao_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+end

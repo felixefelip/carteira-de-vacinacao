@@ -1,0 +1,14 @@
+class EstabelecimentosController < ApplicationController
+  @estabelecimento: Estabelecimento?
+
+  def index: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_estabelecimento: () -> Estabelecimento?
+  def estabelecimento_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+end

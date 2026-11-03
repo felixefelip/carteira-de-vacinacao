@@ -1,0 +1,4 @@
+class Vacina < ApplicationRecord
+  def cadastrar_fornecedor_vacina_padrao: () -> untyped
+  def sem_fabricante_vacina?: () -> bool
+end

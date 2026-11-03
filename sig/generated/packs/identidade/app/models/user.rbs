@@ -1,0 +1,5 @@
+class User < ApplicationRecord
+  private
+
+  def preparar_pessoa_titular: () -> ::String?
+end

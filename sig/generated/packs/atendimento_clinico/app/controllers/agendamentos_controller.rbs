@@ -1,0 +1,18 @@
+class AgendamentosController < ApplicationController
+  @filtros_ativos: bool?
+  @filtros: nil
+
+  def index: () -> void
+  def new: () -> void
+  def edit: () -> void
+  def create: () -> void
+  def update: () -> void
+
+  private
+
+  def set_agendamento: () -> untyped
+  def agendamentos_da_pessoa: () -> untyped
+  def carregar_cadastros_clinicos: () -> untyped
+  def agendamento_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
+  def filtros_params: () -> untyped
+end

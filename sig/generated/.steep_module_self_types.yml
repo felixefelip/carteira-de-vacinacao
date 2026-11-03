@@ -1,50 +1,60 @@
 ---
-app/helpers/application_helper.rb:
+packs/atendimento_clinico/app/models/agendamento/anexavel.rb:
   modules:
-  - anchor: ApplicationHelper
+  - anchor: Anexavel
     annotations:
-    - "# @type instance: ApplicationController & ApplicationHelper"
-app/helpers/doses_helper.rb:
+    - "# @type instance: Agendamento & Agendamento::Anexavel"
+  blocks:
+  - call: included
+    in: "::Agendamento::Anexavel"
+    implements: "::Agendamento"
+packs/atendimento_clinico/app/models/consulta/anexavel.rb:
   modules:
-  - anchor: DosesHelper
+  - anchor: Anexavel
     annotations:
-    - "# @type instance: ERBDosesNew & DosesHelper"
-app/helpers/pessoas_helper.rb:
+    - "# @type instance: Consulta & Consulta::Anexavel"
+  blocks:
+  - call: included
+    in: "::Consulta::Anexavel"
+    implements: "::Consulta"
+packs/identidade/app/helpers/pessoas_helper.rb:
   modules:
   - anchor: PessoasHelper
     annotations:
     - "# @type instance: (ERBPessoasEdit & PessoasHelper) | (ERBPessoasIndex & PessoasHelper)
       | (ERBPessoasNew & PessoasHelper)"
-app/helpers/sugestoes_helper.rb:
-  modules:
-  - anchor: SugestoesHelper
-    annotations:
-    - "# @type instance: ERBSugestoesIndex & SugestoesHelper"
-app/models/pessoa/avatar.rb:
+packs/identidade/app/models/pessoa/avatar.rb:
   modules:
   - anchor: Avatar
     annotations:
-    - "# @type self: singleton(Pessoa) & singleton(Pessoa::Avatar)"
     - "# @type instance: Pessoa & Pessoa::Avatar"
   blocks:
   - call: included
     in: "::Pessoa::Avatar"
     implements: "::Pessoa"
-app/models/pessoa/idade.rb:
+packs/identidade/app/models/pessoa/idade.rb:
   modules:
   - anchor: Idade
     annotations:
-    - "# @type self: singleton(Pessoa) & singleton(Pessoa::Idade)"
     - "# @type instance: Pessoa & Pessoa::Idade"
   blocks:
   - call: included
     in: "::Pessoa::Idade"
     implements: "::Pessoa"
+packs/vacinacao/app/helpers/doses_helper.rb:
+  modules:
+  - anchor: DosesHelper
+    annotations:
+    - "# @type instance: ERBDosesNew & DosesHelper"
+packs/vacinacao/app/helpers/sugestoes_helper.rb:
+  modules:
+  - anchor: SugestoesHelper
+    annotations:
+    - "# @type instance: ERBSugestoesIndex & SugestoesHelper"
 sig/generated/steep_actiontext_runtime/attribute.rb:
   modules:
   - anchor: Attribute
     annotations:
-    - "# @type self: singleton(ActiveRecord::Base) & singleton(ActionText::Attribute)"
     - "# @type instance: ActiveRecord::Base & ActionText::Attribute"
   blocks:
   - call: class_methods
@@ -55,11 +65,17 @@ sig/generated/steep_ar_runtime/active_support/concern.rb:
   modules:
   - anchor: Concern
     annotations:
-    - "# @type instance: (singleton(ActionText::Attribute)) | (singleton(Pessoa::Avatar))
-      | (singleton(Pessoa::Idade))"
+    - "# @type instance: (singleton(ActionText::Attribute)) | (singleton(Agendamento::Anexavel))
+      | (singleton(Consulta::Anexavel)) | (singleton(Pessoa::Avatar)) | (singleton(Pessoa::Idade))"
     defs:
       class_methods: singleton(ActionText::Attribute)
-      included: singleton(Pessoa::Avatar) | singleton(Pessoa::Idade)
+      included: singleton(Agendamento::Anexavel) | singleton(Consulta::Anexavel) |
+        singleton(Pessoa::Avatar) | singleton(Pessoa::Idade)
+sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:
+  modules:
+  - anchor: EngineDetector
+    annotations:
+    - "# @type instance: singleton(Concurrent)"
 sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:
   modules:
   - anchor: ControllerMethods

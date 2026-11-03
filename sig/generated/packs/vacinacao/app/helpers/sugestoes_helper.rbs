@@ -1,0 +1,3 @@
+module SugestoesHelper
+  def idade_recomendada_para: (untyped recomendacao_vacina) -> String?
+end

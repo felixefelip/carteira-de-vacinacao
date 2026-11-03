@@ -1,0 +1,288 @@
+---
+version: 1
+methods:
+  Agendamento#especialidade_precisa_ser_do_profissional:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+        chain:
+        - especialidade
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: especialidade
+    enforced: false
+  Agendamento#pago?:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: pago_em
+    enforced: false
+  Agendamento#usar_especialidade_do_profissional:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+    enforced: false
+  Agendamento::Anexavel#anexos_precisam_ser_arquivos_aceitos:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: anexos
+    enforced: false
+  Consulta#agendamento_precisa_ser_da_mesma_pessoa:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: agendamento
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: pessoa
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: agendamento
+        chain:
+        - pessoa_id
+    enforced: false
+  Consulta#especialidade_precisa_ser_do_profissional:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+        chain:
+        - especialidade
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: especialidade
+    enforced: false
+  Consulta#usar_especialidade_do_profissional:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: profissional
+    enforced: false
+  Consulta::Anexavel#anexos_precisam_ser_arquivos_aceitos:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: anexos
+    enforced: false
+  FiltroDeAtendimentos#converter_data:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#data_ate:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#data_de:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#filtrar_pagamento:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#filtrar_periodo:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: data_de
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: data_ate
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#filtrar_referencias:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#filtrar_status:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  FiltroDeAtendimentos#resultado:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: data_de
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: data_ate
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: filtros
+    enforced: false
+  Pessoa::Avatar#avatar_precisa_ser_uma_imagem_pequena:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+    enforced: false
+  Prescricao#situacao_em:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: inicio_em
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: termino_em
+    enforced: false
+  Prescricao#termino_nao_pode_anteceder_inicio:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: inicio_em
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: termino_em
+    enforced: false
+  Users::RegistrationsController#__rbs_infer__run_build_resource:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: resource
+    enforced: false
+  Users::RegistrationsController#__rbs_infer__run_configure_sign_up_params:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: devise_parameter_sanitizer
+    enforced: false
+  Users::RegistrationsController#build_resource:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: resource
+    enforced: false
+  Users::RegistrationsController#configure_sign_up_params:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: devise_parameter_sanitizer
+    enforced: false

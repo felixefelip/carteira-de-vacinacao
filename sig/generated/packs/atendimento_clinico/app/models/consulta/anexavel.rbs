@@ -1,0 +1,13 @@
+class Consulta
+  module Anexavel
+    TIPOS_ACEITOS: [ "application/pdf", "image/png", "image/jpeg", "image/webp" ]
+    TAMANHO_MAXIMO: untyped
+
+    extend ActiveSupport::Concern
+
+    private
+
+    def anexos_precisam_ser_arquivos_aceitos: () -> untyped
+    def validar_anexo: (untyped blob) -> ActiveModel::Error?
+  end
+end

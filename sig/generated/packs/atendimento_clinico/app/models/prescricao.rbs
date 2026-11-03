@@ -1,0 +1,7 @@
+class Prescricao < ApplicationRecord
+  def situacao_em: (untyped data) -> (:em_uso | :planejada | :encerrada)
+
+  private
+
+  def termino_nao_pode_anteceder_inicio: () -> ActiveModel::Error?
+end
