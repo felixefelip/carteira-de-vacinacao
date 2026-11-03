@@ -11,7 +11,7 @@
 ## apagam os próprios `steep_*_runtime/`, nunca o inferido. Um `--output-dir`
 ## separado resolveria a estética e tornaria `rm -rf sig/generated` seguro.
 rbs_infer_all:
-	bundle exec rbs_infer app/ lib/ sig/ --output
+	bundle exec rbs_infer app/ lib/ packs/*/app/ sig/ --output
 
 rbs_collection_update:
 	rbs collection update
