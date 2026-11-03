@@ -1,7 +1,7 @@
 class VacinasController
   @__rbs_infer__performed: true?
 
-  def render: (?(:index | :show | :new | :edit)? target, *{ status: :unprocessable_content } rest) -> true
+  def render: (?(:index | :show | :new | :edit | { plain: String, status: :unauthorized })? target, *{ status: :unprocessable_content } rest) -> true
 
   private
 

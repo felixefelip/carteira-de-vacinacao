@@ -1,7 +1,7 @@
 class ERBPartialSharedHeader
   include ActionViewContext
 
-  def render: (?"shared/seletor_de_perfil"? target, *untyped rest) -> nil
+  def render: (?("shared/menu_de_navegacao" | "shared/seletor_de_perfil")? target, *({ rotulo: "Vacinação", descricao: "Cadernetas, calendário e vacinas", icone: :vacinacao, alinhamento: :left, ativo: untyped, itens: Array[({ rotulo: "Caderneta", descricao: "Doses e histórico vacinal", caminho: untyped, ativo: untyped } | { rotulo: "Calendário", descricao: "Recomendações por idade", caminho: untyped, ativo: untyped } | { rotulo: "Vacinas", descricao: "Vacinas e fabricantes", caminho: untyped, ativo: untyped })] } | { rotulo: "Atendimento clínico", descricao: "Agenda, consultas e prescrições", icone: :atendimento_clinico, alinhamento: :right, ativo: untyped, itens: Array[({ rotulo: "Agendamentos", descricao: "Próximos atendimentos", caminho: untyped, ativo: untyped } | { rotulo: "Consultas", descricao: "Histórico de atendimentos", caminho: untyped, ativo: untyped } | { rotulo: "Tratamentos", descricao: "Prescrições e medicamentos em uso", caminho: untyped, ativo: untyped } | { rotulo: "Medicamentos", descricao: "Cadastro de insumos", caminho: untyped, ativo: untyped } | { rotulo: "Cadastros clínicos", descricao: "Profissionais, especialidades e locais", caminho: untyped, ativo: untyped })] }) rest) -> nil
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

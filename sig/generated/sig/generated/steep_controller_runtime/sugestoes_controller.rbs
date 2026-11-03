@@ -1,7 +1,7 @@
 class SugestoesController
   @__rbs_infer__performed: true?
 
-  def render: (?(:index)? target, *untyped rest) -> true
+  def render: (?(:index | { plain: String, status: :unauthorized })? target, *untyped rest) -> true
 
   private
 

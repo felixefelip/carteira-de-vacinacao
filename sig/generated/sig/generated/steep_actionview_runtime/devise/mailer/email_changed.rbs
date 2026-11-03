@@ -1,7 +1,7 @@
 class ERBDeviseMailerEmailChanged
   include ActionViewContext
 
-  def initialize: (email: untyped, resource: untyped) -> untyped
+  def initialize: (email: untyped, resource: untyped) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end
