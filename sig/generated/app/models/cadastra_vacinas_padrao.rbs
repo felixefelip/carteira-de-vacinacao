@@ -1,3 +1,0 @@
-class CadastraVacinasPadrao
-  def self.call: () -> DoseDoCalendario?
-end

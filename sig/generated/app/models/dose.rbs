@@ -1,3 +1,0 @@
-class Dose < ApplicationRecord
-  def atualizar_calendario: () -> Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
-end
