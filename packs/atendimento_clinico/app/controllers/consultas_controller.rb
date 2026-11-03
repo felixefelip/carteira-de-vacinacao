@@ -1,9 +1,13 @@
 class ConsultasController < ApplicationController
   before_action :set_consulta, only: %i[show edit update]
-  before_action :carregar_cadastros_clinicos, only: %i[new edit create update]
+  before_action :carregar_cadastros_clinicos, only: %i[index new edit create update]
 
   def index
-    @consultas = consultas_da_pessoa.order(realizada_em: :desc)
+    @filtros = filtros_params
+    @filtros_ativos = @filtros.to_h.values.any?(&:present?)
+    @consultas = FiltroDeAtendimentos.new(
+      consultas_da_pessoa, @filtros, coluna_data: :realizada_em
+    ).resultado.order(realizada_em: :desc)
   end
 
   def show
@@ -85,5 +89,10 @@ class ConsultasController < ApplicationController
         :estabelecimento_id, :resumo, :orientacoes, { anexos: [] }
       ],
     )
+  end
+
+  def filtros_params
+    params.fetch(:filtro, ActionController::Parameters.new)
+      .permit(:data_de, :data_ate, :profissional_id, :especialidade_id, :estabelecimento_id)
   end
 end

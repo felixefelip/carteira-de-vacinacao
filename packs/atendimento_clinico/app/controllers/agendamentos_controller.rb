@@ -1,9 +1,13 @@
 class AgendamentosController < ApplicationController
   before_action :set_agendamento, only: %i[edit update]
-  before_action :carregar_cadastros_clinicos, only: %i[new edit create update]
+  before_action :carregar_cadastros_clinicos, only: %i[index new edit create update]
 
   def index
-    @agendamentos = agendamentos_da_pessoa.order(inicio_em: :asc)
+    @filtros = filtros_params
+    @filtros_ativos = @filtros.to_h.values.any?(&:present?)
+    @agendamentos = FiltroDeAtendimentos.new(
+      agendamentos_da_pessoa, @filtros, coluna_data: :inicio_em
+    ).resultado.order(inicio_em: :asc)
   end
 
   def new
@@ -56,5 +60,11 @@ class AgendamentosController < ApplicationController
         { anexos: [] }
       ],
     )
+  end
+
+  def filtros_params
+    params.fetch(:filtro, ActionController::Parameters.new)
+      .permit(:data_de, :data_ate, :profissional_id, :especialidade_id,
+              :estabelecimento_id, :status, :pagamento)
   end
 end

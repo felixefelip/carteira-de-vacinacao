@@ -7,6 +7,12 @@
   <%= link_to 'Novo agendamento', new_agendamento_path, class: "btn-primary" %>
 </div>
 
+<%= render 'atendimentos/filtros',
+           url: agendamentos_path,
+           filtros: @filtros,
+           filtros_ativos: @filtros_ativos,
+           filtrar_agendamentos: true %>
+
 <div class="table-wrap">
   <table class="data-table">
     <thead>
@@ -23,7 +29,9 @@
     <tbody>
       <% if @agendamentos.empty? %>
         <tr>
-          <td colspan="6" class="table-empty">Nenhum agendamento cadastrado para esta pessoa.</td>
+          <td colspan="6" class="table-empty">
+            <%= @filtros_ativos ? 'Nenhum agendamento encontrado com esses filtros.' : 'Nenhum agendamento cadastrado para esta pessoa.' %>
+          </td>
         </tr>
       <% end %>
 
