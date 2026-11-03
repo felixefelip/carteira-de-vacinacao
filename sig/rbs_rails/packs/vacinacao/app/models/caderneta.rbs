@@ -1,0 +1,313 @@
+# resolve-type-names: false
+
+class ::Caderneta < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Caderneta, ::Caderneta::ActiveRecord_Relation, ::Integer, ::Caderneta::Validated]
+
+  module ::Caderneta::GeneratedAttributeMethods
+    def id: () -> ::Integer?
+
+    def id=: (::Integer?) -> ::Integer?
+
+    def id?: () -> bool
+
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> ::Integer?
+
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_previous_change: () -> ::Array[::Integer?]?
+
+    def id_previously_was: () -> ::Integer?
+
+    def id_before_last_save: () -> ::Integer?
+
+    def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def id_in_database: () -> ::Integer?
+
+    def saved_change_to_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::Integer?
+
+    def id_for_database: () -> ::Integer?
+
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time?
+
+    def created_at_for_database: () -> ::Time?
+
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+
+    def updated_at_before_type_cast: () -> ::Time?
+
+    def updated_at_for_database: () -> ::Time?
+
+    def pessoa_id: () -> ::Integer?
+
+    def pessoa_id=: (::Integer?) -> ::Integer?
+
+    def pessoa_id?: () -> bool
+
+    def pessoa_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def pessoa_id_will_change!: () -> void
+
+    def pessoa_id_was: () -> ::Integer?
+
+    def pessoa_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_previous_change: () -> ::Array[::Integer?]?
+
+    def pessoa_id_previously_was: () -> ::Integer?
+
+    def pessoa_id_before_last_save: () -> ::Integer?
+
+    def pessoa_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def pessoa_id_in_database: () -> ::Integer?
+
+    def saved_change_to_pessoa_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_pessoa_id?: () -> bool
+
+    def will_save_change_to_pessoa_id?: () -> bool
+
+    def restore_pessoa_id!: () -> void
+
+    def clear_pessoa_id_change: () -> void
+
+    def pessoa_id_before_type_cast: () -> ::Integer?
+
+    def pessoa_id_for_database: () -> ::Integer?
+  end
+  include ::Caderneta::GeneratedAttributeMethods
+  module ::Caderneta::GeneratedAliasAttributeMethods
+    include ::Caderneta::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Caderneta::GeneratedAliasAttributeMethods
+  def doses=: (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose]) -> (::Dose::ActiveRecord_Associations_CollectionProxy | ::Array[::Dose])
+  def dose_ids: () -> ::Array[::Integer]
+  def dose_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def fabricante_vacinas=: (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina]) -> (::FabricanteVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::FabricanteVacina])
+  def fabricante_vacina_ids: () -> ::Array[::Integer]
+  def fabricante_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def vacinas=: (::Vacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Vacina]) -> (::Vacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Vacina])
+  def vacina_ids: () -> ::Array[::Integer]
+  def vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def recomendacao_vacinas=: (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina]) -> (::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy | ::Array[::Caderneta::RecomendacaoVacina])
+  def recomendacao_vacina_ids: () -> ::Array[::Integer]
+  def recomendacao_vacina_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
+  def pessoa: () -> ::Pessoa?
+  def pessoa=: (::Pessoa?) -> ::Pessoa?
+  def reload_pessoa: () -> ::Pessoa?
+  def build_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa!: (untyped) -> ::Pessoa
+  module ::Caderneta::GeneratedAssociationMethods
+  end
+  include ::Caderneta::GeneratedAssociationMethods
+
+  module ::Caderneta::GeneratedRelationMethods
+  end
+
+  class ::Caderneta::ActiveRecord_Relation < ::ActiveRecord::Relation
+    include ::Enumerable[::Caderneta & ::Caderneta::Validated]
+    include ::Caderneta::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Caderneta, ::Integer, ::Caderneta::Validated]
+  end
+
+  class ::Caderneta::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Caderneta & ::Caderneta::Validated]
+    include ::Caderneta::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Caderneta, ::Integer, ::Caderneta::Validated]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Caderneta
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Caderneta]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Caderneta
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Caderneta]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Caderneta
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Caderneta]
+    def reload: () -> ::Array[::Caderneta]
+
+    def replace: (::Array[::Caderneta]) -> void
+    def delete: (*::Caderneta | ::Integer) -> ::Array[::Caderneta]
+    def destroy: (*::Caderneta | ::Integer) -> ::Array[::Caderneta]
+    def <<: (*::Caderneta | ::Array[::Caderneta]) -> self
+    def prepend: (*::Caderneta | ::Array[::Caderneta]) -> self
+  end
+
+  class ::Caderneta::Validated
+    def id: () -> ::Integer
+    def pessoa: () -> (::Pessoa & ::Pessoa::Validated)
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Caderneta_Dose
+  class ActiveRecord_Associations_CollectionProxy < ::Dose::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_FabricanteVacina
+  class ActiveRecord_Associations_CollectionProxy < ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_Vacina
+  class ActiveRecord_Associations_CollectionProxy < ::Vacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Caderneta_Caderneta_RecomendacaoVacina
+  class ActiveRecord_Associations_CollectionProxy < ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Pessoa < ::ApplicationRecord
+end
+class ::Dose < ::ApplicationRecord
+end
+class ::Dose::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::FabricanteVacina < ::ApplicationRecord
+end
+class ::FabricanteVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Vacina < ::ApplicationRecord
+end
+class ::Vacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Caderneta::RecomendacaoVacina < ::ApplicationRecord
+end
+class ::Caderneta::RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Caderneta < ::ApplicationRecord
+end

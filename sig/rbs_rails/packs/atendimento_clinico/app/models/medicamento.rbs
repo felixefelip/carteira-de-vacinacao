@@ -1,0 +1,347 @@
+# resolve-type-names: false
+
+class ::Medicamento < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Medicamento, ::Medicamento::ActiveRecord_Relation, ::Integer, ::Medicamento::Validated]
+
+  module ::Medicamento::GeneratedAttributeMethods
+    def id: () -> ::Integer?
+
+    def id=: (::Integer?) -> ::Integer?
+
+    def id?: () -> bool
+
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> ::Integer?
+
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_previous_change: () -> ::Array[::Integer?]?
+
+    def id_previously_was: () -> ::Integer?
+
+    def id_before_last_save: () -> ::Integer?
+
+    def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def id_in_database: () -> ::Integer?
+
+    def saved_change_to_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::Integer?
+
+    def id_for_database: () -> ::Integer?
+
+    def nome: () -> ::String?
+
+    def nome=: (::String?) -> ::String?
+
+    def nome?: () -> bool
+
+    def nome_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def nome_change: () -> [ ::String?, ::String? ]
+
+    def nome_will_change!: () -> void
+
+    def nome_was: () -> ::String?
+
+    def nome_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def nome_previous_change: () -> ::Array[::String?]?
+
+    def nome_previously_was: () -> ::String?
+
+    def nome_before_last_save: () -> ::String?
+
+    def nome_change_to_be_saved: () -> ::Array[::String?]?
+
+    def nome_in_database: () -> ::String?
+
+    def saved_change_to_nome: () -> ::Array[::String?]?
+
+    def saved_change_to_nome?: () -> bool
+
+    def will_save_change_to_nome?: () -> bool
+
+    def restore_nome!: () -> void
+
+    def clear_nome_change: () -> void
+
+    def nome_before_type_cast: () -> ::String?
+
+    def nome_for_database: () -> ::String?
+
+    def principio_ativo: () -> ::String?
+
+    def principio_ativo=: (::String?) -> ::String?
+
+    def principio_ativo?: () -> bool
+
+    def principio_ativo_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def principio_ativo_change: () -> [ ::String?, ::String? ]
+
+    def principio_ativo_will_change!: () -> void
+
+    def principio_ativo_was: () -> ::String?
+
+    def principio_ativo_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def principio_ativo_previous_change: () -> ::Array[::String?]?
+
+    def principio_ativo_previously_was: () -> ::String?
+
+    def principio_ativo_before_last_save: () -> ::String?
+
+    def principio_ativo_change_to_be_saved: () -> ::Array[::String?]?
+
+    def principio_ativo_in_database: () -> ::String?
+
+    def saved_change_to_principio_ativo: () -> ::Array[::String?]?
+
+    def saved_change_to_principio_ativo?: () -> bool
+
+    def will_save_change_to_principio_ativo?: () -> bool
+
+    def restore_principio_ativo!: () -> void
+
+    def clear_principio_ativo_change: () -> void
+
+    def principio_ativo_before_type_cast: () -> ::String?
+
+    def principio_ativo_for_database: () -> ::String?
+
+    def apresentacao: () -> ::String?
+
+    def apresentacao=: (::String?) -> ::String?
+
+    def apresentacao?: () -> bool
+
+    def apresentacao_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def apresentacao_change: () -> [ ::String?, ::String? ]
+
+    def apresentacao_will_change!: () -> void
+
+    def apresentacao_was: () -> ::String?
+
+    def apresentacao_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def apresentacao_previous_change: () -> ::Array[::String?]?
+
+    def apresentacao_previously_was: () -> ::String?
+
+    def apresentacao_before_last_save: () -> ::String?
+
+    def apresentacao_change_to_be_saved: () -> ::Array[::String?]?
+
+    def apresentacao_in_database: () -> ::String?
+
+    def saved_change_to_apresentacao: () -> ::Array[::String?]?
+
+    def saved_change_to_apresentacao?: () -> bool
+
+    def will_save_change_to_apresentacao?: () -> bool
+
+    def restore_apresentacao!: () -> void
+
+    def clear_apresentacao_change: () -> void
+
+    def apresentacao_before_type_cast: () -> ::String?
+
+    def apresentacao_for_database: () -> ::String?
+
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time?
+
+    def created_at_for_database: () -> ::Time?
+
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+
+    def updated_at_before_type_cast: () -> ::Time?
+
+    def updated_at_for_database: () -> ::Time?
+  end
+  include ::Medicamento::GeneratedAttributeMethods
+  module ::Medicamento::GeneratedAliasAttributeMethods
+    include ::Medicamento::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Medicamento::GeneratedAliasAttributeMethods
+  def prescricoes=: (::Prescricao::ActiveRecord_Associations_CollectionProxy | ::Array[::Prescricao]) -> (::Prescricao::ActiveRecord_Associations_CollectionProxy | ::Array[::Prescricao])
+  def prescricao_ids: () -> ::Array[::Integer]
+  def prescricao_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
+  module ::Medicamento::GeneratedAssociationMethods
+  end
+  include ::Medicamento::GeneratedAssociationMethods
+
+  module ::Medicamento::GeneratedRelationMethods
+  end
+
+  class ::Medicamento::ActiveRecord_Relation < ::ActiveRecord::Relation
+    include ::Enumerable[::Medicamento & ::Medicamento::Validated]
+    include ::Medicamento::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Medicamento, ::Integer, ::Medicamento::Validated]
+  end
+
+  class ::Medicamento::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Medicamento & ::Medicamento::Validated]
+    include ::Medicamento::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Medicamento, ::Integer, ::Medicamento::Validated]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Medicamento
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Medicamento]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Medicamento
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Medicamento]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Medicamento
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Medicamento]
+    def reload: () -> ::Array[::Medicamento]
+
+    def replace: (::Array[::Medicamento]) -> void
+    def delete: (*::Medicamento | ::Integer) -> ::Array[::Medicamento]
+    def destroy: (*::Medicamento | ::Integer) -> ::Array[::Medicamento]
+    def <<: (*::Medicamento | ::Array[::Medicamento]) -> self
+    def prepend: (*::Medicamento | ::Array[::Medicamento]) -> self
+  end
+
+  class ::Medicamento::Validated
+    def id: () -> ::Integer
+    def nome: () -> ::String
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Medicamento_Prescricao
+  class ActiveRecord_Associations_CollectionProxy < ::Prescricao::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Prescricao < ::ApplicationRecord
+end
+class ::Prescricao::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end

@@ -8,7 +8,6 @@ interface ::_RbsRailsPathHelpers
   def rails_info_routes_path: (*untyped) -> ::String
   def rails_info_notes_path: (*untyped) -> ::String
   def rails_info_path: (*untyped) -> ::String
-  def root_path: (*untyped) -> ::String
   def new_user_session_path: (*untyped) -> ::String
   def user_session_path: (*untyped) -> ::String
   def destroy_user_session_path: (*untyped) -> ::String
@@ -20,6 +19,12 @@ interface ::_RbsRailsPathHelpers
   def edit_user_registration_path: (*untyped) -> ::String
   def user_registration_path: (*untyped) -> ::String
   def users_sign_out_path: (*untyped) -> ::String
+  def pessoas_path: (*untyped) -> ::String
+  def new_pessoa_path: (*untyped) -> ::String
+  def edit_pessoa_path: (*untyped) -> ::String
+  def pessoa_path: (*untyped) -> ::String
+  def perfil_ativo_path: (*untyped) -> ::String
+  def root_path: (*untyped) -> ::String
   def fabricante_vacinas_path: (*untyped) -> ::String
   def new_fabricante_vacina_path: (*untyped) -> ::String
   def edit_fabricante_vacina_path: (*untyped) -> ::String
@@ -35,11 +40,35 @@ interface ::_RbsRailsPathHelpers
   def caderneta_path: (*untyped) -> ::String
   def cadernetum_path: (*untyped) -> ::String
   def sugestoes_path: (*untyped) -> ::String
-  def pessoas_path: (*untyped) -> ::String
-  def new_pessoa_path: (*untyped) -> ::String
-  def edit_pessoa_path: (*untyped) -> ::String
-  def pessoa_path: (*untyped) -> ::String
-  def perfil_ativo_path: (*untyped) -> ::String
+  def agendamentos_path: (*untyped) -> ::String
+  def new_agendamento_path: (*untyped) -> ::String
+  def edit_agendamento_path: (*untyped) -> ::String
+  def agendamento_path: (*untyped) -> ::String
+  def consulta_prescricoes_path: (*untyped) -> ::String
+  def new_consulta_prescricao_path: (*untyped) -> ::String
+  def edit_consulta_prescricao_path: (*untyped) -> ::String
+  def consulta_prescricao_path: (*untyped) -> ::String
+  def consultas_path: (*untyped) -> ::String
+  def new_consulta_path: (*untyped) -> ::String
+  def edit_consulta_path: (*untyped) -> ::String
+  def consulta_path: (*untyped) -> ::String
+  def prescricoes_path: (*untyped) -> ::String
+  def medicamentos_path: (*untyped) -> ::String
+  def new_medicamento_path: (*untyped) -> ::String
+  def edit_medicamento_path: (*untyped) -> ::String
+  def medicamento_path: (*untyped) -> ::String
+  def especialidades_path: (*untyped) -> ::String
+  def new_especialidade_path: (*untyped) -> ::String
+  def edit_especialidade_path: (*untyped) -> ::String
+  def especialidade_path: (*untyped) -> ::String
+  def profissionais_path: (*untyped) -> ::String
+  def new_profissional_path: (*untyped) -> ::String
+  def edit_profissional_path: (*untyped) -> ::String
+  def profissional_path: (*untyped) -> ::String
+  def estabelecimentos_path: (*untyped) -> ::String
+  def new_estabelecimento_path: (*untyped) -> ::String
+  def edit_estabelecimento_path: (*untyped) -> ::String
+  def estabelecimento_path: (*untyped) -> ::String
   def turbo_recede_historical_location_path: (*untyped) -> ::String
   def turbo_resume_historical_location_path: (*untyped) -> ::String
   def turbo_refresh_historical_location_path: (*untyped) -> ::String
@@ -74,7 +103,6 @@ interface ::_RbsRailsPathHelpers
   def rails_info_routes_url: (*untyped) -> ::String
   def rails_info_notes_url: (*untyped) -> ::String
   def rails_info_url: (*untyped) -> ::String
-  def root_url: (*untyped) -> ::String
   def new_user_session_url: (*untyped) -> ::String
   def user_session_url: (*untyped) -> ::String
   def destroy_user_session_url: (*untyped) -> ::String
@@ -86,6 +114,12 @@ interface ::_RbsRailsPathHelpers
   def edit_user_registration_url: (*untyped) -> ::String
   def user_registration_url: (*untyped) -> ::String
   def users_sign_out_url: (*untyped) -> ::String
+  def pessoas_url: (*untyped) -> ::String
+  def new_pessoa_url: (*untyped) -> ::String
+  def edit_pessoa_url: (*untyped) -> ::String
+  def pessoa_url: (*untyped) -> ::String
+  def perfil_ativo_url: (*untyped) -> ::String
+  def root_url: (*untyped) -> ::String
   def fabricante_vacinas_url: (*untyped) -> ::String
   def new_fabricante_vacina_url: (*untyped) -> ::String
   def edit_fabricante_vacina_url: (*untyped) -> ::String
@@ -101,11 +135,35 @@ interface ::_RbsRailsPathHelpers
   def caderneta_url: (*untyped) -> ::String
   def cadernetum_url: (*untyped) -> ::String
   def sugestoes_url: (*untyped) -> ::String
-  def pessoas_url: (*untyped) -> ::String
-  def new_pessoa_url: (*untyped) -> ::String
-  def edit_pessoa_url: (*untyped) -> ::String
-  def pessoa_url: (*untyped) -> ::String
-  def perfil_ativo_url: (*untyped) -> ::String
+  def agendamentos_url: (*untyped) -> ::String
+  def new_agendamento_url: (*untyped) -> ::String
+  def edit_agendamento_url: (*untyped) -> ::String
+  def agendamento_url: (*untyped) -> ::String
+  def consulta_prescricoes_url: (*untyped) -> ::String
+  def new_consulta_prescricao_url: (*untyped) -> ::String
+  def edit_consulta_prescricao_url: (*untyped) -> ::String
+  def consulta_prescricao_url: (*untyped) -> ::String
+  def consultas_url: (*untyped) -> ::String
+  def new_consulta_url: (*untyped) -> ::String
+  def edit_consulta_url: (*untyped) -> ::String
+  def consulta_url: (*untyped) -> ::String
+  def prescricoes_url: (*untyped) -> ::String
+  def medicamentos_url: (*untyped) -> ::String
+  def new_medicamento_url: (*untyped) -> ::String
+  def edit_medicamento_url: (*untyped) -> ::String
+  def medicamento_url: (*untyped) -> ::String
+  def especialidades_url: (*untyped) -> ::String
+  def new_especialidade_url: (*untyped) -> ::String
+  def edit_especialidade_url: (*untyped) -> ::String
+  def especialidade_url: (*untyped) -> ::String
+  def profissionais_url: (*untyped) -> ::String
+  def new_profissional_url: (*untyped) -> ::String
+  def edit_profissional_url: (*untyped) -> ::String
+  def profissional_url: (*untyped) -> ::String
+  def estabelecimentos_url: (*untyped) -> ::String
+  def new_estabelecimento_url: (*untyped) -> ::String
+  def edit_estabelecimento_url: (*untyped) -> ::String
+  def estabelecimento_url: (*untyped) -> ::String
   def turbo_recede_historical_location_url: (*untyped) -> ::String
   def turbo_resume_historical_location_url: (*untyped) -> ::String
   def turbo_refresh_historical_location_url: (*untyped) -> ::String

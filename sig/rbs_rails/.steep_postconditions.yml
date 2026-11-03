@@ -117,6 +117,35 @@ postconditions:
   when_false:
     drops:
     - ActiveStorage::VariantRecord::Validated
+- class: Agendamento
+  method: save
+  when_true:
+    self: Agendamento & Agendamento::Validated
+  when_false:
+    drops:
+    - Agendamento::Validated
+- class: Agendamento
+  method: save!
+  when_true:
+    self: Agendamento & Agendamento::Validated
+- class: Agendamento
+  method: update
+  when_true:
+    self: Agendamento & Agendamento::Validated
+  when_false:
+    drops:
+    - Agendamento::Validated
+- class: Agendamento
+  method: update!
+  when_true:
+    self: Agendamento & Agendamento::Validated
+- class: Agendamento
+  method: valid?
+  when_true:
+    self: Agendamento & Agendamento::Validated
+  when_false:
+    drops:
+    - Agendamento::Validated
 - class: Caderneta
   method: save
   when_true:
@@ -187,6 +216,35 @@ postconditions:
   when_false:
     drops:
     - Caderneta::RecomendacaoVacina::Validated
+- class: Consulta
+  method: save
+  when_true:
+    self: Consulta & Consulta::Validated
+  when_false:
+    drops:
+    - Consulta::Validated
+- class: Consulta
+  method: save!
+  when_true:
+    self: Consulta & Consulta::Validated
+- class: Consulta
+  method: update
+  when_true:
+    self: Consulta & Consulta::Validated
+  when_false:
+    drops:
+    - Consulta::Validated
+- class: Consulta
+  method: update!
+  when_true:
+    self: Consulta & Consulta::Validated
+- class: Consulta
+  method: valid?
+  when_true:
+    self: Consulta & Consulta::Validated
+  when_false:
+    drops:
+    - Consulta::Validated
 - class: Dose
   method: save
   when_true:
@@ -245,6 +303,64 @@ postconditions:
   when_false:
     drops:
     - DoseDoCalendario::Validated
+- class: Especialidade
+  method: save
+  when_true:
+    self: Especialidade & Especialidade::Validated
+  when_false:
+    drops:
+    - Especialidade::Validated
+- class: Especialidade
+  method: save!
+  when_true:
+    self: Especialidade & Especialidade::Validated
+- class: Especialidade
+  method: update
+  when_true:
+    self: Especialidade & Especialidade::Validated
+  when_false:
+    drops:
+    - Especialidade::Validated
+- class: Especialidade
+  method: update!
+  when_true:
+    self: Especialidade & Especialidade::Validated
+- class: Especialidade
+  method: valid?
+  when_true:
+    self: Especialidade & Especialidade::Validated
+  when_false:
+    drops:
+    - Especialidade::Validated
+- class: Estabelecimento
+  method: save
+  when_true:
+    self: Estabelecimento & Estabelecimento::Validated
+  when_false:
+    drops:
+    - Estabelecimento::Validated
+- class: Estabelecimento
+  method: save!
+  when_true:
+    self: Estabelecimento & Estabelecimento::Validated
+- class: Estabelecimento
+  method: update
+  when_true:
+    self: Estabelecimento & Estabelecimento::Validated
+  when_false:
+    drops:
+    - Estabelecimento::Validated
+- class: Estabelecimento
+  method: update!
+  when_true:
+    self: Estabelecimento & Estabelecimento::Validated
+- class: Estabelecimento
+  method: valid?
+  when_true:
+    self: Estabelecimento & Estabelecimento::Validated
+  when_false:
+    drops:
+    - Estabelecimento::Validated
 - class: FabricanteVacina
   method: save
   when_true:
@@ -274,6 +390,35 @@ postconditions:
   when_false:
     drops:
     - FabricanteVacina::Validated
+- class: Medicamento
+  method: save
+  when_true:
+    self: Medicamento & Medicamento::Validated
+  when_false:
+    drops:
+    - Medicamento::Validated
+- class: Medicamento
+  method: save!
+  when_true:
+    self: Medicamento & Medicamento::Validated
+- class: Medicamento
+  method: update
+  when_true:
+    self: Medicamento & Medicamento::Validated
+  when_false:
+    drops:
+    - Medicamento::Validated
+- class: Medicamento
+  method: update!
+  when_true:
+    self: Medicamento & Medicamento::Validated
+- class: Medicamento
+  method: valid?
+  when_true:
+    self: Medicamento & Medicamento::Validated
+  when_false:
+    drops:
+    - Medicamento::Validated
 - class: Pessoa
   method: save
   when_true:
@@ -303,6 +448,64 @@ postconditions:
   when_false:
     drops:
     - Pessoa::Validated
+- class: Prescricao
+  method: save
+  when_true:
+    self: Prescricao & Prescricao::Validated
+  when_false:
+    drops:
+    - Prescricao::Validated
+- class: Prescricao
+  method: save!
+  when_true:
+    self: Prescricao & Prescricao::Validated
+- class: Prescricao
+  method: update
+  when_true:
+    self: Prescricao & Prescricao::Validated
+  when_false:
+    drops:
+    - Prescricao::Validated
+- class: Prescricao
+  method: update!
+  when_true:
+    self: Prescricao & Prescricao::Validated
+- class: Prescricao
+  method: valid?
+  when_true:
+    self: Prescricao & Prescricao::Validated
+  when_false:
+    drops:
+    - Prescricao::Validated
+- class: Profissional
+  method: save
+  when_true:
+    self: Profissional & Profissional::Validated
+  when_false:
+    drops:
+    - Profissional::Validated
+- class: Profissional
+  method: save!
+  when_true:
+    self: Profissional & Profissional::Validated
+- class: Profissional
+  method: update
+  when_true:
+    self: Profissional & Profissional::Validated
+  when_false:
+    drops:
+    - Profissional::Validated
+- class: Profissional
+  method: update!
+  when_true:
+    self: Profissional & Profissional::Validated
+- class: Profissional
+  method: valid?
+  when_true:
+    self: Profissional & Profissional::Validated
+  when_false:
+    drops:
+    - Profissional::Validated
 - class: User
   method: email_required?
   when_true:

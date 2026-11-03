@@ -1,0 +1,655 @@
+# resolve-type-names: false
+
+class ::Consulta < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Consulta, ::Consulta::ActiveRecord_Relation, ::Integer, ::Consulta::Validated]
+
+  module ::Consulta::GeneratedAttributeMethods
+    def id: () -> ::Integer?
+
+    def id=: (::Integer?) -> ::Integer?
+
+    def id?: () -> bool
+
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> ::Integer?
+
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def id_previous_change: () -> ::Array[::Integer?]?
+
+    def id_previously_was: () -> ::Integer?
+
+    def id_before_last_save: () -> ::Integer?
+
+    def id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def id_in_database: () -> ::Integer?
+
+    def saved_change_to_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_id?: () -> bool
+
+    def will_save_change_to_id?: () -> bool
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def id_before_type_cast: () -> ::Integer?
+
+    def id_for_database: () -> ::Integer?
+
+    def pessoa_id: () -> ::Integer?
+
+    def pessoa_id=: (::Integer?) -> ::Integer?
+
+    def pessoa_id?: () -> bool
+
+    def pessoa_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def pessoa_id_will_change!: () -> void
+
+    def pessoa_id_was: () -> ::Integer?
+
+    def pessoa_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def pessoa_id_previous_change: () -> ::Array[::Integer?]?
+
+    def pessoa_id_previously_was: () -> ::Integer?
+
+    def pessoa_id_before_last_save: () -> ::Integer?
+
+    def pessoa_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def pessoa_id_in_database: () -> ::Integer?
+
+    def saved_change_to_pessoa_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_pessoa_id?: () -> bool
+
+    def will_save_change_to_pessoa_id?: () -> bool
+
+    def restore_pessoa_id!: () -> void
+
+    def clear_pessoa_id_change: () -> void
+
+    def pessoa_id_before_type_cast: () -> ::Integer?
+
+    def pessoa_id_for_database: () -> ::Integer?
+
+    def agendamento_id: () -> ::Integer?
+
+    def agendamento_id=: (::Integer?) -> ::Integer?
+
+    def agendamento_id?: () -> bool
+
+    def agendamento_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def agendamento_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def agendamento_id_will_change!: () -> void
+
+    def agendamento_id_was: () -> ::Integer?
+
+    def agendamento_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def agendamento_id_previous_change: () -> ::Array[::Integer?]?
+
+    def agendamento_id_previously_was: () -> ::Integer?
+
+    def agendamento_id_before_last_save: () -> ::Integer?
+
+    def agendamento_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def agendamento_id_in_database: () -> ::Integer?
+
+    def saved_change_to_agendamento_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_agendamento_id?: () -> bool
+
+    def will_save_change_to_agendamento_id?: () -> bool
+
+    def restore_agendamento_id!: () -> void
+
+    def clear_agendamento_id_change: () -> void
+
+    def agendamento_id_before_type_cast: () -> ::Integer?
+
+    def agendamento_id_for_database: () -> ::Integer?
+
+    def realizada_em: () -> ::ActiveSupport::TimeWithZone?
+
+    def realizada_em=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def realizada_em?: () -> bool
+
+    def realizada_em_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def realizada_em_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def realizada_em_will_change!: () -> void
+
+    def realizada_em_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def realizada_em_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def realizada_em_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def realizada_em_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def realizada_em_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def realizada_em_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def realizada_em_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_realizada_em: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_realizada_em?: () -> bool
+
+    def will_save_change_to_realizada_em?: () -> bool
+
+    def restore_realizada_em!: () -> void
+
+    def clear_realizada_em_change: () -> void
+
+    def realizada_em_before_type_cast: () -> ::Time?
+
+    def realizada_em_for_database: () -> ::Time?
+
+    def motivo: () -> ::String?
+
+    def motivo=: (::String?) -> ::String?
+
+    def motivo?: () -> bool
+
+    def motivo_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def motivo_change: () -> [ ::String?, ::String? ]
+
+    def motivo_will_change!: () -> void
+
+    def motivo_was: () -> ::String?
+
+    def motivo_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def motivo_previous_change: () -> ::Array[::String?]?
+
+    def motivo_previously_was: () -> ::String?
+
+    def motivo_before_last_save: () -> ::String?
+
+    def motivo_change_to_be_saved: () -> ::Array[::String?]?
+
+    def motivo_in_database: () -> ::String?
+
+    def saved_change_to_motivo: () -> ::Array[::String?]?
+
+    def saved_change_to_motivo?: () -> bool
+
+    def will_save_change_to_motivo?: () -> bool
+
+    def restore_motivo!: () -> void
+
+    def clear_motivo_change: () -> void
+
+    def motivo_before_type_cast: () -> ::String?
+
+    def motivo_for_database: () -> ::String?
+
+    def resumo: () -> ::String?
+
+    def resumo=: (::String?) -> ::String?
+
+    def resumo?: () -> bool
+
+    def resumo_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def resumo_change: () -> [ ::String?, ::String? ]
+
+    def resumo_will_change!: () -> void
+
+    def resumo_was: () -> ::String?
+
+    def resumo_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def resumo_previous_change: () -> ::Array[::String?]?
+
+    def resumo_previously_was: () -> ::String?
+
+    def resumo_before_last_save: () -> ::String?
+
+    def resumo_change_to_be_saved: () -> ::Array[::String?]?
+
+    def resumo_in_database: () -> ::String?
+
+    def saved_change_to_resumo: () -> ::Array[::String?]?
+
+    def saved_change_to_resumo?: () -> bool
+
+    def will_save_change_to_resumo?: () -> bool
+
+    def restore_resumo!: () -> void
+
+    def clear_resumo_change: () -> void
+
+    def resumo_before_type_cast: () -> ::String?
+
+    def resumo_for_database: () -> ::String?
+
+    def orientacoes: () -> ::String?
+
+    def orientacoes=: (::String?) -> ::String?
+
+    def orientacoes?: () -> bool
+
+    def orientacoes_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def orientacoes_change: () -> [ ::String?, ::String? ]
+
+    def orientacoes_will_change!: () -> void
+
+    def orientacoes_was: () -> ::String?
+
+    def orientacoes_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def orientacoes_previous_change: () -> ::Array[::String?]?
+
+    def orientacoes_previously_was: () -> ::String?
+
+    def orientacoes_before_last_save: () -> ::String?
+
+    def orientacoes_change_to_be_saved: () -> ::Array[::String?]?
+
+    def orientacoes_in_database: () -> ::String?
+
+    def saved_change_to_orientacoes: () -> ::Array[::String?]?
+
+    def saved_change_to_orientacoes?: () -> bool
+
+    def will_save_change_to_orientacoes?: () -> bool
+
+    def restore_orientacoes!: () -> void
+
+    def clear_orientacoes_change: () -> void
+
+    def orientacoes_before_type_cast: () -> ::String?
+
+    def orientacoes_for_database: () -> ::String?
+
+    def created_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time?
+
+    def created_at_for_database: () -> ::Time?
+
+    def updated_at: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at?: () -> bool
+
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def updated_at_will_change!: () -> void
+
+    def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_updated_at?: () -> bool
+
+    def will_save_change_to_updated_at?: () -> bool
+
+    def restore_updated_at!: () -> void
+
+    def clear_updated_at_change: () -> void
+
+    def updated_at_before_type_cast: () -> ::Time?
+
+    def updated_at_for_database: () -> ::Time?
+
+    def especialidade_id: () -> ::Integer?
+
+    def especialidade_id=: (::Integer?) -> ::Integer?
+
+    def especialidade_id?: () -> bool
+
+    def especialidade_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def especialidade_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def especialidade_id_will_change!: () -> void
+
+    def especialidade_id_was: () -> ::Integer?
+
+    def especialidade_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def especialidade_id_previous_change: () -> ::Array[::Integer?]?
+
+    def especialidade_id_previously_was: () -> ::Integer?
+
+    def especialidade_id_before_last_save: () -> ::Integer?
+
+    def especialidade_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def especialidade_id_in_database: () -> ::Integer?
+
+    def saved_change_to_especialidade_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_especialidade_id?: () -> bool
+
+    def will_save_change_to_especialidade_id?: () -> bool
+
+    def restore_especialidade_id!: () -> void
+
+    def clear_especialidade_id_change: () -> void
+
+    def especialidade_id_before_type_cast: () -> ::Integer?
+
+    def especialidade_id_for_database: () -> ::Integer?
+
+    def profissional_id: () -> ::Integer?
+
+    def profissional_id=: (::Integer?) -> ::Integer?
+
+    def profissional_id?: () -> bool
+
+    def profissional_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def profissional_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def profissional_id_will_change!: () -> void
+
+    def profissional_id_was: () -> ::Integer?
+
+    def profissional_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def profissional_id_previous_change: () -> ::Array[::Integer?]?
+
+    def profissional_id_previously_was: () -> ::Integer?
+
+    def profissional_id_before_last_save: () -> ::Integer?
+
+    def profissional_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def profissional_id_in_database: () -> ::Integer?
+
+    def saved_change_to_profissional_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_profissional_id?: () -> bool
+
+    def will_save_change_to_profissional_id?: () -> bool
+
+    def restore_profissional_id!: () -> void
+
+    def clear_profissional_id_change: () -> void
+
+    def profissional_id_before_type_cast: () -> ::Integer?
+
+    def profissional_id_for_database: () -> ::Integer?
+
+    def estabelecimento_id: () -> ::Integer?
+
+    def estabelecimento_id=: (::Integer?) -> ::Integer?
+
+    def estabelecimento_id?: () -> bool
+
+    def estabelecimento_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def estabelecimento_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def estabelecimento_id_will_change!: () -> void
+
+    def estabelecimento_id_was: () -> ::Integer?
+
+    def estabelecimento_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def estabelecimento_id_previous_change: () -> ::Array[::Integer?]?
+
+    def estabelecimento_id_previously_was: () -> ::Integer?
+
+    def estabelecimento_id_before_last_save: () -> ::Integer?
+
+    def estabelecimento_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def estabelecimento_id_in_database: () -> ::Integer?
+
+    def saved_change_to_estabelecimento_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_estabelecimento_id?: () -> bool
+
+    def will_save_change_to_estabelecimento_id?: () -> bool
+
+    def restore_estabelecimento_id!: () -> void
+
+    def clear_estabelecimento_id_change: () -> void
+
+    def estabelecimento_id_before_type_cast: () -> ::Integer?
+
+    def estabelecimento_id_for_database: () -> ::Integer?
+  end
+  include ::Consulta::GeneratedAttributeMethods
+  module ::Consulta::GeneratedAliasAttributeMethods
+    include ::Consulta::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Consulta::GeneratedAliasAttributeMethods
+  def anexos_attachments=: (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment]) -> (::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Attachment])
+  def anexos_attachment_ids: () -> ::Array[::Integer]
+  def anexos_attachment_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def anexos_blobs=: (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob]) -> (::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy | ::Array[::ActiveStorage::Blob])
+  def anexos_blob_ids: () -> ::Array[::Integer]
+  def anexos_blob_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+  def prescricoes=: (::Prescricao::ActiveRecord_Associations_CollectionProxy | ::Array[::Prescricao]) -> (::Prescricao::ActiveRecord_Associations_CollectionProxy | ::Array[::Prescricao])
+  def prescricao_ids: () -> ::Array[::Integer]
+  def prescricao_ids=: (::Array[::Integer]) -> ::Array[::Integer]
+
+  def pessoa: () -> ::Pessoa?
+  def pessoa=: (::Pessoa?) -> ::Pessoa?
+  def reload_pessoa: () -> ::Pessoa?
+  def build_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa: (untyped) -> ::Pessoa
+  def create_pessoa!: (untyped) -> ::Pessoa
+  def agendamento: () -> ::Agendamento?
+  def agendamento=: (::Agendamento?) -> ::Agendamento?
+  def reload_agendamento: () -> ::Agendamento?
+  def build_agendamento: (untyped) -> ::Agendamento
+  def create_agendamento: (untyped) -> ::Agendamento
+  def create_agendamento!: (untyped) -> ::Agendamento
+  def especialidade: () -> ::Especialidade?
+  def especialidade=: (::Especialidade?) -> ::Especialidade?
+  def reload_especialidade: () -> ::Especialidade?
+  def build_especialidade: (untyped) -> ::Especialidade
+  def create_especialidade: (untyped) -> ::Especialidade
+  def create_especialidade!: (untyped) -> ::Especialidade
+  def profissional: () -> ::Profissional?
+  def profissional=: (::Profissional?) -> ::Profissional?
+  def reload_profissional: () -> ::Profissional?
+  def build_profissional: (untyped) -> ::Profissional
+  def create_profissional: (untyped) -> ::Profissional
+  def create_profissional!: (untyped) -> ::Profissional
+  def estabelecimento: () -> ::Estabelecimento?
+  def estabelecimento=: (::Estabelecimento?) -> ::Estabelecimento?
+  def reload_estabelecimento: () -> ::Estabelecimento?
+  def build_estabelecimento: (untyped) -> ::Estabelecimento
+  def create_estabelecimento: (untyped) -> ::Estabelecimento
+  def create_estabelecimento!: (untyped) -> ::Estabelecimento
+  module ::Consulta::GeneratedAssociationMethods
+    def anexos: () -> ::ActiveStorage::Attached::Many
+
+    def anexos=: (untyped) -> untyped
+  end
+  include ::Consulta::GeneratedAssociationMethods
+
+  def self.with_attached_anexos: () -> ::Consulta::ActiveRecord_Relation
+
+  module ::Consulta::GeneratedRelationMethods
+    def with_attached_anexos: () -> ::Consulta::ActiveRecord_Relation
+  end
+
+  class ::Consulta::ActiveRecord_Relation < ::ActiveRecord::Relation
+    include ::Enumerable[::Consulta & ::Consulta::Validated]
+    include ::Consulta::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Consulta, ::Integer, ::Consulta::Validated]
+  end
+
+  class ::Consulta::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Consulta & ::Consulta::Validated]
+    include ::Consulta::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Consulta, ::Integer, ::Consulta::Validated]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Consulta
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Consulta]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Consulta
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Consulta]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Consulta
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Consulta]
+    def reload: () -> ::Array[::Consulta]
+
+    def replace: (::Array[::Consulta]) -> void
+    def delete: (*::Consulta | ::Integer) -> ::Array[::Consulta]
+    def destroy: (*::Consulta | ::Integer) -> ::Array[::Consulta]
+    def <<: (*::Consulta | ::Array[::Consulta]) -> self
+    def prepend: (*::Consulta | ::Array[::Consulta]) -> self
+  end
+
+  class ::Consulta::Validated
+    def id: () -> ::Integer
+    def pessoa: () -> (::Pessoa & ::Pessoa::Validated)
+    def motivo: () -> ::String
+    def realizada_em: () -> ::ActiveSupport::TimeWithZone
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+module Consulta_ActiveStorage_Attachment
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Consulta_ActiveStorage_Blob
+  class ActiveRecord_Associations_CollectionProxy < ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+module Consulta_Prescricao
+  class ActiveRecord_Associations_CollectionProxy < ::Prescricao::ActiveRecord_Associations_CollectionProxy
+  end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
+end
+class ::Pessoa < ::ApplicationRecord
+end
+class ::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Prescricao < ::ApplicationRecord
+end
+class ::Prescricao::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+end
+class ::Agendamento < ::ApplicationRecord
+end
+class ::Especialidade < ::ApplicationRecord
+end
+class ::Profissional < ::ApplicationRecord
+end
+class ::Estabelecimento < ::ApplicationRecord
+end
