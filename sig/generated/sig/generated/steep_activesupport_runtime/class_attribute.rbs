@@ -1,0 +1,10 @@
+module ActiveSupport
+  module ClassAttribute
+    def self.redefine: ((singleton(ActiveSupport::ClassAttribute) | Class) owner, Symbol name, Symbol namespaced_name, untyped value) -> String
+    def self.redefine_method: ((singleton(ActiveSupport::ClassAttribute) | Class) owner, (Symbol | String) name, ?private: bool) { (*untyped) -> interned? } -> interned?
+  end
+end
+
+class Class
+  def class_attribute: (*untyped attrs, ?instance_accessor: untyped, ?instance_reader: untyped, ?instance_writer: untyped, ?instance_predicate: untyped, ?default: untyped) -> untyped | ...
+end

@@ -1,0 +1,5 @@
+---
+version: 3
+call_sites:
+  sig/generated/steep_activesupport_runtime/inflector.rb:43:8:
+  -

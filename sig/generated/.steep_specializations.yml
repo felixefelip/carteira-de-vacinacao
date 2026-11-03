@@ -1,12 +1,743 @@
 ---
 version: 1
 methods:
+  ActiveSupport::ClassAttribute.redefine_method:
+    "((singleton(::ActiveSupport::ClassAttribute) | ::Class), ::Symbol) &-> untyped": nil
+    "((singleton(::ActiveSupport::ClassAttribute) | ::Class), ::Symbol, private: true) &-> untyped": "::Symbol"
+    "(::Class, ::String, private: true) &-> ::String": "::String"
+    "(::Class, ::Symbol, private: true) &-> untyped": "::Symbol"
   ActiveSupport::Concern#class_methods:
     "() &-> :has_rich_text": ":has_rich_text"
+  ActiveSupport::Inflector::Inflections#clear:
+    "(:acronyms)": "::Regexp"
+    "(:humans)": "::Array[untyped]"
+    "(:plurals)": "(::Array[untyped] | nil)"
+    "(:singulars)": "(::Array[untyped] | nil)"
+    "(:uncountables)":
+      class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+      ivars:
+        "@pattern": nil
+  ActiveSupport::Inflector::Inflections.instance:
+    "(:en)":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@pattern": nil
+    "(:en) on singleton(::ActiveSupport::Inflector::Inflections)":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@pattern": nil
+  ActiveSupport::Inflector::Inflections.new:
+    "()":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@pattern": nil
+  ActiveSupport::Inflector::Inflections::Uncountables.new:
+    "()":
+      class: "::ActiveSupport::Inflector::Inflections::Uncountables"
+      ivars:
+        "@members": "[]"
+        "@pattern": nil
+  Concurrent::Collection::NonConcurrentMapBackend#[]=:
+    "(::Symbol, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped]": "::ActiveSupport::Inflector::Inflections"
+    "(:en, ::ActiveSupport::Inflector::Inflections)": "::ActiveSupport::Inflector::Inflections"
+    "(:en, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped]": "::ActiveSupport::Inflector::Inflections"
+  Concurrent::Map#each_pair:
+    "() &-> (nil | void)": self
+    "() &-> ::Array[untyped]": self
+    "() &-> ::Integer": self
+    "() &-> bot": self
+    "() &-> nil": self
+  Concurrent::Map.new:
+    "()":
+      class: "::Concurrent::Map"
+      ivars:
+        "@default_proc": nil
+        "@write_lock": nil
+  Thread::Mutex#synchronize:
+    "() &-> bool": bool
+declarations:
+  ActiveSupport::Inflector::Inflections#clear: "(::Regexp | ::Array[untyped] | nil
+    | ::ActiveSupport::Inflector::Inflections::Uncountables[untyped])"
+receivers:
+  sig/generated/steep_actionview_runtime/caderneta/index.rb:14:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/passwords/edit.rb:14:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/passwords/new.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/registrations/edit.rb:14:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/registrations/new.rb:14:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/sessions/new.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/devise/unlocks/new.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/doses/new.rb:16:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/layouts/application.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/pessoas/edit.rb:15:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/pessoas/new.rb:15:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/shared/_header.rb:10:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/sugestoes/index.rb:15:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/vacinas/edit.rb:14:40:
+  - untyped
+  sig/generated/steep_actionview_runtime/vacinas/new.rb:14:40:
+  - untyped
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:53:33:
+  - untyped
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:53:8:
+  - "::Class"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:60:20:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:61:20:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:64:16:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:71:16:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:82:14:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:88:22:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:90:18:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:111:18:
+  - singleton(::ActiveSupport::Delegation)
+  sig/generated/steep_activesupport_runtime/delegation.rb:123:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:139:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:140:50:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:141:57:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:146:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:147:50:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:148:34:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:149:60:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:150:47:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:151:22:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:157:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:158:50:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:159:34:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:160:45:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:161:44:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:162:52:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:163:112:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:164:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:165:35:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:166:22:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:47:10:
+  - singleton(::ActiveSupport::Delegation)
+  sig/generated/steep_activesupport_runtime/delegation.rb:51:10:
+  - singleton(::ActiveSupport::Delegation)
+  sig/generated/steep_activesupport_runtime/delegation.rb:66:12:
+  - singleton(::ActiveSupport::Delegation)
+  sig/generated/steep_activesupport_runtime/delegation.rb:70:12:
+  - singleton(::ActiveSupport::Delegation)
+  sig/generated/steep_activesupport_runtime/delegation.rb:93:19:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:97:23:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:101:30:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:101:51:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:103:8:
+  - singleton(::ActiveSupport::Inflector::Inflections)
+  sig/generated/steep_activesupport_runtime/inflector.rb:113:8:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:120:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:122:8:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:176:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:177:8:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:186:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:187:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:197:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:198:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:211:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:212:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:214:21:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:215:24:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:217:19:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:218:22:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:221:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:222:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:224:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:225:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:227:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:228:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:229:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:230:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:232:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:233:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:234:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:235:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:246:22:
+  - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:273:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:274:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:275:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:276:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:277:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:280:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:284:10:
+  - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:309:26:
+  - singleton(::ActiveSupport::Inflector::Inflections)
+  sig/generated/steep_activesupport_runtime/inflector.rb:311:20:
+  - singleton(::ActiveSupport::Inflector::Inflections)
+  sig/generated/steep_activesupport_runtime/inflector.rb:321:30:
+  - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:321:6:
+  - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:326:30:
+  - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:326:6:
+  - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:335:24:
+  - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:335:57:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:348:29:
+  - singleton(::ActiveSupport::Inflector)
+  sig/generated/steep_activesupport_runtime/inflector.rb:360:12:
+  - singleton(::ActiveSupport::Inflector)
+  sig/generated/steep_activesupport_runtime/inflector.rb:361:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:362:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:363:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:364:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:365:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:366:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:367:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:368:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:369:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:370:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:371:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:372:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:373:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:374:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:375:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:376:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:377:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:378:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:379:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:380:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:381:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:383:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:384:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:385:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:386:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:387:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:388:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:389:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:390:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:391:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:392:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:393:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:394:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:395:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:396:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:397:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:398:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:399:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:400:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:401:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:402:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:403:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:404:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:405:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:406:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:407:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:408:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:409:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:411:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:412:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:413:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:414:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:415:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:416:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:418:12:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:53:19:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:60:19:
+  - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:72:24:
+  - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:92:21:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:99:22:
+  - untyped
+  sig/generated/steep_ar_runtime/active_support/concern.rb:18:11:
+  - untyped
+  sig/generated/steep_ar_runtime/active_support/concern.rb:29:52:
+  - untyped
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:17:11:
+  - "::Caderneta::RecomendacaoVacina"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:17:23:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:22:13:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:28:14:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:28:4:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:17:11:
+  - "::Dose"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:17:23:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:22:13:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:28:14:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:28:4:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:17:31:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:22:13:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:28:14:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:28:4:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:17:11:
+  - "::Pessoa"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:17:18:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:22:13:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:28:14:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:28:4:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:17:20:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:22:13:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:28:14:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:28:4:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:17:20:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:22:13:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:28:14:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:28:4:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:17:20:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:22:13:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:28:14:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:28:4:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:104:11:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:105:19:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:114:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:120:8:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:128:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:150:8:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:167:19:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:170:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:22:8:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:23:8:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:29:16:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:34:16:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:42:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:48:11:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:49:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:59:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:67:10:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:73:40:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:73:8:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:79:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:81:10:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:87:23:
+  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:88:16:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:94:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:99:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:250:29:
+  - "::Array[untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:259:29:
+  - "::Array[untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:328:26:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:344:51:
+  - "::String"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:344:85:
+  - "(^(*untyped) -> untyped | nil)"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:368:36:
+  - "::Concurrent::Hash[::Symbol, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:371:31:
+  - "::Concurrent::Hash[::Symbol, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:29:26:
+  - "::Hash[::String, ::String]"
+  sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:34:26:
+  - "::Hash[::String, ::String]"
+  sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:39:26:
+  - "::Hash[::String, ::String]"
+  sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:50:26:
+  - untyped
+  sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:51:19:
+  - "(::ActionController::Base & ::ActionController::HttpAuthentication::Token::ControllerMethods)"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:20:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:23:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:27:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:29:4:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:34:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:37:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:41:14:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/caderneta_controller.rb:43:4:
+  - "::CadernetaController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:19:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:22:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:25:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:32:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:35:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:38:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:42:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:44:4:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:49:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:52:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:55:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:58:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:65:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:68:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:71:14:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:73:4:
+  - "::DosesController"
+  sig/generated/steep_controller_runtime/perfil_ativo_controller.rb:11:14:
+  - "::PerfilAtivoController"
+  sig/generated/steep_controller_runtime/perfil_ativo_controller.rb:14:14:
+  - "::PerfilAtivoController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:21:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:24:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:28:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:30:4:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:35:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:38:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:42:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:44:4:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:49:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:52:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:55:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:59:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:61:4:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:66:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:69:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:71:4:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:76:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:79:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:82:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:89:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:92:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:95:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/sugestoes_controller.rb:19:14:
+  - "::SugestoesController"
+  sig/generated/steep_controller_runtime/sugestoes_controller.rb:22:14:
+  - "::SugestoesController"
+  sig/generated/steep_controller_runtime/sugestoes_controller.rb:26:14:
+  - "::SugestoesController"
+  sig/generated/steep_controller_runtime/sugestoes_controller.rb:28:4:
+  - "::SugestoesController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:100:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:107:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:110:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:113:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:22:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:25:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:29:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:31:4:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:36:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:39:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:42:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:46:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:48:4:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:53:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:56:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:60:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:62:4:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:67:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:70:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:73:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:77:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:79:4:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:84:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:87:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:89:4:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:94:14:
+  - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:97:14:
+  - "::VacinasController"
+  sig/generated/steep_current_runtime/current.rb:35:25:
+  - "::Current"
+  sig/generated/steep_current_runtime/current.rb:35:4:
+  - singleton(::Current)
+  sig/generated/steep_current_runtime/current.rb:44:25:
+  - "::Current"
+  sig/generated/steep_current_runtime/current.rb:44:4:
+  - singleton(::Current)
+  sig/generated/steep_current_runtime/current.rb:53:25:
+  - "::Current"
+  sig/generated/steep_current_runtime/current.rb:53:4:
+  - singleton(::Current)
+  sig/generated/steep_devise_runtime/devise_scoped_helpers.rb:18:28:
+  - untyped
+  sig/generated/steep_devise_runtime/devise_scoped_helpers.rb:23:6:
+  - "::ActionController::Base"
+  sig/generated/steep_ruby_runtime/module.rb:14:4:
+  - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:29:4:
+  - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:53:4:
+  - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:64:4:
+  - "::Module"
+  sig/generated/steep_ruby_runtime/object.rb:23:4:
+  - "::Object"
+  sig/generated/steep_ruby_runtime/object.rb:30:6:
+  - "::Object"
+  sig/generated/steep_ruby_runtime/thread_mutex.rb:11:4:
+  - "::Thread::Mutex"
 exits:
+  ActiveSupport::Inflector::Inflections#define_acronym_regex_patterns:
+    ? "() with {@acronym_regex: nil, @acronyms_camelize_regex: nil, @acronyms_underscore_regex:
+      nil, @uncountables: ::ActiveSupport::Inflector::Inflections::Uncountables[untyped]{@pattern:
+      nil}}"
+    : ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@pattern": nil
+    "() with {@acronym_regex: nil, @acronyms_camelize_regex: nil, @acronyms_underscore_regex: nil}":
+      ivars: {}
+    "() with {@uncountables: ::ActiveSupport::Inflector::Inflections::Uncountables[untyped]{@pattern: nil}}":
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@pattern": nil
   Module#include:
     "(singleton(::Current::GeneratedAttributeMethods)) on singleton(::Current) with {@__rbs_infer_instance: nil}":
-      ivars: {}
+      ivars:
+        "@__rbs_infer_instance": nil
     "(singleton(::Current::GeneratedAttributeMethods)) with {@__rbs_infer_instance: nil}":
       ivars:
         "@__rbs_infer_instance": nil
