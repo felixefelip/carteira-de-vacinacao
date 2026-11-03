@@ -570,7 +570,7 @@ receivers:
   packs/vacinacao/app/controllers/vacinas_controller.rb:48:4:
   - "::VacinasController"
   packs/vacinacao/app/helpers/sugestoes_helper.rb:3:37:
-  - untyped
+  - "(::Caderneta::RecomendacaoVacina & ::Caderneta::RecomendacaoVacina::Validated)"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:101:14:
   - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:101:34:
@@ -1925,10 +1925,12 @@ exits:
       ivars:
         "@coluna_data": ":inicio_em"
         "@filtros": nil
+      keeps_self: true
     "() with {@coluna_data: :realizada_em, @filtros: nil}":
       ivars:
         "@coluna_data": ":realizada_em"
         "@filtros": nil
+      keeps_self: true
   FiltroDeAtendimentos#filtrar_status:
     "() with {@coluna_data: :inicio_em, @filtros: nil}":
       ivars:
@@ -1943,10 +1945,12 @@ exits:
       ivars:
         "@coluna_data": ":inicio_em"
         "@filtros": nil
+      keeps_self: true
     "() with {@coluna_data: :realizada_em, @filtros: nil}":
       ivars:
         "@coluna_data": ":realizada_em"
         "@filtros": nil
+      keeps_self: true
   Module#include:
     "(singleton(::Current::GeneratedAttributeMethods)) on singleton(::Current) with {@__rbs_infer_instance: nil}":
       ivars: {}
