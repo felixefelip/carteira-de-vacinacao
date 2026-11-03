@@ -1,0 +1,12 @@
+---
+version: 1
+methods:
+  ActiveSupport::Concern#class_methods:
+    "() &-> :has_rich_text": ":has_rich_text"
+exits:
+  Module#include:
+    "(singleton(::Current::GeneratedAttributeMethods)) on singleton(::Current) with {@__rbs_infer_instance: nil}":
+      ivars: {}
+    "(singleton(::Current::GeneratedAttributeMethods)) with {@__rbs_infer_instance: nil}":
+      ivars:
+        "@__rbs_infer_instance": nil

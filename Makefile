@@ -45,13 +45,10 @@ rbs_infer_ar_runtime:
 ## `steep_*_runtime` que modelam o runtime de um FRAMEWORK. `include M` chama
 ## `M.included(self)`, e essa chamada é a única coisa que diz qual classe é o
 ## `base` de um hook — `Module#include` é escrito em C, então nenhuma fonte do
-## projeto diz isso.
-##
-## Sem rake task de propósito: o gerador é CORE (`include` é Ruby puro, não
-## Rails), então o railtie não o registra e a chamada é direta. Escreve em
-## `sig/generated/steep_ruby_runtime/`, cujo RBS sai do `rbs_infer_all`.
+## projeto diz isso. Escreve em `sig/generated/steep_ruby_runtime/`, cujo RBS
+## sai do `rbs_infer_all`.
 rbs_infer_ruby_runtime:
-	bundle exec ruby -e "require 'rbs_infer'; require 'rbs_infer/project/ruby_runtime_generator'; RbsInfer::Project::RubyRuntimeGenerator.new(app_dir: '.').generate"
+	bundle exec rake rbs_infer:ruby_runtime:all
 
 ## Inlina a cadeia efetiva de before_action de cada action, com halt check após
 ## cada elo — é o que carrega os fatos da guarda até a action e até a view.
@@ -60,6 +57,12 @@ rbs_infer_controller_runtime:
 
 rbs_infer_current_runtime:
 	bundle exec rake rbs_infer:current_runtime:all
+
+## A ida e volta do ActiveJob entre `perform_later` e `perform`, escrita uma vez
+## no `ActiveJob::Base`: o `perform` de cada job recebe os argumentos dos seus
+## próprios `perform_later`, em vez de `untyped`.
+rbs_infer_job_runtime:
+	bundle exec rake rbs_infer:job_runtime:all
 
 ## Uma classe por template, com os ivars que ele lê e um `render` por partial —
 ## a view vira uma classe comum e o RBS dela sai da pipeline normal.
@@ -85,6 +88,19 @@ rbs_infer_actionview_runtime:
 ## acessor.
 rbs_infer_actiontext_runtime:
 	bundle exec rake rbs_infer:actiontext_runtime:all
+
+## `Module#delegate`, `delegate_missing_to`, `class_attribute` e o inflector
+## (`singularize` e as regras do inglês), fatiados do ActiveSupport instalado.
+## Mesmo caminho do `has_rich_text`: o método que o macro escreve por string é
+## dobrado pelo steep por call site e só chega ao RBS do modelo depois de uma
+## volta de `rbs_converge`.
+rbs_infer_activesupport_runtime:
+	bundle exec rake rbs_infer:activesupport_runtime:all
+
+## Os arquivos do concurrent-ruby que `require "concurrent/map"` carrega,
+## copiados do gem instalado — é onde o ActiveSupport guarda as inflections.
+rbs_infer_concurrent_runtime:
+	bundle exec rake rbs_infer:concurrent_runtime:all
 
 ## Diretórios órfãos, de geradores que não existem mais. Precisam sair ANTES da
 ## primeira execução dos geradores novos, senão declaram as mesmas classes duas
@@ -119,8 +135,11 @@ rbs_generators_all:
 	make rbs_infer_ruby_runtime
 	make rbs_infer_controller_runtime
 	make rbs_infer_current_runtime
+	make rbs_infer_job_runtime
 	make rbs_infer_actionview_runtime
 	make rbs_infer_actiontext_runtime
+	make rbs_infer_activesupport_runtime
+	make rbs_infer_concurrent_runtime
 	make rbs_infer_all
 
 steep:
