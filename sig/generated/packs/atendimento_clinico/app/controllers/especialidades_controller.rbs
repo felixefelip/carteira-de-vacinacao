@@ -1,5 +1,6 @@
 class EspecialidadesController < ApplicationController
-  @especialidade: Especialidade?
+  @especialidades: Especialidade::ActiveRecord_Relation?
+  @especialidade: (Especialidade | (Especialidade & Especialidade::Validated))?
 
   def index: () -> void
   def new: () -> void

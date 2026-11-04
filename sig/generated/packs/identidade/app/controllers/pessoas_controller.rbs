@@ -1,7 +1,4 @@
 class PessoasController < ApplicationController
-  @pessoas: Pessoa::ActiveRecord_Relation?
-  @pessoa: (Pessoa | (Pessoa & Pessoa::Validated))?
-
   def index: () -> void
   def new: () -> void
   def edit: () -> void

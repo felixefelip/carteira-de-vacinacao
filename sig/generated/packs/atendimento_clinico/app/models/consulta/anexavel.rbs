@@ -7,7 +7,7 @@ class Consulta
 
     private
 
-    def anexos_precisam_ser_arquivos_aceitos: () -> untyped
-    def validar_anexo: (untyped blob) -> ActiveModel::Error?
+    def anexos_precisam_ser_arquivos_aceitos: () -> ::ActiveStorage::Attached::Many
+    def validar_anexo: (ActiveStorage::Blob? blob) -> ActiveModel::Error?
   end
 end

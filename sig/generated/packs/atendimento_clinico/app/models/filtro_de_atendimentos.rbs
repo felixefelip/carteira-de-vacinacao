@@ -4,19 +4,19 @@ class FiltroDeAtendimentos
 
   REFERENCIAS: [ :profissional_id, :especialidade_id, :estabelecimento_id ]
 
-  def initialize: (untyped relacao, nil filtros, coluna_data: (:inicio_em | :realizada_em)) -> void
-  def resultado: () -> untyped
+  def initialize: ((Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation) relacao, nil filtros, coluna_data: (:inicio_em | :realizada_em)) -> void
+  def resultado: () -> (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation)
 
   private
 
-  attr_accessor relacao: untyped
+  attr_accessor relacao: Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation
   attr_reader filtros: nil
   attr_reader coluna_data: (:inicio_em | :realizada_em)
 
-  def filtrar_periodo: () -> untyped
+  def filtrar_periodo: () -> (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation | nil)
   def filtrar_referencias: () -> [ :profissional_id, :especialidade_id, :estabelecimento_id ]
-  def filtrar_status: () -> untyped
-  def filtrar_pagamento: () -> untyped
+  def filtrar_status: () -> (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation)?
+  def filtrar_pagamento: () -> (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation | nil)
   def data_de: () -> Date?
   def data_ate: () -> Date?
   def converter_data: ((:data_de | :data_ate) chave) -> Date?

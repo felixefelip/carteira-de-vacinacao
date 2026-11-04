@@ -14,7 +14,7 @@ class Current
     def pessoa: () -> (Pessoa & Pessoa::Validated)?
     def pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)?
     def caderneta: () -> (Caderneta & Caderneta::Validated)?
-    def caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+    def caderneta=: ((Caderneta & ::Caderneta::Validated | Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   end
 
   include GeneratedAttributeMethods
@@ -24,7 +24,7 @@ class Current
   def self.pessoa: () -> (Pessoa & Pessoa::Validated)?
   def self.pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)
   def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
-  def self.caderneta=: ((Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
+  def self.caderneta=: ((Caderneta & ::Caderneta::Validated | Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   def self.__rbs_infer_instance: () -> Current
   def self.set: (?user: (User & User::Validated)?, ?pessoa: (Pessoa & Pessoa::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped
   def self.with: (?user: (User & User::Validated)?, ?pessoa: (Pessoa & Pessoa::Validated)?, ?caderneta: (Caderneta & Caderneta::Validated)?) ?{ () -> untyped } -> untyped

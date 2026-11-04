@@ -1,5 +1,10 @@
 class AgendamentosController < ApplicationController
   @filtros_ativos: bool?
+  @agendamentos: (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation)?
+  @agendamento: (Agendamento & Agendamento::Validated)?
+  @especialidades: Especialidade::ActiveRecord_Relation?
+  @profissionais: Profissional::ActiveRecord_Relation?
+  @estabelecimentos: Estabelecimento::ActiveRecord_Relation?
   @filtros: nil
 
   def index: () -> void
@@ -10,9 +15,9 @@ class AgendamentosController < ApplicationController
 
   private
 
-  def set_agendamento: () -> untyped
-  def agendamentos_da_pessoa: () -> untyped
-  def carregar_cadastros_clinicos: () -> untyped
+  def set_agendamento: () -> (Agendamento & Agendamento::Validated)
+  def agendamentos_da_pessoa: () -> Agendamento::ActiveRecord_Relation
+  def carregar_cadastros_clinicos: () -> Estabelecimento::ActiveRecord_Relation
   def agendamento_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   def filtros_params: () -> untyped
 end

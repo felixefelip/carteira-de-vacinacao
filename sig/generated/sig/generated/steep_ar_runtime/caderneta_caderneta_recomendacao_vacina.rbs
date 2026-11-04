@@ -1,7 +1,5 @@
 module Caderneta_Caderneta_RecomendacaoVacina
   class ActiveRecord_Associations_CollectionProxy
-    @owner: Caderneta
-
     def initialize: (singleton(::Caderneta::RecomendacaoVacina) klass, Caderneta owner) -> void
     def owner: () -> Caderneta
     def build: (*untyped) -> ::Caderneta::RecomendacaoVacina

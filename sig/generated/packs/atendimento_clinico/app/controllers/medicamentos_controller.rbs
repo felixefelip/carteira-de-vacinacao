@@ -1,5 +1,7 @@
 class MedicamentosController < ApplicationController
-  @medicamento: Medicamento?
+  @medicamentos: Medicamento::ActiveRecord_Relation?
+  @medicamento: (Medicamento | (Medicamento & Medicamento::Validated))?
+  @consulta: (Consulta & Consulta::Validated)?
 
   def index: () -> void
   def new: () -> void
@@ -11,6 +13,6 @@ class MedicamentosController < ApplicationController
 
   def set_medicamento: () -> Medicamento?
   def medicamento_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
-  def set_consulta_para_retorno: () -> untyped
-  def destino_apos_cadastro: () -> untyped
+  def set_consulta_para_retorno: () -> (Consulta & Consulta::Validated)?
+  def destino_apos_cadastro: () -> String
 end

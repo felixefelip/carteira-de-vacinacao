@@ -1,6 +1,6 @@
 class Caderneta
   class RecomendacaoVacina < ApplicationRecord
-    def self.recomendacoes_vacina_para_tomar_nova_dose_hoje: () -> Array[(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated)]
+    def self.recomendacoes_vacina_para_tomar_nova_dose_hoje: () -> Array[Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated]
 
     def pessoa_idade: () -> (Integer | Float)
     def qtde_doses_tomadas: () -> Integer

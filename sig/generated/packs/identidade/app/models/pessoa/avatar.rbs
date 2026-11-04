@@ -1,6 +1,6 @@
 class Pessoa
   module Avatar
-    TIPOS_ACEITOS: [ "image/png", "image/jpeg", "image/webp" ]
+    TIPOS_ACEITOS: untyped
     TAMANHO_MAXIMO: untyped
 
     extend ActiveSupport::Concern

@@ -1,5 +1,7 @@
 class ProfissionaisController < ApplicationController
-  @profissional: Profissional?
+  @profissionais: Profissional::ActiveRecord_Relation?
+  @profissional: (Profissional | (Profissional & Profissional::Validated))?
+  @especialidades: Especialidade::ActiveRecord_Relation?
 
   def index: () -> void
   def new: () -> void
@@ -10,6 +12,6 @@ class ProfissionaisController < ApplicationController
   private
 
   def set_profissional: () -> Profissional?
-  def carregar_especialidades: () -> untyped
+  def carregar_especialidades: () -> Especialidade::ActiveRecord_Relation
   def profissional_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
 end

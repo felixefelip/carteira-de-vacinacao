@@ -1,9 +1,9 @@
 class ERBVacinasShow
-  @vacina: (Vacina & Vacina::Validated)
+  @vacina: Vacina?
 
   include ActionViewContext
 
-  def initialize: (vacina: Vacina & ::Vacina::Validated) -> void
+  def initialize: (vacina: Vacina?) -> void
   def params: () -> ActionController::Parameters
   def __rbs_infer__body: () -> nil
 end

@@ -1,4 +1,8 @@
 class PrescricoesController < ApplicationController
+  @prescricoes: Prescricao::ActiveRecord_Relation?
+  @consulta: (Consulta & Consulta::Validated)?
+  @medicamentos: Medicamento::ActiveRecord_Relation?
+
   def index: () -> void
   def new: () -> void
   def edit: () -> void
@@ -7,8 +11,8 @@ class PrescricoesController < ApplicationController
 
   private
 
-  def set_consulta: () -> untyped
+  def set_consulta: () -> (Consulta & Consulta::Validated)
   def set_prescricao: () -> untyped
-  def carregar_medicamentos: () -> untyped
+  def carregar_medicamentos: () -> Medicamento::ActiveRecord_Relation
   def prescricao_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
 end

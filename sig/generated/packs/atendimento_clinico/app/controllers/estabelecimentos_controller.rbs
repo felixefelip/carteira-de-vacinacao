@@ -1,5 +1,6 @@
 class EstabelecimentosController < ApplicationController
-  @estabelecimento: Estabelecimento?
+  @estabelecimentos: Estabelecimento::ActiveRecord_Relation?
+  @estabelecimento: (Estabelecimento | (Estabelecimento & Estabelecimento::Validated))?
 
   def index: () -> void
   def new: () -> void

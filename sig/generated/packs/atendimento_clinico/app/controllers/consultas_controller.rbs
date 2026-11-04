@@ -1,5 +1,10 @@
 class ConsultasController < ApplicationController
   @filtros_ativos: bool?
+  @consultas: (Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation)?
+  @consulta: (Consulta & Consulta::Validated)?
+  @especialidades: Especialidade::ActiveRecord_Relation?
+  @profissionais: Profissional::ActiveRecord_Relation?
+  @estabelecimentos: Estabelecimento::ActiveRecord_Relation?
   @filtros: nil
 
   def index: () -> void
@@ -11,12 +16,12 @@ class ConsultasController < ApplicationController
 
   private
 
-  def set_consulta: () -> untyped
-  def consultas_da_pessoa: () -> untyped
-  def agendamentos_da_pessoa: () -> untyped
+  def set_consulta: () -> (Consulta & Consulta::Validated)
+  def consultas_da_pessoa: () -> Consulta::ActiveRecord_Relation
+  def agendamentos_da_pessoa: () -> Agendamento::ActiveRecord_Relation
   def preencher_com_agendamento: () -> untyped
-  def atributos_do_agendamento: (untyped agendamento) -> Hash[(:agendamento | :realizada_em | :motivo | :especialidade | :profissional | :estabelecimento), untyped]
-  def carregar_cadastros_clinicos: () -> untyped
+  def atributos_do_agendamento: ((Agendamento & Agendamento::Validated) agendamento) -> Hash[(:agendamento | :realizada_em | :motivo | :especialidade | :profissional | :estabelecimento), ((Agendamento & Agendamento::Validated) | ActiveSupport::TimeWithZone | String | Especialidade | nil | Profissional | Estabelecimento)]
+  def carregar_cadastros_clinicos: () -> Estabelecimento::ActiveRecord_Relation
   def consulta_params: () -> (ActionController::Parameters & ActionController::Parameters::Permitted)
   def filtros_params: () -> untyped
 end

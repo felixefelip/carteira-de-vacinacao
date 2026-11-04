@@ -1,7 +1,5 @@
 module FabricanteVacina_Dose
   class ActiveRecord_Associations_CollectionProxy
-    @owner: FabricanteVacina
-
     def initialize: (singleton(::Dose) klass, FabricanteVacina owner) -> void
     def owner: () -> FabricanteVacina
     def build: (*untyped) -> ::Dose
