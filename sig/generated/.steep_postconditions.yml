@@ -242,22 +242,137 @@ postconditions:
   effects:
     may_write:
     - "@pattern"
+- class: Agendamento
+  method: pago?
+  when_true:
+    methods:
+      pago_em: "::Date"
+    self: "::Agendamento & ::Agendamento::AfterPago"
 - class: AgendamentosController
-  method: create
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@agendamento"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@agendamento"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@agendamentos"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@filtros"
+    - "@filtros_ativos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@agendamento"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@agendamento"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: carregar_cadastros_clinicos
+  unconditional:
+    ivars:
+      "@especialidades": "::Especialidade::ActiveRecord_Relation"
+      "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+      "@profissionais": "::Profissional::ActiveRecord_Relation"
+    self: "::AgendamentosController & ::AgendamentosController::AfterCarregarCadastrosClinicos"
+  effects:
+    may_write:
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: AgendamentosController
+  method: create
+  unconditional:
+    ivars:
+      "@agendamento": untyped
+    self: "::AgendamentosController & ::AgendamentosController::AfterCreate"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@agendamento"
 - class: AgendamentosController
   method: index
   unconditional:
     ivars:
+      "@agendamentos": "(::Agendamento::ActiveRecord_Relation | ::Consulta::ActiveRecord_Relation)"
       "@filtros": untyped
       "@filtros_ativos": bool
     self: "::AgendamentosController & ::AgendamentosController::AfterIndex"
   effects:
     may_write:
+    - "@agendamentos"
     - "@filtros"
     - "@filtros_ativos"
+- class: AgendamentosController
+  method: new
+  unconditional:
+    ivars:
+      "@agendamento": untyped
+    self: "::AgendamentosController & ::AgendamentosController::AfterNew"
+  effects:
+    may_write:
+    - "@agendamento"
+- class: AgendamentosController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::AgendamentosController & ::AgendamentosController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: AgendamentosController
+  method: set_agendamento
+  unconditional:
+    ivars:
+      "@agendamento": "(::Agendamento & ::Agendamento::Validated)"
+    self: "::AgendamentosController & ::AgendamentosController::AfterSetAgendamento"
+  effects:
+    may_write:
+    - "@agendamento"
 - class: AgendamentosController
   method: update
   effects:
@@ -267,8 +382,6 @@ postconditions:
   method: set_authenticated_user
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
 - class: Caderneta::Atualizar
   method: initialize
@@ -288,34 +401,18 @@ postconditions:
   method: __rbs_infer__run_index
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@vacinas"
 - class: CadernetaController
   method: __rbs_infer__run_show
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@fabricante_vacinas"
-    - "@vacina"
-- class: CadernetaController
-  method: index
-  unconditional:
-    ivars:
-      "@vacinas": untyped
-    self: "::CadernetaController & ::CadernetaController::AfterIndex"
-  effects:
-    may_write:
-    - "@vacinas"
 - class: CadernetaController
   method: render
   unconditional:
@@ -325,17 +422,6 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
-- class: CadernetaController
-  method: show
-  unconditional:
-    ivars:
-      "@fabricante_vacinas": untyped
-      "@vacina": untyped
-    self: "::CadernetaController & ::CadernetaController::AfterShow"
-  effects:
-    may_write:
-    - "@fabricante_vacinas"
-    - "@vacina"
 - class: Concurrent::Collection::MriMapBackend
   method: initialize
   effects:
@@ -368,31 +454,145 @@ postconditions:
     may_write:
     - "@default_proc"
 - class: ConsultasController
-  method: create
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: ConsultasController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: ConsultasController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consultas"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@filtros"
+    - "@filtros_ativos"
+    - "@profissionais"
+- class: ConsultasController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: ConsultasController
+  method: __rbs_infer__run_show
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+- class: ConsultasController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: ConsultasController
+  method: carregar_cadastros_clinicos
+  unconditional:
+    ivars:
+      "@especialidades": "::Especialidade::ActiveRecord_Relation"
+      "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+      "@profissionais": "::Profissional::ActiveRecord_Relation"
+    self: "::ConsultasController & ::ConsultasController::AfterCarregarCadastrosClinicos"
+  effects:
+    may_write:
+    - "@especialidades"
+    - "@estabelecimentos"
+    - "@profissionais"
+- class: ConsultasController
+  method: create
+  unconditional:
+    ivars:
+      "@consulta": untyped
+    self: "::ConsultasController & ::ConsultasController::AfterCreate"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
 - class: ConsultasController
   method: index
   unconditional:
     ivars:
+      "@consultas": "(::Agendamento::ActiveRecord_Relation | ::Consulta::ActiveRecord_Relation)"
       "@filtros": untyped
       "@filtros_ativos": bool
     self: "::ConsultasController & ::ConsultasController::AfterIndex"
   effects:
     may_write:
+    - "@consultas"
     - "@filtros"
     - "@filtros_ativos"
 - class: ConsultasController
   method: new
+  unconditional:
+    ivars:
+      "@consulta": untyped
+    self: "::ConsultasController & ::ConsultasController::AfterNew"
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@consulta"
 - class: ConsultasController
   method: preencher_com_agendamento
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: ConsultasController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::ConsultasController & ::ConsultasController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: ConsultasController
+  method: set_consulta
+  unconditional:
+    ivars:
+      "@consulta": "(::Consulta & ::Consulta::Validated)"
+    self: "::ConsultasController & ::ConsultasController::AfterSetConsulta"
+  effects:
+    may_write:
+    - "@consulta"
 - class: ConsultasController
   method: update
   effects:
@@ -502,44 +702,33 @@ postconditions:
   method: __rbs_infer__run_create
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@dose"
-    - "@vacina"
 - class: DosesController
   method: __rbs_infer__run_edit
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@dose"
-    - "@vacina"
 - class: DosesController
   method: __rbs_infer__run_new
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
     - "@dose"
-    - "@vacina"
 - class: DosesController
   method: __rbs_infer__run_show
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -582,37 +771,133 @@ postconditions:
   effects:
     may_write:
     - "@dose"
-- class: DosesController
-  method: set_vacina
-  unconditional:
-    ivars:
-      "@vacina": untyped
-    self: "::DosesController & ::DosesController::AfterSetVacina"
-  effects:
-    may_write:
-    - "@vacina"
-- class: ERBCadernetaIndex
+- class: ERBAgendamentosEdit
   method: initialize
   effects:
     may_write:
-    - "@vacinas"
-- class: ERBCadernetaShow
+    - "@agendamento"
+- class: ERBAgendamentosIndex
   method: initialize
   effects:
     may_write:
-    - "@fabricante_vacinas"
-    - "@vacina"
+    - "@agendamentos"
+    - "@filtros_ativos"
+- class: ERBAgendamentosNew
+  method: initialize
+  effects:
+    may_write:
+    - "@agendamento"
+- class: ERBConsultasEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
+- class: ERBConsultasIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@consultas"
+    - "@filtros_ativos"
+- class: ERBConsultasNew
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
+- class: ERBConsultasShow
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
 - class: ERBDosesNew
   method: initialize
   effects:
     may_write:
     - "@dose"
-    - "@vacina"
+- class: ERBEspecialidadesEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@especialidade"
+- class: ERBEspecialidadesIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@especialidades"
+- class: ERBEspecialidadesNew
+  method: initialize
+  effects:
+    may_write:
+    - "@especialidade"
+- class: ERBEstabelecimentosEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@estabelecimento"
+- class: ERBEstabelecimentosIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@estabelecimentos"
+- class: ERBEstabelecimentosNew
+  method: initialize
+  effects:
+    may_write:
+    - "@estabelecimento"
+- class: ERBMedicamentosEdit
+  method: initialize
+  effects:
+    may_write:
+    - "@medicamento"
+- class: ERBMedicamentosIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@medicamentos"
+- class: ERBMedicamentosNew
+  method: initialize
+  effects:
+    may_write:
+    - "@medicamento"
+- class: ERBPartialAgendamentosForm
+  method: initialize
+  effects:
+    may_write:
+    - "@agendamento"
+- class: ERBPartialAgendamentosFormAnexos
+  method: initialize
+  effects:
+    may_write:
+    - "@agendamento"
+    - "@form"
+- class: ERBPartialAtendimentosFiltros
+  method: initialize
+  effects:
+    may_write:
+    - "@filtrar_agendamentos"
+    - "@filtros"
+    - "@filtros_ativos"
+    - "@url"
+- class: ERBPartialCadastrosClinicosCamposDeAtendimento
+  method: initialize
+  effects:
+    may_write:
+    - "@form"
 - class: ERBPartialCadernetaDoses
   method: initialize
   effects:
     may_write:
     - "@vacina"
+- class: ERBPartialConsultasForm
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
+- class: ERBPartialConsultasFormAnexos
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
+    - "@form"
 - class: ERBPartialDeviseSharedErrorMessages
   method: initialize
   effects:
@@ -624,11 +909,54 @@ postconditions:
     may_write:
     - "@dose"
     - "@vacina"
+- class: ERBPartialEspecialidadesForm
+  method: initialize
+  effects:
+    may_write:
+    - "@especialidade"
+- class: ERBPartialEstabelecimentosForm
+  method: initialize
+  effects:
+    may_write:
+    - "@estabelecimento"
+- class: ERBPartialMedicamentosForm
+  method: initialize
+  effects:
+    may_write:
+    - "@medicamento"
 - class: ERBPartialPessoasForm
   method: initialize
   effects:
     may_write:
     - "@pessoa"
+- class: ERBPartialPrescricoesForm
+  method: initialize
+  effects:
+    may_write:
+    - "@consulta"
+    - "@medicamentos"
+    - "@prescricao"
+- class: ERBPartialPrescricoesTabela
+  method: initialize
+  effects:
+    may_write:
+    - "@contexto"
+    - "@prescricoes"
+- class: ERBPartialProfissionaisForm
+  method: initialize
+  effects:
+    may_write:
+    - "@profissional"
+- class: ERBPartialSharedMenuDeNavegacao
+  method: initialize
+  effects:
+    may_write:
+    - "@alinhamento"
+    - "@ativo"
+    - "@descricao"
+    - "@icone"
+    - "@itens"
+    - "@rotulo"
 - class: ERBPartialSugestoesRecomendacaoVacina
   method: initialize
   effects:
@@ -639,36 +967,43 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
-- class: ERBPessoasEdit
+- class: ERBPrescricoesEdit
   method: initialize
   effects:
     may_write:
-    - "@pessoa"
-- class: ERBPessoasIndex
+    - "@consulta"
+    - "@medicamentos"
+- class: ERBPrescricoesIndex
   method: initialize
   effects:
     may_write:
-    - "@pessoas"
-- class: ERBPessoasNew
+    - "@prescricoes"
+- class: ERBPrescricoesNew
   method: initialize
   effects:
     may_write:
-    - "@pessoa"
-- class: ERBSugestoesIndex
+    - "@consulta"
+    - "@medicamentos"
+- class: ERBProfissionaisEdit
   method: initialize
   effects:
     may_write:
-    - "@recomendacao_vacinas"
+    - "@profissional"
+- class: ERBProfissionaisIndex
+  method: initialize
+  effects:
+    may_write:
+    - "@profissionais"
+- class: ERBProfissionaisNew
+  method: initialize
+  effects:
+    may_write:
+    - "@profissional"
 - class: ERBVacinasEdit
   method: initialize
   effects:
     may_write:
     - "@vacina"
-- class: ERBVacinasIndex
-  method: initialize
-  effects:
-    may_write:
-    - "@vacinas"
 - class: ERBVacinasNew
   method: initialize
   effects:
@@ -679,6 +1014,81 @@ postconditions:
   effects:
     may_write:
     - "@vacina"
+- class: Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - especialidade
+- class: Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - especialidade
+- class: Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: EspecialidadesController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidade"
+- class: EspecialidadesController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidade"
+- class: EspecialidadesController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidades"
+- class: EspecialidadesController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidade"
+- class: EspecialidadesController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidade"
 - class: EspecialidadesController
   method: create
   unconditional:
@@ -690,6 +1100,15 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@especialidade"
 - class: EspecialidadesController
+  method: index
+  unconditional:
+    ivars:
+      "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    self: "::EspecialidadesController & ::EspecialidadesController::AfterIndex"
+  effects:
+    may_write:
+    - "@especialidades"
+- class: EspecialidadesController
   method: new
   unconditional:
     ivars:
@@ -698,6 +1117,15 @@ postconditions:
   effects:
     may_write:
     - "@especialidade"
+- class: EspecialidadesController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::EspecialidadesController & ::EspecialidadesController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
 - class: EspecialidadesController
   method: set_especialidade
   unconditional:
@@ -712,6 +1140,81 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - estabelecimento
+- class: Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - estabelecimento
+- class: Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: EstabelecimentosController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@estabelecimento"
+- class: EstabelecimentosController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@estabelecimento"
+- class: EstabelecimentosController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@estabelecimentos"
+- class: EstabelecimentosController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@estabelecimento"
+- class: EstabelecimentosController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@estabelecimento"
 - class: EstabelecimentosController
   method: create
   unconditional:
@@ -723,6 +1226,15 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@estabelecimento"
 - class: EstabelecimentosController
+  method: index
+  unconditional:
+    ivars:
+      "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    self: "::EstabelecimentosController & ::EstabelecimentosController::AfterIndex"
+  effects:
+    may_write:
+    - "@estabelecimentos"
+- class: EstabelecimentosController
   method: new
   unconditional:
     ivars:
@@ -731,6 +1243,15 @@ postconditions:
   effects:
     may_write:
     - "@estabelecimento"
+- class: EstabelecimentosController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::EstabelecimentosController & ::EstabelecimentosController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
 - class: EstabelecimentosController
   method: set_estabelecimento
   unconditional:
@@ -797,6 +1318,53 @@ postconditions:
     - "@data_de"
     - "@relacao"
 - class: MedicamentosController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamento"
+- class: MedicamentosController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@medicamento"
+- class: MedicamentosController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@medicamentos"
+- class: MedicamentosController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamento"
+- class: MedicamentosController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@medicamento"
+- class: MedicamentosController
   method: create
   unconditional:
     ivars:
@@ -807,6 +1375,15 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@medicamento"
 - class: MedicamentosController
+  method: index
+  unconditional:
+    ivars:
+      "@medicamentos": "::Medicamento::ActiveRecord_Relation"
+    self: "::MedicamentosController & ::MedicamentosController::AfterIndex"
+  effects:
+    may_write:
+    - "@medicamentos"
+- class: MedicamentosController
   method: new
   unconditional:
     ivars:
@@ -815,6 +1392,24 @@ postconditions:
   effects:
     may_write:
     - "@medicamento"
+- class: MedicamentosController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::MedicamentosController & ::MedicamentosController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: MedicamentosController
+  method: set_consulta_para_retorno
+  unconditional:
+    ivars:
+      "@consulta": "(::Consulta & ::Consulta::Validated)"
+    self: "::MedicamentosController & ::MedicamentosController::AfterSetConsultaParaRetorno"
+  effects:
+    may_write:
+    - "@consulta"
 - class: MedicamentosController
   method: set_medicamento
   unconditional:
@@ -838,8 +1433,6 @@ postconditions:
   method: __rbs_infer__run_update
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -848,101 +1441,60 @@ postconditions:
   method: __rbs_infer__run_create
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: __rbs_infer__run_destroy
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: __rbs_infer__run_edit
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: __rbs_infer__run_index
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoas"
 - class: PessoasController
   method: __rbs_infer__run_new
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: __rbs_infer__run_update
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: create
-  unconditional:
-    ivars:
-      "@pessoa": untyped
-    self: "::PessoasController & ::PessoasController::AfterCreate"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@pessoa"
 - class: PessoasController
   method: destroy
   effects:
     may_write:
     - "@__rbs_infer__performed"
-- class: PessoasController
-  method: index
-  unconditional:
-    ivars:
-      "@pessoas": untyped
-    self: "::PessoasController & ::PessoasController::AfterIndex"
-  effects:
-    may_write:
-    - "@pessoas"
-- class: PessoasController
-  method: new
-  unconditional:
-    ivars:
-      "@pessoa": untyped
-    self: "::PessoasController & ::PessoasController::AfterNew"
-  effects:
-    may_write:
-    - "@pessoa"
 - class: PessoasController
   method: render
   unconditional:
@@ -953,29 +1505,175 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 - class: PessoasController
-  method: set_pessoa
-  unconditional:
-    ivars:
-      "@pessoa": untyped
-    self: "::PessoasController & ::PessoasController::AfterSetPessoa"
-  effects:
-    may_write:
-    - "@pessoa"
-- class: PessoasController
   method: update
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: PrescricoesController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamentos"
+- class: PrescricoesController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamentos"
+- class: PrescricoesController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@prescricoes"
+- class: PrescricoesController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamentos"
+- class: PrescricoesController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@consulta"
+    - "@medicamentos"
+- class: PrescricoesController
+  method: carregar_medicamentos
+  unconditional:
+    ivars:
+      "@medicamentos": "::Medicamento::ActiveRecord_Relation"
+    self: "::PrescricoesController & ::PrescricoesController::AfterCarregarMedicamentos"
+  effects:
+    may_write:
+    - "@medicamentos"
 - class: PrescricoesController
   method: create
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@medicamentos"
+- class: PrescricoesController
+  method: edit
+  effects:
+    may_write:
+    - "@medicamentos"
+- class: PrescricoesController
+  method: index
+  unconditional:
+    ivars:
+      "@prescricoes": "::Prescricao::ActiveRecord_Relation"
+    self: "::PrescricoesController & ::PrescricoesController::AfterIndex"
+  effects:
+    may_write:
+    - "@prescricoes"
+- class: PrescricoesController
+  method: new
+  effects:
+    may_write:
+    - "@medicamentos"
+- class: PrescricoesController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::PrescricoesController & ::PrescricoesController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+- class: PrescricoesController
+  method: set_consulta
+  unconditional:
+    ivars:
+      "@consulta": "(::Consulta & ::Consulta::Validated)"
+    self: "::PrescricoesController & ::PrescricoesController::AfterSetConsulta"
+  effects:
+    may_write:
+    - "@consulta"
 - class: PrescricoesController
   method: update
   effects:
     may_write:
     - "@__rbs_infer__performed"
+    - "@medicamentos"
+- class: ProfissionaisController
+  method: __rbs_infer__run_create
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidades"
+    - "@profissional"
+- class: ProfissionaisController
+  method: __rbs_infer__run_edit
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidades"
+    - "@profissional"
+- class: ProfissionaisController
+  method: __rbs_infer__run_index
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@profissionais"
+- class: ProfissionaisController
+  method: __rbs_infer__run_new
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidades"
+    - "@profissional"
+- class: ProfissionaisController
+  method: __rbs_infer__run_update
+  unconditional:
+    consts:
+      Current.user: "(::User & ::User::Validated)"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
+    - "@especialidades"
+    - "@profissional"
+- class: ProfissionaisController
+  method: carregar_especialidades
+  unconditional:
+    ivars:
+      "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    self: "::ProfissionaisController & ::ProfissionaisController::AfterCarregarEspecialidades"
+  effects:
+    may_write:
+    - "@especialidades"
 - class: ProfissionaisController
   method: create
   unconditional:
@@ -987,6 +1685,15 @@ postconditions:
     - "@__rbs_infer__performed"
     - "@profissional"
 - class: ProfissionaisController
+  method: index
+  unconditional:
+    ivars:
+      "@profissionais": "::Profissional::ActiveRecord_Relation"
+    self: "::ProfissionaisController & ::ProfissionaisController::AfterIndex"
+  effects:
+    may_write:
+    - "@profissionais"
+- class: ProfissionaisController
   method: new
   unconditional:
     ivars:
@@ -995,6 +1702,15 @@ postconditions:
   effects:
     may_write:
     - "@profissional"
+- class: ProfissionaisController
+  method: render
+  unconditional:
+    ivars:
+      "@__rbs_infer__performed": 'true'
+    self: "::ProfissionaisController & ::ProfissionaisController::AfterRender"
+  effects:
+    may_write:
+    - "@__rbs_infer__performed"
 - class: ProfissionaisController
   method: set_profissional
   unconditional:
@@ -1009,26 +1725,44 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - profissional
+- class: Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
+- class: Profissional_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - profissional
+- class: Profissional_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: initialize
+  effects:
+    may_write:
+    - "@owner"
+- class: Profissional_Consulta::ActiveRecord_Associations_CollectionProxy
+  method: owner
+  effects:
+    returns_ivar: "@owner"
 - class: SugestoesController
   method: __rbs_infer__run_index
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@recomendacao_vacinas"
-- class: SugestoesController
-  method: index
-  unconditional:
-    ivars:
-      "@recomendacao_vacinas": untyped
-    self: "::SugestoesController & ::SugestoesController::AfterIndex"
-  effects:
-    may_write:
-    - "@recomendacao_vacinas"
 - class: SugestoesController
   method: render
   unconditional:
@@ -1046,8 +1780,6 @@ postconditions:
   method: __rbs_infer__run_create
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1057,8 +1789,6 @@ postconditions:
   method: __rbs_infer__run_destroy
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1068,8 +1798,6 @@ postconditions:
   method: __rbs_infer__run_edit
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1079,19 +1807,14 @@ postconditions:
   method: __rbs_infer__run_index
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
     - "@__rbs_infer__performed"
-    - "@vacinas"
 - class: VacinasController
   method: __rbs_infer__run_new
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1101,8 +1824,6 @@ postconditions:
   method: __rbs_infer__run_show
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1112,8 +1833,6 @@ postconditions:
   method: __rbs_infer__run_update
   unconditional:
     consts:
-      Current.caderneta: untyped
-      Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
       Current.user: "(::User & ::User::Validated)"
   effects:
     may_write:
@@ -1134,15 +1853,6 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
-- class: VacinasController
-  method: index
-  unconditional:
-    ivars:
-      "@vacinas": untyped
-    self: "::VacinasController & ::VacinasController::AfterIndex"
-  effects:
-    may_write:
-    - "@vacinas"
 - class: VacinasController
   method: new
   unconditional:
@@ -1176,6 +1886,106 @@ postconditions:
     may_write:
     - "@__rbs_infer__performed"
 method_entry_facts:
+- class: AgendamentosController
+  method: agendamento_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: agendamentos_da_pessoa
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: AgendamentosController
+  method: carregar_cadastros_clinicos
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: AgendamentosController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@agendamento": "(::Agendamento & ::Agendamento::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: filtros_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: set_agendamento
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: AgendamentosController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@agendamento": "(::Agendamento & ::Agendamento::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
 - class: ApplicationController
   method: pessoa_ativa
   self_methods:
@@ -1191,367 +2001,1160 @@ method_entry_facts:
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: CadernetaController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ConsultasController
+  method: agendamentos_da_pessoa
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: atributos_do_agendamento
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: carregar_cadastros_clinicos
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ConsultasController
+  method: consulta_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: consultas_da_pessoa
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ConsultasController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: filtros_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: preencher_com_agendamento
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ConsultasController
+  method: set_consulta
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ConsultasController
+  method: show
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: ConsultasController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: Current
+  method: caderneta
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: create
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: edit
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: new
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: set_dose
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: set_vacina
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBAgendamentosNew
+  method: render
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCadernetaIndex
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBCadernetaIndex
+  method: render
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBCadernetaShow
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasNew
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasShow
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBConsultasShow
+  method: render
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBDosesNew
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBDosesNew
   method: render
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEspecialidadesNew
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBEstabelecimentosNew
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBMedicamentosEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBMedicamentosEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBMedicamentosIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBMedicamentosNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBMedicamentosNew
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialAgendamentosForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialAgendamentosForm
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialAgendamentosFormAnexos
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialAtendimentosFiltros
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialCadastrosClinicosCamposDeAtendimento
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialCadastrosClinicosNavegacao
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialCadernetaDoses
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialConsultasForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialConsultasForm
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialConsultasFormAnexos
+  method: __rbs_infer__body
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialDosesForm
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialEspecialidadesForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialEstabelecimentosForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialMedicamentosForm
+  method: __rbs_infer__body
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialPessoasForm
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialPrescricoesForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialPrescricoesTabela
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialProfissionaisForm
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPartialSugestoesRecomendacaoVacina
+  method: __rbs_infer__body
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPartialVacinasForm
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPessoasEdit
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPessoasEdit
   method: render
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPessoasIndex
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPessoasNew
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBPessoasNew
   method: render
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBPrescricoesNew
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisEdit
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisEdit
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisIndex
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisIndex
+  method: render
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisNew
+  method: __rbs_infer__body
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBProfissionaisNew
+  method: render
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBSugestoesIndex
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: ERBSugestoesIndex
+  method: render
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasEdit
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasEdit
   method: render
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasIndex
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasNew
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasNew
   method: render
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: ERBVacinasShow
   method: __rbs_infer__body
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidade": "(::Especialidade & ::Especialidade::Validated)"
+- class: EspecialidadesController
+  method: especialidade_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: set_especialidade
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EspecialidadesController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidade": "(::Especialidade & ::Especialidade::Validated)"
+- class: EstabelecimentosController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@estabelecimento": "(::Estabelecimento & ::Estabelecimento::Validated)"
+- class: EstabelecimentosController
+  method: estabelecimento_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: set_estabelecimento
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: EstabelecimentosController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@estabelecimento": "(::Estabelecimento & ::Estabelecimento::Validated)"
+- class: FiltroDeAtendimentos
+  method: converter_data
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: data_ate
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: data_de
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: filtrar_pagamento
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: filtrar_periodo
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: filtrar_referencias
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: filtrar_status
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: FiltroDeAtendimentos
+  method: resultado
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: MedicamentosController
-  method: destino_apos_cadastro
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
   ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: MedicamentosController
+  method: destino_apos_cadastro
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
     "@medicamento": "::Medicamento"
+- class: MedicamentosController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@medicamento": "(::Medicamento & ::Medicamento::Validated)"
+- class: MedicamentosController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: MedicamentosController
+  method: medicamento_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: MedicamentosController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: MedicamentosController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: MedicamentosController
+  method: set_consulta_para_retorno
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: MedicamentosController
+  method: set_medicamento
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: MedicamentosController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@medicamento": "(::Medicamento & ::Medicamento::Validated)"
 - class: PerfilAtivoController
   method: update
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: create
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: destroy
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: edit
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: index
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: new
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: pessoa_params
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: set_pessoa
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: PessoasController
   method: update
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
+- class: Prescricao
+  method: situacao_em
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: PrescricoesController
+  method: carregar_medicamentos
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: PrescricoesController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: prescricao_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: PrescricoesController
+  method: set_consulta
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: PrescricoesController
+  method: set_prescricao
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: ProfissionaisController
+  method: carregar_especialidades
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ProfissionaisController
+  method: create
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+- class: ProfissionaisController
+  method: edit
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@profissional": "(::Profissional & ::Profissional::Validated)"
+- class: ProfissionaisController
+  method: index
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ProfissionaisController
+  method: new
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+- class: ProfissionaisController
+  method: profissional_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+- class: ProfissionaisController
+  method: render
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ProfissionaisController
+  method: set_profissional
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: ProfissionaisController
+  method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@profissional": "(::Profissional & ::Profissional::Validated)"
 - class: SugestoesController
   method: index
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: SugestoesController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
+    Current.user: "(::User & ::User::Validated)"
+- class: SugestoesHelper
+  method: idade_recomendada_para
+  consts:
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: create
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: destroy
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: edit
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: index
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: new
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: render
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: set_vacina
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: show
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: update
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
-    Current.caderneta: untyped
-    Current.pessoa: "(::Pessoa & ::Pessoa::Validated)"
     Current.user: "(::User & ::User::Validated)"
+argument_entry_facts:
+- class: AgendamentosController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@agendamento": "(::Agendamento & ::Agendamento::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@agendamentos": "(::Agendamento::ActiveRecord_Relation | ::Consulta::ActiveRecord_Relation)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@filtros_ativos": bool
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: AgendamentosController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@consultas": "(::Agendamento::ActiveRecord_Relation | ::Consulta::ActiveRecord_Relation)"
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@filtros_ativos": bool
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ConsultasController
+  method: render
+  param: target
+  pattern: ":show"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: EspecialidadesController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@especialidade": "(::Especialidade & ::Especialidade::Validated)"
+- class: EspecialidadesController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+- class: EspecialidadesController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@especialidade": "::Especialidade"
+- class: EstabelecimentosController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@estabelecimento": "(::Estabelecimento & ::Estabelecimento::Validated)"
+- class: EstabelecimentosController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@estabelecimentos": "::Estabelecimento::ActiveRecord_Relation"
+- class: EstabelecimentosController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@estabelecimento": "::Estabelecimento"
+- class: MedicamentosController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@medicamento": "(::Medicamento & ::Medicamento::Validated)"
+- class: MedicamentosController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@medicamentos": "::Medicamento::ActiveRecord_Relation"
+- class: MedicamentosController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+    "@medicamento": "::Medicamento"
+- class: PrescricoesController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: PrescricoesController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@prescricoes": "::Prescricao::ActiveRecord_Relation"
+- class: PrescricoesController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: ProfissionaisController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@profissional": "(::Profissional & ::Profissional::Validated)"
+- class: ProfissionaisController
+  method: render
+  param: target
+  pattern: ":index"
+  ivars:
+    "@profissionais": "::Profissional::ActiveRecord_Relation"
+- class: ProfissionaisController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@especialidades": "::Especialidade::ActiveRecord_Relation"
+    "@profissional": "::Profissional"
 unreached_definitions:
 - Concurrent::Map#[]
 - Concurrent::Map#initialize

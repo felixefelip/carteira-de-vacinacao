@@ -1,0 +1,10 @@
+class ERBAgendamentosNew
+  @agendamento: (Agendamento & Agendamento::Validated)?
+
+  include ActionViewContext
+
+  def initialize: (agendamento: (Agendamento & Agendamento::Validated)?) -> void
+  def render: (?"form"? target, *{ agendamento: (Agendamento & Agendamento::Validated)? } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

@@ -19,6 +19,5 @@ class ERBDeviseSessionsNew
   end
 
   def __rbs_infer__body
-    nil
   end
 end

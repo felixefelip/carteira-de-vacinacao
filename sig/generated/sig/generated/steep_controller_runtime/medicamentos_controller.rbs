@@ -1,0 +1,13 @@
+class MedicamentosController
+  @__rbs_infer__performed: true?
+
+  def render: (?(:index | :new | :edit | { plain: String, status: :unauthorized })? target, *{ status: :unprocessable_content } rest) -> true
+
+  private
+
+  def __rbs_infer__run_index: () -> true?
+  def __rbs_infer__run_new: () -> true?
+  def __rbs_infer__run_edit: () -> true?
+  def __rbs_infer__run_create: () -> void
+  def __rbs_infer__run_update: () -> void
+end

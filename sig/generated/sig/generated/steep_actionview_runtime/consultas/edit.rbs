@@ -1,0 +1,10 @@
+class ERBConsultasEdit
+  @consulta: (Consulta & Consulta::Validated)
+
+  include ActionViewContext
+
+  def initialize: (consulta: Consulta & ::Consulta::Validated) -> void
+  def render: (?"form"? target, *{ consulta: Consulta & Consulta::Validated } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

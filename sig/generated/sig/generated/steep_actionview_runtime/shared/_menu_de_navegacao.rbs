@@ -1,0 +1,20 @@
+class ERBPartialSharedMenuDeNavegacao
+  include ActionViewContext
+
+  def initialize: (alinhamento: :left, ativo: untyped, descricao: "Cadernetas, calendário e vacinas", icone: :vacinacao, itens: Array[({ rotulo: "Caderneta", descricao: "Doses e histórico vacinal", caminho: untyped, ativo: untyped } | { rotulo: "Calendário", descricao: "Recomendações por idade", caminho: untyped, ativo: untyped } | { rotulo: "Vacinas", descricao: "Vacinas e fabricantes", caminho: untyped, ativo: untyped })], rotulo: "Vacinação") -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader alinhamento: :left
+  attr_reader ativo: untyped
+  attr_reader descricao: "Cadernetas, calendário e vacinas"
+  attr_reader icone: :vacinacao
+  attr_reader itens: Array[({ rotulo: "Caderneta", descricao: "Doses e histórico vacinal", caminho: untyped, ativo: untyped } | { rotulo: "Calendário", descricao: "Recomendações por idade", caminho: untyped, ativo: untyped } | { rotulo: "Vacinas", descricao: "Vacinas e fabricantes", caminho: untyped, ativo: untyped })]
+  attr_reader rotulo: "Vacinação"
+
+  class AfterInitialize
+    attr_reader itens: Array[({ ativo: untyped, caminho: untyped, descricao: "Doses e histórico vacinal", rotulo: "Caderneta" } | { ativo: untyped, caminho: untyped, descricao: "Recomendações por idade", rotulo: "Calendário" } | { ativo: untyped, caminho: untyped, descricao: "Vacinas e fabricantes", rotulo: "Vacinas" })]
+  end
+end

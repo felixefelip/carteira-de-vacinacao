@@ -1,0 +1,15 @@
+class ERBPartialEstabelecimentosForm
+  include ActionViewContext
+
+  def initialize: (estabelecimento: (Estabelecimento & Estabelecimento::Validated | Estabelecimento)) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader estabelecimento: (Estabelecimento & Estabelecimento::Validated | Estabelecimento)
+
+  class AfterInitialize
+    attr_reader estabelecimento: (Estabelecimento & Estabelecimento::Validated) | Estabelecimento
+  end
+end

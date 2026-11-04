@@ -1,6 +1,21 @@
 ---
 version: 1
 methods:
+  ERBPartialSharedHeader#render:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: vacinacao
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: controller_name
+    enforced: false
   FiltroDeAtendimentos#converter_data:
     requires:
     - kind: not_nil

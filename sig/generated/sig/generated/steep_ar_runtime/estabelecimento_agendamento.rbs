@@ -1,0 +1,11 @@
+module Estabelecimento_Agendamento
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Estabelecimento
+
+    def initialize: (singleton(::Agendamento) klass, Estabelecimento owner) -> void
+    def owner: () -> Estabelecimento
+    def build: (*untyped) -> ::Agendamento
+    def create: (*untyped) -> ::Agendamento
+    def create!: (*untyped) -> ::Agendamento
+  end
+end

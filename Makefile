@@ -143,7 +143,7 @@ rbs_generators_all:
 	make rbs_infer_all
 
 steep:
-	bundle exec steep check
+	bundle exec steep check --jobs=4
 
 ## `.steep_postconditions.yml` é SAÍDA do steep sobre o pseudo-código e ENTRADA
 ## do rbs_infer. Uma passada só mostra tipos nilable que são atraso, não

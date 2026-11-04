@@ -1,0 +1,11 @@
+module Profissional_Agendamento
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Profissional
+
+    def initialize: (singleton(::Agendamento) klass, Profissional owner) -> void
+    def owner: () -> Profissional
+    def build: (*untyped) -> ::Agendamento
+    def create: (*untyped) -> ::Agendamento
+    def create!: (*untyped) -> ::Agendamento
+  end
+end

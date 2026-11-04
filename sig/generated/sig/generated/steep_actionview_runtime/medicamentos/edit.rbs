@@ -1,0 +1,10 @@
+class ERBMedicamentosEdit
+  @medicamento: (Medicamento & Medicamento::Validated)
+
+  include ActionViewContext
+
+  def initialize: (medicamento: Medicamento & ::Medicamento::Validated) -> void
+  def render: (?"form"? target, *{ medicamento: Medicamento & Medicamento::Validated } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

@@ -1,0 +1,11 @@
+module Especialidade_Consulta
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Especialidade
+
+    def initialize: (singleton(::Consulta) klass, Especialidade owner) -> void
+    def owner: () -> Especialidade
+    def build: (*untyped) -> ::Consulta
+    def create: (*untyped) -> ::Consulta
+    def create!: (*untyped) -> ::Consulta
+  end
+end

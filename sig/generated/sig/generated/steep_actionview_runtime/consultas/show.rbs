@@ -1,0 +1,10 @@
+class ERBConsultasShow
+  @consulta: (Consulta & Consulta::Validated)
+
+  include ActionViewContext
+
+  def initialize: (consulta: Consulta & ::Consulta::Validated, prescricoes: untyped) -> void
+  def render: (?"prescricoes/tabela"? target, *{ prescricoes: untyped, contexto: :consulta } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

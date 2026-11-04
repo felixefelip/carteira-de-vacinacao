@@ -9,6 +9,11 @@ class ERBPartialSharedHeader
   def render(target = nil, *rest)
     name = target.is_a?(::Hash) ? target[:partial] : target
     case name
+    when "shared/menu_de_navegacao" then ERBPartialSharedMenuDeNavegacao.new(rotulo: 'Vacinação', descricao: 'Cadernetas, calendário e vacinas', icone: :vacinacao, alinhamento: :left, ativo: vacinacao.include?(controller_name), itens: [
+                     { rotulo: 'Caderneta', descricao: 'Doses e histórico vacinal', caminho: caderneta_path, ativo: controller_name == 'caderneta' },
+                     { rotulo: 'Calendário', descricao: 'Recomendações por idade', caminho: sugestoes_path, ativo: controller_name == 'sugestoes' },
+                     { rotulo: 'Vacinas', descricao: 'Vacinas e fabricantes', caminho: vacinas_path, ativo: %w[vacinas doses fabricante_vacinas].include?(controller_name) }
+                   ]).__rbs_infer__body
     when "shared/seletor_de_perfil" then ERBPartialSharedSeletorDePerfil.new.__rbs_infer__body
     end
     nil
@@ -19,6 +24,5 @@ class ERBPartialSharedHeader
   end
 
   def __rbs_infer__body
-    nil
   end
 end

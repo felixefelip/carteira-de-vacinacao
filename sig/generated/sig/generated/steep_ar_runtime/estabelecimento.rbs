@@ -1,0 +1,4 @@
+class Estabelecimento
+  def agendamentos: () -> Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy
+  def consultas: () -> Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy
+end

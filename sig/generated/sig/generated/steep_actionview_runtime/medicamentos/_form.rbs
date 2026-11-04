@@ -1,0 +1,15 @@
+class ERBPartialMedicamentosForm
+  include ActionViewContext
+
+  def initialize: (medicamento: (Medicamento & Medicamento::Validated | Medicamento)) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader medicamento: (Medicamento & Medicamento::Validated | Medicamento)
+
+  class AfterInitialize
+    attr_reader medicamento: (Medicamento & Medicamento::Validated) | Medicamento
+  end
+end

@@ -46,13 +46,42 @@ methods:
     "() &-> ::Integer": self
     "() &-> bot": self
     "() &-> nil": self
+  ERBPartialAtendimentosFiltros.new:
+    "(filtrar_agendamentos: false, filtros: untyped, filtros_ativos: bool, url: ::String)":
+      class: "::ERBPartialAtendimentosFiltros"
+      ivars:
+        "@filtrar_agendamentos": 'false'
+    "(filtrar_agendamentos: true, filtros: untyped, filtros_ativos: bool, url: ::String)":
+      class: "::ERBPartialAtendimentosFiltros"
+      ivars:
+        "@filtrar_agendamentos": 'true'
+  ERBPartialPrescricoesTabela.new:
+    "(contexto: :consulta, prescricoes: untyped)":
+      class: "::ERBPartialPrescricoesTabela"
+      ivars:
+        "@contexto": ":consulta"
+    "(contexto: :tratamentos, prescricoes: ::Prescricao::ActiveRecord_Relation)":
+      class: "::ERBPartialPrescricoesTabela"
+      ivars:
+        "@contexto": ":tratamentos"
+  ERBPartialSharedMenuDeNavegacao.new:
+    ? '(alinhamento: :left, ativo: untyped, descricao: "Cadernetas, calendário e vacinas",
+      icone: :vacinacao, itens: ::Array[({ :ativo => untyped, :caminho => ::String,
+      :descricao => "Doses e histórico vacinal", :rotulo => "Caderneta" } | { :ativo
+      => untyped, :caminho => ::String, :descricao => "Recomendações por idade", :rotulo
+      => "Calendário" } | { :ativo => bool, :caminho => ::String, :descricao => "Vacinas
+      e fabricantes", :rotulo => "Vacinas" })], rotulo: "Vacinação")'
+    : class: "::ERBPartialSharedMenuDeNavegacao"
+      ivars:
+        "@alinhamento": ":left"
+        "@icone": ":vacinacao"
   FiltroDeAtendimentos.new:
-    "(untyped, nil, coluna_data: :inicio_em)":
+    "(::Agendamento::ActiveRecord_Relation, nil, coluna_data: :inicio_em)":
       class: "::FiltroDeAtendimentos"
       ivars:
         "@coluna_data": ":inicio_em"
         "@filtros": nil
-    "(untyped, nil, coluna_data: :realizada_em)":
+    "(::Consulta::ActiveRecord_Relation, nil, coluna_data: :realizada_em)":
       class: "::FiltroDeAtendimentos"
       ivars:
         "@coluna_data": ":realizada_em"
@@ -62,15 +91,14 @@ methods:
 declarations:
   ActiveSupport::Inflector::Inflections#clear: "(::Regexp | ::Array[untyped] | nil
     | ::ActiveSupport::Inflector::Inflections::Uncountables[untyped])"
-  Current.pessoa=: "(::Pessoa & ::Pessoa::Validated)"
   Current.user=: "(::User & ::User::Validated)"
 receivers:
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:10:6:
   - "::FiltroDeAtendimentos"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:14:42:
-  - untyped
+  - "::Agendamento::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:20:42:
-  - untyped
+  - "::Agendamento::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:20:48:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:22:20:
@@ -80,7 +108,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:25:6:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:30:20:
-  - untyped
+  - "(::Agendamento & ::Agendamento::Validated)"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:30:27:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:31:6:
@@ -104,7 +132,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:10:6:
   - "::FiltroDeAtendimentos"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:18:36:
-  - untyped
+  - "::Consulta::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:19:33:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:19:39:
@@ -116,7 +144,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:26:31:
   - "(::ActionController::Parameters & ::ActionController::Parameters::Permitted)"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:27:36:
-  - untyped
+  - "::Consulta::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:30:17:
   - untyped
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:31:6:
@@ -124,7 +152,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:33:6:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:38:17:
-  - untyped
+  - "(::Consulta & ::Consulta::Validated)"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:38:24:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:39:6:
@@ -162,7 +190,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:20:6:
   - "::EspecialidadesController"
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:25:22:
-  - "(::Especialidade | nil)"
+  - "(::Especialidade & ::Especialidade::Validated)"
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:25:29:
   - "::EspecialidadesController"
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:26:6:
@@ -186,7 +214,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/estabelecimentos_controller.rb:20:6:
   - "::EstabelecimentosController"
   packs/atendimento_clinico/app/controllers/estabelecimentos_controller.rb:25:24:
-  - "(::Estabelecimento | nil)"
+  - "(::Estabelecimento & ::Estabelecimento::Validated)"
   packs/atendimento_clinico/app/controllers/estabelecimentos_controller.rb:25:31:
   - "::EstabelecimentosController"
   packs/atendimento_clinico/app/controllers/estabelecimentos_controller.rb:26:6:
@@ -214,7 +242,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:21:6:
   - "::MedicamentosController"
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:26:20:
-  - "(::Medicamento | nil)"
+  - "(::Medicamento & ::Medicamento::Validated)"
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:26:27:
   - "::MedicamentosController"
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:27:6:
@@ -284,7 +312,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/profissionais_controller.rb:21:6:
   - "::ProfissionaisController"
   packs/atendimento_clinico/app/controllers/profissionais_controller.rb:26:21:
-  - "(::Profissional | nil)"
+  - "(::Profissional & ::Profissional::Validated)"
   packs/atendimento_clinico/app/controllers/profissionais_controller.rb:26:28:
   - "::ProfissionaisController"
   packs/atendimento_clinico/app/controllers/profissionais_controller.rb:27:6:
@@ -445,6 +473,8 @@ receivers:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:26:15:
   - untyped
+  packs/identidade/app/controllers/pessoas_controller.rb:26:22:
+  - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:27:6:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:29:6:
@@ -486,9 +516,9 @@ receivers:
   packs/identidade/app/models/pessoa/avatar.rb:26:13:
   - untyped
   packs/vacinacao/app/controllers/caderneta_controller.rb:10:44:
-  - singleton(::Current)
+  - untyped
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:23:
-  - singleton(::Current)
+  - untyped
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:33:
   - untyped
   packs/vacinacao/app/controllers/caderneta_controller.rb:8:34:
@@ -514,7 +544,7 @@ receivers:
   packs/vacinacao/app/controllers/doses_controller.rb:8:17:
   - untyped
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:36:
-  - singleton(::Current)
+  - untyped
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:46:
   - untyped
   packs/vacinacao/app/controllers/vacinas_controller.rb:11:21:
@@ -737,15 +767,83 @@ receivers:
   - untyped
   sig/generated/steep_actiontext_runtime/attribute.rb:17:4:
   - singleton(::ActionText::Attribute)
+  sig/generated/steep_actionview_runtime/agendamentos/_form.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/agendamentos/_form.rb:16:104:
+  - singleton(::ERBPartialCadastrosClinicosCamposDeAtendimento)
+  sig/generated/steep_actionview_runtime/agendamentos/_form.rb:17:61:
+  - singleton(::ERBPartialAgendamentosFormAnexos)
+  sig/generated/steep_actionview_runtime/agendamentos/_form.rb:23:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/_form_anexos.rb:15:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/agendamentos/edit.rb:16:48:
+  - singleton(::ERBPartialAgendamentosForm)
+  sig/generated/steep_actionview_runtime/agendamentos/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/index.rb:16:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/agendamentos/index.rb:18:67:
+  - singleton(::ERBPartialAtendimentosFiltros)
+  sig/generated/steep_actionview_runtime/agendamentos/index.rb:24:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/agendamentos/new.rb:16:48:
+  - singleton(::ERBPartialAgendamentosForm)
+  sig/generated/steep_actionview_runtime/agendamentos/new.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/atendimentos/_filtros.rb:17:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/cadastros_clinicos/_campos_de_atendimento.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/cadastros_clinicos/_navegacao.rb:10:33:
+  - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/caderneta/_doses.rb:14:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/caderneta/index.rb:16:72:
-  - untyped
+  - singleton(::ERBPartialCadernetaDoses)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:22:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/caderneta/show.rb:15:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/_form.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/consultas/_form.rb:16:104:
+  - singleton(::ERBPartialCadastrosClinicosCamposDeAtendimento)
+  sig/generated/steep_actionview_runtime/consultas/_form.rb:17:58:
+  - singleton(::ERBPartialConsultasFormAnexos)
+  sig/generated/steep_actionview_runtime/consultas/_form.rb:23:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/_form_anexos.rb:15:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/consultas/edit.rb:16:45:
+  - singleton(::ERBPartialConsultasForm)
+  sig/generated/steep_actionview_runtime/consultas/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/index.rb:16:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/consultas/index.rb:18:67:
+  - singleton(::ERBPartialAtendimentosFiltros)
+  sig/generated/steep_actionview_runtime/consultas/index.rb:24:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/consultas/new.rb:16:45:
+  - singleton(::ERBPartialConsultasForm)
+  sig/generated/steep_actionview_runtime/consultas/new.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/show.rb:15:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/consultas/show.rb:17:63:
+  - singleton(::ERBPartialPrescricoesTabela)
+  sig/generated/steep_actionview_runtime/consultas/show.rb:23:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:10:40:
   - "::Hash[untyped, untyped]"
@@ -821,6 +919,46 @@ receivers:
   - singleton(::ERBPartialDosesForm)
   sig/generated/steep_actionview_runtime/doses/new.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/_form.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/especialidades/edit.rb:16:50:
+  - singleton(::ERBPartialEspecialidadesForm)
+  sig/generated/steep_actionview_runtime/especialidades/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/index.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/especialidades/index.rb:16:82:
+  - singleton(::ERBPartialCadastrosClinicosNavegacao)
+  sig/generated/steep_actionview_runtime/especialidades/index.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/especialidades/new.rb:16:50:
+  - singleton(::ERBPartialEspecialidadesForm)
+  sig/generated/steep_actionview_runtime/especialidades/new.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/_form.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:16:52:
+  - singleton(::ERBPartialEstabelecimentosForm)
+  sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:16:82:
+  - singleton(::ERBPartialCadastrosClinicosNavegacao)
+  sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:16:52:
+  - singleton(::ERBPartialEstabelecimentosForm)
+  sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:22:33:
+  - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/layouts/application.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/layouts/application.rb:12:53:
@@ -828,6 +966,22 @@ receivers:
   sig/generated/steep_actionview_runtime/layouts/application.rb:18:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/layouts/mailer.rb:10:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/_form.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/medicamentos/edit.rb:16:48:
+  - singleton(::ERBPartialMedicamentosForm)
+  sig/generated/steep_actionview_runtime/medicamentos/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/index.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/medicamentos/new.rb:16:48:
+  - singleton(::ERBPartialMedicamentosForm)
+  sig/generated/steep_actionview_runtime/medicamentos/new.rb:22:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/pessoas/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
@@ -845,13 +999,59 @@ receivers:
   - singleton(::ERBPartialPessoasForm)
   sig/generated/steep_actionview_runtime/pessoas/new.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/_form.rb:16:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/_tabela.rb:15:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/edit.rb:16:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/prescricoes/edit.rb:18:47:
+  - singleton(::ERBPartialPrescricoesForm)
+  sig/generated/steep_actionview_runtime/prescricoes/edit.rb:24:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/index.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/prescricoes/index.rb:16:51:
+  - singleton(::ERBPartialPrescricoesTabela)
+  sig/generated/steep_actionview_runtime/prescricoes/index.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/new.rb:16:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/prescricoes/new.rb:18:47:
+  - singleton(::ERBPartialPrescricoesForm)
+  sig/generated/steep_actionview_runtime/prescricoes/new.rb:24:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/_form.rb:14:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/edit.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/profissionais/edit.rb:16:49:
+  - singleton(::ERBPartialProfissionaisForm)
+  sig/generated/steep_actionview_runtime/profissionais/edit.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/index.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/profissionais/index.rb:16:82:
+  - singleton(::ERBPartialCadastrosClinicosNavegacao)
+  sig/generated/steep_actionview_runtime/profissionais/index.rb:22:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/new.rb:14:40:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/profissionais/new.rb:16:49:
+  - singleton(::ERBPartialProfissionaisForm)
+  sig/generated/steep_actionview_runtime/profissionais/new.rb:22:33:
+  - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/rental_mailer/confirmation.rb:10:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/shared/_header.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/shared/_header.rb:12:73:
+  - singleton(::ERBPartialSharedMenuDeNavegacao)
+  sig/generated/steep_actionview_runtime/shared/_header.rb:17:73:
   - singleton(::ERBPartialSharedSeletorDePerfil)
-  sig/generated/steep_actionview_runtime/shared/_header.rb:18:33:
+  sig/generated/steep_actionview_runtime/shared/_header.rb:23:33:
+  - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/shared/_menu_de_navegacao.rb:19:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/shared/_seletor_de_perfil.rb:10:33:
   - singleton(::ActionController::Parameters)
@@ -860,7 +1060,7 @@ receivers:
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:15:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:125:
-  - untyped
+  - singleton(::ERBPartialSugestoesRecomendacaoVacina)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:23:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/vacinas/_form.rb:14:33:
@@ -1191,6 +1391,8 @@ receivers:
   - untyped
   sig/generated/steep_ar_runtime/active_support/concern.rb:51:103:
   - singleton(::Module)
+  sig/generated/steep_ar_runtime/agendamento.rb:8:4:
+  - "::Agendamento"
   sig/generated/steep_ar_runtime/caderneta.rb:12:74:
   - untyped
   sig/generated/steep_ar_runtime/caderneta.rb:16:64:
@@ -1211,12 +1413,98 @@ receivers:
   - untyped
   sig/generated/steep_ar_runtime/caderneta_dose.rb:23:11:
   - untyped
+  sig/generated/steep_ar_runtime/consulta.rb:8:4:
+  - "::Consulta"
+  sig/generated/steep_ar_runtime/especialidade.rb:12:70:
+  - singleton(::Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/especialidade.rb:8:73:
+  - singleton(::Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:16:25:
+  - singleton(::Agendamento)
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:17:27:
+  - "::Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:22:13:
+  - "::Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:23:11:
+  - "::Agendamento"
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:28:14:
+  - "::Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_agendamento.rb:28:4:
+  - "::Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:16:22:
+  - singleton(::Consulta)
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:17:27:
+  - "::Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:22:13:
+  - "::Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:23:11:
+  - "::Consulta"
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:28:14:
+  - "::Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/especialidade_consulta.rb:28:4:
+  - "::Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento.rb:12:72:
+  - singleton(::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/estabelecimento.rb:8:75:
+  - singleton(::Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:16:25:
+  - singleton(::Agendamento)
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:17:29:
+  - "::Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:22:13:
+  - "::Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:23:11:
+  - "::Agendamento"
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:28:14:
+  - "::Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_agendamento.rb:28:4:
+  - "::Estabelecimento_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:16:22:
+  - singleton(::Consulta)
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:17:29:
+  - "::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:22:13:
+  - "::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:23:11:
+  - "::Consulta"
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:28:14:
+  - "::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:28:4:
+  - "::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/fabricante_vacina.rb:8:69:
   - untyped
   sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:16:18:
   - untyped
   sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:23:11:
   - untyped
+  sig/generated/steep_ar_runtime/profissional.rb:12:69:
+  - singleton(::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/profissional.rb:8:72:
+  - singleton(::Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:16:25:
+  - singleton(::Agendamento)
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:17:26:
+  - "::Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:22:13:
+  - "::Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:23:11:
+  - "::Agendamento"
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:28:14:
+  - "::Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_agendamento.rb:28:4:
+  - "::Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:16:22:
+  - singleton(::Consulta)
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:17:26:
+  - "::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:22:13:
+  - "::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:23:11:
+  - "::Consulta"
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:28:14:
+  - "::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/profissional_consulta.rb:28:4:
+  - "::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/user.rb:17:59:
   - untyped
   sig/generated/steep_ar_runtime/user_pessoa.rb:16:20:
@@ -1340,6 +1628,100 @@ receivers:
   - untyped
   sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:51:19:
   - "(::ActionController::Base & ::ActionController::HttpAuthentication::Token::ControllerMethods)"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:10:40:
+  - singleton(::ERBAgendamentosEdit)
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:11:42:
+  - singleton(::ERBAgendamentosIndex)
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:12:38:
+  - singleton(::ERBAgendamentosNew)
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:20:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:21:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:23:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:24:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:26:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:27:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:29:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:31:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:33:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:37:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:38:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:40:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:41:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:43:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:44:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:46:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:48:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:50:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:54:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:55:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:57:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:58:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:60:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:61:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:63:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:64:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:68:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:70:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:74:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:75:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:77:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:78:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:80:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:81:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:83:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:87:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:88:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:90:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:91:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:93:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:94:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:96:4:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:97:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:99:4:
+  - "::AgendamentosController"
   sig/generated/steep_controller_runtime/caderneta_controller.rb:10:39:
   - singleton(::ERBCadernetaIndex)
   sig/generated/steep_controller_runtime/caderneta_controller.rb:11:37:
@@ -1372,6 +1754,120 @@ receivers:
   - "::CadernetaController"
   sig/generated/steep_controller_runtime/caderneta_controller.rb:43:4:
   - "::CadernetaController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:101:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:105:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:106:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:108:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:109:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:10:37:
+  - singleton(::ERBConsultasEdit)
+  sig/generated/steep_controller_runtime/consultas_controller.rb:111:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:112:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:114:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:115:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:117:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:11:39:
+  - singleton(::ERBConsultasIndex)
+  sig/generated/steep_controller_runtime/consultas_controller.rb:12:35:
+  - singleton(::ERBConsultasNew)
+  sig/generated/steep_controller_runtime/consultas_controller.rb:13:37:
+  - singleton(::ERBConsultasShow)
+  sig/generated/steep_controller_runtime/consultas_controller.rb:21:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:22:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:24:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:25:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:27:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:28:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:30:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:32:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:34:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:38:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:39:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:41:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:42:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:44:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:45:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:47:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:49:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:51:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:55:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:56:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:58:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:59:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:61:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:62:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:64:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:66:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:68:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:72:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:73:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:75:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:76:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:78:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:79:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:81:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:82:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:86:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:88:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:92:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:93:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:95:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:96:14:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:98:4:
+  - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:99:14:
+  - "::ConsultasController"
   sig/generated/steep_controller_runtime/doses_controller.rb:10:31:
   - singleton(::ERBDosesNew)
   sig/generated/steep_controller_runtime/doses_controller.rb:18:4:
@@ -1436,6 +1932,236 @@ receivers:
   - "::DosesController"
   sig/generated/steep_controller_runtime/doses_controller.rb:73:4:
   - "::DosesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:10:42:
+  - singleton(::ERBEspecialidadesEdit)
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:11:44:
+  - singleton(::ERBEspecialidadesIndex)
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:12:40:
+  - singleton(::ERBEspecialidadesNew)
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:20:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:21:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:23:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:24:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:26:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:28:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:30:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:34:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:35:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:37:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:38:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:40:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:42:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:44:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:48:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:49:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:51:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:52:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:54:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:55:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:59:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:61:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:65:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:66:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:68:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:69:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:71:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:75:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:76:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:78:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:79:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:81:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:82:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:84:4:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:10:44:
+  - singleton(::ERBEstabelecimentosEdit)
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:11:46:
+  - singleton(::ERBEstabelecimentosIndex)
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:12:42:
+  - singleton(::ERBEstabelecimentosNew)
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:20:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:21:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:23:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:24:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:26:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:28:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:30:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:34:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:35:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:37:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:38:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:40:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:42:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:44:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:48:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:49:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:51:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:52:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:54:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:55:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:59:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:61:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:65:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:66:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:68:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:69:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:71:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:75:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:76:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:78:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:79:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:81:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:82:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:84:4:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:10:40:
+  - singleton(::ERBMedicamentosEdit)
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:11:42:
+  - singleton(::ERBMedicamentosIndex)
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:12:38:
+  - singleton(::ERBMedicamentosNew)
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:20:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:21:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:23:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:24:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:26:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:28:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:30:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:34:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:35:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:37:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:38:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:40:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:41:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:43:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:45:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:47:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:51:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:52:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:54:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:55:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:57:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:58:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:62:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:64:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:68:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:69:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:71:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:72:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:74:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:75:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:77:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:81:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:82:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:84:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:85:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:87:4:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:88:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:90:4:
+  - "::MedicamentosController"
   sig/generated/steep_controller_runtime/perfil_ativo_controller.rb:10:4:
   - "::PerfilAtivoController"
   sig/generated/steep_controller_runtime/perfil_ativo_controller.rb:11:14:
@@ -1534,6 +2260,186 @@ receivers:
   - "::PessoasController"
   sig/generated/steep_controller_runtime/pessoas_controller.rb:97:4:
   - "::PessoasController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:10:39:
+  - singleton(::ERBPrescricoesEdit)
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:11:41:
+  - singleton(::ERBPrescricoesIndex)
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:12:37:
+  - singleton(::ERBPrescricoesNew)
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:20:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:21:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:23:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:24:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:26:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:28:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:30:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:34:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:35:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:37:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:38:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:40:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:41:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:43:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:45:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:47:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:51:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:52:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:54:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:55:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:57:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:58:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:60:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:61:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:65:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:67:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:71:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:72:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:74:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:75:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:77:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:78:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:80:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:84:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:85:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:87:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:88:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:90:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:91:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:93:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:94:14:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:96:4:
+  - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:10:41:
+  - singleton(::ERBProfissionaisEdit)
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:11:43:
+  - singleton(::ERBProfissionaisIndex)
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:12:39:
+  - singleton(::ERBProfissionaisNew)
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:20:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:21:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:23:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:24:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:26:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:28:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:30:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:34:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:35:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:37:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:38:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:40:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:41:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:43:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:45:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:47:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:51:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:52:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:54:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:55:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:57:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:58:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:60:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:61:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:65:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:67:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:71:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:72:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:74:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:75:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:77:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:78:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:80:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:84:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:85:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:87:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:88:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:90:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:91:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:93:4:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:94:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:96:4:
+  - "::ProfissionaisController"
   sig/generated/steep_controller_runtime/sugestoes_controller.rb:10:39:
   - singleton(::ERBSugestoesIndex)
   sig/generated/steep_controller_runtime/sugestoes_controller.rb:18:4:

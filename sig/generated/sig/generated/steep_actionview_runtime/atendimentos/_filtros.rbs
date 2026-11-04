@@ -1,0 +1,14 @@
+class ERBPartialAtendimentosFiltros
+  include ActionViewContext
+
+  def initialize: (filtrar_agendamentos: bool, filtros: untyped, filtros_ativos: bool, url: String) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader filtrar_agendamentos: bool
+  attr_reader filtros: untyped
+  attr_reader filtros_ativos: bool
+  attr_reader url: String
+end

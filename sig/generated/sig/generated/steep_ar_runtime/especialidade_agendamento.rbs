@@ -1,0 +1,11 @@
+module Especialidade_Agendamento
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Especialidade
+
+    def initialize: (singleton(::Agendamento) klass, Especialidade owner) -> void
+    def owner: () -> Especialidade
+    def build: (*untyped) -> ::Agendamento
+    def create: (*untyped) -> ::Agendamento
+    def create!: (*untyped) -> ::Agendamento
+  end
+end

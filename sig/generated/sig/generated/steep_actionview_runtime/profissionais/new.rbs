@@ -1,0 +1,10 @@
+class ERBProfissionaisNew
+  @profissional: Profissional
+
+  include ActionViewContext
+
+  def initialize: (profissional: Profissional) -> void
+  def render: (?"form"? target, *{ profissional: Profissional } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

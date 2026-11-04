@@ -1,0 +1,11 @@
+module Profissional_Consulta
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Profissional
+
+    def initialize: (singleton(::Consulta) klass, Profissional owner) -> void
+    def owner: () -> Profissional
+    def build: (*untyped) -> ::Consulta
+    def create: (*untyped) -> ::Consulta
+    def create!: (*untyped) -> ::Consulta
+  end
+end

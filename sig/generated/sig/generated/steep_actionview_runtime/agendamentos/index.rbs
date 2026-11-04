@@ -1,0 +1,11 @@
+class ERBAgendamentosIndex
+  @agendamentos: Agendamento::ActiveRecord_Relation | Consulta::ActiveRecord_Relation
+  @filtros_ativos: bool
+
+  include ActionViewContext
+
+  def initialize: (agendamentos: (Agendamento::ActiveRecord_Relation | ::Consulta::ActiveRecord_Relation), filtros: nil, filtros_ativos: bool) -> void
+  def render: (?"atendimentos/filtros"? target, *{ url: String, filtros: untyped, filtros_ativos: bool, filtrar_agendamentos: true } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

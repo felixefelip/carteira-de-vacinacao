@@ -1,0 +1,12 @@
+class ERBPartialConsultasFormAnexos
+  include ActionViewContext
+
+  def initialize: (consulta: (Consulta & Consulta::Validated)?, form: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader consulta: (Consulta & Consulta::Validated)?
+  attr_reader form: untyped
+end

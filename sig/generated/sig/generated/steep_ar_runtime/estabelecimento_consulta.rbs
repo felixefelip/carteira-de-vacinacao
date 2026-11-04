@@ -1,0 +1,11 @@
+module Estabelecimento_Consulta
+  class ActiveRecord_Associations_CollectionProxy
+    @owner: Estabelecimento
+
+    def initialize: (singleton(::Consulta) klass, Estabelecimento owner) -> void
+    def owner: () -> Estabelecimento
+    def build: (*untyped) -> ::Consulta
+    def create: (*untyped) -> ::Consulta
+    def create!: (*untyped) -> ::Consulta
+  end
+end

@@ -1,0 +1,15 @@
+class ERBPartialProfissionaisForm
+  include ActionViewContext
+
+  def initialize: (profissional: (Profissional & Profissional::Validated | Profissional)) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader profissional: (Profissional & Profissional::Validated | Profissional)
+
+  class AfterInitialize
+    attr_reader profissional: (Profissional & Profissional::Validated) | Profissional
+  end
+end

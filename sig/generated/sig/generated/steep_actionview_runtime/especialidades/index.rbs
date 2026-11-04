@@ -1,0 +1,10 @@
+class ERBEspecialidadesIndex
+  @especialidades: Especialidade::ActiveRecord_Relation
+
+  include ActionViewContext
+
+  def initialize: (especialidades: Especialidade::ActiveRecord_Relation) -> void
+  def render: (?"cadastros_clinicos/navegacao"? target, *untyped rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

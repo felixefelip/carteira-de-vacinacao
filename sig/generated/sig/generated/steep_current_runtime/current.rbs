@@ -22,7 +22,7 @@ class Current
   def self.user: () -> (User & User::Validated)?
   def self.user=: ((User & User::Validated)? value) -> (User & User::Validated)
   def self.pessoa: () -> (Pessoa & Pessoa::Validated)?
-  def self.pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)
+  def self.pessoa=: ((Pessoa & Pessoa::Validated)? value) -> (Pessoa & Pessoa::Validated)?
   def self.caderneta: () -> (Caderneta & Caderneta::Validated)?
   def self.caderneta=: ((Caderneta & ::Caderneta::Validated | Caderneta & Caderneta::Validated)? value) -> (Caderneta & Caderneta::Validated)?
   def self.__rbs_infer_instance: () -> Current

@@ -1,0 +1,15 @@
+class ERBPartialEspecialidadesForm
+  include ActionViewContext
+
+  def initialize: (especialidade: (Especialidade & Especialidade::Validated | Especialidade)) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader especialidade: (Especialidade & Especialidade::Validated | Especialidade)
+
+  class AfterInitialize
+    attr_reader especialidade: (Especialidade & Especialidade::Validated) | Especialidade
+  end
+end

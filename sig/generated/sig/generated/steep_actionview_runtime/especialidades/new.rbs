@@ -1,0 +1,10 @@
+class ERBEspecialidadesNew
+  @especialidade: Especialidade
+
+  include ActionViewContext
+
+  def initialize: (especialidade: Especialidade) -> void
+  def render: (?"form"? target, *{ especialidade: Especialidade } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

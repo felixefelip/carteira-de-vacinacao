@@ -1,0 +1,9 @@
+class ERBMedicamentosIndex
+  @medicamentos: Medicamento::ActiveRecord_Relation
+
+  include ActionViewContext
+
+  def initialize: (medicamentos: Medicamento::ActiveRecord_Relation) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

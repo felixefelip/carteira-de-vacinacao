@@ -1,0 +1,4 @@
+class Profissional
+  def agendamentos: () -> Profissional_Agendamento::ActiveRecord_Associations_CollectionProxy
+  def consultas: () -> Profissional_Consulta::ActiveRecord_Associations_CollectionProxy
+end

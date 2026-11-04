@@ -1,0 +1,4 @@
+class Especialidade
+  def agendamentos: () -> Especialidade_Agendamento::ActiveRecord_Associations_CollectionProxy
+  def consultas: () -> Especialidade_Consulta::ActiveRecord_Associations_CollectionProxy
+end

@@ -1,0 +1,10 @@
+class ERBEstabelecimentosEdit
+  @estabelecimento: (Estabelecimento & Estabelecimento::Validated)
+
+  include ActionViewContext
+
+  def initialize: (estabelecimento: Estabelecimento & ::Estabelecimento::Validated) -> void
+  def render: (?"form"? target, *{ estabelecimento: Estabelecimento & Estabelecimento::Validated } rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+end

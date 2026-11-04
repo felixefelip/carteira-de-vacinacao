@@ -1,0 +1,4 @@
+class Agendamento
+  def save: (**untyped) -> true
+  def run_before_validation_callbacks: () -> Especialidade?
+end

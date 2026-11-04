@@ -1,0 +1,12 @@
+class ERBPartialConsultasForm
+  include ActionViewContext
+
+  def initialize: (consulta: (Consulta & Consulta::Validated)?) -> void
+  def render: (?("cadastros_clinicos/campos_de_atendimento" | "form_anexos")? target, *({ form: ActionView::Helpers::FormBuilder } | { form: ActionView::Helpers::FormBuilder, consulta: (Consulta & Consulta::Validated)? }) rest) -> nil
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader consulta: (Consulta & Consulta::Validated)?
+end

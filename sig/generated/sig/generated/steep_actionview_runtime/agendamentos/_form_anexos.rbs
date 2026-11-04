@@ -1,0 +1,12 @@
+class ERBPartialAgendamentosFormAnexos
+  include ActionViewContext
+
+  def initialize: (agendamento: (Agendamento & Agendamento::Validated)?, form: untyped) -> void
+  def params: () -> ActionController::Parameters
+  def __rbs_infer__body: () -> nil
+
+  private
+
+  attr_reader agendamento: (Agendamento & Agendamento::Validated)?
+  attr_reader form: untyped
+end

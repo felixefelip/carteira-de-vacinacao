@@ -1,5 +1,5 @@
 class Prescricao < ApplicationRecord
-  def situacao_em: (untyped data) -> (:em_uso | :planejada | :encerrada)
+  def situacao_em: (Date data) -> (:em_uso | :planejada | :encerrada)
 
   private
 
