@@ -86,6 +86,9 @@ methods:
       ivars:
         "@coluna_data": ":realizada_em"
         "@filtros": nil
+  Module#include:
+    "(singleton(::Current::GeneratedAttributeMethods)) on singleton(::Current) with {@__rbs_infer_instance: nil}": self
+    "(singleton(::Current::GeneratedAttributeMethods)) with {@__rbs_infer_instance: nil}": self
   Thread::Mutex#synchronize:
     "() &-> bool": bool
 declarations:
