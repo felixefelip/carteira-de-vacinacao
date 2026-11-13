@@ -1393,7 +1393,8 @@ receivers:
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:125:
   - singleton(::ERBPartialSugestoesRecomendacaoVacina)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:58:
-  - untyped
+  - "(::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+    | nil)"
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:23:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:7:2:

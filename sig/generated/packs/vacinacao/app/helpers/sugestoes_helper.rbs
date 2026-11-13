@@ -1,3 +1,3 @@
 module SugestoesHelper
-  def idade_recomendada_para: (untyped recomendacao_vacina) -> String?
+  def idade_recomendada_para: (Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated recomendacao_vacina) -> String?
 end
