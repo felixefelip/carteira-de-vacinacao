@@ -22,6 +22,37 @@ methods:
   ActiveSupport::Inflector::Inflections.instance:
     "(:en)": "::ActiveSupport::Inflector::Inflections"
     "(:en) on singleton(::ActiveSupport::Inflector::Inflections)": "::ActiveSupport::Inflector::Inflections"
+    ? "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__:
+      ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}"
+    : "::ActiveSupport::Inflector::Inflections"
+    "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}": "::ActiveSupport::Inflector::Inflections"
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}": "::ActiveSupport::Inflector::Inflections"
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}": "::ActiveSupport::Inflector::Inflections"
+  ActiveSupport::Inflector::Inflections.new:
+    "()":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
+    "() with {@__instance__: ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
+    "() with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      class: "::ActiveSupport::Inflector::Inflections"
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
   ActiveSupport::Inflector::Inflections::Uncountables.new:
     "()":
       class: "::ActiveSupport::Inflector::Inflections::Uncountables"
@@ -34,10 +65,14 @@ methods:
       ivars:
         "@backend": "{  }"
         "@default_proc": nil
+  Concurrent::Collection::NonConcurrentMapBackend#[]:
+    "(:en) with {@backend: {  }, @default_proc: nil}": nil
   Concurrent::Collection::NonConcurrentMapBackend#[]=:
     "(::Symbol, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped]": "::ActiveSupport::Inflector::Inflections"
     "(:en, ::ActiveSupport::Inflector::Inflections)": "::ActiveSupport::Inflector::Inflections"
     "(:en, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped]": "::ActiveSupport::Inflector::Inflections"
+    "(:en, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped] with {@backend: {  }, @default_proc: nil}": "::ActiveSupport::Inflector::Inflections"
+    "(:en, ::ActiveSupport::Inflector::Inflections) with {@backend: {  }, @default_proc: nil}": "::ActiveSupport::Inflector::Inflections"
   Concurrent::Collection::NonConcurrentMapBackend#initialize:
     "(nil) with {@backend: nil, @default_proc: nil, @write_lock: nil}": nil
   Concurrent::Map#each_pair:
@@ -358,6 +393,8 @@ receivers:
   - singleton(::Agendamento)
   packs/atendimento_clinico/app/models/agendamento.rb:56:11:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/agendamento/anexavel.rb:17:13:
+  - "::ActiveStorage::Attached::Many"
   packs/atendimento_clinico/app/models/agendamento/anexavel.rb:17:28:
   - "(::Agendamento & ::Agendamento::Anexavel)"
   packs/atendimento_clinico/app/models/agendamento/anexavel.rb:22:15:
@@ -376,6 +413,8 @@ receivers:
   - "::ActiveModel::Errors"
   packs/atendimento_clinico/app/models/consulta.rb:53:11:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/consulta/anexavel.rb:17:13:
+  - "::ActiveStorage::Attached::Many"
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:17:28:
   - "(::Consulta & ::Consulta::Anexavel)"
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:22:15:
@@ -387,6 +426,8 @@ receivers:
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:8:4:
   - singleton(::Consulta::Anexavel)
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:11:4:
+  - "::FiltroDeAtendimentos"
+  packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:12:4:
   - "::FiltroDeAtendimentos"
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:13:4:
   - "::FiltroDeAtendimentos"
@@ -410,6 +451,8 @@ receivers:
   - "::FiltroDeAtendimentos"
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:25:9:
   - "::FiltroDeAtendimentos"
+  packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:29:16:
+  - "[:profissional_id, :especialidade_id, :estabelecimento_id]"
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:30:11:
   - "::FiltroDeAtendimentos"
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:30:21:
@@ -786,7 +829,13 @@ receivers:
   - untyped
   packs/vacinacao/app/models/caderneta/atualizar.rb:16:16:
   - untyped
+  packs/vacinacao/app/models/caderneta/atualizar.rb:16:37:
+  - untyped
   packs/vacinacao/app/models/caderneta/atualizar.rb:17:28:
+  - untyped
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:16:24:
+  - untyped
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:19:30:
   - untyped
   packs/vacinacao/app/models/caderneta/cadastrar.rb:20:28:
   - untyped
@@ -801,6 +850,8 @@ receivers:
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:45:30:
   - untyped
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:75:63:
+  - untyped
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:90:69:
   - untyped
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:91:26:
   - untyped
@@ -872,6 +923,8 @@ receivers:
   - singleton(::ERBPartialCadernetaDoses)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:14:40:
   - "::Hash[untyped, untyped]"
+  sig/generated/steep_actionview_runtime/caderneta/index.rb:16:31:
+  - untyped
   sig/generated/steep_actionview_runtime/caderneta/index.rb:16:72:
   - singleton(::ERBPartialCadernetaDoses)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:22:33:
@@ -1248,6 +1301,8 @@ receivers:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:125:
   - singleton(::ERBPartialSugestoesRecomendacaoVacina)
+  sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:58:
+  - untyped
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:23:33:
   - singleton(::ActionController::Parameters)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:7:2:
@@ -1284,6 +1339,8 @@ receivers:
   - singleton(::ERBVacinasShow)
   sig/generated/steep_activejob_runtime/active_job_base.rb:14:10:
   - singleton(::ActiveJob::Base)
+  sig/generated/steep_activesupport_runtime/class_attribute.rb:51:10:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/class_attribute.rb:53:33:
   - untyped
   sig/generated/steep_activesupport_runtime/class_attribute.rb:53:8:
@@ -1356,6 +1413,8 @@ receivers:
   - singleton(::ActiveSupport::Delegation)
   sig/generated/steep_activesupport_runtime/delegation.rb:93:19:
   - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:95:16:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/delegation.rb:97:23:
   - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:101:30:
@@ -1368,6 +1427,8 @@ receivers:
   - singleton(::ActiveSupport::Inflector::Inflections::Uncountables)
   sig/generated/steep_activesupport_runtime/inflector.rb:113:8:
   - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:119:59:
+  - "::Array[::String]"
   sig/generated/steep_activesupport_runtime/inflector.rb:120:10:
   - "::ActiveSupport::Inflector::Inflections"
   sig/generated/steep_activesupport_runtime/inflector.rb:122:8:
@@ -1458,10 +1519,14 @@ receivers:
   - singleton(::ActiveSupport::Inflector::Inflections)
   sig/generated/steep_activesupport_runtime/inflector.rb:321:30:
   - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:321:50:
+  - untyped
   sig/generated/steep_activesupport_runtime/inflector.rb:321:6:
   - "(::Object & ::ActiveSupport::Inflector)"
   sig/generated/steep_activesupport_runtime/inflector.rb:326:30:
   - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:326:50:
+  - untyped
   sig/generated/steep_activesupport_runtime/inflector.rb:326:6:
   - "(::Object & ::ActiveSupport::Inflector)"
   sig/generated/steep_activesupport_runtime/inflector.rb:335:14:
@@ -1606,11 +1671,15 @@ receivers:
   - singleton(::ActiveSupport::Inflector::Inflections)
   sig/generated/steep_activesupport_runtime/inflector.rb:99:22:
   - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:99:31:
+  - untyped
   sig/generated/steep_ar_runtime/active_support/concern.rb:18:11:
   - untyped
   sig/generated/steep_ar_runtime/active_support/concern.rb:18:56:
   - singleton(::Array)
   sig/generated/steep_ar_runtime/active_support/concern.rb:29:52:
+  - untyped
+  sig/generated/steep_ar_runtime/active_support/concern.rb:34:23:
   - untyped
   sig/generated/steep_ar_runtime/active_support/concern.rb:34:41:
   - untyped
@@ -1639,6 +1708,8 @@ receivers:
   sig/generated/steep_ar_runtime/caderneta_dose.rb:17:11:
   - untyped
   sig/generated/steep_ar_runtime/caderneta_dose.rb:23:11:
+  - untyped
+  sig/generated/steep_ar_runtime/caderneta_recomendacao_vacina/generated_relation_methods.rb:8:36:
   - untyped
   sig/generated/steep_ar_runtime/consulta.rb:8:4:
   - "::Consulta"
@@ -2940,26 +3011,154 @@ receivers:
   sig/generated/steep_ruby_runtime/object.rb:23:87:
   - "::Array[(singleton(::ActiveSupport::Concern) | singleton(::ActiveSupport::Inflector)
     | singleton(::Concurrent::Utility::EngineDetector) | ::Module)]"
+  sig/generated/steep_ruby_runtime/object.rb:29:12:
+  - "::Array[(singleton(::ActiveSupport::Concern) | singleton(::ActiveSupport::Inflector)
+    | singleton(::Concurrent::Utility::EngineDetector) | ::Module)]"
   sig/generated/steep_ruby_runtime/object.rb:30:6:
   - "::Object"
   sig/generated/steep_ruby_runtime/thread_mutex.rb:11:4:
   - "::Thread::Mutex"
 exits:
+  ActiveSupport::Inflector#inflections:
+    ? "(:en) &-> untyped with {::ActiveSupport::Inflector::Inflections{@__instance__:
+      ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    "(:en) &-> untyped with {::ActiveSupport::Inflector::Inflections{@__instance__: ::Concurrent::Map[untyped, untyped]{}}}":
+      ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) &/home/felipefelix/workspaces/carteira-de-vacinacao/sig/generated/steep_activesupport_runtime/inflector.rb:12450
+      with {::ActiveSupport::Inflector::Inflections{@__instance__: ::Concurrent::Map[untyped,
+      untyped]{@backend: {  }, @default_proc: nil}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) &/home/felipefelix/workspaces/carteira-de-vacinacao/sig/generated/steep_activesupport_runtime/inflector.rb:12450
+      with {::ActiveSupport::Inflector::Inflections{@__instance__: ::Concurrent::Map[untyped,
+      untyped]{}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) on singleton(::ActiveSupport::Inflector) &-> untyped with {::ActiveSupport::Inflector::Inflections{@__instance__:
+      ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) on singleton(::ActiveSupport::Inflector) &-> untyped with {::ActiveSupport::Inflector::Inflections{@__instance__:
+      ::Concurrent::Map[untyped, untyped]{}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) on singleton(::ActiveSupport::Inflector) &/home/felipefelix/workspaces/carteira-de-vacinacao/sig/generated/steep_activesupport_runtime/inflector.rb:12450
+      with {::ActiveSupport::Inflector::Inflections{@__instance__: ::Concurrent::Map[untyped,
+      untyped]{@backend: {  }, @default_proc: nil}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
+    ? "(:en) on singleton(::ActiveSupport::Inflector) &/home/felipefelix/workspaces/carteira-de-vacinacao/sig/generated/steep_activesupport_runtime/inflector.rb:12450
+      with {::ActiveSupport::Inflector::Inflections{@__instance__: ::Concurrent::Map[untyped,
+      untyped]{}}}"
+    : ivars: {}
+      classes:
+        "::ActiveSupport::Inflector::Inflections": {}
   ActiveSupport::Inflector::Inflections#define_acronym_regex_patterns:
+    ? "() with {@acronym_regex: nil, @acronyms_camelize_regex: nil, @acronyms_underscore_regex:
+      nil, @uncountables: ::ActiveSupport::Inflector::Inflections::Uncountables[untyped]{@members:
+      [], @pattern: nil}}"
+    : ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
     "() with {@acronym_regex: nil, @acronyms_camelize_regex: nil, @acronyms_underscore_regex: nil}":
       ivars: {}
+    "() with {@uncountables: ::ActiveSupport::Inflector::Inflections::Uncountables[untyped]{@members: [], @pattern: nil}}":
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
+  ActiveSupport::Inflector::Inflections.instance:
+    ? "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__:
+      ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}"
+    : ivars: {}
+    "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      ivars: {}
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}":
+      ivars: {}
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      ivars: {}
+  ActiveSupport::Inflector::Inflections.instance_or_fallback:
+    ? "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__:
+      ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}"
+    : ivars: {}
+    "(:en) on singleton(::ActiveSupport::Inflector::Inflections) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      ivars: {}
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}":
+      ivars: {}
+    "(:en) with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      ivars: {}
+  ActiveSupport::Inflector::Inflections.new:
+    "() with {@__instance__: ::Concurrent::Map[untyped, untyped]{@backend: {  }, @default_proc: nil}}":
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
+    "() with {@__instance__: ::Concurrent::Map[untyped, untyped]{}}":
+      ivars:
+        "@uncountables":
+          class: "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+          ivars:
+            "@members": "[]"
+            "@pattern": nil
+  Concurrent::Collection::MriMapBackend#[]=:
+    "(:en, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped] with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{ :en => ::ActiveSupport::Inflector::Inflections }"
+        "@default_proc": nil
+    "(:en, ::ActiveSupport::Inflector::Inflections) with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{ :en => ::ActiveSupport::Inflector::Inflections }"
+        "@default_proc": nil
   Concurrent::Collection::MriMapBackend.new:
     "()":
       ivars:
         "@default_proc": nil
         "@backend": "{  }"
       keeps_self: true
+  Concurrent::Collection::NonConcurrentMapBackend#[]:
+    "(:en) with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{  }"
+        "@default_proc": nil
+    "(untyped) with {@backend: {  }, @default_proc: nil}":
+      ivars: {}
+  Concurrent::Collection::NonConcurrentMapBackend#[]=:
+    "(:en, ::ActiveSupport::Inflector::Inflections) on ::Concurrent::Map[untyped, untyped] with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{ :en => ::ActiveSupport::Inflector::Inflections }"
+        "@default_proc": nil
+    "(:en, ::ActiveSupport::Inflector::Inflections) with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{ :en => ::ActiveSupport::Inflector::Inflections }"
+        "@default_proc": nil
   Concurrent::Collection::NonConcurrentMapBackend#initialize:
     "(nil) with {@backend: nil, @default_proc: nil, @write_lock: nil}":
       ivars:
         "@default_proc": nil
         "@backend": "{  }"
       keeps_self: true
+  Concurrent::Collection::NonConcurrentMapBackend#key?:
+    "(untyped) with {@backend: {  }, @default_proc: nil}":
+      ivars:
+        "@backend": "{  }"
+        "@default_proc": nil
   Concurrent::Collection::NonConcurrentMapBackend#set_backend:
     "(nil) with {@backend: nil, @default_proc: nil, @write_lock: nil}":
       ivars:
