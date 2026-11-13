@@ -71,6 +71,11 @@ sig/generated/steep_ar_runtime/active_support/concern.rb:
       class_methods: singleton(ActionText::Attribute)
       included: singleton(Agendamento::Anexavel) | singleton(Consulta::Anexavel) |
         singleton(Pessoa::Avatar) | singleton(Pessoa::Idade)
+sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:
+  modules:
+  - anchor: NonConcurrentMapBackend
+    defs:
+      initialize_copy: Concurrent::Map
 sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:
   modules:
   - anchor: EngineDetector
