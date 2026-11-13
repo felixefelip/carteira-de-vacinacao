@@ -131,6 +131,7 @@ methods:
 declarations:
   ActiveSupport::Inflector::Inflections#clear: "(::Regexp | ::Array[untyped] | nil
     | ::ActiveSupport::Inflector::Inflections::Uncountables[untyped])"
+  Current.pessoa=: "(::Pessoa & ::Pessoa::Validated)"
   Current.user=: "(::User & ::User::Validated)"
 receivers:
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:10:6:
@@ -552,7 +553,7 @@ receivers:
   packs/identidade/app/controllers/pessoas_controller.rb:15:41:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:17:15:
-  - untyped
+  - "::Pessoa"
   packs/identidade/app/controllers/pessoas_controller.rb:18:13:
   - untyped
   packs/identidade/app/controllers/pessoas_controller.rb:19:6:
@@ -560,7 +561,7 @@ receivers:
   packs/identidade/app/controllers/pessoas_controller.rb:21:6:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:26:15:
-  - untyped
+  - "(::Pessoa & ::Pessoa::Validated)"
   packs/identidade/app/controllers/pessoas_controller.rb:26:22:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:27:6:
@@ -624,11 +625,11 @@ receivers:
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:23:
   - singleton(::Current)
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:33:
-  - "((::Caderneta & ::Caderneta::Validated) | nil)"
+  - "(::Caderneta & ::Caderneta::Validated)"
   packs/vacinacao/app/controllers/caderneta_controller.rb:7:26:
   - "::CadernetaController"
   packs/vacinacao/app/controllers/caderneta_controller.rb:8:34:
-  - untyped
+  - "(::Vacina & ::Vacina::Validated)"
   packs/vacinacao/app/controllers/doses_controller.rb:14:17:
   - singleton(::Dose)
   packs/vacinacao/app/controllers/doses_controller.rb:14:21:
@@ -658,7 +659,7 @@ receivers:
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:36:
   - singleton(::Current)
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:46:
-  - "((::Caderneta & ::Caderneta::Validated) | nil)"
+  - "(::Caderneta & ::Caderneta::Validated)"
   packs/vacinacao/app/controllers/vacinas_controller.rb:11:21:
   - singleton(::Vacina)
   packs/vacinacao/app/controllers/vacinas_controller.rb:17:21:
@@ -2010,7 +2011,7 @@ receivers:
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:141:57:
   - "^(*untyped) -> untyped"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:150:8:
-  - "::Concurrent::Collection::NonConcurrentMapBackend"
+  - "::Concurrent::Map"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:161:41:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:167:19:
