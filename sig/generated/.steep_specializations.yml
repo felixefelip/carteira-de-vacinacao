@@ -98,8 +98,12 @@ declarations:
 receivers:
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:10:6:
   - "::FiltroDeAtendimentos"
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:14:19:
+  - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:14:42:
   - "::Agendamento::ActiveRecord_Relation"
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:20:19:
+  - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:20:42:
   - "::Agendamento::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:20:48:
@@ -118,22 +122,32 @@ receivers:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:33:6:
   - "::AgendamentosController"
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:40:19:
+  - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:40:47:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:46:32:
   - untyped
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:56:4:
   - "::AgendamentosController"
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:66:11:
+  - "::ActionController::Parameters"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:66:4:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:66:55:
   - singleton(::ActionController::Parameters)
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:6:15:
   - "::AgendamentosController"
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:7:36:
+  - "{  }"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:8:41:
   - singleton(::FiltroDeAtendimentos)
+  packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:9:6:
+  - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:10:6:
   - "::FiltroDeAtendimentos"
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:18:16:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:18:36:
   - "::Consulta::ActiveRecord_Relation"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:19:33:
@@ -146,8 +160,12 @@ receivers:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:26:31:
   - "(::ActionController::Parameters & ::ActionController::Parameters::Permitted)"
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:27:16:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:27:36:
   - "::Consulta::ActiveRecord_Relation"
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:28:28:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:30:17:
   - untyped
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:31:6:
@@ -162,26 +180,36 @@ receivers:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:41:6:
   - "::ConsultasController"
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:48:16:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:48:41:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:54:32:
   - untyped
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:58:41:
   - untyped
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:62:18:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:62:46:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:63:11:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:6:15:
   - "::ConsultasController"
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:7:36:
+  - "{  }"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:86:4:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:8:38:
   - singleton(::FiltroDeAtendimentos)
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:95:11:
+  - "::ActionController::Parameters"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:95:4:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:95:55:
   - singleton(::ActionController::Parameters)
+  packs/atendimento_clinico/app/controllers/consultas_controller.rb:9:6:
+  - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:15:35:
   - singleton(::Especialidade)
   packs/atendimento_clinico/app/controllers/especialidades_controller.rb:15:39:
@@ -326,24 +354,36 @@ receivers:
   - "::ProfissionaisController"
   packs/atendimento_clinico/app/controllers/profissionais_controller.rb:44:4:
   - "::ProfissionaisController"
+  packs/atendimento_clinico/app/models/agendamento.rb:21:2:
+  - singleton(::Agendamento)
   packs/atendimento_clinico/app/models/agendamento.rb:56:11:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/agendamento/anexavel.rb:17:28:
+  - "(::Agendamento & ::Agendamento::Anexavel)"
   packs/atendimento_clinico/app/models/agendamento/anexavel.rb:22:15:
   - "::ActiveModel::Errors"
   packs/atendimento_clinico/app/models/agendamento/anexavel.rb:27:13:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/agendamento/anexavel.rb:3:4:
+  - singleton(::Agendamento::Anexavel)
   packs/atendimento_clinico/app/models/agendamento/anexavel.rb:8:4:
   - singleton(::Agendamento::Anexavel)
+  packs/atendimento_clinico/app/models/consulta.rb:19:2:
+  - singleton(::Consulta)
   packs/atendimento_clinico/app/models/consulta.rb:40:36:
   - "::Consulta"
   packs/atendimento_clinico/app/models/consulta.rb:42:11:
   - "::ActiveModel::Errors"
   packs/atendimento_clinico/app/models/consulta.rb:53:11:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/consulta/anexavel.rb:17:28:
+  - "(::Consulta & ::Consulta::Anexavel)"
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:22:15:
   - "::ActiveModel::Errors"
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:27:13:
   - "::ActiveModel::Errors"
+  packs/atendimento_clinico/app/models/consulta/anexavel.rb:3:4:
+  - singleton(::Consulta::Anexavel)
   packs/atendimento_clinico/app/models/consulta/anexavel.rb:8:4:
   - singleton(::Consulta::Anexavel)
   packs/atendimento_clinico/app/models/filtro_de_atendimentos.rb:11:4:
@@ -517,6 +557,8 @@ receivers:
   packs/identidade/app/models/pessoa/avatar.rb:23:13:
   - untyped
   packs/identidade/app/models/pessoa/avatar.rb:26:13:
+  - untyped
+  packs/identidade/app/models/pessoa/idade.rb:43:68:
   - untyped
   packs/vacinacao/app/controllers/caderneta_controller.rb:10:44:
   - untyped
@@ -768,8 +810,12 @@ receivers:
   - untyped
   packs/vacinacao/app/models/vacina.rb:28:23:
   - untyped
+  sig/generated/steep_actiontext_runtime/attribute.rb:15:4:
+  - singleton(::ActionText::Attribute)
   sig/generated/steep_actiontext_runtime/attribute.rb:17:4:
   - singleton(::ActionText::Attribute)
+  sig/generated/steep_actiontext_runtime/attribute.rb:64:2:
+  - singleton(::ActiveRecord::Base)
   sig/generated/steep_actionview_runtime/agendamentos/_form.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/agendamentos/_form.rb:16:104:
@@ -778,42 +824,64 @@ receivers:
   - singleton(::ERBPartialAgendamentosFormAnexos)
   sig/generated/steep_actionview_runtime/agendamentos/_form.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/_form.rb:7:2:
+  - singleton(::ERBPartialAgendamentosForm)
   sig/generated/steep_actionview_runtime/agendamentos/_form_anexos.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/_form_anexos.rb:7:2:
+  - singleton(::ERBPartialAgendamentosFormAnexos)
   sig/generated/steep_actionview_runtime/agendamentos/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/agendamentos/edit.rb:16:48:
   - singleton(::ERBPartialAgendamentosForm)
   sig/generated/steep_actionview_runtime/agendamentos/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/edit.rb:7:2:
+  - singleton(::ERBAgendamentosEdit)
   sig/generated/steep_actionview_runtime/agendamentos/index.rb:16:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/agendamentos/index.rb:18:67:
   - singleton(::ERBPartialAtendimentosFiltros)
   sig/generated/steep_actionview_runtime/agendamentos/index.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/index.rb:7:2:
+  - singleton(::ERBAgendamentosIndex)
   sig/generated/steep_actionview_runtime/agendamentos/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/agendamentos/new.rb:16:48:
   - singleton(::ERBPartialAgendamentosForm)
   sig/generated/steep_actionview_runtime/agendamentos/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/agendamentos/new.rb:7:2:
+  - singleton(::ERBAgendamentosNew)
   sig/generated/steep_actionview_runtime/atendimentos/_filtros.rb:17:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/atendimentos/_filtros.rb:7:2:
+  - singleton(::ERBPartialAtendimentosFiltros)
   sig/generated/steep_actionview_runtime/cadastros_clinicos/_campos_de_atendimento.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/cadastros_clinicos/_campos_de_atendimento.rb:7:2:
+  - singleton(::ERBPartialCadastrosClinicosCamposDeAtendimento)
   sig/generated/steep_actionview_runtime/cadastros_clinicos/_navegacao.rb:10:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/cadastros_clinicos/_navegacao.rb:7:2:
+  - singleton(::ERBPartialCadastrosClinicosNavegacao)
   sig/generated/steep_actionview_runtime/caderneta/_doses.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/caderneta/_doses.rb:7:2:
+  - singleton(::ERBPartialCadernetaDoses)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/caderneta/index.rb:16:72:
   - singleton(::ERBPartialCadernetaDoses)
   sig/generated/steep_actionview_runtime/caderneta/index.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/caderneta/index.rb:7:2:
+  - singleton(::ERBCadernetaIndex)
   sig/generated/steep_actionview_runtime/caderneta/show.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/caderneta/show.rb:7:2:
+  - singleton(::ERBCadernetaShow)
   sig/generated/steep_actionview_runtime/consultas/_form.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/consultas/_form.rb:16:104:
@@ -822,32 +890,44 @@ receivers:
   - singleton(::ERBPartialConsultasFormAnexos)
   sig/generated/steep_actionview_runtime/consultas/_form.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/_form.rb:7:2:
+  - singleton(::ERBPartialConsultasForm)
   sig/generated/steep_actionview_runtime/consultas/_form_anexos.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/_form_anexos.rb:7:2:
+  - singleton(::ERBPartialConsultasFormAnexos)
   sig/generated/steep_actionview_runtime/consultas/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/consultas/edit.rb:16:45:
   - singleton(::ERBPartialConsultasForm)
   sig/generated/steep_actionview_runtime/consultas/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/edit.rb:7:2:
+  - singleton(::ERBConsultasEdit)
   sig/generated/steep_actionview_runtime/consultas/index.rb:16:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/consultas/index.rb:18:67:
   - singleton(::ERBPartialAtendimentosFiltros)
   sig/generated/steep_actionview_runtime/consultas/index.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/index.rb:7:2:
+  - singleton(::ERBConsultasIndex)
   sig/generated/steep_actionview_runtime/consultas/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/consultas/new.rb:16:45:
   - singleton(::ERBPartialConsultasForm)
   sig/generated/steep_actionview_runtime/consultas/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/new.rb:7:2:
+  - singleton(::ERBConsultasNew)
   sig/generated/steep_actionview_runtime/consultas/show.rb:15:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/consultas/show.rb:17:63:
   - singleton(::ERBPartialPrescricoesTabela)
   sig/generated/steep_actionview_runtime/consultas/show.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/consultas/show.rb:7:2:
+  - singleton(::ERBConsultasShow)
   sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:12:81:
@@ -856,16 +936,28 @@ receivers:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:19:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/confirmations/new.rb:7:2:
+  - singleton(::ERBDeviseConfirmationsNew)
   sig/generated/steep_actionview_runtime/devise/mailer/confirmation_instructions.rb:16:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/mailer/confirmation_instructions.rb:7:2:
+  - singleton(::ERBDeviseMailerConfirmationInstructions)
   sig/generated/steep_actionview_runtime/devise/mailer/email_changed.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/mailer/email_changed.rb:7:2:
+  - singleton(::ERBDeviseMailerEmailChanged)
   sig/generated/steep_actionview_runtime/devise/mailer/password_change.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/mailer/password_change.rb:7:2:
+  - singleton(::ERBDeviseMailerPasswordChange)
   sig/generated/steep_actionview_runtime/devise/mailer/reset_password_instructions.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/mailer/reset_password_instructions.rb:7:2:
+  - singleton(::ERBDeviseMailerResetPasswordInstructions)
   sig/generated/steep_actionview_runtime/devise/mailer/unlock_instructions.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/mailer/unlock_instructions.rb:7:2:
+  - singleton(::ERBDeviseMailerUnlockInstructions)
   sig/generated/steep_actionview_runtime/devise/passwords/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/passwords/edit.rb:16:81:
@@ -874,6 +966,8 @@ receivers:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/passwords/edit.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/passwords/edit.rb:7:2:
+  - singleton(::ERBDevisePasswordsEdit)
   sig/generated/steep_actionview_runtime/devise/passwords/new.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/passwords/new.rb:12:81:
@@ -882,12 +976,16 @@ receivers:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/passwords/new.rb:19:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/passwords/new.rb:7:2:
+  - singleton(::ERBDevisePasswordsNew)
   sig/generated/steep_actionview_runtime/devise/registrations/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/registrations/edit.rb:16:81:
   - singleton(::ERBPartialDeviseSharedErrorMessages)
   sig/generated/steep_actionview_runtime/devise/registrations/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/registrations/edit.rb:7:2:
+  - singleton(::ERBDeviseRegistrationsEdit)
   sig/generated/steep_actionview_runtime/devise/registrations/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/registrations/new.rb:16:81:
@@ -896,16 +994,24 @@ receivers:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/registrations/new.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/registrations/new.rb:7:2:
+  - singleton(::ERBDeviseRegistrationsNew)
   sig/generated/steep_actionview_runtime/devise/sessions/new.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/sessions/new.rb:12:64:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/sessions/new.rb:18:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/sessions/new.rb:7:2:
+  - singleton(::ERBDeviseSessionsNew)
   sig/generated/steep_actionview_runtime/devise/shared/_error_messages.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/shared/_error_messages.rb:7:2:
+  - singleton(::ERBPartialDeviseSharedErrorMessages)
   sig/generated/steep_actionview_runtime/devise/shared/_links.rb:10:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/shared/_links.rb:7:2:
+  - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/unlocks/new.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/devise/unlocks/new.rb:12:81:
@@ -914,138 +1020,208 @@ receivers:
   - singleton(::ERBPartialDeviseSharedLinks)
   sig/generated/steep_actionview_runtime/devise/unlocks/new.rb:19:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/devise/unlocks/new.rb:7:2:
+  - singleton(::ERBDeviseUnlocksNew)
   sig/generated/steep_actionview_runtime/doses/_form.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/doses/_form.rb:7:2:
+  - singleton(::ERBPartialDosesForm)
   sig/generated/steep_actionview_runtime/doses/new.rb:16:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/doses/new.rb:18:41:
   - singleton(::ERBPartialDosesForm)
   sig/generated/steep_actionview_runtime/doses/new.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/doses/new.rb:7:2:
+  - singleton(::ERBDosesNew)
+  sig/generated/steep_actionview_runtime/doses/new.rb:8:2:
+  - singleton(::ERBDosesNew)
   sig/generated/steep_actionview_runtime/especialidades/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/_form.rb:7:2:
+  - singleton(::ERBPartialEspecialidadesForm)
   sig/generated/steep_actionview_runtime/especialidades/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/especialidades/edit.rb:16:50:
   - singleton(::ERBPartialEspecialidadesForm)
   sig/generated/steep_actionview_runtime/especialidades/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/edit.rb:7:2:
+  - singleton(::ERBEspecialidadesEdit)
   sig/generated/steep_actionview_runtime/especialidades/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/especialidades/index.rb:16:82:
   - singleton(::ERBPartialCadastrosClinicosNavegacao)
   sig/generated/steep_actionview_runtime/especialidades/index.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/index.rb:7:2:
+  - singleton(::ERBEspecialidadesIndex)
   sig/generated/steep_actionview_runtime/especialidades/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/especialidades/new.rb:16:50:
   - singleton(::ERBPartialEspecialidadesForm)
   sig/generated/steep_actionview_runtime/especialidades/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/especialidades/new.rb:7:2:
+  - singleton(::ERBEspecialidadesNew)
   sig/generated/steep_actionview_runtime/estabelecimentos/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/_form.rb:7:2:
+  - singleton(::ERBPartialEstabelecimentosForm)
   sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:16:52:
   - singleton(::ERBPartialEstabelecimentosForm)
   sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/edit.rb:7:2:
+  - singleton(::ERBEstabelecimentosEdit)
   sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:16:82:
   - singleton(::ERBPartialCadastrosClinicosNavegacao)
   sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/index.rb:7:2:
+  - singleton(::ERBEstabelecimentosIndex)
   sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:16:52:
   - singleton(::ERBPartialEstabelecimentosForm)
   sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/estabelecimentos/new.rb:7:2:
+  - singleton(::ERBEstabelecimentosNew)
   sig/generated/steep_actionview_runtime/layouts/application.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/layouts/application.rb:12:53:
   - singleton(::ERBPartialSharedHeader)
   sig/generated/steep_actionview_runtime/layouts/application.rb:18:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/layouts/application.rb:7:2:
+  - singleton(::ERBLayoutsApplication)
   sig/generated/steep_actionview_runtime/layouts/mailer.rb:10:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/layouts/mailer.rb:7:2:
+  - singleton(::ERBLayoutsMailer)
   sig/generated/steep_actionview_runtime/medicamentos/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/_form.rb:7:2:
+  - singleton(::ERBPartialMedicamentosForm)
   sig/generated/steep_actionview_runtime/medicamentos/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/medicamentos/edit.rb:16:48:
   - singleton(::ERBPartialMedicamentosForm)
   sig/generated/steep_actionview_runtime/medicamentos/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/edit.rb:7:2:
+  - singleton(::ERBMedicamentosEdit)
   sig/generated/steep_actionview_runtime/medicamentos/index.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/index.rb:7:2:
+  - singleton(::ERBMedicamentosIndex)
   sig/generated/steep_actionview_runtime/medicamentos/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/medicamentos/new.rb:16:48:
   - singleton(::ERBPartialMedicamentosForm)
   sig/generated/steep_actionview_runtime/medicamentos/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/medicamentos/new.rb:7:2:
+  - singleton(::ERBMedicamentosNew)
   sig/generated/steep_actionview_runtime/pessoas/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/pessoas/_form.rb:7:2:
+  - singleton(::ERBPartialPessoasForm)
   sig/generated/steep_actionview_runtime/pessoas/edit.rb:15:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/pessoas/edit.rb:17:43:
   - singleton(::ERBPartialPessoasForm)
   sig/generated/steep_actionview_runtime/pessoas/edit.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/pessoas/edit.rb:7:2:
+  - singleton(::ERBPessoasEdit)
+  sig/generated/steep_actionview_runtime/pessoas/edit.rb:8:2:
+  - singleton(::ERBPessoasEdit)
   sig/generated/steep_actionview_runtime/pessoas/index.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/pessoas/index.rb:7:2:
+  - singleton(::ERBPessoasIndex)
+  sig/generated/steep_actionview_runtime/pessoas/index.rb:8:2:
+  - singleton(::ERBPessoasIndex)
   sig/generated/steep_actionview_runtime/pessoas/new.rb:15:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/pessoas/new.rb:17:43:
   - singleton(::ERBPartialPessoasForm)
   sig/generated/steep_actionview_runtime/pessoas/new.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/pessoas/new.rb:7:2:
+  - singleton(::ERBPessoasNew)
+  sig/generated/steep_actionview_runtime/pessoas/new.rb:8:2:
+  - singleton(::ERBPessoasNew)
   sig/generated/steep_actionview_runtime/prescricoes/_form.rb:16:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/_form.rb:7:2:
+  - singleton(::ERBPartialPrescricoesForm)
   sig/generated/steep_actionview_runtime/prescricoes/_tabela.rb:15:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/_tabela.rb:7:2:
+  - singleton(::ERBPartialPrescricoesTabela)
   sig/generated/steep_actionview_runtime/prescricoes/edit.rb:16:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/prescricoes/edit.rb:18:47:
   - singleton(::ERBPartialPrescricoesForm)
   sig/generated/steep_actionview_runtime/prescricoes/edit.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/edit.rb:7:2:
+  - singleton(::ERBPrescricoesEdit)
   sig/generated/steep_actionview_runtime/prescricoes/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/prescricoes/index.rb:16:51:
   - singleton(::ERBPartialPrescricoesTabela)
   sig/generated/steep_actionview_runtime/prescricoes/index.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/index.rb:7:2:
+  - singleton(::ERBPrescricoesIndex)
   sig/generated/steep_actionview_runtime/prescricoes/new.rb:16:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/prescricoes/new.rb:18:47:
   - singleton(::ERBPartialPrescricoesForm)
   sig/generated/steep_actionview_runtime/prescricoes/new.rb:24:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/prescricoes/new.rb:7:2:
+  - singleton(::ERBPrescricoesNew)
   sig/generated/steep_actionview_runtime/profissionais/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/_form.rb:7:2:
+  - singleton(::ERBPartialProfissionaisForm)
   sig/generated/steep_actionview_runtime/profissionais/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/profissionais/edit.rb:16:49:
   - singleton(::ERBPartialProfissionaisForm)
   sig/generated/steep_actionview_runtime/profissionais/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/edit.rb:7:2:
+  - singleton(::ERBProfissionaisEdit)
   sig/generated/steep_actionview_runtime/profissionais/index.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/profissionais/index.rb:16:82:
   - singleton(::ERBPartialCadastrosClinicosNavegacao)
   sig/generated/steep_actionview_runtime/profissionais/index.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/index.rb:7:2:
+  - singleton(::ERBProfissionaisIndex)
   sig/generated/steep_actionview_runtime/profissionais/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/profissionais/new.rb:16:49:
   - singleton(::ERBPartialProfissionaisForm)
   sig/generated/steep_actionview_runtime/profissionais/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/profissionais/new.rb:7:2:
+  - singleton(::ERBProfissionaisNew)
   sig/generated/steep_actionview_runtime/rental_mailer/confirmation.rb:10:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/rental_mailer/confirmation.rb:7:2:
+  - singleton(::ERBRentalMailerConfirmation)
   sig/generated/steep_actionview_runtime/shared/_header.rb:10:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/shared/_header.rb:12:73:
@@ -1054,36 +1230,58 @@ receivers:
   - singleton(::ERBPartialSharedSeletorDePerfil)
   sig/generated/steep_actionview_runtime/shared/_header.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/shared/_header.rb:7:2:
+  - singleton(::ERBPartialSharedHeader)
   sig/generated/steep_actionview_runtime/shared/_menu_de_navegacao.rb:19:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/shared/_menu_de_navegacao.rb:7:2:
+  - singleton(::ERBPartialSharedMenuDeNavegacao)
   sig/generated/steep_actionview_runtime/shared/_seletor_de_perfil.rb:10:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/shared/_seletor_de_perfil.rb:7:2:
+  - singleton(::ERBPartialSharedSeletorDePerfil)
   sig/generated/steep_actionview_runtime/sugestoes/_recomendacao_vacina.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/sugestoes/_recomendacao_vacina.rb:7:2:
+  - singleton(::ERBPartialSugestoesRecomendacaoVacina)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:15:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:17:125:
   - singleton(::ERBPartialSugestoesRecomendacaoVacina)
   sig/generated/steep_actionview_runtime/sugestoes/index.rb:23:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/sugestoes/index.rb:7:2:
+  - singleton(::ERBSugestoesIndex)
+  sig/generated/steep_actionview_runtime/sugestoes/index.rb:8:2:
+  - singleton(::ERBSugestoesIndex)
   sig/generated/steep_actionview_runtime/vacinas/_form.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/vacinas/_form.rb:7:2:
+  - singleton(::ERBPartialVacinasForm)
   sig/generated/steep_actionview_runtime/vacinas/edit.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/vacinas/edit.rb:16:43:
   - singleton(::ERBPartialVacinasForm)
   sig/generated/steep_actionview_runtime/vacinas/edit.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/vacinas/edit.rb:7:2:
+  - singleton(::ERBVacinasEdit)
   sig/generated/steep_actionview_runtime/vacinas/index.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/vacinas/index.rb:7:2:
+  - singleton(::ERBVacinasIndex)
   sig/generated/steep_actionview_runtime/vacinas/new.rb:14:40:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_actionview_runtime/vacinas/new.rb:16:43:
   - singleton(::ERBPartialVacinasForm)
   sig/generated/steep_actionview_runtime/vacinas/new.rb:22:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/vacinas/new.rb:7:2:
+  - singleton(::ERBVacinasNew)
   sig/generated/steep_actionview_runtime/vacinas/show.rb:14:33:
   - singleton(::ActionController::Parameters)
+  sig/generated/steep_actionview_runtime/vacinas/show.rb:7:2:
+  - singleton(::ERBVacinasShow)
   sig/generated/steep_activejob_runtime/active_job_base.rb:14:10:
   - singleton(::ActiveJob::Base)
   sig/generated/steep_activesupport_runtime/class_attribute.rb:53:33:
@@ -1146,6 +1344,8 @@ receivers:
   - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/delegation.rb:166:22:
   - "::Array[untyped]"
+  sig/generated/steep_activesupport_runtime/delegation.rb:16:32:
+  - singleton(::ActiveSupport::Delegation)
   sig/generated/steep_activesupport_runtime/delegation.rb:47:10:
   - singleton(::ActiveSupport::Delegation)
   sig/generated/steep_activesupport_runtime/delegation.rb:51:10:
@@ -1172,6 +1372,8 @@ receivers:
   - "::ActiveSupport::Inflector::Inflections"
   sig/generated/steep_activesupport_runtime/inflector.rb:122:8:
   - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:14:4:
+  - singleton(::ActiveSupport::Inflector)
   sig/generated/steep_activesupport_runtime/inflector.rb:176:17:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:177:8:
@@ -1180,10 +1382,14 @@ receivers:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:187:22:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:188:17:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:197:22:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:198:22:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:199:19:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:211:22:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:212:22:
@@ -1222,6 +1428,8 @@ receivers:
   - "::ActiveSupport::Inflector::Inflections"
   sig/generated/steep_activesupport_runtime/inflector.rb:246:22:
   - "::ActiveSupport::Inflector::Inflections::Uncountables[untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:259:16:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:273:10:
   - "::ActiveSupport::Inflector::Inflections"
   sig/generated/steep_activesupport_runtime/inflector.rb:274:10:
@@ -1238,6 +1446,12 @@ receivers:
   - singleton(::ActiveSupport::Inflector::Inflections::Uncountables)
   sig/generated/steep_activesupport_runtime/inflector.rb:284:10:
   - "::ActiveSupport::Inflector::Inflections"
+  sig/generated/steep_activesupport_runtime/inflector.rb:291:38:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:291:62:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_activesupport_runtime/inflector.rb:292:55:
+  - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:309:26:
   - singleton(::ActiveSupport::Inflector::Inflections)
   sig/generated/steep_activesupport_runtime/inflector.rb:311:20:
@@ -1250,6 +1464,8 @@ receivers:
   - "(::Object & ::ActiveSupport::Inflector)"
   sig/generated/steep_activesupport_runtime/inflector.rb:326:6:
   - "(::Object & ::ActiveSupport::Inflector)"
+  sig/generated/steep_activesupport_runtime/inflector.rb:335:14:
+  - untyped
   sig/generated/steep_activesupport_runtime/inflector.rb:335:24:
   - "(::Object & ::ActiveSupport::Inflector)"
   sig/generated/steep_activesupport_runtime/inflector.rb:335:57:
@@ -1370,6 +1586,10 @@ receivers:
   - untyped
   sig/generated/steep_activesupport_runtime/inflector.rb:418:12:
   - untyped
+  sig/generated/steep_activesupport_runtime/inflector.rb:41:8:
+  - singleton(::ActiveSupport::Inflector::Inflections::Uncountables)
+  sig/generated/steep_activesupport_runtime/inflector.rb:43:8:
+  - singleton(::ActiveSupport::Inflector::Inflections::Uncountables)
   sig/generated/steep_activesupport_runtime/inflector.rb:53:19:
   - "::Array[untyped]"
   sig/generated/steep_activesupport_runtime/inflector.rb:60:19:
@@ -1391,6 +1611,10 @@ receivers:
   sig/generated/steep_ar_runtime/active_support/concern.rb:18:56:
   - singleton(::Array)
   sig/generated/steep_ar_runtime/active_support/concern.rb:29:52:
+  - untyped
+  sig/generated/steep_ar_runtime/active_support/concern.rb:34:41:
+  - untyped
+  sig/generated/steep_ar_runtime/active_support/concern.rb:36:13:
   - untyped
   sig/generated/steep_ar_runtime/active_support/concern.rb:51:103:
   - singleton(::Module)
@@ -1538,15 +1762,21 @@ receivers:
   - untyped
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/mri_map_backend.rb:20:28:
   - singleton(::Mutex)
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/mri_map_backend.rb:30:44:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:104:11:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:105:19:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:114:17:
   - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:120:23:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:120:8:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:128:17:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:133:17:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:141:28:
   - singleton(::Hash)
@@ -1554,6 +1784,8 @@ receivers:
   - "^(*untyped) -> untyped"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:150:8:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:161:41:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:167:19:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:170:18:
@@ -1566,13 +1798,19 @@ receivers:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:34:16:
   - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:39:44:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:42:18:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:48:11:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:49:18:
   - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:58:44:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:59:18:
+  - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:66:44:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:67:10:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
@@ -1580,6 +1818,8 @@ receivers:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:73:8:
   - "::Concurrent::Collection::NonConcurrentMapBackend"
+  sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:78:44:
+  - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:79:18:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/non_concurrent_map_backend.rb:81:10:
@@ -1594,28 +1834,83 @@ receivers:
   - "::Hash[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/constants.rb:11:18:
   - singleton(::Object)
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:141:10:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:161:64:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:162:24:
   - "^(*untyped) -> untyped"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:192:26:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:215:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:227:17:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:239:6:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:250:29:
   - "::Array[untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:250:6:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:259:29:
   - "::Array[untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:259:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:270:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:280:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:302:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:310:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:319:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:326:6:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:328:26:
   - "::Hash[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:328:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:335:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:336:6:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:344:51:
   - "::String"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:344:60:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:344:85:
   - "(^(*untyped) -> untyped | nil)"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:351:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:357:6:
+  - "::Concurrent::Map[untyped, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:362:11:
+  - untyped
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:362:34:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:368:36:
   - "::Concurrent::Hash[::Symbol, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:369:8:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/map.rb:371:31:
   - "::Concurrent::Hash[::Symbol, untyped]"
+  sig/generated/steep_concurrent_runtime/concurrent/map.rb:372:8:
+  - "::Concurrent::Map[untyped, untyped]"
   sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:29:26:
   - "::Hash[::String, ::String]"
   sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:34:26:
   - "::Hash[::String, ::String]"
   sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:39:26:
   - "::Hash[::String, ::String]"
+  sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:50:20:
+  - "{ :< => ::Array[::Integer], :<= => ::Array[::Integer], :== => ::Array[::Integer],
+    :> => ::Array[::Integer], :>= => ::Array[::Integer] }"
+  sig/generated/steep_concurrent_runtime/concurrent/utility/engine.rb:56:2:
+  - singleton(::Concurrent)
+  sig/generated/steep_controller_runtime/action_controller/base.rb:14:4:
+  - singleton(::ActionController::Base)
   sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:23:10:
   - "(::ActionController::Base & ::ActionController::HttpAuthentication::Token::ControllerMethods)"
   sig/generated/steep_controller_runtime/action_controller/metal/http_authentication.rb:23:60:
@@ -1688,6 +1983,8 @@ receivers:
   sig/generated/steep_controller_runtime/agendamentos_controller.rb:63:4:
   - "::AgendamentosController"
   sig/generated/steep_controller_runtime/agendamentos_controller.rb:64:14:
+  - "::AgendamentosController"
+  sig/generated/steep_controller_runtime/agendamentos_controller.rb:66:4:
   - "::AgendamentosController"
   sig/generated/steep_controller_runtime/agendamentos_controller.rb:68:14:
   - "::AgendamentosController"
@@ -1855,6 +2152,8 @@ receivers:
   - "::ConsultasController"
   sig/generated/steep_controller_runtime/consultas_controller.rb:82:14:
   - "::ConsultasController"
+  sig/generated/steep_controller_runtime/consultas_controller.rb:84:4:
+  - "::ConsultasController"
   sig/generated/steep_controller_runtime/consultas_controller.rb:86:14:
   - "::ConsultasController"
   sig/generated/steep_controller_runtime/consultas_controller.rb:88:4:
@@ -1921,6 +2220,8 @@ receivers:
   - "::DosesController"
   sig/generated/steep_controller_runtime/doses_controller.rb:58:14:
   - "::DosesController"
+  sig/generated/steep_controller_runtime/doses_controller.rb:60:4:
+  - "::DosesController"
   sig/generated/steep_controller_runtime/doses_controller.rb:64:4:
   - "::DosesController"
   sig/generated/steep_controller_runtime/doses_controller.rb:65:14:
@@ -1980,6 +2281,8 @@ receivers:
   sig/generated/steep_controller_runtime/especialidades_controller.rb:54:4:
   - "::EspecialidadesController"
   sig/generated/steep_controller_runtime/especialidades_controller.rb:55:14:
+  - "::EspecialidadesController"
+  sig/generated/steep_controller_runtime/especialidades_controller.rb:57:4:
   - "::EspecialidadesController"
   sig/generated/steep_controller_runtime/especialidades_controller.rb:59:14:
   - "::EspecialidadesController"
@@ -2054,6 +2357,8 @@ receivers:
   sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:54:4:
   - "::EstabelecimentosController"
   sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:55:14:
+  - "::EstabelecimentosController"
+  sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:57:4:
   - "::EstabelecimentosController"
   sig/generated/steep_controller_runtime/estabelecimentos_controller.rb:59:14:
   - "::EstabelecimentosController"
@@ -2132,6 +2437,8 @@ receivers:
   sig/generated/steep_controller_runtime/medicamentos_controller.rb:57:4:
   - "::MedicamentosController"
   sig/generated/steep_controller_runtime/medicamentos_controller.rb:58:14:
+  - "::MedicamentosController"
+  sig/generated/steep_controller_runtime/medicamentos_controller.rb:60:4:
   - "::MedicamentosController"
   sig/generated/steep_controller_runtime/medicamentos_controller.rb:62:14:
   - "::MedicamentosController"
@@ -2220,6 +2527,8 @@ receivers:
   sig/generated/steep_controller_runtime/pessoas_controller.rb:54:4:
   - "::PessoasController"
   sig/generated/steep_controller_runtime/pessoas_controller.rb:55:14:
+  - "::PessoasController"
+  sig/generated/steep_controller_runtime/pessoas_controller.rb:57:4:
   - "::PessoasController"
   sig/generated/steep_controller_runtime/pessoas_controller.rb:59:14:
   - "::PessoasController"
@@ -2317,6 +2626,8 @@ receivers:
   - "::PrescricoesController"
   sig/generated/steep_controller_runtime/prescricoes_controller.rb:61:14:
   - "::PrescricoesController"
+  sig/generated/steep_controller_runtime/prescricoes_controller.rb:63:4:
+  - "::PrescricoesController"
   sig/generated/steep_controller_runtime/prescricoes_controller.rb:65:14:
   - "::PrescricoesController"
   sig/generated/steep_controller_runtime/prescricoes_controller.rb:67:4:
@@ -2406,6 +2717,8 @@ receivers:
   sig/generated/steep_controller_runtime/profissionais_controller.rb:60:4:
   - "::ProfissionaisController"
   sig/generated/steep_controller_runtime/profissionais_controller.rb:61:14:
+  - "::ProfissionaisController"
+  sig/generated/steep_controller_runtime/profissionais_controller.rb:63:4:
   - "::ProfissionaisController"
   sig/generated/steep_controller_runtime/profissionais_controller.rb:65:14:
   - "::ProfissionaisController"
@@ -2543,6 +2856,8 @@ receivers:
   - "::VacinasController"
   sig/generated/steep_controller_runtime/vacinas_controller.rb:73:14:
   - "::VacinasController"
+  sig/generated/steep_controller_runtime/vacinas_controller.rb:75:4:
+  - "::VacinasController"
   sig/generated/steep_controller_runtime/vacinas_controller.rb:77:14:
   - "::VacinasController"
   sig/generated/steep_controller_runtime/vacinas_controller.rb:79:4:
@@ -2567,6 +2882,8 @@ receivers:
   - "::VacinasController"
   sig/generated/steep_controller_runtime/vacinas_controller.rb:99:4:
   - "::VacinasController"
+  sig/generated/steep_current_runtime/current.rb:27:2:
+  - singleton(::Current)
   sig/generated/steep_current_runtime/current.rb:35:25:
   - "::Current"
   sig/generated/steep_current_runtime/current.rb:35:4:
@@ -2595,16 +2912,34 @@ receivers:
   - "::ActionController::Base"
   sig/generated/steep_devise_runtime/devise_scoped_helpers.rb:31:4:
   - "::ActionController::Base"
+  sig/generated/steep_devise_runtime/devise_scoped_helpers.rb:41:4:
+  - singleton(::ActionController::Base)
+  sig/generated/steep_ruby_runtime/array.rb:14:20:
+  - "::Array[untyped]"
   sig/generated/steep_ruby_runtime/module.rb:14:4:
   - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:14:87:
+  - "::Array[(singleton(::Enumerable) | singleton(::Agendamento::Anexavel) | singleton(::Consulta::Anexavel)
+    | singleton(::Pessoa::Idade) | singleton(::Pessoa::Avatar) | singleton(::ActionText::Attribute)
+    | singleton(::ActionViewContext) | singleton(::DosesHelper) | singleton(::PessoasHelper)
+    | singleton(::SugestoesHelper) | singleton(::ActionController::HttpAuthentication::Token::ControllerMethods)
+    | singleton(::Current::GeneratedAttributeMethods) | singleton(::DeviseScopedHelpers)
+    | ::Module)]"
   sig/generated/steep_ruby_runtime/module.rb:29:4:
   - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:29:87:
+  - "::Array[untyped]"
   sig/generated/steep_ruby_runtime/module.rb:53:4:
   - "::Module"
   sig/generated/steep_ruby_runtime/module.rb:64:4:
   - "::Module"
+  sig/generated/steep_ruby_runtime/module.rb:94:24:
+  - untyped
   sig/generated/steep_ruby_runtime/object.rb:23:4:
   - "::Object"
+  sig/generated/steep_ruby_runtime/object.rb:23:87:
+  - "::Array[(singleton(::ActiveSupport::Concern) | singleton(::ActiveSupport::Inflector)
+    | singleton(::Concurrent::Utility::EngineDetector) | ::Module)]"
   sig/generated/steep_ruby_runtime/object.rb:30:6:
   - "::Object"
   sig/generated/steep_ruby_runtime/thread_mutex.rb:11:4:
