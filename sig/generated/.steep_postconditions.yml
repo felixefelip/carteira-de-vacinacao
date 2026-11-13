@@ -385,15 +385,16 @@ postconditions:
       Current.user: "(::User & ::User::Validated)"
 - class: Caderneta::Atualizar
   method: initialize
-  unconditional:
-    ivars:
-      "@caderneta": untyped
-    self: "::Caderneta::Atualizar & ::Caderneta::Atualizar::AfterInitialize"
   effects:
     may_write:
     - "@caderneta"
 - class: Caderneta::Cadastrar
   method: caderneta=
+  effects:
+    may_write:
+    - "@caderneta"
+- class: Caderneta::Cadastrar
+  method: initialize
   effects:
     may_write:
     - "@caderneta"
@@ -422,6 +423,18 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - caderneta
+- class: Caderneta_Dose::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - caderneta
 - class: Concurrent::Collection::MriMapBackend
   method: initialize
   effects:
@@ -602,7 +615,7 @@ postconditions:
   method: pessoa=
   unconditional:
     establishes_consts:
-      caderneta: untyped
+      caderneta: "(::Caderneta & ::Caderneta::Validated)"
       pessoa: "(::Pessoa & ::Pessoa::Validated)"
   effects:
     may_write:
@@ -738,7 +751,7 @@ postconditions:
   method: create
   unconditional:
     ivars:
-      "@dose": untyped
+      "@dose": "::Dose"
     self: "::DosesController & ::DosesController::AfterCreate"
   effects:
     may_write:
@@ -748,7 +761,7 @@ postconditions:
   method: new
   unconditional:
     ivars:
-      "@dose": untyped
+      "@dose": "::Dose"
     self: "::DosesController & ::DosesController::AfterNew"
   effects:
     may_write:
@@ -766,7 +779,7 @@ postconditions:
   method: set_dose
   unconditional:
     ivars:
-      "@dose": untyped
+      "@dose": "(::Dose & ::Dose::Validated)"
     self: "::DosesController & ::DosesController::AfterSetDose"
   effects:
     may_write:
@@ -1266,6 +1279,12 @@ postconditions:
   effects:
     may_write:
     - "@__rbs_infer__performed"
+- class: FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - fabricante_vacina
 - class: FiltroDeAtendimentos
   method: data_ate
   effects:
@@ -1776,6 +1795,30 @@ postconditions:
   method: synchronize
   effects:
     runs_block: once
+- class: User_Pessoa::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - user
+- class: Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - vacina
+- class: Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - vacina
+- class: Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy
+  method: build
+  unconditional:
+    returns:
+      establishes:
+      - vacina
 - class: VacinasController
   method: __rbs_infer__run_create
   unconditional:
@@ -1842,7 +1885,7 @@ postconditions:
   method: create
   unconditional:
     ivars:
-      "@vacina": untyped
+      "@vacina": "::Vacina"
     self: "::VacinasController & ::VacinasController::AfterCreate"
   effects:
     may_write:
@@ -1857,7 +1900,7 @@ postconditions:
   method: new
   unconditional:
     ivars:
-      "@vacina": untyped
+      "@vacina": "::Vacina"
     self: "::VacinasController & ::VacinasController::AfterNew"
   effects:
     may_write:
@@ -1875,7 +1918,7 @@ postconditions:
   method: set_vacina
   unconditional:
     ivars:
-      "@vacina": untyped
+      "@vacina": "(::Vacina & ::Vacina::Validated)"
     self: "::VacinasController & ::VacinasController::AfterSetVacina"
   effects:
     may_write:
@@ -2159,11 +2202,19 @@ method_entry_facts:
   consts:
     Current.user: "(::User & ::User::Validated)"
 - class: DosesController
+  method: dose_params
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+- class: DosesController
   method: edit
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "(::Dose & ::Dose::Validated)"
 - class: DosesController
   method: new
   self_methods:
@@ -2176,6 +2227,8 @@ method_entry_facts:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "::Dose"
 - class: DosesController
   method: set_dose
   self_methods:
@@ -2194,6 +2247,8 @@ method_entry_facts:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@dose": "(::Dose & ::Dose::Validated)"
 - class: ERBAgendamentosEdit
   method: __rbs_infer__body
   consts:
@@ -2947,6 +3002,10 @@ method_entry_facts:
   method: idade_recomendada_para
   consts:
     Current.user: "(::User & ::User::Validated)"
+- class: User
+  method: pessoas
+  consts:
+    Current.user: "(::User & ::User::Validated)"
 - class: VacinasController
   method: create
   self_methods:
@@ -2959,12 +3018,16 @@ method_entry_facts:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
 - class: VacinasController
   method: edit
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
 - class: VacinasController
   method: index
   self_methods:
@@ -2995,8 +3058,18 @@ method_entry_facts:
     current_user: "(::User & ::User::Validated)"
   consts:
     Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
 - class: VacinasController
   method: update
+  self_methods:
+    current_user: "(::User & ::User::Validated)"
+  consts:
+    Current.user: "(::User & ::User::Validated)"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: vacina_params
   self_methods:
     current_user: "(::User & ::User::Validated)"
   consts:
@@ -3062,6 +3135,12 @@ argument_entry_facts:
   pattern: ":show"
   ivars:
     "@consulta": "(::Consulta & ::Consulta::Validated)"
+- class: DosesController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@dose": "::Dose"
 - class: EspecialidadesController
   method: render
   param: target
@@ -3155,6 +3234,24 @@ argument_entry_facts:
   ivars:
     "@especialidades": "::Especialidade::ActiveRecord_Relation"
     "@profissional": "::Profissional"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":edit"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":new"
+  ivars:
+    "@vacina": "::Vacina"
+- class: VacinasController
+  method: render
+  param: target
+  pattern: ":show"
+  ivars:
+    "@vacina": "(::Vacina & ::Vacina::Validated)"
 unreached_definitions:
 - Concurrent::Map#[]
 - Concurrent::Map#initialize

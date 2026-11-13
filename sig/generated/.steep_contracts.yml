@@ -112,6 +112,15 @@ methods:
           kind: self
         method: filtros
     enforced: false
+  Pessoa::Avatar#avatar_precisa_ser_uma_imagem_pequena:
+    requires:
+    - kind: not_nil
+      expr:
+        kind: send
+        receiver:
+          kind: self
+        method: avatar
+    enforced: false
   Prescricao#situacao_em:
     requires:
     - kind: not_nil

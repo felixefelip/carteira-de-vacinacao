@@ -13,6 +13,8 @@ methods:
     "() &-> void": "^(*untyped) -> void"
     "() on singleton(::Agendamento::Anexavel) &-> void": "^(*untyped) -> void"
     "() on singleton(::Consulta::Anexavel) &-> void": "^(*untyped) -> void"
+    "() on singleton(::Pessoa::Avatar) &-> void": "^(*untyped) -> void"
+    "() on singleton(::Pessoa::Idade) &-> void": "^(*untyped) -> void"
   ActiveSupport::Inflector::Inflections#clear:
     "(:acronyms)": "::Regexp"
     "(:humans)": "::Array[untyped]"
@@ -162,7 +164,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:40:47:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:46:32:
-  - untyped
+  - singleton(::Current)
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:56:4:
   - "::AgendamentosController"
   packs/atendimento_clinico/app/controllers/agendamentos_controller.rb:66:11:
@@ -220,9 +222,9 @@ receivers:
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:48:41:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:54:32:
-  - untyped
+  - singleton(::Current)
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:58:41:
-  - untyped
+  - singleton(::Current)
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:62:18:
   - "::ConsultasController"
   packs/atendimento_clinico/app/controllers/consultas_controller.rb:62:46:
@@ -324,7 +326,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:44:20:
   - "::ActionController::Parameters"
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:46:50:
-  - untyped
+  - singleton(::Current)
   packs/atendimento_clinico/app/controllers/medicamentos_controller.rb:46:66:
   - "::MedicamentosController"
   packs/atendimento_clinico/app/controllers/prescricoes_controller.rb:12:40:
@@ -356,7 +358,7 @@ receivers:
   packs/atendimento_clinico/app/controllers/prescricoes_controller.rb:36:6:
   - "::PrescricoesController"
   packs/atendimento_clinico/app/controllers/prescricoes_controller.rb:43:50:
-  - untyped
+  - singleton(::Current)
   packs/atendimento_clinico/app/controllers/prescricoes_controller.rb:43:66:
   - "::PrescricoesController"
   packs/atendimento_clinico/app/controllers/prescricoes_controller.rb:47:45:
@@ -518,7 +520,7 @@ receivers:
   packs/identidade/app/controllers/application_controller.rb:13:14:
   - "::ApplicationController"
   packs/identidade/app/controllers/application_controller.rb:15:17:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/application_controller.rb:15:4:
   - "::ApplicationController"
   packs/identidade/app/controllers/application_controller.rb:15:44:
@@ -536,7 +538,7 @@ receivers:
   packs/identidade/app/controllers/perfil_ativo_controller.rb:3:13:
   - "::PerfilAtivoController"
   packs/identidade/app/controllers/perfil_ativo_controller.rb:3:26:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/perfil_ativo_controller.rb:3:39:
   - "::PerfilAtivoController"
   packs/identidade/app/controllers/perfil_ativo_controller.rb:4:11:
@@ -544,9 +546,9 @@ receivers:
   packs/identidade/app/controllers/pessoas_controller.rb:15:14:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:15:27:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/pessoas_controller.rb:15:35:
-  - untyped
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
   packs/identidade/app/controllers/pessoas_controller.rb:15:41:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:17:15:
@@ -576,7 +578,7 @@ receivers:
   packs/identidade/app/controllers/pessoas_controller.rb:45:14:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:45:27:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/pessoas_controller.rb:45:40:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:49:17:
@@ -584,283 +586,371 @@ receivers:
   packs/identidade/app/controllers/pessoas_controller.rb:5:15:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:5:28:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/pessoas_controller.rb:9:14:
   - "::PessoasController"
   packs/identidade/app/controllers/pessoas_controller.rb:9:27:
-  - untyped
+  - "(::User & ::User::Validated)"
   packs/identidade/app/controllers/pessoas_controller.rb:9:35:
-  - untyped
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
   packs/identidade/app/models/current.rb:8:11:
   - "::Current"
   packs/identidade/app/models/current.rb:8:29:
-  - untyped
+  - "(::Pessoa & ::Pessoa::Validated)"
+  packs/identidade/app/models/pessoa.rb:15:2:
+  - singleton(::Pessoa)
+  packs/identidade/app/models/pessoa.rb:16:2:
+  - singleton(::Pessoa)
+  packs/identidade/app/models/pessoa.rb:36:4:
+  - "::Pessoa"
   packs/identidade/app/models/pessoa.rb:43:11:
-  - untyped
+  - "::ActiveModel::Errors"
   packs/identidade/app/models/pessoa/avatar.rb:23:13:
-  - untyped
+  - "::ActiveModel::Errors"
   packs/identidade/app/models/pessoa/avatar.rb:26:13:
-  - untyped
+  - "::ActiveModel::Errors"
+  packs/identidade/app/models/pessoa/avatar.rb:3:4:
+  - singleton(::Pessoa::Avatar)
+  packs/identidade/app/models/pessoa/avatar.rb:8:4:
+  - singleton(::Pessoa::Avatar)
+  packs/identidade/app/models/pessoa/idade.rb:3:4:
+  - singleton(::Pessoa::Idade)
   packs/identidade/app/models/pessoa/idade.rb:43:68:
-  - untyped
+  - "::Array[::String]"
+  packs/identidade/app/models/pessoa/idade.rb:5:4:
+  - singleton(::Pessoa::Idade)
   packs/vacinacao/app/controllers/caderneta_controller.rb:10:44:
-  - untyped
+  - singleton(::Current)
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:23:
-  - untyped
+  - singleton(::Current)
   packs/vacinacao/app/controllers/caderneta_controller.rb:3:33:
-  - untyped
+  - "((::Caderneta & ::Caderneta::Validated) | nil)"
+  packs/vacinacao/app/controllers/caderneta_controller.rb:7:26:
+  - "::CadernetaController"
   packs/vacinacao/app/controllers/caderneta_controller.rb:8:34:
   - untyped
   packs/vacinacao/app/controllers/doses_controller.rb:14:17:
-  - untyped
+  - singleton(::Dose)
+  packs/vacinacao/app/controllers/doses_controller.rb:14:21:
+  - "::DosesController"
   packs/vacinacao/app/controllers/doses_controller.rb:15:10:
-  - untyped
+  - "::Dose"
   packs/vacinacao/app/controllers/doses_controller.rb:15:30:
   - singleton(::Current)
   packs/vacinacao/app/controllers/doses_controller.rb:17:13:
-  - untyped
+  - "::Dose"
   packs/vacinacao/app/controllers/doses_controller.rb:18:6:
   - "::DosesController"
   packs/vacinacao/app/controllers/doses_controller.rb:20:6:
   - "::DosesController"
+  packs/vacinacao/app/controllers/doses_controller.rb:27:22:
+  - "::DosesController"
   packs/vacinacao/app/controllers/doses_controller.rb:27:28:
-  - untyped
+  - "::ActionController::Parameters"
+  packs/vacinacao/app/controllers/doses_controller.rb:31:26:
+  - "::DosesController"
   packs/vacinacao/app/controllers/doses_controller.rb:31:32:
-  - untyped
+  - "::ActionController::Parameters"
   packs/vacinacao/app/controllers/doses_controller.rb:35:4:
   - "::DosesController"
   packs/vacinacao/app/controllers/doses_controller.rb:8:17:
-  - untyped
+  - singleton(::Dose)
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:36:
-  - untyped
+  - singleton(::Current)
   packs/vacinacao/app/controllers/sugestoes_controller.rb:3:46:
-  - untyped
+  - "((::Caderneta & ::Caderneta::Validated) | nil)"
   packs/vacinacao/app/controllers/vacinas_controller.rb:11:21:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/controllers/vacinas_controller.rb:17:21:
-  - untyped
+  - singleton(::Vacina)
+  packs/vacinacao/app/controllers/vacinas_controller.rb:17:25:
+  - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:18:12:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/controllers/vacinas_controller.rb:18:31:
-  - untyped
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/controllers/vacinas_controller.rb:20:15:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/controllers/vacinas_controller.rb:21:6:
   - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:23:6:
   - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:28:15:
-  - untyped
+  - "(::Vacina & ::Vacina::Validated)"
+  packs/vacinacao/app/controllers/vacinas_controller.rb:28:22:
+  - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:29:6:
   - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:31:6:
   - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:36:12:
-  - untyped
+  - "(::Vacina & ::Vacina::Validated)"
   packs/vacinacao/app/controllers/vacinas_controller.rb:38:4:
   - "::VacinasController"
+  packs/vacinacao/app/controllers/vacinas_controller.rb:44:26:
+  - "::VacinasController"
   packs/vacinacao/app/controllers/vacinas_controller.rb:44:32:
-  - untyped
+  - "::ActionController::Parameters"
   packs/vacinacao/app/controllers/vacinas_controller.rb:48:4:
   - "::VacinasController"
   packs/vacinacao/app/helpers/sugestoes_helper.rb:3:37:
   - untyped
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:101:14:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:101:34:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:104:21:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:107:12:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:107:32:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:108:12:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:108:32:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:10:24:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:111:23:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:114:14:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:114:34:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:11:15:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:11:35:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:14:26:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:17:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:17:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:18:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:18:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:19:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:19:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:22:26:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:25:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:25:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:26:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:26:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:27:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:27:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:30:26:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:33:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:33:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:34:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:34:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:35:17:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:35:37:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:38:23:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:41:14:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:41:34:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:42:14:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:42:34:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:45:29:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:48:20:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:48:40:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:49:20:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:49:40:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:50:20:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:50:40:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:53:27:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:56:18:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:56:38:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:59:28:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:62:19:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:62:39:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:63:19:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:63:39:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:66:17:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:69:28:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:69:8:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:6:17:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:72:24:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:75:15:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:75:35:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:78:22:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:7:28:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:7:8:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:81:13:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:81:33:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:84:32:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:87:23:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:87:43:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:88:23:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:88:43:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:91:17:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:94:28:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:94:8:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:95:28:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:95:8:
-  - untyped
+  - "::Vacina"
   packs/vacinacao/app/models/cadastra_vacinas_padrao.rb:98:23:
-  - untyped
+  - singleton(::Vacina)
   packs/vacinacao/app/models/caderneta.rb:24:14:
-  - untyped
+  - singleton(::Caderneta::Cadastrar)
   packs/vacinacao/app/models/caderneta.rb:24:24:
-  - untyped
+  - "::Caderneta::Cadastrar"
   packs/vacinacao/app/models/caderneta.rb:28:14:
-  - untyped
+  - singleton(::Caderneta::Atualizar)
   packs/vacinacao/app/models/caderneta.rb:28:24:
-  - untyped
+  - "::Caderneta::Atualizar"
+  packs/vacinacao/app/models/caderneta.rb:32:4:
+  - "::Caderneta"
+  packs/vacinacao/app/models/caderneta.rb:36:4:
+  - "::Caderneta"
   packs/vacinacao/app/models/caderneta/atualizar.rb:16:16:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
   packs/vacinacao/app/models/caderneta/atualizar.rb:16:37:
-  - untyped
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  packs/vacinacao/app/models/caderneta/atualizar.rb:16:6:
+  - "::Caderneta::Atualizar"
   packs/vacinacao/app/models/caderneta/atualizar.rb:17:28:
-  - untyped
+  - "(::Caderneta::RecomendacaoVacina & ::Caderneta::RecomendacaoVacina::Validated)"
+  packs/vacinacao/app/models/caderneta/atualizar.rb:8:6:
+  - "::Caderneta::Atualizar"
   packs/vacinacao/app/models/caderneta/cadastrar.rb:16:24:
-  - untyped
+  - singleton(::ApplicationRecord)
   packs/vacinacao/app/models/caderneta/cadastrar.rb:19:30:
-  - untyped
+  - "::Vacina::ActiveRecord_Relation"
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:20:18:
+  - "::Caderneta::Cadastrar"
   packs/vacinacao/app/models/caderneta/cadastrar.rb:20:28:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:22:10:
+  - "::Caderneta::Cadastrar"
   packs/vacinacao/app/models/caderneta/cadastrar.rb:22:20:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
   packs/vacinacao/app/models/caderneta/cadastrar.rb:22:41:
-  - untyped
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:4:11:
+  - "::Caderneta::Cadastrar"
+  packs/vacinacao/app/models/caderneta/cadastrar.rb:8:6:
+  - "::Caderneta::Cadastrar"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:25:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:29:14:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:29:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:33:29:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:35:32:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:43:14:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:45:11:
-  - untyped
+  - "(::Vacina & ::Vacina::Validated)"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:45:30:
-  - untyped
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:45:31:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:49:20:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:51:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:51:42:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:55:42:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:58:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:62:71:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:68:48:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:75:63:
-  - untyped
+  - "(::Vacina & ::Vacina::Validated)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:77:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:81:11:
+  - "::Caderneta::RecomendacaoVacina"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:81:53:
+  - "::Caderneta::RecomendacaoVacina"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:82:50:
+  - "::Caderneta::RecomendacaoVacina"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:84:55:
+  - "::Caderneta::RecomendacaoVacina"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:90:69:
-  - untyped
+  - "::Caderneta::RecomendacaoVacina::ActiveRecord_Relation"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:91:26:
-  - untyped
+  - "(::Caderneta::RecomendacaoVacina & ::Caderneta::RecomendacaoVacina::Validated)"
   packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:98:14:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
+  packs/vacinacao/app/models/caderneta/recomendacao_vacina.rb:98:4:
+  - "(Caderneta::RecomendacaoVacina & Caderneta::RecomendacaoVacina::Validated & Caderneta::RecomendacaoVacina::ValidatedViaCaderneta)"
   packs/vacinacao/app/models/dose.rb:23:14:
-  - untyped
+  - "(::Caderneta & ::Caderneta::Validated)"
+  packs/vacinacao/app/models/dose.rb:23:4:
+  - "(Dose & Dose::Validated)"
   packs/vacinacao/app/models/vacina.rb:28:23:
-  - untyped
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  packs/vacinacao/app/models/vacina.rb:28:4:
+  - "::Vacina"
+  packs/vacinacao/app/models/vacina.rb:32:4:
+  - "::Vacina"
   sig/generated/steep_actiontext_runtime/attribute.rb:15:4:
   - singleton(::ActionText::Attribute)
   sig/generated/steep_actiontext_runtime/attribute.rb:17:4:
@@ -1690,27 +1780,43 @@ receivers:
   sig/generated/steep_ar_runtime/agendamento.rb:8:4:
   - "::Agendamento"
   sig/generated/steep_ar_runtime/caderneta.rb:12:74:
-  - untyped
+  - singleton(::Caderneta_FabricanteVacina::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/caderneta.rb:16:64:
-  - untyped
+  - singleton(::Caderneta_Vacina::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/caderneta.rb:20:86:
-  - untyped
+  - singleton(::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/caderneta.rb:8:62:
-  - untyped
+  - singleton(::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:16:43:
-  - untyped
+  - singleton(::Caderneta::RecomendacaoVacina)
   sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:17:11:
-  - untyped
+  - "::Caderneta::RecomendacaoVacina"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:17:23:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:22:13:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:23:11:
-  - untyped
+  - "::Caderneta::RecomendacaoVacina"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:28:14:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_caderneta_recomendacao_vacina.rb:28:4:
+  - "::Caderneta_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/caderneta_dose.rb:16:18:
-  - untyped
+  - singleton(::Dose)
   sig/generated/steep_ar_runtime/caderneta_dose.rb:17:11:
-  - untyped
+  - "::Dose"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:17:23:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:22:13:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/caderneta_dose.rb:23:11:
-  - untyped
+  - "::Dose"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:28:14:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/caderneta_dose.rb:28:4:
+  - "::Caderneta_Dose::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/caderneta_recomendacao_vacina/generated_relation_methods.rb:8:36:
-  - untyped
+  - singleton(::Caderneta::RecomendacaoVacina)
   sig/generated/steep_ar_runtime/consulta.rb:8:4:
   - "::Consulta"
   sig/generated/steep_ar_runtime/especialidade.rb:12:70:
@@ -1770,11 +1876,23 @@ receivers:
   sig/generated/steep_ar_runtime/estabelecimento_consulta.rb:28:4:
   - "::Estabelecimento_Consulta::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/fabricante_vacina.rb:8:69:
-  - untyped
+  - singleton(::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:16:18:
-  - untyped
+  - singleton(::Dose)
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:17:31:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:22:13:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:23:11:
-  - untyped
+  - "::Dose"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:28:14:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/fabricante_vacina_dose.rb:28:4:
+  - "::FabricanteVacina_Dose::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/pessoa.rb:13:4:
+  - "::Pessoa"
+  sig/generated/steep_ar_runtime/pessoa.rb:8:4:
+  - "::Pessoa"
   sig/generated/steep_ar_runtime/profissional.rb:12:69:
   - singleton(::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/profissional.rb:8:72:
@@ -1804,33 +1922,71 @@ receivers:
   sig/generated/steep_ar_runtime/profissional_consulta.rb:28:4:
   - "::Profissional_Consulta::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/user.rb:17:59:
-  - untyped
+  - singleton(::User_Pessoa::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/user.rb:8:4:
+  - "::User"
   sig/generated/steep_ar_runtime/user_pessoa.rb:16:20:
-  - untyped
+  - singleton(::Pessoa)
   sig/generated/steep_ar_runtime/user_pessoa.rb:17:11:
-  - untyped
+  - "::Pessoa"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:17:18:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:22:13:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/user_pessoa.rb:23:11:
-  - untyped
+  - "::Pessoa"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:28:14:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/user_pessoa.rb:28:4:
+  - "::User_Pessoa::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina.rb:13:4:
+  - "::Vacina"
   sig/generated/steep_ar_runtime/vacina.rb:17:71:
-  - untyped
+  - singleton(::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/vacina.rb:21:59:
-  - untyped
+  - singleton(::Vacina_Dose::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/vacina.rb:25:83:
-  - untyped
+  - singleton(::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy)
   sig/generated/steep_ar_runtime/vacina.rb:29:71:
-  - untyped
+  - singleton(::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy)
+  sig/generated/steep_ar_runtime/vacina.rb:8:4:
+  - "::Vacina"
   sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:16:43:
-  - untyped
+  - singleton(::Caderneta::RecomendacaoVacina)
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:17:20:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:22:13:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:23:11:
-  - untyped
+  - "::Caderneta::RecomendacaoVacina"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:28:14:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_caderneta_recomendacao_vacina.rb:28:4:
+  - "::Vacina_Caderneta_RecomendacaoVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:16:30:
-  - untyped
+  - singleton(::DoseDoCalendario)
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:17:20:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:22:13:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:23:11:
-  - untyped
+  - "::DoseDoCalendario"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:28:14:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_dose_do_calendario.rb:28:4:
+  - "::Vacina_DoseDoCalendario::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:16:30:
-  - untyped
+  - singleton(::FabricanteVacina)
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:17:20:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:22:13:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:23:11:
-  - untyped
+  - "::FabricanteVacina"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:28:14:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
+  sig/generated/steep_ar_runtime/vacina_fabricante_vacina.rb:28:4:
+  - "::Vacina_FabricanteVacina::ActiveRecord_Associations_CollectionProxy"
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/mri_map_backend.rb:20:28:
   - singleton(::Mutex)
   sig/generated/steep_concurrent_runtime/concurrent/collection/map/mri_map_backend.rb:30:44:
